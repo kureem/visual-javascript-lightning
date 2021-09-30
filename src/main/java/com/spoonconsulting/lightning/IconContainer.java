@@ -1,13 +1,29 @@
 package com.spoonconsulting.lightning;
 
+import framework.components.JSContainer;
+
 public class IconContainer extends BaseLightning{
 
 	private Icon icon = new Icon("icon", "utility:moneybag");
+	
+	private JSContainer assistiveText = new JSContainer("assistive-text", "span");
 	
 	public IconContainer(String name, String tag) {
 		super(name, tag);
 		addClass("slds-icon_container");
 		addChild(icon);
+		addChild(assistiveText);
+		assistiveText.addClass("slds-assistive-text");
+	}
+	
+	
+	public IconContainer setAssistiveText(String txt) {
+		this.assistiveText.setHtml(txt);
+		return this;
+	}
+	
+	public String getAssistiveText() {
+		return this.assistiveText.getHtml();
 	}
 	
 	public IconContainer setIconName(String iconName) {

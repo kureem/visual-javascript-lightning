@@ -131,6 +131,115 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class Layout extends JSContainer {
+        static HORIZONTAL_ALIGN_CENTER: string;
+        static HORIZONTAL_ALIGN_SPACE: string;
+        static HORIZONTAL_ALIGN_SPREAD: string;
+        static HORIZONTAL_ALIGN_END: string;
+        static VERTICAL_ALIGN_START: string;
+        static VERTICAL_ALIGN_CENTER: string;
+        static VERTICAL_ALIGN_END: string;
+        static VERTICAL_ALIGN_STRETCH: string;
+        static PULL_TO_BOUNDARY_SMALL: string;
+        static PULL_TO_BOUNDARY_MEDIUM: string;
+        static PULL_TO_BOUNDARY_LARGE: string;
+        multipleRows: boolean;
+        horizontalAlign: string;
+        pullToBoundary: string;
+        verticalAlign: string;
+        constructor(name: string, tag: string);
+        isMultipleRows(): boolean;
+        setMultipleRows(multipleRows: boolean): Layout;
+        getHorizontalAlign(): string;
+        setHorizontalAlign(horizontalAlign: string): Layout;
+        getPullToBoundary(): string;
+        setPullToBoundary(pullToBoundary: string): Layout;
+        getVerticalAlign(): string;
+        setVerticalAlign(verticalAlign: string): Layout;
+        refresh(): Layout;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class LayoutItem extends JSContainer {
+        alignmentBumb: string;
+        flexibility: string;
+        largeDeviceSize: number;
+        mediumDeviceSize: number;
+        padding: string;
+        size: number;
+        smallDeviceSize: number;
+        constructor(name: string, tag: string);
+        getAlignmentBumb(): string;
+        setAlignmentBumb(alignmentBumb: string): LayoutItem;
+        getFlexibility(): string;
+        setFlexibility(flexibility: string): LayoutItem;
+        getLargeDeviceSize(): number;
+        setLargeDeviceSize(largeDeviceSize: number): LayoutItem;
+        getMediumDeviceSize(): number;
+        setMediumDeviceSize(mediumDeviceSize: number): LayoutItem;
+        getPadding(): string;
+        setPadding(padding: string): LayoutItem;
+        getSize(): number;
+        setSize(size: number): LayoutItem;
+        getSmallDeviceSize(): number;
+        setSmallDeviceSize(smallDeviceSize: number): LayoutItem;
+    }
+    namespace LayoutItem {
+        enum AlignmentBump {
+            TOP = 0,
+            LEFT = 1,
+            RIGHT = 2,
+            BOTTOM = 3
+        }
+        /** @ignore */
+        class AlignmentBump_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            value: any;
+            constructor(_$ordinal: number, _$name: string, value: any);
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
+        enum Flexibility {
+            AUTO = 0,
+            SHRINK = 1,
+            NO_SHRINK = 2,
+            GROW = 3,
+            NO_GROW = 4,
+            NO_FLEX = 5
+        }
+        /** @ignore */
+        class Flexibility_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            value: any;
+            constructor(_$ordinal: number, _$name: string, val: any);
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
+        enum Padding {
+            HORIZONTAL_SMALL = 0,
+            HORIZONTAL_MEDIUM = 1,
+            HORIZONTAL_LARGE = 2,
+            AROUND_SMALL = 3,
+            AROUND_MEDIUM = 4,
+            AROUND_LARGE = 5
+        }
+        /** @ignore */
+        class Padding_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            value: any;
+            constructor(_$ordinal: number, _$name: string, val: any);
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class MenuDivider extends JSContainer {
         constructor();
     }
@@ -182,6 +291,57 @@ declare namespace com.spoonconsulting.lightning {
         setVariant$com_spoonconsulting_lightning_Variant(variant: com.spoonconsulting.lightning.Variant): Spinner;
         setInlined(b: boolean): Spinner;
         setDelayed(b: boolean): Spinner;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class TabSet extends JSContainer {
+        tablist: JSContainer;
+        tabs: JSContainer;
+        constructor(name: string);
+        setActiveTabValue(val: string): void;
+        setActiveTabItem(item: TabSet.TabItem): void;
+        addTab(tab: com.spoonconsulting.lightning.Tab, content: com.spoonconsulting.lightning.TabPanel): TabSet;
+        getPanel(name: string): com.spoonconsulting.lightning.TabPanel;
+        setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(variant: TabSet.TabSetVariant): TabSet;
+        setVariant(variant?: any): any;
+        setVariant$java_lang_String(variant: string): TabSet;
+    }
+    namespace TabSet {
+        enum TabSetVariant {
+            STANDARD = 0,
+            SCOPED = 1,
+            VERTICAL = 2
+        }
+        /** @ignore */
+        class TabSetVariant_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            constructor(_$ordinal: number, _$name: string, value: any);
+            value: any;
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
+        class TabItem extends JSContainer {
+            __parent: any;
+            tab: com.spoonconsulting.lightning.Tab;
+            panel: com.spoonconsulting.lightning.TabPanel;
+            constructor(__parent: any, name: string, tab: com.spoonconsulting.lightning.Tab, panel: com.spoonconsulting.lightning.TabPanel);
+            setActive(b: boolean): void;
+            isActive(): boolean;
+        }
+        namespace TabItem {
+            class TabItem$0 implements api.EventListener {
+                __parent: any;
+                /**
+                 *
+                 * @param {*} source
+                 * @param {Event} evt
+                 */
+                performAction(source: api.Renderable, evt: Event): void;
+                constructor(__parent: any);
+            }
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -453,7 +613,10 @@ declare namespace com.spoonconsulting.lightning {
 declare namespace com.spoonconsulting.lightning {
     class IconContainer extends com.spoonconsulting.lightning.BaseLightning {
         icon: com.spoonconsulting.lightning.Icon;
+        assistiveText: JSContainer;
         constructor(name: string, tag: string);
+        setAssistiveText(txt: string): IconContainer;
+        getAssistiveText(): string;
         setIconName(iconName: string): IconContainer;
         getIcon(): com.spoonconsulting.lightning.Icon;
         setSize(size: com.spoonconsulting.lightning.Size): IconContainer;
@@ -520,6 +683,49 @@ declare namespace com.spoonconsulting.lightning {
         click(): void;
         focus(): void;
         blur(): void;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Tab extends com.spoonconsulting.lightning.BaseLightning {
+        endIconAlternariveText: string;
+        endIconName: string;
+        iconAssistiveText: string;
+        iconName: string;
+        showErrorIndicator: boolean;
+        value: string;
+        leftIconContainer: com.spoonconsulting.lightning.IconContainer;
+        tabLeftIcon: JSContainer;
+        rightIconContainer: com.spoonconsulting.lightning.IconContainer;
+        tabRightIcon: JSContainer;
+        errorIconContainer: com.spoonconsulting.lightning.IconContainer;
+        tabErrorIcon: JSContainer;
+        label: JSContainer;
+        active: boolean;
+        constructor(name: string);
+        getEndIconAlternariveText(): string;
+        setEndIconAlternariveText(endIconAlternariveText: string): Tab;
+        getEndIconName(): string;
+        setEndIconName(endIconName: string): Tab;
+        getIconAssistiveText(): string;
+        setIconAssistiveText(iconAssistiveText: string): Tab;
+        getIconName(): string;
+        setIconName(iconName: string): Tab;
+        getShowErrorIndicator(): boolean;
+        setShowErrorIndicator(showErrorIndicator: boolean): Tab;
+        getValue(): string;
+        setValue(value: string): Tab;
+        getLabel(): string;
+        setLabel(label: string): Tab;
+        isActive(): boolean;
+        setActive(active: boolean): void;
+        refresh(): Tab;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class TabPanel extends com.spoonconsulting.lightning.BaseLightning {
+        constructor(name: string);
+        setActive(b: boolean): TabPanel;
+        isActive(): boolean;
     }
 }
 declare namespace com.spoonconsulting.lightning {

@@ -491,6 +491,332 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Layout extends JSContainer {
+                constructor(name, tag) {
+                    super(name, tag);
+                    this.multipleRows = false;
+                    this.horizontalAlign = null;
+                    this.pullToBoundary = null;
+                    this.verticalAlign = null;
+                    this.addClass("slds-grid");
+                }
+                isMultipleRows() {
+                    return this.multipleRows;
+                }
+                setMultipleRows(multipleRows) {
+                    this.multipleRows = multipleRows;
+                    return this.refresh();
+                }
+                getHorizontalAlign() {
+                    return this.horizontalAlign;
+                }
+                setHorizontalAlign(horizontalAlign) {
+                    this.horizontalAlign = horizontalAlign;
+                    return this.refresh();
+                }
+                getPullToBoundary() {
+                    return this.pullToBoundary;
+                }
+                setPullToBoundary(pullToBoundary) {
+                    this.pullToBoundary = pullToBoundary;
+                    return this.refresh();
+                }
+                getVerticalAlign() {
+                    return this.verticalAlign;
+                }
+                setVerticalAlign(verticalAlign) {
+                    this.verticalAlign = verticalAlign;
+                    return this.refresh();
+                }
+                refresh() {
+                    this.removeClass("slds-wrap");
+                    this.removeClass("slds-grid_align-" + Layout.HORIZONTAL_ALIGN_SPACE);
+                    this.removeClass("slds-grid_align-" + Layout.HORIZONTAL_ALIGN_CENTER);
+                    this.removeClass("slds-grid_align-" + Layout.HORIZONTAL_ALIGN_END);
+                    this.removeClass("slds-grid_align-" + Layout.HORIZONTAL_ALIGN_SPREAD);
+                    this.removeClass("slds-grid_pull-padded-" + Layout.PULL_TO_BOUNDARY_LARGE);
+                    this.removeClass("slds-grid_pull-padded-" + Layout.PULL_TO_BOUNDARY_MEDIUM);
+                    this.removeClass("slds-grid_pull-padded-" + Layout.PULL_TO_BOUNDARY_SMALL);
+                    this.removeClass("slds-grid_vertical-" + Layout.VERTICAL_ALIGN_CENTER);
+                    this.removeClass("slds-grid_vertical-" + Layout.VERTICAL_ALIGN_END);
+                    this.removeClass("slds-grid_vertical-" + Layout.VERTICAL_ALIGN_START);
+                    this.removeClass("slds-grid_vertical-" + Layout.VERTICAL_ALIGN_STRETCH);
+                    if (this.multipleRows) {
+                        this.addClass("slds-wrap");
+                    }
+                    if (this.horizontalAlign != null) {
+                        this.addClass("slds-grid_align-" + this.horizontalAlign);
+                    }
+                    if (this.pullToBoundary != null) {
+                        this.addClass("slds-grid_pull-padded-" + this.pullToBoundary);
+                    }
+                    if (this.verticalAlign != null) {
+                        this.addClass("slds-grid_vertical-" + this.verticalAlign);
+                    }
+                    return this;
+                }
+            }
+            Layout.HORIZONTAL_ALIGN_CENTER = "center";
+            Layout.HORIZONTAL_ALIGN_SPACE = "space";
+            Layout.HORIZONTAL_ALIGN_SPREAD = "spread";
+            Layout.HORIZONTAL_ALIGN_END = "end";
+            Layout.VERTICAL_ALIGN_START = "start";
+            Layout.VERTICAL_ALIGN_CENTER = "center";
+            Layout.VERTICAL_ALIGN_END = "end";
+            Layout.VERTICAL_ALIGN_STRETCH = "stretch";
+            Layout.PULL_TO_BOUNDARY_SMALL = "small";
+            Layout.PULL_TO_BOUNDARY_MEDIUM = "medium";
+            Layout.PULL_TO_BOUNDARY_LARGE = "large";
+            lightning.Layout = Layout;
+            Layout["__class"] = "com.spoonconsulting.lightning.Layout";
+            Layout["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class LayoutItem extends JSContainer {
+                constructor(name, tag) {
+                    super(name, tag);
+                    this.alignmentBumb = null;
+                    this.flexibility = null;
+                    this.largeDeviceSize = null;
+                    this.mediumDeviceSize = null;
+                    this.padding = null;
+                    this.size = null;
+                    this.smallDeviceSize = null;
+                    this.addClass("slds-col");
+                }
+                getAlignmentBumb() {
+                    return this.alignmentBumb;
+                }
+                setAlignmentBumb(alignmentBumb) {
+                    this.alignmentBumb = alignmentBumb;
+                    {
+                        let array130 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.AlignmentBump) {
+                            if (!isNaN(val)) {
+                                result.push(parseInt(val, 10));
+                            }
+                        } return result; }();
+                        for (let index129 = 0; index129 < array130.length; index129++) {
+                            let a = array130[index129];
+                            {
+                                this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.LayoutItem.AlignmentBump["_$wrappers"][a].value);
+                            }
+                        }
+                    }
+                    if (alignmentBumb != null)
+                        this.addClass("slds-col_bump-" + alignmentBumb);
+                    return this;
+                }
+                getFlexibility() {
+                    return this.flexibility;
+                }
+                setFlexibility(flexibility) {
+                    this.flexibility = flexibility;
+                    {
+                        let array132 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Flexibility) {
+                            if (!isNaN(val)) {
+                                result.push(parseInt(val, 10));
+                            }
+                        } return result; }();
+                        for (let index131 = 0; index131 < array132.length; index131++) {
+                            let f = array132[index131];
+                            {
+                                this.removeClass("slds-" + com.spoonconsulting.lightning.LayoutItem.Flexibility["_$wrappers"][f].value);
+                            }
+                        }
+                    }
+                    if (flexibility != null) {
+                        const fxs = flexibility.split(",");
+                        for (let index133 = 0; index133 < fxs.length; index133++) {
+                            let fx = fxs[index133];
+                            {
+                                this.addClass("slds-" + fx);
+                            }
+                        }
+                    }
+                    return this;
+                }
+                getLargeDeviceSize() {
+                    return this.largeDeviceSize;
+                }
+                setLargeDeviceSize(largeDeviceSize) {
+                    this.largeDeviceSize = largeDeviceSize;
+                    for (let i = 1; i <= 12; i++) {
+                        {
+                            this.removeClass("slds-large-size_" + i + "-of-12");
+                        }
+                        ;
+                    }
+                    if (largeDeviceSize != null)
+                        this.addClass("slds-large-size_" + this.size + "-of-12");
+                    return this;
+                }
+                getMediumDeviceSize() {
+                    return this.mediumDeviceSize;
+                }
+                setMediumDeviceSize(mediumDeviceSize) {
+                    this.mediumDeviceSize = mediumDeviceSize;
+                    for (let i = 1; i <= 12; i++) {
+                        {
+                            this.removeClass("slds-medium-size_" + i + "-of-12");
+                        }
+                        ;
+                    }
+                    if (mediumDeviceSize != null)
+                        this.addClass("slds-medium-size_" + this.size + "-of-12");
+                    return this;
+                }
+                getPadding() {
+                    return this.padding;
+                }
+                setPadding(padding) {
+                    this.padding = padding;
+                    {
+                        let array135 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Padding) {
+                            if (!isNaN(val)) {
+                                result.push(parseInt(val, 10));
+                            }
+                        } return result; }();
+                        for (let index134 = 0; index134 < array135.length; index134++) {
+                            let p = array135[index134];
+                            {
+                                this.removeClass("slds-p-" + com.spoonconsulting.lightning.LayoutItem.Padding["_$wrappers"][p].value);
+                            }
+                        }
+                    }
+                    if (padding != null) {
+                        this.addClass("slds-p-" + padding);
+                    }
+                    return this;
+                }
+                getSize() {
+                    return this.size;
+                }
+                setSize(size) {
+                    this.size = size;
+                    for (let i = 1; i <= 12; i++) {
+                        {
+                            this.removeClass("slds-size_" + i + "-of-12");
+                        }
+                        ;
+                    }
+                    if (size != null)
+                        this.addClass("slds-size_" + size + "-of-12");
+                    return this;
+                }
+                getSmallDeviceSize() {
+                    return this.smallDeviceSize;
+                }
+                setSmallDeviceSize(smallDeviceSize) {
+                    this.smallDeviceSize = smallDeviceSize;
+                    for (let i = 1; i <= 12; i++) {
+                        {
+                            this.removeClass("slds-small-size_" + i + "-of-12");
+                        }
+                        ;
+                    }
+                    if (smallDeviceSize != null)
+                        this.addClass("slds-small-size_" + this.size + "-of-12");
+                    return this;
+                }
+            }
+            lightning.LayoutItem = LayoutItem;
+            LayoutItem["__class"] = "com.spoonconsulting.lightning.LayoutItem";
+            LayoutItem["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (LayoutItem) {
+                let AlignmentBump;
+                (function (AlignmentBump) {
+                    AlignmentBump[AlignmentBump["TOP"] = 0] = "TOP";
+                    AlignmentBump[AlignmentBump["LEFT"] = 1] = "LEFT";
+                    AlignmentBump[AlignmentBump["RIGHT"] = 2] = "RIGHT";
+                    AlignmentBump[AlignmentBump["BOTTOM"] = 3] = "BOTTOM";
+                })(AlignmentBump = LayoutItem.AlignmentBump || (LayoutItem.AlignmentBump = {}));
+                /** @ignore */
+                class AlignmentBump_$WRAPPER {
+                    constructor(_$ordinal, _$name, value) {
+                        this._$ordinal = _$ordinal;
+                        this._$name = _$name;
+                        if (this.value === undefined) {
+                            this.value = null;
+                        }
+                        this.value = value;
+                    }
+                    name() { return this._$name; }
+                    ordinal() { return this._$ordinal; }
+                    compareTo(other) { return this._$ordinal - (isNaN(other) ? other._$ordinal : other); }
+                }
+                LayoutItem.AlignmentBump_$WRAPPER = AlignmentBump_$WRAPPER;
+                AlignmentBump["__class"] = "com.spoonconsulting.lightning.LayoutItem.AlignmentBump";
+                AlignmentBump["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                AlignmentBump["_$wrappers"] = { 0: new AlignmentBump_$WRAPPER(0, "TOP", "top"), 1: new AlignmentBump_$WRAPPER(1, "LEFT", "left"), 2: new AlignmentBump_$WRAPPER(2, "RIGHT", "right"), 3: new AlignmentBump_$WRAPPER(3, "BOTTOM", "bottom") };
+                let Flexibility;
+                (function (Flexibility) {
+                    Flexibility[Flexibility["AUTO"] = 0] = "AUTO";
+                    Flexibility[Flexibility["SHRINK"] = 1] = "SHRINK";
+                    Flexibility[Flexibility["NO_SHRINK"] = 2] = "NO_SHRINK";
+                    Flexibility[Flexibility["GROW"] = 3] = "GROW";
+                    Flexibility[Flexibility["NO_GROW"] = 4] = "NO_GROW";
+                    Flexibility[Flexibility["NO_FLEX"] = 5] = "NO_FLEX";
+                })(Flexibility = LayoutItem.Flexibility || (LayoutItem.Flexibility = {}));
+                /** @ignore */
+                class Flexibility_$WRAPPER {
+                    constructor(_$ordinal, _$name, val) {
+                        this._$ordinal = _$ordinal;
+                        this._$name = _$name;
+                        if (this.value === undefined) {
+                            this.value = null;
+                        }
+                        this.value = val;
+                    }
+                    name() { return this._$name; }
+                    ordinal() { return this._$ordinal; }
+                    compareTo(other) { return this._$ordinal - (isNaN(other) ? other._$ordinal : other); }
+                }
+                LayoutItem.Flexibility_$WRAPPER = Flexibility_$WRAPPER;
+                Flexibility["__class"] = "com.spoonconsulting.lightning.LayoutItem.Flexibility";
+                Flexibility["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Flexibility["_$wrappers"] = { 0: new Flexibility_$WRAPPER(0, "AUTO", "auto"), 1: new Flexibility_$WRAPPER(1, "SHRINK", "shrink"), 2: new Flexibility_$WRAPPER(2, "NO_SHRINK", "no-shrink"), 3: new Flexibility_$WRAPPER(3, "GROW", "grow"), 4: new Flexibility_$WRAPPER(4, "NO_GROW", "no-grow"), 5: new Flexibility_$WRAPPER(5, "NO_FLEX", "no-flex") };
+                let Padding;
+                (function (Padding) {
+                    Padding[Padding["HORIZONTAL_SMALL"] = 0] = "HORIZONTAL_SMALL";
+                    Padding[Padding["HORIZONTAL_MEDIUM"] = 1] = "HORIZONTAL_MEDIUM";
+                    Padding[Padding["HORIZONTAL_LARGE"] = 2] = "HORIZONTAL_LARGE";
+                    Padding[Padding["AROUND_SMALL"] = 3] = "AROUND_SMALL";
+                    Padding[Padding["AROUND_MEDIUM"] = 4] = "AROUND_MEDIUM";
+                    Padding[Padding["AROUND_LARGE"] = 5] = "AROUND_LARGE";
+                })(Padding = LayoutItem.Padding || (LayoutItem.Padding = {}));
+                /** @ignore */
+                class Padding_$WRAPPER {
+                    constructor(_$ordinal, _$name, val) {
+                        this._$ordinal = _$ordinal;
+                        this._$name = _$name;
+                        if (this.value === undefined) {
+                            this.value = null;
+                        }
+                        this.value = val;
+                    }
+                    name() { return this._$name; }
+                    ordinal() { return this._$ordinal; }
+                    compareTo(other) { return this._$ordinal - (isNaN(other) ? other._$ordinal : other); }
+                }
+                LayoutItem.Padding_$WRAPPER = Padding_$WRAPPER;
+                Padding["__class"] = "com.spoonconsulting.lightning.LayoutItem.Padding";
+                Padding["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Padding["_$wrappers"] = { 0: new Padding_$WRAPPER(0, "HORIZONTAL_SMALL", "horizontal_small"), 1: new Padding_$WRAPPER(1, "HORIZONTAL_MEDIUM", "horizontal_medium"), 2: new Padding_$WRAPPER(2, "HORIZONTAL_LARGE", "horizontal_large"), 3: new Padding_$WRAPPER(3, "AROUND_SMALL", "around_small"), 4: new Padding_$WRAPPER(4, "AROUND_MEDIUM", "around_medium"), 5: new Padding_$WRAPPER(5, "AROUND_LARGE", "around_large") };
+            })(LayoutItem = lightning.LayoutItem || (lightning.LayoutItem = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class MenuDivider extends JSContainer {
                 constructor() {
                     super("divider", "li");
@@ -617,13 +943,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array130 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array137 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index129 = 0; index129 < array130.length; index129++) {
-                            let s = array130[index129];
+                        for (let index136 = 0; index136 < array137.length; index136++) {
+                            let s = array137[index136];
                             {
                                 this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -635,13 +961,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array132 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array139 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index131 = 0; index131 < array132.length; index131++) {
-                            let v = array132[index131];
+                        for (let index138 = 0; index138 < array139.length; index138++) {
+                            let v = array139[index138];
                             {
                                 if (v !== com.spoonconsulting.lightning.Variant.BASE)
                                     this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
@@ -687,6 +1013,214 @@ var com;
             lightning.Spinner = Spinner;
             Spinner["__class"] = "com.spoonconsulting.lightning.Spinner";
             Spinner["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class TabSet extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.tablist = new JSContainer("tablist", "ul");
+                    this.tabs = new JSContainer("tabs", "div");
+                    this.addClass("TabSet");
+                    this.addClass("slds-tabs_default");
+                    this.addChild(this.tablist);
+                    this.tablist.addClass("slds-tabs_default__nav");
+                    this.addChild(this.tabs);
+                }
+                setActiveTabValue(val) {
+                    {
+                        let array141 = this.tablist.getChildren();
+                        for (let index140 = 0; index140 < array141.length; index140++) {
+                            let r = array141[index140];
+                            {
+                                const item = r;
+                                if (item.tab.getValue() === val) {
+                                    item.setActive(true);
+                                }
+                                else {
+                                    item.setActive(false);
+                                }
+                            }
+                        }
+                    }
+                }
+                setActiveTabItem(item) {
+                    {
+                        let array143 = this.tablist.getChildren();
+                        for (let index142 = 0; index142 < array143.length; index142++) {
+                            let r = array143[index142];
+                            {
+                                const titem = r;
+                                if (titem.getId() === item.getId()) {
+                                    titem.setActive(true);
+                                }
+                                else {
+                                    titem.setActive(false);
+                                }
+                            }
+                        }
+                    }
+                }
+                addTab(tab, content) {
+                    const name = (this.tablist.getChildren().length + 1) + "";
+                    const item = new TabSet.TabItem(this, name, tab, content);
+                    this.tablist.addChild(item);
+                    content.setAttribute("aria-labelledby", "tab-" + name + "__item");
+                    this.addChild(content);
+                    return this;
+                }
+                getPanel(name) {
+                    {
+                        let array145 = this.getChildren();
+                        for (let index144 = 0; index144 < array145.length; index144++) {
+                            let r = array145[index144];
+                            {
+                                if (r.getId() !== this.tablist.getId()) {
+                                    if (r.getName() === name) {
+                                        return r;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+                setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(variant) {
+                    return this.setVariant$java_lang_String(variant != null ? com.spoonconsulting.lightning.TabSet.TabSetVariant["_$wrappers"][variant].value : "standard");
+                }
+                setVariant(variant) {
+                    if (((typeof variant === 'number') || variant === null)) {
+                        return this.setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(variant);
+                    }
+                    else if (((typeof variant === 'string') || variant === null)) {
+                        return this.setVariant$java_lang_String(variant);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                setVariant$java_lang_String(variant) {
+                    this.removeClass("slds-vertical-tabs");
+                    this.removeClass("slds-tabs_scoped");
+                    this.removeClass("slds-tabs_default");
+                    this.tablist.removeClass("slds-vertical-tabs__nav");
+                    this.tablist.removeClass("slds-tabs_scoped__nav");
+                    this.tablist.removeClass("slds-tabs_default__nav");
+                    this.tablist.setAttribute("aria-orientation", null);
+                    if (variant === "vertical") {
+                        this.addClass("slds-vertical-tabs");
+                        this.tablist.setAttribute("aria-orientation", "vertical");
+                        this.tablist.addClass("slds-vertical-tabs__nav");
+                    }
+                    else if (variant === "scoped") {
+                        this.addClass("slds-tabs_scoped");
+                        this.tablist.addClass("slds-tabs_scoped__nav");
+                    }
+                    else {
+                        this.addClass("slds-tabs_default");
+                        this.tablist.addClass("slds-tabs_default__nav");
+                    }
+                    {
+                        let array147 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.TabSet.TabSetVariant) {
+                            if (!isNaN(val)) {
+                                result.push(parseInt(val, 10));
+                            }
+                        } return result; }();
+                        for (let index146 = 0; index146 < array147.length; index146++) {
+                            let va = array147[index146];
+                            {
+                                this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.TabSet.TabSetVariant["_$wrappers"][va].value);
+                            }
+                        }
+                    }
+                    if (variant == null) {
+                        variant = "standard";
+                    }
+                    this.addClass("slds-tabs_" + variant);
+                    return this;
+                }
+            }
+            lightning.TabSet = TabSet;
+            TabSet["__class"] = "com.spoonconsulting.lightning.TabSet";
+            TabSet["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (TabSet) {
+                let TabSetVariant;
+                (function (TabSetVariant) {
+                    TabSetVariant[TabSetVariant["STANDARD"] = 0] = "STANDARD";
+                    TabSetVariant[TabSetVariant["SCOPED"] = 1] = "SCOPED";
+                    TabSetVariant[TabSetVariant["VERTICAL"] = 2] = "VERTICAL";
+                })(TabSetVariant = TabSet.TabSetVariant || (TabSet.TabSetVariant = {}));
+                /** @ignore */
+                class TabSetVariant_$WRAPPER {
+                    constructor(_$ordinal, _$name, value) {
+                        this._$ordinal = _$ordinal;
+                        this._$name = _$name;
+                        if (this.value === undefined) {
+                            this.value = null;
+                        }
+                        this.value = value;
+                    }
+                    name() { return this._$name; }
+                    ordinal() { return this._$ordinal; }
+                    compareTo(other) { return this._$ordinal - (isNaN(other) ? other._$ordinal : other); }
+                }
+                TabSet.TabSetVariant_$WRAPPER = TabSetVariant_$WRAPPER;
+                TabSetVariant["__class"] = "com.spoonconsulting.lightning.TabSet.TabSetVariant";
+                TabSetVariant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                TabSetVariant["_$wrappers"] = { 0: new TabSetVariant_$WRAPPER(0, "STANDARD", "default"), 1: new TabSetVariant_$WRAPPER(1, "SCOPED", "scoped"), 2: new TabSetVariant_$WRAPPER(2, "VERTICAL", "vertical") };
+                class TabItem extends JSContainer {
+                    constructor(__parent, name, tab, panel) {
+                        super(name, "li");
+                        this.__parent = __parent;
+                        if (this.tab === undefined) {
+                            this.tab = null;
+                        }
+                        if (this.panel === undefined) {
+                            this.panel = null;
+                        }
+                        this.addClass("TabItem");
+                        this.setAttribute("role", "presentation").setAttribute("data-tab", "true");
+                        this.addClass("slds-tabs_default__item");
+                        this.setAttribute("title", tab.getTitle());
+                        this.setAttribute("data-label", tab.getTitle());
+                        this.setAttribute("data-tab-value", name);
+                        tab.addEventListener(new TabItem.TabItem$0(this), "click");
+                    }
+                    setActive(b) {
+                        this.tab.setActive(b);
+                        this.panel.setActive(b);
+                    }
+                    isActive() {
+                        return this.tab.isActive() && this.panel.isActive();
+                    }
+                }
+                TabSet.TabItem = TabItem;
+                TabItem["__class"] = "com.spoonconsulting.lightning.TabSet.TabItem";
+                TabItem["__interfaces"] = ["framework.components.api.Renderable"];
+                (function (TabItem) {
+                    class TabItem$0 {
+                        constructor(__parent) {
+                            this.__parent = __parent;
+                        }
+                        /**
+                         *
+                         * @param {*} source
+                         * @param {Event} evt
+                         */
+                        performAction(source, evt) {
+                            const titem = (source.getAncestorWithClass("TabItem"));
+                            const tabSet = (source.getAncestorWithClass("TabSet"));
+                            tabSet.setActiveTabItem(titem);
+                        }
+                    }
+                    TabItem.TabItem$0 = TabItem$0;
+                    TabItem$0["__interfaces"] = ["framework.components.api.EventListener"];
+                })(TabItem = TabSet.TabItem || (TabSet.TabItem = {}));
+            })(TabSet = lightning.TabSet || (lightning.TabSet = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -749,8 +1283,8 @@ var com;
                     return this;
                 }
                 addSections(...accordionSections) {
-                    for (let index133 = 0; index133 < accordionSections.length; index133++) {
-                        let section = accordionSections[index133];
+                    for (let index148 = 0; index148 < accordionSections.length; index148++) {
+                        let section = accordionSections[index148];
                         {
                             this.addSection(section);
                         }
@@ -759,9 +1293,9 @@ var com;
                 }
                 setActiveSectionName(name) {
                     {
-                        let array135 = this.getChildren();
-                        for (let index134 = 0; index134 < array135.length; index134++) {
-                            let r = array135[index134];
+                        let array150 = this.getChildren();
+                        for (let index149 = 0; index149 < array150.length; index149++) {
+                            let r = array150[index149];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -777,9 +1311,9 @@ var com;
                 }
                 setOpen(name) {
                     {
-                        let array137 = this.getChildren();
-                        for (let index136 = 0; index136 < array137.length; index136++) {
-                            let r = array137[index136];
+                        let array152 = this.getChildren();
+                        for (let index151 = 0; index151 < array152.length; index151++) {
+                            let r = array152[index151];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -805,9 +1339,9 @@ var com;
                     const sectionToggle = new CustomEvent("onsectiontoggle");
                     const openSections = (new Array());
                     {
-                        let array139 = this.getSections();
-                        for (let index138 = 0; index138 < array139.length; index138++) {
-                            let sect = array139[index138];
+                        let array154 = this.getSections();
+                        for (let index153 = 0; index153 < array154.length; index153++) {
+                            let sect = array154[index153];
                             {
                                 if (sect.isOpen()) {
                                     openSections.push(sect.getName());
@@ -822,9 +1356,9 @@ var com;
                 }
                 setClose(name) {
                     {
-                        let array141 = this.getChildren();
-                        for (let index140 = 0; index140 < array141.length; index140++) {
-                            let r = array141[index140];
+                        let array156 = this.getChildren();
+                        for (let index155 = 0; index155 < array156.length; index155++) {
+                            let r = array156[index155];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -844,9 +1378,9 @@ var com;
                 getSections() {
                     const sections = (new Array());
                     {
-                        let array143 = this.getChildren();
-                        for (let index142 = 0; index142 < array143.length; index142++) {
-                            let r = array143[index142];
+                        let array158 = this.getChildren();
+                        for (let index157 = 0; index157 < array158.length; index157++) {
+                            let r = array158[index157];
                             {
                                 sections.push(r.getChildren()[0]);
                             }
@@ -856,9 +1390,9 @@ var com;
                 }
                 getSection(name) {
                     {
-                        let array145 = this.getChildren();
-                        for (let index144 = 0; index144 < array145.length; index144++) {
-                            let r = array145[index144];
+                        let array160 = this.getChildren();
+                        for (let index159 = 0; index159 < array160.length; index159++) {
+                            let r = array160[index159];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -1195,13 +1729,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array147 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array162 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index146 = 0; index146 < array147.length; index146++) {
-                            let v = array147[index146];
+                        for (let index161 = 0; index161 < array162.length; index161++) {
+                            let v = array162[index161];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                             }
@@ -1595,13 +2129,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array149 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array164 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index148 = 0; index148 < array149.length; index148++) {
-                            let v = array149[index148];
+                        for (let index163 = 0; index163 < array164.length; index163++) {
+                            let v = array164[index163];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                             }
@@ -1712,8 +2246,18 @@ var com;
                 constructor(name, tag) {
                     super(name, tag);
                     this.icon = new com.spoonconsulting.lightning.Icon("icon", "utility:moneybag");
+                    this.assistiveText = new JSContainer("assistive-text", "span");
                     this.addClass("slds-icon_container");
                     this.addChild(this.icon);
+                    this.addChild(this.assistiveText);
+                    this.assistiveText.addClass("slds-assistive-text");
+                }
+                setAssistiveText(txt) {
+                    this.assistiveText.setHtml(txt);
+                    return this;
+                }
+                getAssistiveText() {
+                    return this.assistiveText.getHtml();
                 }
                 setIconName(iconName) {
                     this.icon.setIconName(iconName);
@@ -1762,8 +2306,8 @@ var com;
                     return this;
                 }
                 addMenuItems(...items) {
-                    for (let index150 = 0; index150 < items.length; index150++) {
-                        let item = items[index150];
+                    for (let index165 = 0; index165 < items.length; index165++) {
+                        let item = items[index165];
                         {
                             this.addMenuItem(item);
                         }
@@ -1966,6 +2510,177 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Tab extends com.spoonconsulting.lightning.BaseLightning {
+                constructor(name) {
+                    super(name, "a");
+                    this.endIconAlternariveText = null;
+                    this.endIconName = null;
+                    this.iconAssistiveText = null;
+                    this.iconName = null;
+                    this.showErrorIndicator = false;
+                    if (this.value === undefined) {
+                        this.value = null;
+                    }
+                    this.leftIconContainer = new com.spoonconsulting.lightning.IconContainer("left-icon-container", "div");
+                    this.tabLeftIcon = new JSContainer("tab-left-icon", "span");
+                    this.rightIconContainer = new com.spoonconsulting.lightning.IconContainer("right-icon-container", "div");
+                    this.tabRightIcon = new JSContainer("tab-right-icon", "span");
+                    this.errorIconContainer = new com.spoonconsulting.lightning.IconContainer("error-icon-container", "div");
+                    this.tabErrorIcon = new JSContainer("tab-error-icon", "span");
+                    this.label = new JSContainer("label", "span");
+                    this.active = false;
+                    this.addClass("slds-tabs_default__link");
+                    this.setAttribute("role", "tab");
+                    this.setAttribute("href", "javascript:void(0);");
+                    this.addChild(this.label);
+                    this.tabLeftIcon.addChild(this.leftIconContainer);
+                    this.tabLeftIcon.addClass("slds-tabs__left-icon");
+                    this.tabErrorIcon.addChild(this.errorIconContainer);
+                    this.errorIconContainer.setIconName("utility:error");
+                    this.tabErrorIcon.addClass("slds-tabs__right-icon");
+                    this.tabRightIcon.addClass("slds-tabs__right-icon");
+                    this.tabRightIcon.addChild(this.rightIconContainer);
+                }
+                getEndIconAlternariveText() {
+                    return this.endIconAlternariveText;
+                }
+                setEndIconAlternariveText(endIconAlternariveText) {
+                    this.endIconAlternariveText = endIconAlternariveText;
+                    return this.refresh();
+                }
+                getEndIconName() {
+                    return this.endIconName;
+                }
+                setEndIconName(endIconName) {
+                    this.endIconName = endIconName;
+                    return this.refresh();
+                }
+                getIconAssistiveText() {
+                    return this.iconAssistiveText;
+                }
+                setIconAssistiveText(iconAssistiveText) {
+                    this.iconAssistiveText = iconAssistiveText;
+                    return this.refresh();
+                }
+                getIconName() {
+                    return this.iconName;
+                }
+                setIconName(iconName) {
+                    this.iconName = iconName;
+                    return this.refresh();
+                }
+                getShowErrorIndicator() {
+                    return this.showErrorIndicator;
+                }
+                setShowErrorIndicator(showErrorIndicator) {
+                    this.showErrorIndicator = showErrorIndicator;
+                    return this.refresh();
+                }
+                getValue() {
+                    return this.value;
+                }
+                setValue(value) {
+                    this.value = value;
+                    return this;
+                }
+                getLabel() {
+                    return this.label.getHtml();
+                }
+                setLabel(label) {
+                    this.label.setHtml(label);
+                    this.setAttribute("data-label", label);
+                    return this;
+                }
+                isActive() {
+                    return this.active;
+                }
+                setActive(active) {
+                    if (this.active !== active) {
+                        this.active = active;
+                        if (active) {
+                            if (this.getParent() != null) {
+                                if (!this.getParent().hasClass("slds-is-active"))
+                                    this.getParent().addClass("slds-is-active");
+                            }
+                            if (this.getAttribute("aria-selected") !== "true") {
+                                this.setAttribute("aria-selected", "true");
+                            }
+                        }
+                        else {
+                            if (this.getParent() != null) {
+                                if (this.getParent().hasClass("slds-is-active")) {
+                                    this.getParent().removeClass("slds-is-active");
+                                }
+                            }
+                            if (this.getAttribute("aria-selected") !== "false") {
+                                this.setAttribute("aria-selected", "false");
+                            }
+                        }
+                    }
+                }
+                refresh() {
+                    this.clearChildren();
+                    if (this.iconName != null && this.iconName !== "") {
+                        this.addChild(this.tabLeftIcon);
+                        this.leftIconContainer.setIconName(this.iconName);
+                    }
+                    this.addChild(this.label);
+                    if (this.endIconName != null) {
+                        this.addChild(this.tabRightIcon);
+                        this.rightIconContainer.setIconName(this.endIconName);
+                    }
+                    if (this.showErrorIndicator) {
+                        this.addChild(this.tabErrorIcon);
+                    }
+                    this.leftIconContainer.setAssistiveText(this.iconAssistiveText);
+                    this.rightIconContainer.setAssistiveText(this.endIconAlternariveText);
+                    return this;
+                }
+            }
+            lightning.Tab = Tab;
+            Tab["__class"] = "com.spoonconsulting.lightning.Tab";
+            Tab["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class TabPanel extends com.spoonconsulting.lightning.BaseLightning {
+                constructor(name) {
+                    super(name, "div");
+                    this.addClass("slds-tabs_default__content");
+                    this.setAttribute("role", "tabpanel");
+                    this.addClass("slds-hide");
+                }
+                setActive(b) {
+                    if (b && !this.isActive()) {
+                        this.removeClass("slds-hide");
+                        this.addClass("slds-show");
+                    }
+                    else if (this.isActive()) {
+                        this.removeClass("slds-show");
+                        this.addClass("slds-hide");
+                    }
+                    return this;
+                }
+                isActive() {
+                    return this.hasClass("slds-show") && !this.hasClass("slds-hide");
+                }
+            }
+            lightning.TabPanel = TabPanel;
+            TabPanel["__class"] = "com.spoonconsulting.lightning.TabPanel";
+            TabPanel["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class ButtonIcon extends com.spoonconsulting.lightning.Button {
                 constructor(name, iconName) {
                     super(name);
@@ -1983,13 +2698,13 @@ var com;
                 }
                 setSize(size) {
                     {
-                        let array152 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array167 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index151 = 0; index151 < array152.length; index151++) {
-                            let s = array152[index151];
+                        for (let index166 = 0; index166 < array167.length; index166++) {
+                            let s = array167[index166];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -2004,13 +2719,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array154 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) {
+                        let array169 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index153 = 0; index153 < array154.length; index153++) {
-                            let v = array154[index153];
+                        for (let index168 = 0; index168 < array169.length; index168++) {
+                            let v = array169[index168];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][v].getValue());
                             }
