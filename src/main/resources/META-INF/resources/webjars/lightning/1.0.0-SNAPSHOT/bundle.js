@@ -5,6 +5,160 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class AbstractProgress extends JSContainer {
+                constructor(name, tag) {
+                    super(name, tag);
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                getStep(value) {
+                    {
+                        let array1007 = this.getSteps();
+                        for (let index1006 = 0; index1006 < array1007.length; index1006++) {
+                            let step = array1007[index1006];
+                            {
+                                if (step.getValue() === value) {
+                                    return step;
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                setCurrentStep(value) {
+                    let passedCurrent = false;
+                    {
+                        let array1009 = this.getSteps();
+                        for (let index1008 = 0; index1008 < array1009.length; index1008++) {
+                            let step = array1009[index1008];
+                            {
+                                if (step.getValue() === value) {
+                                    step.setCurrent(true);
+                                    passedCurrent = true;
+                                }
+                                else {
+                                    step.setComplete(!passedCurrent);
+                                }
+                            }
+                        }
+                    }
+                    return this;
+                }
+                /**
+                 *
+                 * @return {*}
+                 */
+                getCurrentStep() {
+                    {
+                        let array1011 = this.getSteps();
+                        for (let index1010 = 0; index1010 < array1011.length; index1010++) {
+                            let step = array1011[index1010];
+                            {
+                                if (step.isCurrent()) {
+                                    return step;
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setHasError(b) {
+                    const step = this.getCurrentStep();
+                    step.setHasError(b);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                getHasError() {
+                    {
+                        let array1013 = this.getSteps();
+                        for (let index1012 = 0; index1012 < array1013.length; index1012++) {
+                            let step = array1013[index1012];
+                            {
+                                if (step.getHasError()) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    return false;
+                }
+                /**
+                 *
+                 * @param {string} variant
+                 * @return {*}
+                 */
+                setVariant(variant) {
+                    this.setAttribute("variant", variant);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getVariant() {
+                    return this.getAttribute("variant");
+                }
+                /**
+                 *
+                 * @param {*} step
+                 * @return {*}
+                 */
+                removeStep(step) {
+                    const parent = step.getParent();
+                    parent.removeChild(step);
+                    parent.setRendered(false);
+                    return this;
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                setValue(value) {
+                    this.setCurrentStep(value);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getValue() {
+                    const current = this.getCurrentStep();
+                    if (current != null) {
+                        return current.getValue();
+                    }
+                    else {
+                        return null;
+                    }
+                }
+            }
+            lightning.AbstractProgress = AbstractProgress;
+            AbstractProgress["__class"] = "com.spoonconsulting.lightning.AbstractProgress";
+            AbstractProgress["__interfaces"] = ["framework.components.api.Renderable", "com.spoonconsulting.lightning.IProgress"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Avatar extends JSContainer {
                 constructor(name) {
                     super(name, "span");
@@ -52,13 +206,13 @@ var com;
                 }
                 setSize(size) {
                     {
-                        let array122 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array1015 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index121 = 0; index121 < array122.length; index121++) {
-                            let s = array122[index121];
+                        for (let index1014 = 0; index1014 < array1015.length; index1014++) {
+                            let s = array1015[index1014];
                             {
                                 this.removeClass("slds-avatar_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -150,6 +304,60 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Boot {
+                static main(args) {
+                    const app = new JSContainer("app", "div");
+                    app.addClass("slds-card");
+                    const indicator = new com.spoonconsulting.lightning.ProgressIndicator("pi");
+                    indicator.setType("base");
+                    for (let i = 1; i <= 4; i++) {
+                        {
+                            indicator.addStep("Step " + i, i + "");
+                        }
+                        ;
+                    }
+                    indicator.setCurrentStep("3");
+                    indicator.setHasError(true);
+                    app.addChild(indicator);
+                    const toggle = new com.spoonconsulting.lightning.Button("toggle").setLabel("Toggle");
+                    toggle.addEventListener(new Boot.Boot$0(indicator), "click");
+                    app.addChild(toggle);
+                    app.render();
+                }
+            }
+            lightning.Boot = Boot;
+            Boot["__class"] = "com.spoonconsulting.lightning.Boot";
+            (function (Boot) {
+                class Boot$0 {
+                    constructor(indicator) {
+                        this.indicator = indicator;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        const type = this.indicator.getType();
+                        if (type === "base") {
+                            this.indicator.setType("path");
+                        }
+                        else {
+                            this.indicator.setType("base");
+                        }
+                    }
+                }
+                Boot.Boot$0 = Boot$0;
+                Boot$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Boot = lightning.Boot || (lightning.Boot = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Breadcrumb extends JSContainer {
                 constructor(name) {
                     super(name, "a");
@@ -205,9 +413,9 @@ var com;
                 getBreadcrumbs() {
                     const result = (new Array());
                     {
-                        let array124 = this.getChildren();
-                        for (let index123 = 0; index123 < array124.length; index123++) {
-                            let r = array124[index123];
+                        let array1017 = this.getChildren();
+                        for (let index1016 = 0; index1016 < array1017.length; index1016++) {
+                            let r = array1017[index1016];
                             {
                                 const bc = r.getChildren()[0];
                                 result.push(bc);
@@ -218,9 +426,9 @@ var com;
                 }
                 getBreadcrumb(name) {
                     {
-                        let array126 = this.getChildren();
-                        for (let index125 = 0; index125 < array126.length; index125++) {
-                            let r = array126[index125];
+                        let array1019 = this.getChildren();
+                        for (let index1018 = 0; index1018 < array1019.length; index1018++) {
+                            let r = array1019[index1018];
                             {
                                 const bc = r.getChildren()[0];
                                 if (bc.getName() === name) {
@@ -422,6 +630,19 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class GlobalConfigs {
+            }
+            GlobalConfigs.BASE_ASSETS = "sfds";
+            lightning.GlobalConfigs = GlobalConfigs;
+            GlobalConfigs["__class"] = "com.spoonconsulting.lightning.GlobalConfigs";
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Icon extends JSContainer {
                 constructor(name, iconName) {
                     super(iconName, "svg");
@@ -434,7 +655,9 @@ var com;
                     this.setIconName(iconName);
                 }
                 /*private*/ setIcon(group, name) {
-                    this.setHtml("<use xlink:href=\"/assets/icons/" + group + "-sprite/svg/symbols.svg#" + name + "\"></use>");
+                    let html = "<use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"$base-assets/icons/" + group + "-sprite/svg/symbols.svg#" + name + "\"></use>";
+                    html = /* replace */ html.split("$base-assets").join(com.spoonconsulting.lightning.GlobalConfigs.BASE_ASSETS);
+                    this.setHtml(html);
                     return this;
                 }
                 setIconName(iconName) {
@@ -447,13 +670,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array128 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array1021 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index127 = 0; index127 < array128.length; index127++) {
-                            let s = array128[index127];
+                        for (let index1020 = 0; index1020 < array1021.length; index1020++) {
+                            let s = array1021[index1020];
                             {
                                 this.removeClass("slds-icon_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -596,13 +819,13 @@ var com;
                 setAlignmentBumb(alignmentBumb) {
                     this.alignmentBumb = alignmentBumb;
                     {
-                        let array130 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.AlignmentBump) {
+                        let array1023 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.AlignmentBump) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index129 = 0; index129 < array130.length; index129++) {
-                            let a = array130[index129];
+                        for (let index1022 = 0; index1022 < array1023.length; index1022++) {
+                            let a = array1023[index1022];
                             {
                                 this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.LayoutItem.AlignmentBump["_$wrappers"][a].value);
                             }
@@ -618,13 +841,13 @@ var com;
                 setFlexibility(flexibility) {
                     this.flexibility = flexibility;
                     {
-                        let array132 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Flexibility) {
+                        let array1025 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Flexibility) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index131 = 0; index131 < array132.length; index131++) {
-                            let f = array132[index131];
+                        for (let index1024 = 0; index1024 < array1025.length; index1024++) {
+                            let f = array1025[index1024];
                             {
                                 this.removeClass("slds-" + com.spoonconsulting.lightning.LayoutItem.Flexibility["_$wrappers"][f].value);
                             }
@@ -632,8 +855,8 @@ var com;
                     }
                     if (flexibility != null) {
                         const fxs = flexibility.split(",");
-                        for (let index133 = 0; index133 < fxs.length; index133++) {
-                            let fx = fxs[index133];
+                        for (let index1026 = 0; index1026 < fxs.length; index1026++) {
+                            let fx = fxs[index1026];
                             {
                                 this.addClass("slds-" + fx);
                             }
@@ -677,13 +900,13 @@ var com;
                 setPadding(padding) {
                     this.padding = padding;
                     {
-                        let array135 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Padding) {
+                        let array1028 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.LayoutItem.Padding) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index134 = 0; index134 < array135.length; index134++) {
-                            let p = array135[index134];
+                        for (let index1027 = 0; index1027 < array1028.length; index1027++) {
+                            let p = array1028[index1027];
                             {
                                 this.removeClass("slds-p-" + com.spoonconsulting.lightning.LayoutItem.Padding["_$wrappers"][p].value);
                             }
@@ -835,7 +1058,7 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
-            class MenuSubheader extends JSContainer {
+            class MenuSubHeader extends JSContainer {
                 constructor(name) {
                     super(name, "li");
                     this.span = new JSContainer("span");
@@ -850,9 +1073,236 @@ var com;
                     return this.span.getHtml();
                 }
             }
-            lightning.MenuSubheader = MenuSubheader;
-            MenuSubheader["__class"] = "com.spoonconsulting.lightning.MenuSubheader";
-            MenuSubheader["__interfaces"] = ["framework.components.api.Renderable"];
+            lightning.MenuSubHeader = MenuSubHeader;
+            MenuSubHeader["__class"] = "com.spoonconsulting.lightning.MenuSubHeader";
+            MenuSubHeader["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class PathItem extends JSContainer {
+                constructor(name) {
+                    super(name, "li");
+                    this.link = new JSContainer("link", "a");
+                    this.stage = new JSContainer("stage", "span");
+                    this.icon = new com.spoonconsulting.lightning.Icon("icon", "utility:check");
+                    this.title = new JSContainer("title", "span");
+                    this.addClass("slds-path__item");
+                    this.setAttribute("role", "presentation");
+                    this.addChild(this.link);
+                    this.link.addChild(this.stage);
+                    this.stage.addChild(this.icon);
+                    this.link.addChild(this.title);
+                    this.link.addClass("slds-path__link");
+                    this.link.setAttribute("href", "javascript:void(0);");
+                    this.link.setAttribute("role", "option");
+                    this.link.setAttribute("tabindex", "-1");
+                    this.stage.addClass("slds-path__stage");
+                    this.icon.setSize$com_spoonconsulting_lightning_Size(com.spoonconsulting.lightning.Size.EXTRA_SMALL);
+                    this.title.addClass("slds-path__title");
+                }
+                setLabel(label) {
+                    this.setAttribute("title", label);
+                    this.title.setHtml(label);
+                    return this;
+                }
+                getLabel() {
+                    return this.getAttribute("title");
+                }
+                setActive(b) {
+                    this.removeClass("slds-has-error");
+                    this.removeClass("slds-is-complete");
+                    this.removeClass("slds-is-active");
+                    if (b) {
+                        this.setAttribute("aria-selected", "true");
+                        this.setAttribute("tabindex", "0");
+                        this.addClass("slds-is-active");
+                    }
+                    else {
+                        this.setAttribute("tabindex", "-1");
+                        this.setAttribute("aria-selected", "false");
+                        this.removeClass("slds-is-active");
+                    }
+                    return this;
+                }
+                setCurrent(b) {
+                    if (b) {
+                        this.addClass("slds-is-current");
+                    }
+                    else {
+                        this.removeClass("slds-is-current");
+                    }
+                    return this;
+                }
+                setComplete(b) {
+                    this.removeClass("slds-has-error");
+                    this.removeClass("slds-is-complete");
+                    this.removeClass("slds-is-active");
+                    if (b) {
+                        this.setAttribute("tabindex", "-1");
+                        this.setAttribute("aria-selected", "false");
+                        this.addClass("slds-is-complete");
+                    }
+                    else {
+                        this.removeClass("slds-is-complete");
+                    }
+                    return this;
+                }
+                setHasError(b) {
+                    this.removeClass("slds-has-error");
+                    if (b) {
+                        this.addClass("slds-has-error");
+                    }
+                    return this;
+                }
+                getHasError() {
+                    return this.hasClass("slds-has-error");
+                }
+                isComplete() {
+                    return this.hasClass("slds-is-complete");
+                }
+                isCurrent() {
+                    return this.hasClass("slds-is-current");
+                }
+                isActive() {
+                    return this.hasClass("slds-is-active");
+                }
+                setValue(value) {
+                    this.setAttribute("value", value);
+                    return this;
+                }
+                getValue() {
+                    return this.getAttribute("value");
+                }
+            }
+            lightning.PathItem = PathItem;
+            PathItem["__class"] = "com.spoonconsulting.lightning.PathItem";
+            PathItem["__interfaces"] = ["com.spoonconsulting.lightning.IStep", "framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class Pill extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.pillIconContainer = new JSContainer("pill-icon-container", "div");
+                    this.pillAction = new JSContainer("pill-action", "a");
+                    this.pillLabel = new JSContainer("label", "span");
+                    this.closeButton = new com.spoonconsulting.lightning.ButtonIcon("closeButton", "utility:close");
+                    this.addClass("slds-pill");
+                    this.addClass("slds-pill_link");
+                    this.pillIconContainer.addClass("slds-pill__icon_container");
+                    this.addChild(this.pillAction);
+                    this.pillAction.setAttribute("href", "javascript:void(0);");
+                    this.pillAction.addClass("slds-pill__action");
+                    this.pillLabel.addClass("slds-pill__label");
+                    this.pillAction.addChild(this.pillLabel);
+                    this.addChild(this.closeButton);
+                    this.setVariant(Pill.VARIANT_PLAIN_LINK);
+                }
+                addAvatar(avatar) {
+                    this.clearChildren();
+                    this.pillIconContainer.clearChildren();
+                    this.pillIconContainer.addChild(avatar);
+                    avatar.setSize(com.spoonconsulting.lightning.Size.MEDIUM);
+                    this.addChild(this.pillIconContainer).addChild(this.pillAction).addChild(this.closeButton);
+                    this.setRendered(false);
+                    return this;
+                }
+                addIcon(ctn) {
+                    this.clearChildren();
+                    this.pillIconContainer.clearChildren();
+                    this.pillIconContainer.addChild(ctn);
+                    this.addChild(this.pillIconContainer).addChild(this.pillAction).addChild(this.closeButton);
+                    this.setRendered(false);
+                    return this;
+                }
+                setAriaSelected(s) {
+                    this.setAttribute("aria-selected", s);
+                    return this;
+                }
+                getAriaSelected() {
+                    return this.getAttribute("aria-selected");
+                }
+                setHasError(b) {
+                    if (b) {
+                        this.addClass("slds-has-error");
+                    }
+                    else {
+                        this.removeClass("slds-has-error");
+                    }
+                    return this;
+                }
+                setHref(href) {
+                    this.setVariant("plainLink");
+                    this.pillAction.setAttribute("href", href);
+                    return this;
+                }
+                getHref() {
+                    return this.pillAction.getAttribute("href");
+                }
+                getHasError() {
+                    return this.hasClass("slds-has-error");
+                }
+                setLabel(label) {
+                    this.pillLabel.setHtml(label);
+                    return this;
+                }
+                getLabel() {
+                    return this.pillLabel.getHtml();
+                }
+                setRole(role) {
+                    this.setAttribute("role", role);
+                    return this;
+                }
+                getRole() {
+                    return this.getAttribute("role");
+                }
+                setTabIndex(index) {
+                    this.setAttribute("tabindex", index + "");
+                    return this;
+                }
+                getTabIndex() {
+                    const sindex = this.getAttribute("tabindex");
+                    if (sindex != null) {
+                        return /* parseInt */ parseInt(sindex);
+                    }
+                    else {
+                        return -1;
+                    }
+                }
+                setVariant(variant) {
+                    this.setAttribute("variant", variant);
+                    if (variant === "plainLink") {
+                        this.addClass("slds-pill_link");
+                        this.pillAction.setTag("a");
+                        this.pillAction.addClass("slds-pill__action");
+                    }
+                    else {
+                        this.removeClass("slds-pill_link");
+                        this.pillAction.setTag("div");
+                        this.pillAction.setAttribute("class", null);
+                    }
+                    return this;
+                }
+                getVariant() {
+                    return this.getAttribute("variant");
+                }
+            }
+            Pill.VARIANT_PLAIN_LINK = "plainLink";
+            Pill.VARIANT_LINK = "link";
+            Pill.VARIANT_PLAIN = "plain";
+            lightning.Pill = Pill;
+            Pill["__class"] = "com.spoonconsulting.lightning.Pill";
+            Pill["__interfaces"] = ["framework.components.api.Renderable"];
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -865,6 +1315,385 @@ var com;
             }
             lightning.Popover = Popover;
             Popover["__class"] = "com.spoonconsulting.lightning.Popover";
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class ProgressBar extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.value = new JSContainer("value", "span");
+                    this.assistiveText = new JSContainer("assistiveText", "span");
+                    this.setAttribute("aria-valuemin", "0");
+                    this.setAttribute("aria-valuemax", "100");
+                    this.setAttribute("aria-valuenow", "50");
+                    this.setAttribute("aria-busy", "true");
+                    this.setAttribute("role", "progressbar");
+                    this.addClass("slds-progress-bar");
+                    this.addChild(this.value.addClass("slds-progress-bar__value"));
+                    this.value.addChild(this.assistiveText);
+                }
+                setSize$com_spoonconsulting_lightning_Size(size) {
+                    return this.setSize$java_lang_String(size != null ? com.spoonconsulting.lightning.Size["_$wrappers"][size].getValue() : null);
+                }
+                setSize(size) {
+                    if (((typeof size === 'number') || size === null)) {
+                        return this.setSize$com_spoonconsulting_lightning_Size(size);
+                    }
+                    else if (((typeof size === 'string') || size === null)) {
+                        return this.setSize$java_lang_String(size);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                setSize$java_lang_String(size) {
+                    {
+                        let array1030 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                            if (!isNaN(val)) {
+                                result.push(parseInt(val, 10));
+                            }
+                        } return result; }();
+                        for (let index1029 = 0; index1029 < array1030.length; index1029++) {
+                            let s = array1030[index1029];
+                            {
+                                this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
+                            }
+                        }
+                    }
+                    if (size != null) {
+                        this.addClass("slds-progress-bar_" + size);
+                    }
+                    return this;
+                }
+                setValue(percent) {
+                    this.value.setStyle("width", percent + "%");
+                    this.setAttribute("aria-valuenow", percent + "");
+                    this.assistiveText.setHtml("Progress:" + percent + "%");
+                    return this;
+                }
+                getValue() {
+                    if (this.getAttribute("aria-valuenow") != null)
+                        return /* parseInt */ parseInt(this.getAttribute("aria-valuenow"));
+                    return 0;
+                }
+                setVariant(variant) {
+                    this.setAttribute("variant", variant);
+                    this.removeClass("slds-progress-bar_circular");
+                    if (variant === "circuler")
+                        this.addClass("slds-progress-bar_" + variant);
+                    return this;
+                }
+                getVariant() {
+                    return this.getAttribute("variant");
+                }
+            }
+            lightning.ProgressBar = ProgressBar;
+            ProgressBar["__class"] = "com.spoonconsulting.lightning.ProgressBar";
+            ProgressBar["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class ProgressIndicator extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.progress = new com.spoonconsulting.lightning.Progress("base");
+                    this.path = new com.spoonconsulting.lightning.Path("path");
+                    this.usedType = this.progress;
+                    this.addChild(this.progress);
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                setCurrentStep(value) {
+                    this.progress.setCurrentStep(value);
+                    this.path.setCurrentStep(value);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {*}
+                 */
+                getCurrentStep() {
+                    return this.usedType.getCurrentStep();
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setHasError(b) {
+                    this.progress.setHasError(b);
+                    this.path.setHasError(b);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                getHasError() {
+                    return this.usedType.getHasError();
+                }
+                /**
+                 *
+                 * @param {string} variant
+                 * @return {*}
+                 */
+                setVariant(variant) {
+                    this.path.setVariant(variant);
+                    this.progress.setVariant(variant);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getVariant() {
+                    return this.usedType.getVariant();
+                }
+                /**
+                 *
+                 * @return {*[]}
+                 */
+                getSteps() {
+                    return this.usedType.getSteps();
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                getStep(value) {
+                    return this.usedType.getStep(value);
+                }
+                /**
+                 *
+                 * @return {*}
+                 */
+                clearSteps() {
+                    this.progress.clearChildren();
+                    this.path.clearChildren();
+                    return this;
+                }
+                /**
+                 *
+                 * @param {*} step
+                 * @return {*}
+                 */
+                removeStep(step) {
+                    this.usedType.removeStep(step);
+                    return this;
+                }
+                setType(type) {
+                    if (type !== this.getAttribute("type")) {
+                        this.setAttribute("type", type);
+                        this.clearChildren();
+                        if (type === "base") {
+                            this.addChild(this.progress);
+                            this.usedType = this.progress;
+                        }
+                        else {
+                            this.addChild(this.path);
+                            this.usedType = this.path;
+                        }
+                        this.setRendered(false);
+                    }
+                    return this;
+                }
+                getType() {
+                    return this.getAttribute("type");
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                setValue(value) {
+                    this.path.setValue(value);
+                    this.progress.setValue(value);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getValue() {
+                    return this.usedType.getValue();
+                }
+                /**
+                 *
+                 * @param {string} label
+                 * @param {string} value
+                 * @return {*}
+                 */
+                addStep(label, value) {
+                    this.path.addStep(label, value);
+                    this.progress.addStep$java_lang_String$java_lang_String(label, value);
+                    return this;
+                }
+            }
+            lightning.ProgressIndicator = ProgressIndicator;
+            ProgressIndicator["__class"] = "com.spoonconsulting.lightning.ProgressIndicator";
+            ProgressIndicator["__interfaces"] = ["framework.components.api.Renderable", "com.spoonconsulting.lightning.IProgress"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class ProgressStep extends JSContainer {
+                constructor(name) {
+                    super(name, "li");
+                    this.incomplete = new com.spoonconsulting.lightning.Button("incomplete");
+                    this.complete = new com.spoonconsulting.lightning.ButtonIcon("complete", "utility:success");
+                    this.addClass("slds-progress__item");
+                    this.incomplete.addClass("slds-progress__marker");
+                    this.incomplete.getUILabel().addClass("slds-assistive-text");
+                    this.complete.addClass("slds-progress__marker").addClass("slds-progress__marker_icon");
+                    this.addChild(this.incomplete);
+                }
+                /**
+                 *
+                 * @param {string} label
+                 * @return {*}
+                 */
+                setLabel(label) {
+                    this.setAttribute("title", label);
+                    this.incomplete.getUILabel().setHtml(label);
+                    this.complete.setLabel(label);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getLabel() {
+                    return this.getAttribute("title");
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setActive(b) {
+                    this.removeClass("slds-has-error");
+                    this.removeClass("slds-is-completed");
+                    this.removeClass("slds-is-active");
+                    this.clearChildren();
+                    this.addChild(this.incomplete);
+                    if (b) {
+                        this.addClass("slds-is-active");
+                    }
+                    else {
+                        this.removeClass("slds-is-active");
+                    }
+                    this.setRendered(false);
+                    return this;
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setComplete(b) {
+                    this.removeClass("slds-has-error");
+                    this.removeClass("slds-is-completed");
+                    this.removeClass("slds-is-active");
+                    if (b) {
+                        this.clearChildren();
+                        this.addClass("slds-is-completed");
+                        this.addChild(this.complete);
+                        this.setRendered(false);
+                    }
+                    else {
+                        this.removeClass("slds-is-completed");
+                        this.setActive(false);
+                    }
+                    return this;
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setHasError(b) {
+                    this.removeClass("slds-has-error");
+                    if (b) {
+                        this.setComplete(true);
+                        this.complete.setIconName("utility:error");
+                        this.addClass("slds-has-error");
+                    }
+                    return this;
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                getHasError() {
+                    return this.hasClass("slds-has-error");
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                isComplete() {
+                    return this.hasClass("slds-is-completed");
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                isActive() {
+                    return this.hasClass("slds-is-active");
+                }
+                /**
+                 *
+                 * @param {string} value
+                 * @return {*}
+                 */
+                setValue(value) {
+                    this.setAttribute("value", value);
+                    return this;
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getValue() {
+                    return this.getAttribute("value");
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setCurrent(b) {
+                    this.addClass("slds-is-current");
+                    return this;
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                isCurrent() {
+                    return this.hasClass("slds-is-current");
+                }
+            }
+            lightning.ProgressStep = ProgressStep;
+            ProgressStep["__class"] = "com.spoonconsulting.lightning.ProgressStep";
+            ProgressStep["__interfaces"] = ["com.spoonconsulting.lightning.IStep", "framework.components.api.Renderable"];
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -901,7 +1730,7 @@ var com;
             lightning.Size_$WRAPPER = Size_$WRAPPER;
             Size["__class"] = "com.spoonconsulting.lightning.Size";
             Size["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
-            Size["_$wrappers"] = { 0: new Size_$WRAPPER(0, "EXTRA_EXTRA_SMALL", "xx_small"), 1: new Size_$WRAPPER(1, "EXTRA_SMALL", "x_small"), 2: new Size_$WRAPPER(2, "SMALL", "small"), 3: new Size_$WRAPPER(3, "MEDIUM", "medium"), 4: new Size_$WRAPPER(4, "LARGE", "large") };
+            Size["_$wrappers"] = { 0: new Size_$WRAPPER(0, "EXTRA_EXTRA_SMALL", "xx-small"), 1: new Size_$WRAPPER(1, "EXTRA_SMALL", "x-small"), 2: new Size_$WRAPPER(2, "SMALL", "small"), 3: new Size_$WRAPPER(3, "MEDIUM", "medium"), 4: new Size_$WRAPPER(4, "LARGE", "large") };
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -943,13 +1772,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array137 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array1032 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index136 = 0; index136 < array137.length; index136++) {
-                            let s = array137[index136];
+                        for (let index1031 = 0; index1031 < array1032.length; index1031++) {
+                            let s = array1032[index1031];
                             {
                                 this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -961,13 +1790,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array139 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array1034 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index138 = 0; index138 < array139.length; index138++) {
-                            let v = array139[index138];
+                        for (let index1033 = 0; index1033 < array1034.length; index1033++) {
+                            let v = array1034[index1033];
                             {
                                 if (v !== com.spoonconsulting.lightning.Variant.BASE)
                                     this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
@@ -1034,9 +1863,9 @@ var com;
                 }
                 setActiveTabValue(val) {
                     {
-                        let array141 = this.tablist.getChildren();
-                        for (let index140 = 0; index140 < array141.length; index140++) {
-                            let r = array141[index140];
+                        let array1036 = this.tablist.getChildren();
+                        for (let index1035 = 0; index1035 < array1036.length; index1035++) {
+                            let r = array1036[index1035];
                             {
                                 const item = r;
                                 if (item.tab.getValue() === val) {
@@ -1051,9 +1880,9 @@ var com;
                 }
                 setActiveTabItem(item) {
                     {
-                        let array143 = this.tablist.getChildren();
-                        for (let index142 = 0; index142 < array143.length; index142++) {
-                            let r = array143[index142];
+                        let array1038 = this.tablist.getChildren();
+                        for (let index1037 = 0; index1037 < array1038.length; index1037++) {
+                            let r = array1038[index1037];
                             {
                                 const titem = r;
                                 if (titem.getId() === item.getId()) {
@@ -1076,9 +1905,9 @@ var com;
                 }
                 getPanel(name) {
                     {
-                        let array145 = this.getChildren();
-                        for (let index144 = 0; index144 < array145.length; index144++) {
-                            let r = array145[index144];
+                        let array1040 = this.getChildren();
+                        for (let index1039 = 0; index1039 < array1040.length; index1039++) {
+                            let r = array1040[index1039];
                             {
                                 if (r.getId() !== this.tablist.getId()) {
                                     if (r.getName() === name) {
@@ -1125,13 +1954,13 @@ var com;
                         this.tablist.addClass("slds-tabs_default__nav");
                     }
                     {
-                        let array147 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.TabSet.TabSetVariant) {
+                        let array1042 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.TabSet.TabSetVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index146 = 0; index146 < array147.length; index146++) {
-                            let va = array147[index146];
+                        for (let index1041 = 0; index1041 < array1042.length; index1041++) {
+                            let va = array1042[index1041];
                             {
                                 this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.TabSet.TabSetVariant["_$wrappers"][va].value);
                             }
@@ -1269,6 +2098,126 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Path extends com.spoonconsulting.lightning.AbstractProgress {
+                constructor(name) {
+                    super(name, "div");
+                    this.track = new JSContainer("track", "div");
+                    this.scrollerContainer = new JSContainer("scroller-container", "div");
+                    this.scroller = new JSContainer("scroller", "div");
+                    this.scrollerInner = new JSContainer("scroller-inner", "div");
+                    this.nav = new JSContainer("nav", "ul");
+                    this.addClass("slds-path");
+                    this.addChild(this.track.addChild(this.scrollerContainer.addChild(this.scroller.addChild(this.scrollerInner.addChild(this.nav)))));
+                    this.track.addClass("slds-grid").addClass("slds-path__track");
+                    this.scrollerContainer.addClass("slds-grid").addClass("slds-path__scroller-container");
+                    this.scroller.addClass("slds-path__scroller");
+                    this.scrollerInner.addClass("slds-path__scroller_inner");
+                    this.nav.addClass("slds-path__nav");
+                    this.nav.setAttribute("role", "listbox").setAttribute("aria-orientation", "horizontal");
+                    this.scroller.setAttribute("role", "application");
+                }
+                getSteps() {
+                    const result = this.nav.getChildren();
+                    return result;
+                }
+                /**
+                 *
+                 * @return {*}
+                 */
+                clearSteps() {
+                    this.nav.clearChildren();
+                    this.nav.setRendered(false);
+                    return this;
+                }
+                /**
+                 *
+                 * @param {string} label
+                 * @param {string} value
+                 * @return {*}
+                 */
+                addStep(label, value) {
+                    const item = new com.spoonconsulting.lightning.PathItem(label);
+                    item.setValue(value);
+                    item.setLabel(label);
+                    this.nav.addChild(item);
+                    return this;
+                }
+            }
+            lightning.Path = Path;
+            Path["__class"] = "com.spoonconsulting.lightning.Path";
+            Path["__interfaces"] = ["framework.components.api.Renderable", "com.spoonconsulting.lightning.IProgress"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class Progress extends com.spoonconsulting.lightning.AbstractProgress {
+                constructor(name) {
+                    super(name, "div");
+                    this.progressList = new JSContainer("progress-list", "ol");
+                    this.progressBar = new com.spoonconsulting.lightning.ProgressBar("progressBar");
+                    this.addClass("slds-progress");
+                    this.addChild(this.progressList);
+                    this.addChild(this.progressBar);
+                    this.progressBar.setSize$com_spoonconsulting_lightning_Size(com.spoonconsulting.lightning.Size.EXTRA_SMALL);
+                    this.progressList.addClass("slds-progress__list");
+                    this.setVariant("base");
+                }
+                addStep$com_spoonconsulting_lightning_IStep(step) {
+                    this.progressList.addChild(step);
+                    return this;
+                }
+                getSteps() {
+                    const result = this.progressList.getChildren();
+                    return result;
+                }
+                /**
+                 *
+                 * @return {*}
+                 */
+                clearSteps() {
+                    this.progressList.clearChildren();
+                    this.progressList.setRendered(false);
+                    return this;
+                }
+                addStep$java_lang_String$java_lang_String(label, value) {
+                    const step = new com.spoonconsulting.lightning.ProgressStep(label);
+                    step.setLabel(label);
+                    step.setValue(value);
+                    this.progressList.addChild(step);
+                    return this;
+                }
+                /**
+                 *
+                 * @param {string} label
+                 * @param {string} value
+                 * @return {*}
+                 */
+                addStep(label, value) {
+                    if (((typeof label === 'string') || label === null) && ((typeof value === 'string') || value === null)) {
+                        return this.addStep$java_lang_String$java_lang_String(label, value);
+                    }
+                    else if (((label != null && (label.constructor != null && label.constructor["__interfaces"] != null && label.constructor["__interfaces"].indexOf("com.spoonconsulting.lightning.IStep") >= 0)) || label === null) && value === undefined) {
+                        return this.addStep$com_spoonconsulting_lightning_IStep(label);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+            }
+            lightning.Progress = Progress;
+            Progress["__class"] = "com.spoonconsulting.lightning.Progress";
+            Progress["__interfaces"] = ["framework.components.api.Renderable", "com.spoonconsulting.lightning.IProgress"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Accordion extends com.spoonconsulting.lightning.BaseLightning {
                 constructor(name) {
                     super(name, "ul");
@@ -1283,8 +2232,8 @@ var com;
                     return this;
                 }
                 addSections(...accordionSections) {
-                    for (let index148 = 0; index148 < accordionSections.length; index148++) {
-                        let section = accordionSections[index148];
+                    for (let index1043 = 0; index1043 < accordionSections.length; index1043++) {
+                        let section = accordionSections[index1043];
                         {
                             this.addSection(section);
                         }
@@ -1293,9 +2242,9 @@ var com;
                 }
                 setActiveSectionName(name) {
                     {
-                        let array150 = this.getChildren();
-                        for (let index149 = 0; index149 < array150.length; index149++) {
-                            let r = array150[index149];
+                        let array1045 = this.getChildren();
+                        for (let index1044 = 0; index1044 < array1045.length; index1044++) {
+                            let r = array1045[index1044];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -1311,9 +2260,9 @@ var com;
                 }
                 setOpen(name) {
                     {
-                        let array152 = this.getChildren();
-                        for (let index151 = 0; index151 < array152.length; index151++) {
-                            let r = array152[index151];
+                        let array1047 = this.getChildren();
+                        for (let index1046 = 0; index1046 < array1047.length; index1046++) {
+                            let r = array1047[index1046];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -1339,9 +2288,9 @@ var com;
                     const sectionToggle = new CustomEvent("onsectiontoggle");
                     const openSections = (new Array());
                     {
-                        let array154 = this.getSections();
-                        for (let index153 = 0; index153 < array154.length; index153++) {
-                            let sect = array154[index153];
+                        let array1049 = this.getSections();
+                        for (let index1048 = 0; index1048 < array1049.length; index1048++) {
+                            let sect = array1049[index1048];
                             {
                                 if (sect.isOpen()) {
                                     openSections.push(sect.getName());
@@ -1356,9 +2305,9 @@ var com;
                 }
                 setClose(name) {
                     {
-                        let array156 = this.getChildren();
-                        for (let index155 = 0; index155 < array156.length; index155++) {
-                            let r = array156[index155];
+                        let array1051 = this.getChildren();
+                        for (let index1050 = 0; index1050 < array1051.length; index1050++) {
+                            let r = array1051[index1050];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -1378,9 +2327,9 @@ var com;
                 getSections() {
                     const sections = (new Array());
                     {
-                        let array158 = this.getChildren();
-                        for (let index157 = 0; index157 < array158.length; index157++) {
-                            let r = array158[index157];
+                        let array1053 = this.getChildren();
+                        for (let index1052 = 0; index1052 < array1053.length; index1052++) {
+                            let r = array1053[index1052];
                             {
                                 sections.push(r.getChildren()[0]);
                             }
@@ -1390,9 +2339,9 @@ var com;
                 }
                 getSection(name) {
                     {
-                        let array160 = this.getChildren();
-                        for (let index159 = 0; index159 < array160.length; index159++) {
-                            let r = array160[index159];
+                        let array1055 = this.getChildren();
+                        for (let index1054 = 0; index1054 < array1055.length; index1054++) {
+                            let r = array1055[index1054];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -1597,7 +2546,7 @@ var com;
                     this.label = new JSContainer("label", "span");
                     this.draft = new JSContainer("draft", "abbr");
                     this.iconName = null;
-                    this.iconPosition = Button.ICON_POSITION_LEFT;
+                    this.iconPosition = null;
                     this.isDraft = false;
                     this.draftAlternativeText = null;
                     this.prefixIconName = null;
@@ -1625,17 +2574,19 @@ var com;
                         this.icon.removeClass("slds-button__icon_x-small").removeClass("slds-m-left_xx-small");
                     }
                     if (this.iconName != null && this.iconName !== "") {
+                        this.addChild(this.icon);
+                        this.icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
                         if (this.iconPosition === Button.ICON_POSITION_LEFT) {
-                            this.icon.removeClass("slds-button__icon_right").addClass("slds-button__icon_left");
-                            this.addChild(this.icon);
+                            this.icon.addClass("slds-button__icon_left");
                         }
                         if (this.isDraft) {
                             this.addChild(this.draft);
                         }
                         this.addChild(this.label);
                         if (this.iconPosition === Button.ICON_POSITION_RIGHT) {
-                            this.icon.removeClass("slds-button__icon_left").addClass("slds-button__icon_right");
+                            this.icon.addClass("slds-button__icon_right");
                         }
+                        this.icon.setIconName(this.iconName);
                     }
                     else {
                         if (this.isDraft) {
@@ -1698,6 +2649,9 @@ var com;
                 }
                 setLabel(label) {
                     this.label.setHtml(label);
+                    if (label != null && this.iconPosition == null) {
+                        this.setIconPosition(Button.ICON_POSITION_LEFT);
+                    }
                     return this;
                 }
                 getLabel() {
@@ -1729,13 +2683,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array162 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array1057 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index161 = 0; index161 < array162.length; index161++) {
-                            let v = array162[index161];
+                        for (let index1056 = 0; index1056 < array1057.length; index1056++) {
+                            let v = array1057[index1056];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                             }
@@ -1757,6 +2711,9 @@ var com;
                     if (btn != null) {
                         btn.blur();
                     }
+                }
+                getUILabel() {
+                    return this.label;
                 }
                 getIcon() {
                     return this.icon;
@@ -2129,13 +3086,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array164 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
+                        let array1059 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index163 = 0; index163 < array164.length; index163++) {
-                            let v = array164[index163];
+                        for (let index1058 = 0; index1058 < array1059.length; index1058++) {
+                            let v = array1059[index1058];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                             }
@@ -2306,8 +3263,8 @@ var com;
                     return this;
                 }
                 addMenuItems(...items) {
-                    for (let index165 = 0; index165 < items.length; index165++) {
-                        let item = items[index165];
+                    for (let index1060 = 0; index1060 < items.length; index1060++) {
+                        let item = items[index1060];
                         {
                             this.addMenuItem(item);
                         }
@@ -2685,7 +3642,7 @@ var com;
                 constructor(name, iconName) {
                     super(name);
                     this.setIconName(iconName);
-                    this.getChildren()[1].addClass("slds-assistive-text");
+                    this.label.addClass("slds-assistive-text");
                     this.addClass("slds-button_icon");
                 }
                 setAlternativeText(altText) {
@@ -2698,13 +3655,13 @@ var com;
                 }
                 setSize(size) {
                     {
-                        let array167 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
+                        let array1062 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index166 = 0; index166 < array167.length; index166++) {
-                            let s = array167[index166];
+                        for (let index1061 = 0; index1061 < array1062.length; index1061++) {
+                            let s = array1062[index1061];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                             }
@@ -2719,13 +3676,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array169 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) {
+                        let array1064 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index168 = 0; index168 < array169.length; index168++) {
-                            let v = array169[index168];
+                        for (let index1063 = 0; index1063 < array1064.length; index1063++) {
+                            let v = array1064[index1063];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][v].getValue());
                             }
@@ -2752,6 +3709,15 @@ var com;
                 }
                 setVariant$com_spoonconsulting_lightning_ButtonIcon_ButtonIconVariant(variant) {
                     return this.setVariant$java_lang_String(com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][variant].getValue());
+                }
+                /**
+                 *
+                 * @param {string} label
+                 * @return {com.spoonconsulting.lightning.Button}
+                 */
+                setLabel(label) {
+                    this.getUILabel().setHtml(label);
+                    return this;
                 }
             }
             lightning.ButtonIcon = ButtonIcon;
@@ -2850,3 +3816,4 @@ var com;
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
+com.spoonconsulting.lightning.Boot.main(null);

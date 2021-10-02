@@ -5,7 +5,7 @@ public class ButtonIcon extends Button{
 	public ButtonIcon(String name, String iconName) {
 		super(name);
 		setIconName(iconName);
-		getChildren().$get(1).addClass("slds-assistive-text");
+		super.label.addClass("slds-assistive-text");
 		addClass("slds-button_icon");
 	}
 	
@@ -44,6 +44,16 @@ public class ButtonIcon extends Button{
 		return setVariant(variant.getValue());
 	}
 	
+	
+	
+	@Override
+	public Button setLabel(String label) {
+		getUILabel().setHtml(label);
+		return this;
+	}
+
+
+
 	public enum ButtonIconVariant{
 		
 		

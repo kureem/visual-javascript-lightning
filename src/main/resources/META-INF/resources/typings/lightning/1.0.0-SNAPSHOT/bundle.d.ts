@@ -1,4 +1,68 @@
 declare namespace com.spoonconsulting.lightning {
+    abstract class AbstractProgress extends JSContainer implements com.spoonconsulting.lightning.IProgress {
+        constructor(name: string, tag: string);
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        getStep(value: string): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        setCurrentStep(value: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {*}
+         */
+        getCurrentStep(): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setHasError(b: boolean): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {boolean}
+         */
+        getHasError(): boolean;
+        /**
+         *
+         * @param {string} variant
+         * @return {*}
+         */
+        setVariant(variant: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {string}
+         */
+        getVariant(): string;
+        /**
+         *
+         * @param {*} step
+         * @return {*}
+         */
+        removeStep(step: com.spoonconsulting.lightning.IStep): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        setValue(value: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {string}
+         */
+        getValue(): string;
+        abstract addStep(label?: any, value?: any): any;
+        abstract clearSteps(): any;
+        abstract getSteps(): any;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Avatar extends JSContainer {
         img: JSContainer;
         fallbackIcon: com.spoonconsulting.lightning.Icon;
@@ -35,6 +99,23 @@ declare namespace com.spoonconsulting.lightning {
         constructor(name: string, tag: string);
         setTitle(title: string): void;
         getTitle(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Boot {
+        static main(args: string[]): void;
+    }
+    namespace Boot {
+        class Boot$0 implements api.EventListener {
+            private indicator;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(indicator: any);
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -119,6 +200,11 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class GlobalConfigs {
+        static BASE_ASSETS: string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Icon extends JSContainer {
         iconName: string;
         constructor(name: string, iconName: string);
@@ -128,6 +214,39 @@ declare namespace com.spoonconsulting.lightning {
         setSize$java_lang_String(size: string): Icon;
         setSize(size?: any): any;
         setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): Icon;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    interface IProgress extends api.Renderable {
+        setCurrentStep(value: string): IProgress;
+        getCurrentStep(): com.spoonconsulting.lightning.IStep;
+        setHasError(b: boolean): IProgress;
+        getHasError(): boolean;
+        setVariant(variant: string): IProgress;
+        getVariant(): string;
+        addStep(label: string, value: string): IProgress;
+        getSteps(): Array<com.spoonconsulting.lightning.IStep>;
+        getStep(value: string): com.spoonconsulting.lightning.IStep;
+        clearSteps(): IProgress;
+        removeStep(step: com.spoonconsulting.lightning.IStep): IProgress;
+        setValue(value: string): IProgress;
+        getValue(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    interface IStep extends api.Renderable {
+        setLabel(label: string): IStep;
+        getLabel(): string;
+        setActive(b: boolean): IStep;
+        setComplete(b: boolean): IStep;
+        setCurrent(b: boolean): IStep;
+        isCurrent(): boolean;
+        setHasError(b: boolean): IStep;
+        getHasError(): boolean;
+        isComplete(): boolean;
+        isActive(): boolean;
+        setValue(value: string): IStep;
+        getValue(): string;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -245,15 +364,234 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
-    class MenuSubheader extends JSContainer {
+    class MenuSubHeader extends JSContainer {
         span: JSContainer;
         constructor(name: string);
-        setLabel(label: string): MenuSubheader;
+        setLabel(label: string): MenuSubHeader;
         getLabel(): string;
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class PathItem extends JSContainer implements com.spoonconsulting.lightning.IStep {
+        link: JSContainer;
+        stage: JSContainer;
+        icon: com.spoonconsulting.lightning.Icon;
+        title: JSContainer;
+        constructor(name: string);
+        setLabel(label: string): PathItem;
+        getLabel(): string;
+        setActive(b: boolean): PathItem;
+        setCurrent(b: boolean): PathItem;
+        setComplete(b: boolean): PathItem;
+        setHasError(b: boolean): PathItem;
+        getHasError(): boolean;
+        isComplete(): boolean;
+        isCurrent(): boolean;
+        isActive(): boolean;
+        setValue(value: string): PathItem;
+        getValue(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Pill extends JSContainer {
+        pillIconContainer: JSContainer;
+        pillAction: JSContainer;
+        pillLabel: JSContainer;
+        closeButton: com.spoonconsulting.lightning.ButtonIcon;
+        static VARIANT_PLAIN_LINK: string;
+        static VARIANT_LINK: string;
+        static VARIANT_PLAIN: string;
+        constructor(name: string);
+        addAvatar(avatar: com.spoonconsulting.lightning.Avatar): Pill;
+        addIcon(ctn: com.spoonconsulting.lightning.IconContainer): Pill;
+        setAriaSelected(s: string): Pill;
+        getAriaSelected(): string;
+        setHasError(b: boolean): Pill;
+        setHref(href: string): Pill;
+        getHref(): string;
+        getHasError(): boolean;
+        setLabel(label: string): Pill;
+        getLabel(): string;
+        setRole(role: string): Pill;
+        getRole(): string;
+        setTabIndex(index: number): Pill;
+        getTabIndex(): number;
+        setVariant(variant: string): Pill;
+        getVariant(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Popover {
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class ProgressBar extends JSContainer {
+        value: JSContainer;
+        assistiveText: JSContainer;
+        constructor(name: string);
+        setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): ProgressBar;
+        setSize(size?: any): any;
+        setSize$java_lang_String(size: string): ProgressBar;
+        setValue(percent: number): ProgressBar;
+        getValue(): number;
+        setVariant(variant: string): ProgressBar;
+        getVariant(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class ProgressIndicator extends JSContainer implements com.spoonconsulting.lightning.IProgress {
+        progress: com.spoonconsulting.lightning.Progress;
+        path: com.spoonconsulting.lightning.Path;
+        usedType: com.spoonconsulting.lightning.IProgress;
+        constructor(name: string);
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        setCurrentStep(value: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {*}
+         */
+        getCurrentStep(): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setHasError(b: boolean): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {boolean}
+         */
+        getHasError(): boolean;
+        /**
+         *
+         * @param {string} variant
+         * @return {*}
+         */
+        setVariant(variant: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {string}
+         */
+        getVariant(): string;
+        /**
+         *
+         * @return {*[]}
+         */
+        getSteps(): Array<com.spoonconsulting.lightning.IStep>;
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        getStep(value: string): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @return {*}
+         */
+        clearSteps(): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @param {*} step
+         * @return {*}
+         */
+        removeStep(step: com.spoonconsulting.lightning.IStep): com.spoonconsulting.lightning.IProgress;
+        setType(type: string): com.spoonconsulting.lightning.IProgress;
+        getType(): string;
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        setValue(value: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @return {string}
+         */
+        getValue(): string;
+        /**
+         *
+         * @param {string} label
+         * @param {string} value
+         * @return {*}
+         */
+        addStep(label: string, value: string): com.spoonconsulting.lightning.IProgress;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class ProgressStep extends JSContainer implements com.spoonconsulting.lightning.IStep {
+        incomplete: com.spoonconsulting.lightning.Button;
+        complete: com.spoonconsulting.lightning.ButtonIcon;
+        constructor(name: string);
+        /**
+         *
+         * @param {string} label
+         * @return {*}
+         */
+        setLabel(label: string): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @return {string}
+         */
+        getLabel(): string;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setActive(b: boolean): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setComplete(b: boolean): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setHasError(b: boolean): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @return {boolean}
+         */
+        getHasError(): boolean;
+        /**
+         *
+         * @return {boolean}
+         */
+        isComplete(): boolean;
+        /**
+         *
+         * @return {boolean}
+         */
+        isActive(): boolean;
+        /**
+         *
+         * @param {string} value
+         * @return {*}
+         */
+        setValue(value: string): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @return {string}
+         */
+        getValue(): string;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setCurrent(b: boolean): com.spoonconsulting.lightning.IStep;
+        /**
+         *
+         * @return {boolean}
+         */
+        isCurrent(): boolean;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -368,6 +706,51 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class Path extends com.spoonconsulting.lightning.AbstractProgress implements com.spoonconsulting.lightning.IProgress {
+        track: JSContainer;
+        scrollerContainer: JSContainer;
+        scroller: JSContainer;
+        scrollerInner: JSContainer;
+        nav: JSContainer;
+        constructor(name: string);
+        getSteps(): Array<com.spoonconsulting.lightning.IStep>;
+        /**
+         *
+         * @return {*}
+         */
+        clearSteps(): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @param {string} label
+         * @param {string} value
+         * @return {*}
+         */
+        addStep(label: string, value: string): com.spoonconsulting.lightning.IProgress;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Progress extends com.spoonconsulting.lightning.AbstractProgress implements com.spoonconsulting.lightning.IProgress {
+        progressList: JSContainer;
+        progressBar: com.spoonconsulting.lightning.ProgressBar;
+        constructor(name: string);
+        addStep$com_spoonconsulting_lightning_IStep(step: com.spoonconsulting.lightning.IStep): Progress;
+        getSteps(): Array<com.spoonconsulting.lightning.IStep>;
+        /**
+         *
+         * @return {*}
+         */
+        clearSteps(): com.spoonconsulting.lightning.IProgress;
+        addStep$java_lang_String$java_lang_String(label: string, value: string): com.spoonconsulting.lightning.IProgress;
+        /**
+         *
+         * @param {string} label
+         * @param {string} value
+         * @return {*}
+         */
+        addStep(label?: any, value?: any): any;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Accordion extends com.spoonconsulting.lightning.BaseLightning {
         allowMultipleSectionOpen: boolean;
         constructor(name: string);
@@ -479,6 +862,7 @@ declare namespace com.spoonconsulting.lightning {
         getPrefixIcon(): com.spoonconsulting.lightning.Icon;
         click(): void;
         blur(): void;
+        getUILabel(): JSContainer;
         getIcon(): com.spoonconsulting.lightning.Icon;
     }
 }
@@ -738,6 +1122,12 @@ declare namespace com.spoonconsulting.lightning {
         setVariant$java_lang_String(variant: string): ButtonIcon;
         setVariant(variant?: any): any;
         setVariant$com_spoonconsulting_lightning_ButtonIcon_ButtonIconVariant(variant: ButtonIcon.ButtonIconVariant): ButtonIcon;
+        /**
+         *
+         * @param {string} label
+         * @return {com.spoonconsulting.lightning.Button}
+         */
+        setLabel(label: string): com.spoonconsulting.lightning.Button;
     }
     namespace ButtonIcon {
         enum ButtonIconVariant {

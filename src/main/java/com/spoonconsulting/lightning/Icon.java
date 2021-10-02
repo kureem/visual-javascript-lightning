@@ -17,7 +17,10 @@ public class Icon extends JSContainer{
 	
 	
 	private Icon setIcon(String group, String name) {
-		setHtml("<use xlink:href=\"/assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>");
+		String html = "<use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"$base-assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>";
+		html = html.replace("$base-assets", GlobalConfigs.BASE_ASSETS);
+		//setHtml("<use xlink:href=\"/assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>");
+		setHtml(html);
 		return this;
 	}
 	

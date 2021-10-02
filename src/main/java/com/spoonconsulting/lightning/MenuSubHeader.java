@@ -2,11 +2,11 @@ package com.spoonconsulting.lightning;
 
 import framework.components.JSContainer;
 
-public class MenuSubheader extends JSContainer{
+public class MenuSubHeader extends JSContainer{
 
 	private JSContainer span = new JSContainer("span");
 	
-	public MenuSubheader(String name) {
+	public MenuSubHeader(String name) {
 		super(name, "li");
 		addClass("slds-dropdown__header");
 		addChild(span.addClass("slds-truncate"));
@@ -14,7 +14,7 @@ public class MenuSubheader extends JSContainer{
 	}
 	
 	
-	public MenuSubheader setLabel(String label) {
+	public MenuSubHeader setLabel(String label) {
 		this.span.setHtml(label);
 		return this;
 	}

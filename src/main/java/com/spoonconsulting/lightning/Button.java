@@ -22,7 +22,7 @@ public class Button extends BaseLightning {
 
 	private String iconName = null;
 
-	private String iconPosition = ICON_POSITION_LEFT;
+	private String iconPosition = null;
 
 	private Boolean isDraft = false;
 
@@ -60,17 +60,20 @@ public class Button extends BaseLightning {
 		}
 		
 		if (iconName != null && iconName != "") {
+			addChild(icon);
+			icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
 			if (iconPosition == ICON_POSITION_LEFT) {
-				icon.removeClass("slds-button__icon_right").addClass("slds-button__icon_left");
-				addChild(icon);
+				icon.addClass("slds-button__icon_left");
+				
 			}
 			if (isDraft) {
 				addChild(draft);
 			}
 			addChild(label);
 			if (iconPosition == ICON_POSITION_RIGHT) {
-				icon.removeClass("slds-button__icon_left").addClass("slds-button__icon_right");
+				icon.addClass("slds-button__icon_right");
 			}
+			icon.setIconName(iconName);
 		} else {
 			if (isDraft) {
 				addChild(draft);
@@ -147,6 +150,9 @@ public class Button extends BaseLightning {
 
 	public Button setLabel(String label) {
 		this.label.setHtml(label);
+		if(label != null && iconPosition == null ) {
+			setIconPosition(ICON_POSITION_LEFT);
+		}
 		return this;
 	}
 	
@@ -202,6 +208,10 @@ public class Button extends BaseLightning {
 		}
 	}
 
+	public JSContainer getUILabel() {
+		return this.label;
+	}
+	
 	public Icon getIcon() {
 		return icon;
 	}
