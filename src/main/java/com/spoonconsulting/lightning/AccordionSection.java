@@ -12,12 +12,14 @@ public class AccordionSection extends BaseLightning {
 	private JSContainer content = new JSContainer("content", "div");
 
 	private JSContainer summaryHeading = new JSContainer("summary-heading", "h2");
+	
+	private Button summaryHeadingAction = new Button("summary-heading-action");
 
 	private JSContainer summaryAction = new JSContainer("summary-action", "button");
 
 	private Icon summaryActionIcon = new Icon("summary-action-icon","utility:switch");
 
-	private JSContainer summaryContent = new JSContainer("summaryContent", "span");
+//	private JSContainer summaryContent = new JSContainer("summaryContent", "span");
 	
 	private JSContainer actionsSlot = new JSContainer("actions","span");
 
@@ -28,6 +30,13 @@ public class AccordionSection extends BaseLightning {
 		addChild(content.addClass("slds-accordion__content"));
 		summaryHeading.addClass("slds-accordion__summary-heading");
 		summary.addChild(summaryHeading);
+		
+		summaryHeading.addChild(summaryHeadingAction);
+		summaryHeadingAction.setIconName("utility:switch");
+		summaryHeadingAction.addClass("slds-button_reset").addClass("slds-accordion__summary-action");
+		summaryHeadingAction.getIcon().addClass("slds-accordion__summary-action-icon");
+		summaryHeadingAction.label.addClass("slds-accordion__summary-content");
+		
 		summary.addChild(actionsSlot);
 		summaryAction.addClass("slds-button").addClass("slds-button_reset").addClass("slds-accordion__summary-action");
 		actionsSlot.addChild(summaryAction);
@@ -38,8 +47,8 @@ public class AccordionSection extends BaseLightning {
 
 		summaryAction.addChild(summaryActionIcon);
 
-		summaryContent.addClass("slds-accordion__summary-content");
-		summary.addChild(summaryContent);
+	//	summaryContent.addClass("slds-accordion__summary-content");
+	//	summary.addChild(summaryContent);
 		setOpen(false);
 		summary.addEventListener(new EventListener() {
 			
@@ -54,7 +63,7 @@ public class AccordionSection extends BaseLightning {
 	public void setTitle(String title) {
 		super.setTitle(title);
 		summaryAction.setAttribute("title", title);
-		summaryContent.setAttribute("title", title);
+		summaryHeadingAction.setLabel(title).setAttribute("title", title);
 	}
 	
 	public void toggle() {
@@ -101,9 +110,7 @@ public class AccordionSection extends BaseLightning {
 		return summaryActionIcon;
 	}
 
-	public JSContainer getSummaryContent() {
-		return summaryContent;
-	}
+
 	
 	public JSContainer getSlot(String name) {
 		if(name == "actions") {

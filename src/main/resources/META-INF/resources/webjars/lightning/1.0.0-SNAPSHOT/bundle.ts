@@ -12,9 +12,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getStep(value: string): com.spoonconsulting.lightning.IStep {
             {
-                let array1007 = this.getSteps();
-                for(let index1006=0; index1006 < array1007.length; index1006++) {
-                    let step = array1007[index1006];
+                let array8637 = this.getSteps();
+                for(let index8636=0; index8636 < array8637.length; index8636++) {
+                    let step = array8637[index8636];
                     {
                         if (step.getValue() === value){
                             return step;
@@ -33,9 +33,9 @@ namespace com.spoonconsulting.lightning {
         public setCurrentStep(value: string): com.spoonconsulting.lightning.IProgress {
             let passedCurrent: boolean = false;
             {
-                let array1009 = this.getSteps();
-                for(let index1008=0; index1008 < array1009.length; index1008++) {
-                    let step = array1009[index1008];
+                let array8639 = this.getSteps();
+                for(let index8638=0; index8638 < array8639.length; index8638++) {
+                    let step = array8639[index8638];
                     {
                         if (step.getValue() === value){
                             step.setCurrent(true);
@@ -55,9 +55,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getCurrentStep(): com.spoonconsulting.lightning.IStep {
             {
-                let array1011 = this.getSteps();
-                for(let index1010=0; index1010 < array1011.length; index1010++) {
-                    let step = array1011[index1010];
+                let array8641 = this.getSteps();
+                for(let index8640=0; index8640 < array8641.length; index8640++) {
+                    let step = array8641[index8640];
                     {
                         if (step.isCurrent()){
                             return step;
@@ -85,9 +85,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getHasError(): boolean {
             {
-                let array1013 = this.getSteps();
-                for(let index1012=0; index1012 < array1013.length; index1012++) {
-                    let step = array1013[index1012];
+                let array8643 = this.getSteps();
+                for(let index8642=0; index8642 < array8643.length; index8642++) {
+                    let step = array8643[index8642];
                     {
                         if (step.getHasError()){
                             return true;
@@ -227,9 +227,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize(size: com.spoonconsulting.lightning.Size): Avatar {
             {
-                let array1015 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1014=0; index1014 < array1015.length; index1014++) {
-                    let s = array1015[index1014];
+                let array8645 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8644=0; index8644 < array8645.length; index8644++) {
+                    let s = array8645[index8644];
                     {
                         this.removeClass("slds-avatar_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -301,6 +301,220 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class BaseComboBox extends JSContainer implements api.InputField<string> {
+        /*private*/ combobox: JSContainer;
+
+        /*private*/ formElement: JSContainer;
+
+        /*private*/ input: input.JSTextInput;
+
+        /*private*/ dropdown: com.spoonconsulting.lightning.ListBox;
+
+        /*private*/ inputIconContainer: JSContainer;
+
+        /*private*/ inputIcon: com.spoonconsulting.lightning.IconContainer;
+
+        public static DROPDOWN_ALIGNMENT_BOTTOM_LEFT: string = "bottom-left";
+
+        public static DROPDOWN_ALIGNMENT_TOP_LEFT: string = "top-left";
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.combobox = new JSContainer("combobox", "div");
+            this.formElement = new JSContainer("formElement", "div");
+            this.input = new input.JSTextInput("input");
+            this.dropdown = new com.spoonconsulting.lightning.ListBox("dropdown");
+            this.inputIconContainer = new JSContainer("input-icon-container", "div");
+            this.inputIcon = new com.spoonconsulting.lightning.IconContainer("input-icon", "div");
+            this.addClass("slds-combobox_container");
+            this.addChild(this.combobox);
+            this.combobox.addClass("slds-combobox").addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click").setAttribute("aria-expanded", "false").setAttribute("aria-haspopup", "listbox").setAttribute("role", "combobox");
+            this.combobox.addChild(this.formElement);
+            this.formElement.setAttribute("role", "none").addClass("slds-combobox__form-element").addClass("slds-input-has-icon").addClass("slds-input-has-icon_right");
+            this.input.addClass("slds-input").addClass("slds-combobox__input").setAttribute("role", "textbox").setAttribute("autocomplete", "off").setAttribute("aria-autocomplete", "none").setAttribute("readonly", "true");
+            this.formElement.addChild(this.input);
+            this.inputIconContainer.addClass("slds-input__icon-group").addClass("slds-input__icon-group_right");
+            this.inputIcon.setIconName("utility:down");
+            this.inputIcon.addClass("slds-input__icon").addClass("slds-input__icon_right");
+            this.inputIcon.setSize(com.spoonconsulting.lightning.Size.EXTRA_EXTRA_SMALL);
+            this.inputIcon.getIcon().addClass("slds-icon-text-default");
+            this.inputIconContainer.addChild(this.inputIcon);
+            this.formElement.addChild(this.inputIconContainer);
+            this.combobox.addChild(this.dropdown);
+            this.dropdown.addEventListener(new BaseComboBox.BaseComboBox$0(this), "onchange");
+            this.input.addEventListener(new BaseComboBox.BaseComboBox$1(this), "click");
+        }
+
+        public setOptions(options: Array<Object>): BaseComboBox {
+            this.dropdown.setOptions(options);
+            return this;
+        }
+
+        public toggleDropdown() {
+            this.setExpand(!this.isExpanded());
+        }
+
+        public isExpanded(): boolean {
+            return this.combobox.getAttribute("aria-expanded") === "true";
+        }
+
+        public setExpand(b: boolean): BaseComboBox {
+            if (b){
+                this.combobox.setAttribute("aria-expanded", "true");
+                this.combobox.addClass("slds-is-open");
+                this.dropdown.addClass("slds-dropdown_length_with-icon-7");
+            } else {
+                this.combobox.setAttribute("aria-expanded", "false");
+                this.combobox.removeClass("slds-is-open");
+                this.dropdown.removeClass("slds-dropdown_length_with-icon-7");
+            }
+            return this;
+        }
+
+        /**
+         * 
+         * @return {string}
+         */
+        public getValue(): string {
+            return this.input.getValue();
+        }
+
+        /**
+         * 
+         * @param {string} val
+         */
+        public setValue(val: string) {
+            this.input.setValue(val);
+            this.dropdown.setValue(val);
+        }
+
+        /**
+         * 
+         */
+        public validate() {
+            this.input.validate();
+        }
+
+        /**
+         * 
+         * @return {string}
+         */
+        public getBinding(): string {
+            return this.getAttribute("binding");
+        }
+
+        /**
+         * 
+         * @param {string} binding
+         * @return {*}
+         */
+        public setBinding(binding: string): api.InputField<string> {
+            this.setAttribute("binding", binding);
+            return this;
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {*}
+         */
+        public setRequired(b: boolean): api.InputField<string> {
+            this.input.setRequired(b);
+            return this;
+        }
+
+        public setDisabled(b: boolean): BaseComboBox {
+            this.input.setDisabled(b);
+            return this;
+        }
+
+        public isDisabled(): boolean {
+            return this.input.getAttribute("disabled") === "true";
+        }
+
+        public setDropdownAlignment(alignment: string): BaseComboBox {
+            if (alignment === BaseComboBox.DROPDOWN_ALIGNMENT_BOTTOM_LEFT){
+                this.dropdown.addClass("slds-dropdown_bottom").addClass("slds-dropdown_bottom-left");
+            } else {
+                this.dropdown.removeClass("slds-dropdown_bottom").removeClass("slds-dropdown_bottom-left");
+            }
+            return this;
+        }
+
+        public getDropdownAlignment(): string {
+            return this.dropdown.hasClass("slds-dropdown_bottom") ? BaseComboBox.DROPDOWN_ALIGNMENT_BOTTOM_LEFT : BaseComboBox.DROPDOWN_ALIGNMENT_TOP_LEFT;
+        }
+
+        public blur() {
+            const __in: HTMLInputElement = <HTMLInputElement>this.input.getElement();
+            if (__in != null)__in.blur();
+        }
+
+        public checkValidity(): boolean {
+            const __in: HTMLInputElement = <HTMLInputElement>this.input.getElement();
+            if (__in != null){
+                return __in.checkValidity();
+            }
+            return null;
+        }
+
+        public setCustomValidity(message: string, type: string, description: string): BaseComboBox {
+            const __in: HTMLInputElement = <HTMLInputElement>this.input.getElement();
+            if (__in != null)__in.setCustomValidity(message);
+            return this;
+        }
+    }
+    BaseComboBox["__class"] = "com.spoonconsulting.lightning.BaseComboBox";
+    BaseComboBox["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+
+    export namespace BaseComboBox {
+
+        export class BaseComboBox$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.fireListener("onchange", evt);
+                const val: string = this.__parent.dropdown.getValue();
+                this.__parent.input.setValue(val);
+                this.__parent.setExpand(false);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        BaseComboBox$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class BaseComboBox$1 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.toggleDropdown();
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        BaseComboBox$1["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
     export class BaseLightning extends JSContainer {
         public constructor(name: string, tag: string) {
             super(name, tag);
@@ -324,6 +538,57 @@ namespace com.spoonconsulting.lightning {
         public static main(args: string[]) {
             const app: JSContainer = new JSContainer("app", "div");
             app.addClass("slds-card");
+            app.addChild(Boot.getVerticalMenu());
+            app.render();
+        }
+
+        /*private*/ static getExampleTab(example: JSContainer): com.spoonconsulting.lightning.TabSet {
+            const ts: com.spoonconsulting.lightning.TabSet = new com.spoonconsulting.lightning.TabSet("ts");
+            const tab: com.spoonconsulting.lightning.Tab = new com.spoonconsulting.lightning.Tab("example");
+            tab.setLabel("Example");
+            const content: com.spoonconsulting.lightning.TabPanel = new com.spoonconsulting.lightning.TabPanel("content");
+            content.addChild(example);
+            const source: com.spoonconsulting.lightning.Tab = new com.spoonconsulting.lightning.Tab("source");
+            source.setLabel("Source");
+            const pnSource: com.spoonconsulting.lightning.TabPanel = new com.spoonconsulting.lightning.TabPanel("source");
+            pnSource.addChild(new JSContainer("ss", "h3").setHtml("Source comes here"));
+            ts.addTab(tab, content).addTab(source, pnSource);
+            return ts;
+        }
+
+        /*private*/ static getAccordionSample(): JSContainer {
+            const accordion: com.spoonconsulting.lightning.Accordion = new com.spoonconsulting.lightning.Accordion("acc");
+            const section1: com.spoonconsulting.lightning.AccordionSection = new com.spoonconsulting.lightning.AccordionSection("section1");
+            const section2: com.spoonconsulting.lightning.AccordionSection = new com.spoonconsulting.lightning.AccordionSection("section2");
+            accordion.addSections(section1, section2);
+            section1.setTitle("Section 1");
+            section2.setTitle("Section 2");
+            section1.getContent().addChild(new JSContainer("h1").setHtml("Section 1 in accordion"));
+            section2.getContent().addChild(new JSContainer("h1").setHtml("Section 2 in accordion"));
+            accordion.setAllowMultipleSectionOpen(true);
+            accordion.setActiveSectionName("section2");
+            return accordion;
+        }
+
+        /*private*/ static getSampleCOmbo(): JSContainer {
+            const card: JSContainer = new JSContainer("card", "div").addClass("slds-card").setStyle("height", "300px");
+            const box: com.spoonconsulting.lightning.ComboBox = new com.spoonconsulting.lightning.ComboBox("cb");
+            const options: Array<Object> = <any>(new Array<Object>());
+            for(let i: number = 0; i < 5; i++) {{
+                const opt: Object = {};
+                opt["value"] = i + "";
+                opt["label"] = "Label " + i;
+                options.push(opt);
+            };}
+            box.setOptions(options);
+            box.setLabel("This is a label");
+            box.setHelp("This is a help");
+            card.addChild(box);
+            return card;
+        }
+
+        /*private*/ static getPathSample(): JSContainer {
+            const app: JSContainer = new JSContainer("div");
             const indicator: com.spoonconsulting.lightning.ProgressIndicator = new com.spoonconsulting.lightning.ProgressIndicator("pi");
             indicator.setType("base");
             for(let i: number = 1; i <= 4; i++) {{
@@ -335,7 +600,25 @@ namespace com.spoonconsulting.lightning {
             const toggle: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("toggle").setLabel("Toggle");
             toggle.addEventListener(new Boot.Boot$0(indicator), "click");
             app.addChild(toggle);
-            app.render();
+            return app;
+        }
+
+        /*private*/ static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet) {
+            const tab: com.spoonconsulting.lightning.Tab = new com.spoonconsulting.lightning.Tab(title);
+            tab.setLabel(title);
+            const panel: com.spoonconsulting.lightning.TabPanel = new com.spoonconsulting.lightning.TabPanel("panel");
+            panel.setStyle("width", "100%");
+            panel.addChild(Boot.getExampleTab(sample));
+            verticalMenu.addTab(tab, panel);
+        }
+
+        public static getVerticalMenu(): com.spoonconsulting.lightning.TabSet {
+            const set: com.spoonconsulting.lightning.TabSet = new com.spoonconsulting.lightning.TabSet("menu");
+            set.setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(com.spoonconsulting.lightning.TabSet.TabSetVariant.VERTICAL);
+            Boot.addVerticalTab("Accordion", Boot.getAccordionSample(), set);
+            Boot.addVerticalTab("Paths", Boot.getPathSample(), set);
+            Boot.addVerticalTab("Combo box", Boot.getSampleCOmbo(), set);
+            return set;
         }
     }
     Boot["__class"] = "com.spoonconsulting.lightning.Boot";
@@ -424,9 +707,9 @@ namespace com.spoonconsulting.lightning {
         public getBreadcrumbs(): Array<com.spoonconsulting.lightning.Breadcrumb> {
             const result: Array<com.spoonconsulting.lightning.Breadcrumb> = <any>(new Array<com.spoonconsulting.lightning.Breadcrumb>());
             {
-                let array1017 = this.getChildren();
-                for(let index1016=0; index1016 < array1017.length; index1016++) {
-                    let r = array1017[index1016];
+                let array8647 = this.getChildren();
+                for(let index8646=0; index8646 < array8647.length; index8646++) {
+                    let r = array8647[index8646];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         result.push(bc);
@@ -438,9 +721,9 @@ namespace com.spoonconsulting.lightning {
 
         public getBreadcrumb(name: string): com.spoonconsulting.lightning.Breadcrumb {
             {
-                let array1019 = this.getChildren();
-                for(let index1018=0; index1018 < array1019.length; index1018++) {
-                    let r = array1019[index1018];
+                let array8649 = this.getChildren();
+                for(let index8648=0; index8648 < array8649.length; index8648++) {
+                    let r = array8649[index8648];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         if (bc.getName() === name){
@@ -530,7 +813,13 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ value: T;
 
+        /*private*/ formElementIcon: JSContainer;
+
+        /*private*/ fieldLevelHelp: com.spoonconsulting.lightning.Help;
+
         /*private*/ help: JSContainer;
+
+        /*private*/ variant: FormElement.FormElementVariant;
 
         public constructor(name: string, input: api.InputField<T>) {
             super(name, "div");
@@ -540,9 +829,15 @@ namespace com.spoonconsulting.lightning {
             this.controlCtn = new JSContainer("control-ctn", "div");
             if (this.input === undefined) { this.input = null; }
             if (this.value === undefined) { this.value = null; }
+            this.formElementIcon = new JSContainer("form-element-icon", "div");
+            this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
             this.help = new JSContainer("help", "div");
+            this.variant = FormElement.FormElementVariant.STANDARD;
             this.addClass("slds-form-element");
             this.addChild(this.labelCtn);
+            this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
+            this.formElementIcon.addChild(this.fieldLevelHelp);
+            this.addChild(this.formElementIcon);
             this.labelCtn.addClass("slds-form-element__label");
             this.required.addClass("slds-required").setAttribute("title", "required");
             this.labelCtn.addChild(this.required);
@@ -566,6 +861,16 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public setFieldLevelHelp(help: string): FormElement<T> {
+            if (help != null){
+                this.formElementIcon.setStyle("display", null);
+                this.fieldLevelHelp.setContent(help);
+            } else {
+                this.formElementIcon.setStyle("display", "none");
+            }
+            return this;
+        }
+
         public setInput(input: api.InputField<T>): FormElement<T> {
             input.addClass("slds-input");
             this.controlCtn.clearChildren();
@@ -578,7 +883,7 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
-        public getRequired(): JSContainer {
+        getRequired(): JSContainer {
             return this.required;
         }
 
@@ -586,7 +891,7 @@ namespace com.spoonconsulting.lightning {
             return this.label;
         }
 
-        public getInput(): api.InputField<T> {
+        getInput(): api.InputField<T> {
             return this.input;
         }
 
@@ -658,17 +963,112 @@ namespace com.spoonconsulting.lightning {
             this.help.setStyle("display", b ? null : "none");
             return this;
         }
+
+        public setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(variant: FormElement.FormElementVariant): FormElement<T> {
+            this.variant = variant;
+            this.removeClass("slds-form-element_horizontal");
+            this.removeClass("slds-form-element_stacked");
+            this.labelCtn.removeClass("slds-assistive-text");
+            if (variant === FormElement.FormElementVariant.LABEL_INLINE){
+                this.addClass("slds-form-element_horizontal");
+            } else if (variant === FormElement.FormElementVariant.LABEL_STACKED){
+                this.addClass("slds-form-element_stacked");
+            } else if (variant === FormElement.FormElementVariant.LABEL_HIDDEN){
+                this.labelCtn.addClass("slds-assistive-text");
+            }
+            return this;
+        }
+
+        public setVariant(variant?: any): any {
+            if (((typeof variant === 'number') || variant === null)) {
+                return <any>this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(variant);
+            } else if (((typeof variant === 'string') || variant === null)) {
+                return <any>this.setVariant$java_lang_String(variant);
+            } else throw new Error('invalid overload');
+        }
+
+        public setVariant$java_lang_String(variant: string): FormElement<T> {
+            if (variant != null){
+                if (variant === com.spoonconsulting.lightning.FormElement.FormElementVariant["_$wrappers"][FormElement.FormElementVariant.LABEL_HIDDEN].value){
+                    this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(FormElement.FormElementVariant.LABEL_HIDDEN);
+                } else if (variant === com.spoonconsulting.lightning.FormElement.FormElementVariant["_$wrappers"][FormElement.FormElementVariant.LABEL_INLINE].value){
+                    this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(FormElement.FormElementVariant.LABEL_INLINE);
+                } else if (variant === com.spoonconsulting.lightning.FormElement.FormElementVariant["_$wrappers"][FormElement.FormElementVariant.LABEL_STACKED].value){
+                    this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(FormElement.FormElementVariant.LABEL_STACKED);
+                } else {
+                    this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(FormElement.FormElementVariant.STANDARD);
+                }
+            } else {
+                this.setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(FormElement.FormElementVariant.STANDARD);
+            }
+            return this;
+        }
+
+        public getVariant(): string {
+            if (this.variant != null)return com.spoonconsulting.lightning.FormElement.FormElementVariant["_$wrappers"][this.variant].value;
+            return com.spoonconsulting.lightning.FormElement.FormElementVariant["_$wrappers"][FormElement.FormElementVariant.STANDARD].value;
+        }
     }
     FormElement["__class"] = "com.spoonconsulting.lightning.FormElement";
     FormElement["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
 
 
+
+    export namespace FormElement {
+
+        export enum FormElementVariant {
+            STANDARD, LABEL_HIDDEN, LABEL_INLINE, LABEL_STACKED
+        }
+
+        /** @ignore */
+        export class FormElementVariant_$WRAPPER {
+            value;
+
+            constructor(protected _$ordinal: number, protected _$name: string, value) {
+                if (this.value === undefined) { this.value = null; }
+                this.value = value;
+            }
+
+            public getValue(): string {
+                return this.value;
+            }
+            public name(): string { return this._$name; }
+            public ordinal(): number { return this._$ordinal; }
+            public compareTo(other: any): number { return this._$ordinal - (isNaN(other)?other._$ordinal:other); }
+        }
+        FormElementVariant["__class"] = "com.spoonconsulting.lightning.FormElement.FormElementVariant";
+        FormElementVariant["__interfaces"] = ["java.lang.constant.Constable","java.lang.Comparable","java.io.Serializable"];
+
+        FormElementVariant["_$wrappers"] = {0: new FormElementVariant_$WRAPPER(0, "STANDARD", "standard"), 1: new FormElementVariant_$WRAPPER(1, "LABEL_HIDDEN", "label-hidden"), 2: new FormElementVariant_$WRAPPER(2, "LABEL_INLINE", "label-inline"), 3: new FormElementVariant_$WRAPPER(3, "LABEL_STACKED", "label-stacked")};
+
+    }
+
 }
 namespace com.spoonconsulting.lightning {
     export class GlobalConfigs {
-        public static BASE_ASSETS: string = "sfds";
+        public static BASE_ASSETS: string = "/webjars/salesforce-lightning-design-system/2.13.3";
     }
     GlobalConfigs["__class"] = "com.spoonconsulting.lightning.GlobalConfigs";
+
+}
+namespace com.spoonconsulting.lightning {
+    export class Help extends JSContainer {
+        /*private*/ icon: com.spoonconsulting.lightning.ButtonIcon;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.icon = new com.spoonconsulting.lightning.ButtonIcon("icon", "utility:info");
+            this.addChild(this.icon);
+        }
+
+        public setContent(content: string): Help {
+            this.setAttribute("title", content);
+            return this;
+        }
+    }
+    Help["__class"] = "com.spoonconsulting.lightning.Help";
+    Help["__interfaces"] = ["framework.components.api.Renderable"];
+
 
 }
 namespace com.spoonconsulting.lightning {
@@ -703,9 +1103,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Icon {
             {
-                let array1021 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1020=0; index1020 < array1021.length; index1020++) {
-                    let s = array1021[index1020];
+                let array8651 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8650=0; index8650 < array8651.length; index8650++) {
+                    let s = array8651[index8650];
                     {
                         this.removeClass("slds-icon_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -933,9 +1333,9 @@ namespace com.spoonconsulting.lightning {
         public setAlignmentBumb(alignmentBumb: string): LayoutItem {
             this.alignmentBumb = alignmentBumb;
             {
-                let array1023 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.AlignmentBump[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.AlignmentBump) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1022=0; index1022 < array1023.length; index1022++) {
-                    let a = array1023[index1022];
+                let array8653 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.AlignmentBump[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.AlignmentBump) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8652=0; index8652 < array8653.length; index8652++) {
+                    let a = array8653[index8652];
                     {
                         this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.LayoutItem.AlignmentBump["_$wrappers"][a].value);
                     }
@@ -952,9 +1352,9 @@ namespace com.spoonconsulting.lightning {
         public setFlexibility(flexibility: string): LayoutItem {
             this.flexibility = flexibility;
             {
-                let array1025 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1024=0; index1024 < array1025.length; index1024++) {
-                    let f = array1025[index1024];
+                let array8655 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8654=0; index8654 < array8655.length; index8654++) {
+                    let f = array8655[index8654];
                     {
                         this.removeClass("slds-" + com.spoonconsulting.lightning.LayoutItem.Flexibility["_$wrappers"][f].value);
                     }
@@ -962,8 +1362,8 @@ namespace com.spoonconsulting.lightning {
             }
             if (flexibility != null){
                 const fxs: string[] = flexibility.split(",");
-                for(let index1026=0; index1026 < fxs.length; index1026++) {
-                    let fx = fxs[index1026];
+                for(let index8656=0; index8656 < fxs.length; index8656++) {
+                    let fx = fxs[index8656];
                     {
                         this.addClass("slds-" + fx);
                     }
@@ -1005,9 +1405,9 @@ namespace com.spoonconsulting.lightning {
         public setPadding(padding: string): LayoutItem {
             this.padding = padding;
             {
-                let array1028 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.Padding[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.Padding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1027=0; index1027 < array1028.length; index1027++) {
-                    let p = array1028[index1027];
+                let array8658 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.LayoutItem.Padding[] = []; for(let val in com.spoonconsulting.lightning.LayoutItem.Padding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8657=0; index8657 < array8658.length; index8657++) {
+                    let p = array8658[index8657];
                     {
                         this.removeClass("slds-p-" + com.spoonconsulting.lightning.LayoutItem.Padding["_$wrappers"][p].value);
                     }
@@ -1116,6 +1516,176 @@ namespace com.spoonconsulting.lightning {
         Padding["__interfaces"] = ["java.lang.constant.Constable","java.lang.Comparable","java.io.Serializable"];
 
         Padding["_$wrappers"] = {0: new Padding_$WRAPPER(0, "HORIZONTAL_SMALL", "horizontal_small"), 1: new Padding_$WRAPPER(1, "HORIZONTAL_MEDIUM", "horizontal_medium"), 2: new Padding_$WRAPPER(2, "HORIZONTAL_LARGE", "horizontal_large"), 3: new Padding_$WRAPPER(3, "AROUND_SMALL", "around_small"), 4: new Padding_$WRAPPER(4, "AROUND_MEDIUM", "around_medium"), 5: new Padding_$WRAPPER(5, "AROUND_LARGE", "around_large")};
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class ListBox extends JSContainer {
+        public constructor(name: string) {
+            super(name, "div");
+            this.setAttribute("data-dropdown-element", "true").setAttribute("role", "listbox").addClass("slds-listbox").addClass("slds-listbox_vertical").addClass("slds-dropdown").addClass("slds-dropdown_fluid").addClass("slds-dropdown_left");
+        }
+
+        public addOption$java_lang_String$java_lang_String(value: string, label: string): ListBox {
+            this.addChild(new ListBox.ListBoxOption(this, value, label));
+            return this;
+        }
+
+        public addOption(value?: any, label?: any): any {
+            if (((typeof value === 'string') || value === null) && ((typeof label === 'string') || label === null)) {
+                return <any>this.addOption$java_lang_String$java_lang_String(value, label);
+            } else if (((value != null && value instanceof <any>Object) || value === null) && label === undefined) {
+                return <any>this.addOption$jsweet_lang_Object(value);
+            } else throw new Error('invalid overload');
+        }
+
+        public addOption$jsweet_lang_Object(obj: Object): ListBox {
+            const label: string = <string>obj["label"];
+            const value: string = <string>obj["value"];
+            return this.addOption$java_lang_String$java_lang_String(value, label);
+        }
+
+        public setOptions(options: Array<Object>): ListBox {
+            this.clearChildren();
+            for(let index8659=0; index8659 < options.length; index8659++) {
+                let option = options[index8659];
+                {
+                    this.addOption$jsweet_lang_Object(option);
+                }
+            }
+            return this;
+        }
+
+        public setValue(value: string): ListBox {
+            {
+                let array8661 = this.getChildren();
+                for(let index8660=0; index8660 < array8661.length; index8660++) {
+                    let r = array8661[index8660];
+                    {
+                        const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
+                        if (opt.getValue() === value){
+                            opt.setChecked(true);
+                        } else {
+                            opt.setChecked(false);
+                        }
+                    }
+                }
+            }
+            return this;
+        }
+
+        public getValue(): string {
+            {
+                let array8663 = this.getChildren();
+                for(let index8662=0; index8662 < array8663.length; index8662++) {
+                    let r = array8663[index8662];
+                    {
+                        const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
+                        if (opt.isChecked()){
+                            return opt.getValue();
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+    }
+    ListBox["__class"] = "com.spoonconsulting.lightning.ListBox";
+    ListBox["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace ListBox {
+
+        export class ListBoxOption extends JSContainer implements api.EventListener {
+            public __parent: any;
+            figure: JSContainer;
+
+            body: JSContainer;
+
+            icon: com.spoonconsulting.lightning.IconContainer;
+
+            label: JSContainer;
+
+            public constructor(__parent: any, value: string, label: string) {
+                super(value, "div");
+                this.__parent = __parent;
+                this.figure = new JSContainer("figure", "span");
+                this.body = new JSContainer("body", "span");
+                this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
+                this.label = new JSContainer("label", "span");
+                this.setAttribute("role", "option").setAttribute("aria-checked", "false").setAttribute("aria-selected", "false").addClass("slds-media").addClass("slds-listbox__option").addClass("slds-media_center").addClass("slds-media_small").addClass("slds-listbox__option_plain");
+                this.addChild(this.figure).addChild(this.body);
+                this.figure.addClass("slds-media__figure").addClass("slds-listbox__option-icon");
+                this.body.addClass("slds-media__body");
+                this.body.addChild(this.label);
+                this.label.addClass("slds-truncate");
+                this.icon.setIconName("utility:check");
+                this.icon.getIcon().setSize$com_spoonconsulting_lightning_Size(com.spoonconsulting.lightning.Size.EXTRA_SMALL);
+                this.icon.getIcon().addClass("slds-icon-text-default");
+                this.setLabel(label);
+                this.setValue(value);
+                this.addEventListener(this, "click");
+            }
+
+            public setValue(value: string): ListBox.ListBoxOption {
+                this.setAttribute("data-value", value);
+                return this;
+            }
+
+            public getValue(): string {
+                return this.getAttribute("data-value");
+            }
+
+            public setLabel(label: string): ListBox.ListBoxOption {
+                this.label.setHtml(label);
+                this.label.setAttribute("title", label);
+                return this;
+            }
+
+            public getLabel(): string {
+                return this.label.getHtml();
+            }
+
+            public setChecked(b: boolean): ListBox.ListBoxOption {
+                if (b){
+                    this.setAttribute("aria-checked", "true");
+                    this.figure.clearChildren();
+                    this.figure.addChild(this.icon);
+                } else {
+                    this.setAttribute("aria-checked", "false");
+                    this.figure.clearChildren();
+                }
+                this.setRendered(false);
+                return this;
+            }
+
+            public isChecked(): boolean {
+                return this.getAttribute("aria-checked") === "true";
+            }
+
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                if (!this.isChecked()){
+                    const lb: com.spoonconsulting.lightning.ListBox = <com.spoonconsulting.lightning.ListBox>this.getParent();
+                    const oldValue: string = lb.getValue();
+                    lb.setValue(this.getValue());
+                    const onchange: CustomEvent = new CustomEvent("onchange");
+                    onchange["source"] = this;
+                    onchange["value"] = this.getValue();
+                    onchange["oldValue"] = oldValue;
+                    lb.fireListener("onchange", evt);
+                }
+            }
+        }
+        ListBoxOption["__class"] = "com.spoonconsulting.lightning.ListBox.ListBoxOption";
+        ListBoxOption["__interfaces"] = ["framework.components.api.EventListener","framework.components.api.Renderable"];
+
 
     }
 
@@ -1455,9 +2025,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ProgressBar {
             {
-                let array1030 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1029=0; index1029 < array1030.length; index1029++) {
-                    let s = array1030[index1029];
+                let array8665 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8664=0; index8664 < array8665.length; index8664++) {
+                    let s = array8665[index8664];
                     {
                         this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -1887,9 +2457,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Spinner {
             {
-                let array1032 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1031=0; index1031 < array1032.length; index1031++) {
-                    let s = array1032[index1031];
+                let array8667 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8666=0; index8666 < array8667.length; index8666++) {
+                    let s = array8667[index8666];
                     {
                         this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -1901,9 +2471,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Spinner {
             {
-                let array1034 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1033=0; index1033 < array1034.length; index1033++) {
-                    let v = array1034[index1033];
+                let array8669 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8668=0; index8668 < array8669.length; index8668++) {
+                    let v = array8669[index8668];
                     {
                         if (v !== com.spoonconsulting.lightning.Variant.BASE)this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -1967,9 +2537,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabValue(val: string) {
             {
-                let array1036 = this.tablist.getChildren();
-                for(let index1035=0; index1035 < array1036.length; index1035++) {
-                    let r = array1036[index1035];
+                let array8671 = this.tablist.getChildren();
+                for(let index8670=0; index8670 < array8671.length; index8670++) {
+                    let r = array8671[index8670];
                     {
                         const item: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (item.tab.getValue() === val){
@@ -1984,9 +2554,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabItem(item: TabSet.TabItem) {
             {
-                let array1038 = this.tablist.getChildren();
-                for(let index1037=0; index1037 < array1038.length; index1037++) {
-                    let r = array1038[index1037];
+                let array8673 = this.tablist.getChildren();
+                for(let index8672=0; index8672 < array8673.length; index8672++) {
+                    let r = array8673[index8672];
                     {
                         const titem: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (titem.getId() === item.getId()){
@@ -1999,20 +2569,45 @@ namespace com.spoonconsulting.lightning {
             }
         }
 
+        public getActiveTabItem(): TabSet.TabItem {
+            {
+                let array8675 = this.getTabItems();
+                for(let index8674=0; index8674 < array8675.length; index8674++) {
+                    let item = array8675[index8674];
+                    {
+                        if (item.isActive()){
+                            return item;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public getTabItems(): Array<TabSet.TabItem> {
+            const result: Array<any> = this.tablist.getChildren();
+            return result;
+        }
+
         public addTab(tab: com.spoonconsulting.lightning.Tab, content: com.spoonconsulting.lightning.TabPanel): TabSet {
             const name: string = (this.tablist.getChildren().length + 1) + "";
             const item: TabSet.TabItem = new TabSet.TabItem(this, name, tab, content);
             this.tablist.addChild(item);
             content.setAttribute("aria-labelledby", "tab-" + name + "__item");
             this.addChild(content);
+            const titem: TabSet.TabItem = this.getActiveTabItem();
+            if (titem == null){
+                const first: TabSet.TabItem = <TabSet.TabItem><any>this.tablist.getChildren()[0];
+                this.setActiveTabItem(first);
+            }
             return this;
         }
 
         public getPanel(name: string): com.spoonconsulting.lightning.TabPanel {
             {
-                let array1040 = this.getChildren();
-                for(let index1039=0; index1039 < array1040.length; index1039++) {
-                    let r = array1040[index1039];
+                let array8677 = this.getChildren();
+                for(let index8676=0; index8676 < array8677.length; index8676++) {
+                    let r = array8677[index8676];
                     {
                         if (r.getId() !== this.tablist.getId()){
                             if (r.getName() === name){
@@ -2057,9 +2652,9 @@ namespace com.spoonconsulting.lightning {
                 this.tablist.addClass("slds-tabs_default__nav");
             }
             {
-                let array1042 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.TabSet.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.TabSet.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1041=0; index1041 < array1042.length; index1041++) {
-                    let va = array1042[index1041];
+                let array8679 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.TabSet.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.TabSet.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8678=0; index8678 < array8679.length; index8678++) {
+                    let va = array8679[index8678];
                     {
                         this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.TabSet.TabSetVariant["_$wrappers"][va].value);
                     }
@@ -2113,12 +2708,15 @@ namespace com.spoonconsulting.lightning {
                 if (this.tab === undefined) { this.tab = null; }
                 if (this.panel === undefined) { this.panel = null; }
                 this.addClass("TabItem");
+                this.tab = tab;
+                this.panel = panel;
                 this.setAttribute("role", "presentation").setAttribute("data-tab", "true");
                 this.addClass("slds-tabs_default__item");
                 this.setAttribute("title", tab.getTitle());
                 this.setAttribute("data-label", tab.getTitle());
                 this.setAttribute("data-tab-value", name);
                 tab.addEventListener(new TabItem.TabItem$0(this), "click");
+                this.addChild(tab);
             }
 
             public setActive(b: boolean) {
@@ -2337,8 +2935,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion {
-            for(let index1043=0; index1043 < accordionSections.length; index1043++) {
-                let section = accordionSections[index1043];
+            for(let index8680=0; index8680 < accordionSections.length; index8680++) {
+                let section = accordionSections[index8680];
                 {
                     this.addSection(section);
                 }
@@ -2348,9 +2946,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveSectionName(name: string): Accordion {
             {
-                let array1045 = this.getChildren();
-                for(let index1044=0; index1044 < array1045.length; index1044++) {
-                    let r = array1045[index1044];
+                let array8682 = this.getChildren();
+                for(let index8681=0; index8681 < array8682.length; index8681++) {
+                    let r = array8682[index8681];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -2366,9 +2964,9 @@ namespace com.spoonconsulting.lightning {
 
         public setOpen(name: string): Accordion {
             {
-                let array1047 = this.getChildren();
-                for(let index1046=0; index1046 < array1047.length; index1046++) {
-                    let r = array1047[index1046];
+                let array8684 = this.getChildren();
+                for(let index8683=0; index8683 < array8684.length; index8683++) {
+                    let r = array8684[index8683];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -2394,9 +2992,9 @@ namespace com.spoonconsulting.lightning {
             const sectionToggle: CustomEvent = new CustomEvent("onsectiontoggle");
             const openSections: Array<string> = <any>(new Array<string>());
             {
-                let array1049 = this.getSections();
-                for(let index1048=0; index1048 < array1049.length; index1048++) {
-                    let sect = array1049[index1048];
+                let array8686 = this.getSections();
+                for(let index8685=0; index8685 < array8686.length; index8685++) {
+                    let sect = array8686[index8685];
                     {
                         if (sect.isOpen()){
                             openSections.push(sect.getName());
@@ -2412,9 +3010,9 @@ namespace com.spoonconsulting.lightning {
 
         public setClose(name: string): Accordion {
             {
-                let array1051 = this.getChildren();
-                for(let index1050=0; index1050 < array1051.length; index1050++) {
-                    let r = array1051[index1050];
+                let array8688 = this.getChildren();
+                for(let index8687=0; index8687 < array8688.length; index8687++) {
+                    let r = array8688[index8687];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -2437,9 +3035,9 @@ namespace com.spoonconsulting.lightning {
         public getSections(): Array<com.spoonconsulting.lightning.AccordionSection> {
             const sections: Array<com.spoonconsulting.lightning.AccordionSection> = <any>(new Array<com.spoonconsulting.lightning.AccordionSection>());
             {
-                let array1053 = this.getChildren();
-                for(let index1052=0; index1052 < array1053.length; index1052++) {
-                    let r = array1053[index1052];
+                let array8690 = this.getChildren();
+                for(let index8689=0; index8689 < array8690.length; index8689++) {
+                    let r = array8690[index8689];
                     {
                         sections.push(<com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0]);
                     }
@@ -2450,9 +3048,9 @@ namespace com.spoonconsulting.lightning {
 
         public getSection(name: string): com.spoonconsulting.lightning.AccordionSection {
             {
-                let array1055 = this.getChildren();
-                for(let index1054=0; index1054 < array1055.length; index1054++) {
-                    let r = array1055[index1054];
+                let array8692 = this.getChildren();
+                for(let index8691=0; index8691 < array8692.length; index8691++) {
+                    let r = array8692[index8691];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -2477,11 +3075,11 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ summaryHeading: JSContainer;
 
+        /*private*/ summaryHeadingAction: com.spoonconsulting.lightning.Button;
+
         /*private*/ summaryAction: JSContainer;
 
         /*private*/ summaryActionIcon: com.spoonconsulting.lightning.Icon;
-
-        /*private*/ summaryContent: JSContainer;
 
         /*private*/ actionsSlot: JSContainer;
 
@@ -2490,23 +3088,26 @@ namespace com.spoonconsulting.lightning {
             this.summary = new JSContainer("summary", "div");
             this.content = new JSContainer("content", "div");
             this.summaryHeading = new JSContainer("summary-heading", "h2");
+            this.summaryHeadingAction = new com.spoonconsulting.lightning.Button("summary-heading-action");
             this.summaryAction = new JSContainer("summary-action", "button");
             this.summaryActionIcon = new com.spoonconsulting.lightning.Icon("summary-action-icon", "utility:switch");
-            this.summaryContent = new JSContainer("summaryContent", "span");
             this.actionsSlot = new JSContainer("actions", "span");
             this.addClass("slds-accordion__section");
             this.addChild(this.summary.addClass("slds-accordion__summary"));
             this.addChild(this.content.addClass("slds-accordion__content"));
             this.summaryHeading.addClass("slds-accordion__summary-heading");
             this.summary.addChild(this.summaryHeading);
+            this.summaryHeading.addChild(this.summaryHeadingAction);
+            this.summaryHeadingAction.setIconName("utility:switch");
+            this.summaryHeadingAction.addClass("slds-button_reset").addClass("slds-accordion__summary-action");
+            this.summaryHeadingAction.getIcon().addClass("slds-accordion__summary-action-icon");
+            this.summaryHeadingAction.label.addClass("slds-accordion__summary-content");
             this.summary.addChild(this.actionsSlot);
             this.summaryAction.addClass("slds-button").addClass("slds-button_reset").addClass("slds-accordion__summary-action");
             this.actionsSlot.addChild(this.summaryAction);
             this.summaryActionIcon.addClass("slds-accordion__summary-action-icon").addClass("slds-button__icon").addClass("slds-button__icon_left");
             this.summaryActionIcon.setAttribute("aria-hidden", "true");
             this.summaryAction.addChild(this.summaryActionIcon);
-            this.summaryContent.addClass("slds-accordion__summary-content");
-            this.summary.addChild(this.summaryContent);
             this.setOpen(false);
             this.summary.addEventListener(new AccordionSection.AccordionSection$0(this), "click");
         }
@@ -2518,7 +3119,7 @@ namespace com.spoonconsulting.lightning {
         public setTitle(title: string) {
             super.setTitle(title);
             this.summaryAction.setAttribute("title", title);
-            this.summaryContent.setAttribute("title", title);
+            this.summaryHeadingAction.setLabel(title).setAttribute("title", title);
         }
 
         public toggle() {
@@ -2562,10 +3163,6 @@ namespace com.spoonconsulting.lightning {
 
         public getSummaryActionIcon(): com.spoonconsulting.lightning.Icon {
             return this.summaryActionIcon;
-        }
-
-        public getSummaryContent(): JSContainer {
-            return this.summaryContent;
         }
 
         public getSlot(name: string): JSContainer {
@@ -2866,9 +3463,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Button {
             {
-                let array1057 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1056=0; index1056 < array1057.length; index1056++) {
-                    let v = array1057[index1056];
+                let array8694 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8693=0; index8693 < array8694.length; index8693++) {
+                    let v = array8694[index8693];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -3292,9 +3889,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonStateful {
             {
-                let array1059 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1058=0; index1058 < array1059.length; index1058++) {
-                    let v = array1059[index1058];
+                let array8696 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8695=0; index8695 < array8696.length; index8695++) {
+                    let v = array8696[index8695];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -3485,8 +4082,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu {
-            for(let index1060=0; index1060 < items.length; index1060++) {
-                let item = items[index1060];
+            for(let index8697=0; index8697 < items.length; index8697++) {
+                let item = items[index8697];
                 {
                     this.addMenuItem(item);
                 }
@@ -3932,6 +4529,68 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
+        /*private*/ combo: com.spoonconsulting.lightning.BaseComboBox;
+
+        /*private*/ messageWhenValueMissing: string;
+
+        public constructor(name: string) {
+            super(name, new com.spoonconsulting.lightning.BaseComboBox("combo"));
+            if (this.combo === undefined) { this.combo = null; }
+            this.messageWhenValueMissing = "This field is required";
+            this.combo = <com.spoonconsulting.lightning.BaseComboBox><any>this.getInput();
+            this.combo.removeClass("slds-input");
+        }
+
+        public setDisabled(b: boolean): ComboBox {
+            this.combo.setDisabled(b);
+            return this;
+        }
+
+        public isDisabled(): boolean {
+            return this.combo.isDisabled();
+        }
+
+        public setDropdownAlignment(alignment: string): ComboBox {
+            this.combo.setDropdownAlignment(alignment);
+            return this;
+        }
+
+        public getDropdownAlignment(): string {
+            return this.combo.getDropdownAlignment();
+        }
+
+        public getMessageWhenValueMissing(): string {
+            return this.messageWhenValueMissing;
+        }
+
+        public setMessageWhenValueMissing(messageWhenValueMissing: string) {
+            this.messageWhenValueMissing = messageWhenValueMissing;
+        }
+
+        public setOptions(options: Array<Object>): ComboBox {
+            this.combo.setOptions(options);
+            return this;
+        }
+
+        public blur() {
+            this.combo.blur();
+        }
+
+        public checkValidity(): boolean {
+            return this.combo.checkValidity();
+        }
+
+        public setCustomValidity(message: string, type: string, description: string) {
+            this.combo.setCustomValidity(message, type, description);
+        }
+    }
+    ComboBox["__class"] = "com.spoonconsulting.lightning.ComboBox";
+    ComboBox["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class ButtonIcon extends com.spoonconsulting.lightning.Button {
         public constructor(name: string, iconName: string) {
             super(name);
@@ -3952,9 +4611,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize(size: com.spoonconsulting.lightning.Size): ButtonIcon {
             {
-                let array1062 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1061=0; index1061 < array1062.length; index1061++) {
-                    let s = array1062[index1061];
+                let array8699 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8698=0; index8698 < array8699.length; index8698++) {
+                    let s = array8699[index8698];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -3971,9 +4630,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonIcon {
             {
-                let array1064 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index1063=0; index1063 < array1064.length; index1063++) {
-                    let v = array1064[index1063];
+                let array8701 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index8700=0; index8700 < array8701.length; index8700++) {
+                    let v = array8701[index8700];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][v].getValue());
                     }

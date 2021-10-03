@@ -4,6 +4,7 @@ import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
 import jsweet.dom.Event;
+import jsweet.lang.Array;
 
 public class TabSet extends JSContainer {
 
@@ -40,6 +41,20 @@ public class TabSet extends JSContainer {
 			}
 		}
 	}
+	
+	public TabItem getActiveTabItem() {
+		for(TabItem item : getTabItems()) {
+			if(item.isActive()) {
+				return item;
+			}
+		}
+		return null;
+	}
+	
+	public Array<TabItem> getTabItems(){
+		Array result = tablist.getChildren();
+		return result;
+	}
 
 	public TabSet addTab(Tab tab, TabPanel content) {
 		String name = (tablist.getChildren().length + 1) + "";
@@ -47,6 +62,11 @@ public class TabSet extends JSContainer {
 		tablist.addChild(item);
 		content.setAttribute("aria-labelledby", "tab-" + name + "__item");
 		addChild(content);
+		TabItem titem = getActiveTabItem();
+		if(titem == null) {
+			TabItem first = (TabItem)tablist.getChildren().$get(0);
+			setActiveTabItem(first);
+		}
 		return this;
 	}
 
@@ -124,6 +144,8 @@ public class TabSet extends JSContainer {
 		public TabItem(String name, Tab tab, TabPanel panel) {
 			super(name, "li");
 			addClass("TabItem");
+			this.tab = tab;
+			this.panel = panel;
 			setAttribute("role", "presentation").setAttribute("data-tab", "true");
 			addClass("slds-tabs_default__item");
 			setAttribute("title", tab.getTitle());
@@ -139,6 +161,7 @@ public class TabSet extends JSContainer {
 					tabSet.setActiveTabItem(titem);
 				}
 			}, "click");
+			addChild(tab);
 
 		}
 

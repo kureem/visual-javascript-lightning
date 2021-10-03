@@ -131,8 +131,8 @@
 					<failOnError>false</failOnError>
 					<reportOutputDirectory>/var/www/apidocs/releases/org/jsweet/candies</reportOutputDirectory>
 					<destDir>${project.artifactId}/${project.version}</destDir>
-					<header><![CDATA[<a href="http://www.spoonconsulting.com" target="_blank" style="text-transform: lowercase">http://www.spoonconsulting.com<a>]]></header>
-					<bottom><![CDATA[<center>Copyright 2015, <a href="http://www.spoonconsulting.com" target="_blank">jsweet-ui<a> - Web site: <a href="http://www.spoonconsulting.com" target="_blank">http://www.spoonconsulting.com<a><center>]]></bottom>
+					<header><![CDATA[<a href="https://www.spoonconsulting.com" target="_blank" style="text-transform: lowercase">http://www.spoonconsulting.com<a>]]></header>
+					<bottom><![CDATA[<center>Copyright 2015, <a href="https://www.spoonconsulting.com" target="_blank">jsweet-ui<a> - Web site: <a href="http://www.spoonconsulting.com" target="_blank">http://www.spoonconsulting.com<a><center>]]></bottom>
 					<stylesheetfile>/var/www/apidocs/stylesheet.css</stylesheetfile>
 				</configuration>
 				<executions>

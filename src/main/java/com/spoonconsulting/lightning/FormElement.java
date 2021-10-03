@@ -13,12 +13,20 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	private InputField<T> input;
 	private T value;
 	
+	private JSContainer formElementIcon = new JSContainer("form-element-icon", "div");
+	private Help fieldLevelHelp = new Help("fieldLevelHelp");
+
 	private JSContainer help = new JSContainer("help", "div");
+	
+	private FormElementVariant variant = FormElementVariant.STANDARD;
 
 	public FormElement(String name, InputField<T> input) {
 		super(name, "div");
 		addClass("slds-form-element");
 		addChild(labelCtn);
+		formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
+		formElementIcon.addChild(fieldLevelHelp);
+		addChild(formElementIcon);
 		labelCtn.addClass("slds-form-element__label");
 		required.addClass("slds-required").setAttribute("title", "required");
 		labelCtn.addChild(required);
@@ -44,6 +52,16 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		return this;
 	}
 	
+	public FormElement<T> setFieldLevelHelp(String help){
+		if(help != null) {
+			this.formElementIcon.setStyle("display", null);
+			this.fieldLevelHelp.setContent(help);
+		}else {
+			this.formElementIcon.setStyle("display", "none");
+		}
+		return this;
+	}
+	
 	public FormElement<T> setInput(InputField<T> input) {
 		input.addClass("slds-input");
 		controlCtn.clearChildren();
@@ -59,7 +77,7 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	
 
 
-	public JSContainer getRequired() {
+	protected JSContainer getRequired() {
 		return required;
 	}
 
@@ -69,7 +87,7 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	}
 
 
-	public InputField<T> getInput() {
+	protected InputField<T> getInput() {
 		return input;
 	}
 
@@ -132,6 +150,65 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	public FormElement<T> setShowHelp(boolean b){
 		this.help.setStyle("display", b? null:"none");
 		return this;
+	}
+	
+	public FormElement<T> setVariant(FormElementVariant variant) {
+		this.variant = variant;
+		removeClass("slds-form-element_horizontal");
+		removeClass("slds-form-element_stacked");
+		labelCtn.removeClass("slds-assistive-text");
+		
+		if(variant == FormElementVariant.LABEL_INLINE) {
+			addClass("slds-form-element_horizontal");
+		}else if(variant == FormElementVariant.LABEL_STACKED) {
+			addClass("slds-form-element_stacked");
+		}else if(variant == FormElementVariant.LABEL_HIDDEN) {
+			labelCtn.addClass("slds-assistive-text");
+		}
+		return this;
+	}
+	
+	public FormElement<T> setVariant(String variant){
+		if(variant != null) {
+			if(variant == FormElementVariant.LABEL_HIDDEN.value) {
+				setVariant(FormElementVariant.LABEL_HIDDEN);
+			}else if(variant == FormElementVariant.LABEL_INLINE.value) {
+				setVariant(FormElementVariant.LABEL_INLINE);
+			}else if(variant == FormElementVariant.LABEL_STACKED.value) {
+				setVariant(FormElementVariant.LABEL_STACKED);
+			}else {
+				setVariant(FormElementVariant.STANDARD);
+			}
+		}else {
+			setVariant(FormElementVariant.STANDARD);
+		}
+		return this;
+	}
+	
+	public String getVariant() {
+		if(variant != null)
+			return this.variant.value;
+		return FormElementVariant.STANDARD.value;
+	}
+	
+	
+	
+	
+	public enum FormElementVariant{
+		
+		STANDARD("standard"),
+		LABEL_HIDDEN("label-hidden"),
+		LABEL_INLINE("label-inline"),
+		LABEL_STACKED("label-stacked");
+		private String value;
+		
+		private FormElementVariant(String value) {
+			this.value = value;
+		}
+		
+		public String getValue() {
+			return this.value;
+		}
 	}
 
 }

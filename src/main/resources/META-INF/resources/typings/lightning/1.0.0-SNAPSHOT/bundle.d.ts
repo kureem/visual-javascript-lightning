@@ -95,6 +95,83 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class BaseComboBox extends JSContainer implements api.InputField<string> {
+        combobox: JSContainer;
+        formElement: JSContainer;
+        input: input.JSTextInput;
+        dropdown: com.spoonconsulting.lightning.ListBox;
+        inputIconContainer: JSContainer;
+        inputIcon: com.spoonconsulting.lightning.IconContainer;
+        static DROPDOWN_ALIGNMENT_BOTTOM_LEFT: string;
+        static DROPDOWN_ALIGNMENT_TOP_LEFT: string;
+        constructor(name: string);
+        setOptions(options: Array<Object>): BaseComboBox;
+        toggleDropdown(): void;
+        isExpanded(): boolean;
+        setExpand(b: boolean): BaseComboBox;
+        /**
+         *
+         * @return {string}
+         */
+        getValue(): string;
+        /**
+         *
+         * @param {string} val
+         */
+        setValue(val: string): void;
+        /**
+         *
+         */
+        validate(): void;
+        /**
+         *
+         * @return {string}
+         */
+        getBinding(): string;
+        /**
+         *
+         * @param {string} binding
+         * @return {*}
+         */
+        setBinding(binding: string): api.InputField<string>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setRequired(b: boolean): api.InputField<string>;
+        setDisabled(b: boolean): BaseComboBox;
+        isDisabled(): boolean;
+        setDropdownAlignment(alignment: string): BaseComboBox;
+        getDropdownAlignment(): string;
+        blur(): void;
+        checkValidity(): boolean;
+        setCustomValidity(message: string, type: string, description: string): BaseComboBox;
+    }
+    namespace BaseComboBox {
+        class BaseComboBox$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class BaseComboBox$1 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class BaseLightning extends JSContainer {
         constructor(name: string, tag: string);
         setTitle(title: string): void;
@@ -104,6 +181,12 @@ declare namespace com.spoonconsulting.lightning {
 declare namespace com.spoonconsulting.lightning {
     class Boot {
         static main(args: string[]): void;
+        static getExampleTab(example: JSContainer): com.spoonconsulting.lightning.TabSet;
+        static getAccordionSample(): JSContainer;
+        static getSampleCOmbo(): JSContainer;
+        static getPathSample(): JSContainer;
+        static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
+        static getVerticalMenu(): com.spoonconsulting.lightning.TabSet;
     }
     namespace Boot {
         class Boot$0 implements api.EventListener {
@@ -159,10 +242,14 @@ declare namespace com.spoonconsulting.lightning {
         controlCtn: JSContainer;
         input: api.InputField<T>;
         value: T;
+        formElementIcon: JSContainer;
+        fieldLevelHelp: com.spoonconsulting.lightning.Help;
         help: JSContainer;
+        variant: FormElement.FormElementVariant;
         constructor(name: string, input: api.InputField<T>);
         setRequired(b: boolean): FormElement<T>;
         setLabel(label: string): FormElement<T>;
+        setFieldLevelHelp(help: string): FormElement<T>;
         setInput(input: api.InputField<T>): FormElement<T>;
         getRequired(): JSContainer;
         getLabel(): JSContainer;
@@ -197,11 +284,41 @@ declare namespace com.spoonconsulting.lightning {
         clearError(): FormElement<T>;
         setHelp(help: string): FormElement<T>;
         setShowHelp(b: boolean): FormElement<T>;
+        setVariant$com_spoonconsulting_lightning_FormElement_FormElementVariant(variant: FormElement.FormElementVariant): FormElement<T>;
+        setVariant(variant?: any): any;
+        setVariant$java_lang_String(variant: string): FormElement<T>;
+        getVariant(): string;
+    }
+    namespace FormElement {
+        enum FormElementVariant {
+            STANDARD = 0,
+            LABEL_HIDDEN = 1,
+            LABEL_INLINE = 2,
+            LABEL_STACKED = 3
+        }
+        /** @ignore */
+        class FormElementVariant_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            value: any;
+            constructor(_$ordinal: number, _$name: string, value: any);
+            getValue(): string;
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
     class GlobalConfigs {
         static BASE_ASSETS: string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Help extends JSContainer {
+        icon: com.spoonconsulting.lightning.ButtonIcon;
+        constructor(name: string);
+        setContent(content: string): Help;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -355,6 +472,39 @@ declare namespace com.spoonconsulting.lightning {
             name(): string;
             ordinal(): number;
             compareTo(other: any): number;
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class ListBox extends JSContainer {
+        constructor(name: string);
+        addOption$java_lang_String$java_lang_String(value: string, label: string): ListBox;
+        addOption(value?: any, label?: any): any;
+        addOption$jsweet_lang_Object(obj: Object): ListBox;
+        setOptions(options: Array<Object>): ListBox;
+        setValue(value: string): ListBox;
+        getValue(): string;
+    }
+    namespace ListBox {
+        class ListBoxOption extends JSContainer implements api.EventListener {
+            __parent: any;
+            figure: JSContainer;
+            body: JSContainer;
+            icon: com.spoonconsulting.lightning.IconContainer;
+            label: JSContainer;
+            constructor(__parent: any, value: string, label: string);
+            setValue(value: string): ListBox.ListBoxOption;
+            getValue(): string;
+            setLabel(label: string): ListBox.ListBoxOption;
+            getLabel(): string;
+            setChecked(b: boolean): ListBox.ListBoxOption;
+            isChecked(): boolean;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
         }
     }
 }
@@ -638,6 +788,8 @@ declare namespace com.spoonconsulting.lightning {
         constructor(name: string);
         setActiveTabValue(val: string): void;
         setActiveTabItem(item: TabSet.TabItem): void;
+        getActiveTabItem(): TabSet.TabItem;
+        getTabItems(): Array<TabSet.TabItem>;
         addTab(tab: com.spoonconsulting.lightning.Tab, content: com.spoonconsulting.lightning.TabPanel): TabSet;
         getPanel(name: string): com.spoonconsulting.lightning.TabPanel;
         setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(variant: TabSet.TabSetVariant): TabSet;
@@ -771,9 +923,9 @@ declare namespace com.spoonconsulting.lightning {
         summary: JSContainer;
         content: JSContainer;
         summaryHeading: JSContainer;
+        summaryHeadingAction: com.spoonconsulting.lightning.Button;
         summaryAction: JSContainer;
         summaryActionIcon: com.spoonconsulting.lightning.Icon;
-        summaryContent: JSContainer;
         actionsSlot: JSContainer;
         constructor(name: string);
         /**
@@ -789,7 +941,6 @@ declare namespace com.spoonconsulting.lightning {
         getSummaryHeading(): JSContainer;
         getSummaryAction(): JSContainer;
         getSummaryActionIcon(): com.spoonconsulting.lightning.Icon;
-        getSummaryContent(): JSContainer;
         getSlot(name: string): JSContainer;
     }
     namespace AccordionSection {
@@ -1110,6 +1261,23 @@ declare namespace com.spoonconsulting.lightning {
         constructor(name: string);
         setActive(b: boolean): TabPanel;
         isActive(): boolean;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
+        combo: com.spoonconsulting.lightning.BaseComboBox;
+        messageWhenValueMissing: string;
+        constructor(name: string);
+        setDisabled(b: boolean): ComboBox;
+        isDisabled(): boolean;
+        setDropdownAlignment(alignment: string): ComboBox;
+        getDropdownAlignment(): string;
+        getMessageWhenValueMissing(): string;
+        setMessageWhenValueMissing(messageWhenValueMissing: string): void;
+        setOptions(options: Array<Object>): ComboBox;
+        blur(): void;
+        checkValidity(): boolean;
+        setCustomValidity(message: string, type: string, description: string): void;
     }
 }
 declare namespace com.spoonconsulting.lightning {
