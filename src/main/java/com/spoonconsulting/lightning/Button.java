@@ -48,6 +48,9 @@ public class Button extends BaseLightning {
 		draft.addClass("slds-indicator_unsaved").addClass("slds-p-right_xx-small");
 		draft.setHtml("*");
 	}
+	
+	
+	
 
 	public Button refresh() {
 		clearChildren();
@@ -60,9 +63,10 @@ public class Button extends BaseLightning {
 		}
 		
 		if (iconName != null && iconName != "") {
-			addChild(icon);
+			
 			icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
-			if (iconPosition == ICON_POSITION_LEFT) {
+			if (iconPosition == ICON_POSITION_LEFT || iconPosition == null) {
+				addChild(icon);
 				icon.addClass("slds-button__icon_left");
 				
 			}
@@ -71,6 +75,7 @@ public class Button extends BaseLightning {
 			}
 			addChild(label);
 			if (iconPosition == ICON_POSITION_RIGHT) {
+				addChild(icon);
 				icon.addClass("slds-button__icon_right");
 			}
 			icon.setIconName(iconName);

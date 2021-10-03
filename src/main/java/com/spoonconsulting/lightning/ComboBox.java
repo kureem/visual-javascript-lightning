@@ -1,5 +1,8 @@
 package com.spoonconsulting.lightning;
 
+import framework.components.api.EventListener;
+import framework.components.api.Renderable;
+import jsweet.dom.Event;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
 
@@ -13,6 +16,14 @@ public class ComboBox extends FormElement<String>{
 		super(name, new BaseComboBox("combo"));
 		this.combo = (BaseComboBox)getInput();
 		this.combo.removeClass("slds-input");
+		combo.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				fireListener("change", evt);
+					
+			}
+		}, "change");
 	}
 	
 	

@@ -29,6 +29,7 @@ public class ButtonStateful extends BaseLightning {
 				setSelected(!isSelected());
 			}
 		}, "click");
+		setSelected(false);
 	}
 
 	public String getIconNameWhenHover() {
@@ -135,6 +136,7 @@ public class ButtonStateful extends BaseLightning {
 		public innerBtn(String name) {
 			super(name, "span");
 			addClass("slds-text-" + name);
+			icon.removeClass("slds-icon");
 			addChild(label);
 			icon.addClass("slds-button__icon_stateful").addClass("slds-button__icon_left");
 		}

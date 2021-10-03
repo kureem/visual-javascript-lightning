@@ -19,12 +19,17 @@ public class ButtonIcon extends Button{
 		return this;
 	}
 	
-	public ButtonIcon setSize(Size size) {
+	public ButtonIcon setSize(String size) {
 		for(Size s : Size.values()) {
-			removeClass("slds-button_icon-" + s.getValue());
+			icon.removeClass("slds-button__icon_" + s.getValue());
 		}
-		addClass("slds-button_icon-" + size.getValue());
+		if(size != null)
+			icon.addClass("slds-button__icon_" + size);
 		return this;
+	}
+	
+	public ButtonIcon setSize(Size size) {
+		return setSize(size != null? size.getValue():(String)null);
 	}
 	
 	public ButtonIcon setTooltip(String tooltip) {
@@ -32,6 +37,17 @@ public class ButtonIcon extends Button{
 		return this;
 	}
 	
+	
+	
+	@Override
+	public Button refresh() {
+		 super.refresh();
+		if(icon != null) {
+			icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
+		}
+		return this;
+	}
+
 	public ButtonIcon setVariant(String variant) {
 		for(ButtonIconVariant v : ButtonIconVariant.values()) {
 			removeClass("slds-button_icon-" + v.getValue());
@@ -63,7 +79,7 @@ public class ButtonIcon extends Button{
 		BORDER("border"),
 		BORDER_FILLED("border-filled"),
 		BARE_INVERSE("bare-inverse"),
-		BORDER_INVERSE("borde-inverse");
+		BORDER_INVERSE("border-inverse");
 		
 		private ButtonIconVariant(String value) {
 			this.value = value;

@@ -183,6 +183,7 @@ declare namespace com.spoonconsulting.lightning {
         static main(args: string[]): void;
         static getExampleTab(example: JSContainer): com.spoonconsulting.lightning.TabSet;
         static getAccordionSample(): JSContainer;
+        static getButtons(): JSContainer;
         static getSampleCOmbo(): JSContainer;
         static getPathSample(): JSContainer;
         static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
@@ -190,6 +191,50 @@ declare namespace com.spoonconsulting.lightning {
     }
     namespace Boot {
         class Boot$0 implements api.EventListener {
+            private diablebtn;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(diablebtn: any);
+        }
+        class Boot$1 implements api.EventListener {
+            private btni;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(btni: any);
+        }
+        class Boot$2 implements api.EventListener {
+            private box;
+            private button;
+            private iconButton;
+            private iconButtonRight;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(box: any, button: any, iconButton: any, iconButtonRight: any);
+        }
+        class Boot$3 implements api.EventListener {
+            private cbsize;
+            private btni;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(cbsize: any, btni: any);
+        }
+        class Boot$4 implements api.EventListener {
             private indicator;
             /**
              *
@@ -218,6 +263,51 @@ declare namespace com.spoonconsulting.lightning {
         addBreadcrumb(breadcrumb: com.spoonconsulting.lightning.Breadcrumb): Breadcrumbs;
         getBreadcrumbs(): Array<com.spoonconsulting.lightning.Breadcrumb>;
         getBreadcrumb(name: string): com.spoonconsulting.lightning.Breadcrumb;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Card extends JSContainer {
+        header: JSContainer;
+        media: JSContainer;
+        mediaFigure: JSContainer;
+        icon: com.spoonconsulting.lightning.IconContainer;
+        mediaBody: JSContainer;
+        mediaBodyTitle: JSContainer;
+        title: JSContainer;
+        mediaAction: JSContainer;
+        body: JSContainer;
+        footer: JSContainer;
+        constructor(name: string, tag: string);
+        getSlot(name: string): JSContainer;
+        getBody(): JSContainer;
+        getHeader(): JSContainer;
+        getActions(): JSContainer;
+        getFooter(): JSContainer;
+        setIconName(iconName: string): Card;
+        getIconName(): string;
+        setTitle(title: string): Card;
+        getTitle(): string;
+        setVariant$java_lang_String(variant: string): Card;
+        setVariant(variant?: any): any;
+        setVariant$com_spoonconsulting_lightning_Card_CardVariant(variant: Card.CardVariant): Card;
+        getVariant(): string;
+    }
+    namespace Card {
+        enum CardVariant {
+            BASE = 0,
+            NARROW = 1
+        }
+        /** @ignore */
+        class CardVariant_$WRAPPER {
+            protected _$ordinal: number;
+            protected _$name: string;
+            value: any;
+            constructor(_$ordinal: number, _$name: string, value: any);
+            getValue(): string;
+            name(): string;
+            ordinal(): number;
+            compareTo(other: any): number;
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -405,16 +495,22 @@ declare namespace com.spoonconsulting.lightning {
         size: number;
         smallDeviceSize: number;
         constructor(name: string, tag: string);
-        getAlignmentBumb(): string;
-        setAlignmentBumb(alignmentBumb: string): LayoutItem;
+        getAlignmentBump(): string;
+        setAlignmentBump$com_spoonconsulting_lightning_LayoutItem_AlignmentBump(al: LayoutItem.AlignmentBump): LayoutItem;
+        setAlignmentBump(al?: any): any;
+        setAlignmentBump$java_lang_String(alignmentBumb: string): LayoutItem;
         getFlexibility(): string;
-        setFlexibility(flexibility: string): LayoutItem;
+        setFlexibility$com_spoonconsulting_lightning_LayoutItem_Flexibility(flexi: LayoutItem.Flexibility): LayoutItem;
+        setFlexibility(flexi?: any): any;
+        setFlexibility$java_lang_String(flexibility: string): LayoutItem;
         getLargeDeviceSize(): number;
         setLargeDeviceSize(largeDeviceSize: number): LayoutItem;
         getMediumDeviceSize(): number;
         setMediumDeviceSize(mediumDeviceSize: number): LayoutItem;
         getPadding(): string;
-        setPadding(padding: string): LayoutItem;
+        setPadding$com_spoonconsulting_lightning_LayoutItem_Padding(pading: LayoutItem.Padding): LayoutItem;
+        setPadding(pading?: any): any;
+        setPadding$java_lang_String(padding: string): LayoutItem;
         getSize(): number;
         setSize(size: number): LayoutItem;
         getSmallDeviceSize(): number;
@@ -433,6 +529,7 @@ declare namespace com.spoonconsulting.lightning {
             protected _$name: string;
             value: any;
             constructor(_$ordinal: number, _$name: string, value: any);
+            getValue(): string;
             name(): string;
             ordinal(): number;
             compareTo(other: any): number;
@@ -451,6 +548,7 @@ declare namespace com.spoonconsulting.lightning {
             protected _$name: string;
             value: any;
             constructor(_$ordinal: number, _$name: string, val: any);
+            getValue(): string;
             name(): string;
             ordinal(): number;
             compareTo(other: any): number;
@@ -469,6 +567,7 @@ declare namespace com.spoonconsulting.lightning {
             protected _$name: string;
             value: any;
             constructor(_$ordinal: number, _$name: string, val: any);
+            getValue(): string;
             name(): string;
             ordinal(): number;
             compareTo(other: any): number;
@@ -1279,14 +1378,33 @@ declare namespace com.spoonconsulting.lightning {
         checkValidity(): boolean;
         setCustomValidity(message: string, type: string, description: string): void;
     }
+    namespace ComboBox {
+        class ComboBox$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
 }
 declare namespace com.spoonconsulting.lightning {
     class ButtonIcon extends com.spoonconsulting.lightning.Button {
         constructor(name: string, iconName: string);
         setAlternativeText(altText: string): ButtonIcon;
         setIconClass(iconClass: string): ButtonIcon;
-        setSize(size: com.spoonconsulting.lightning.Size): ButtonIcon;
+        setSize$java_lang_String(size: string): ButtonIcon;
+        setSize(size?: any): any;
+        setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): ButtonIcon;
         setTooltip(tooltip: string): ButtonIcon;
+        /**
+         *
+         * @return {com.spoonconsulting.lightning.Button}
+         */
+        refresh(): com.spoonconsulting.lightning.Button;
         setVariant$java_lang_String(variant: string): ButtonIcon;
         setVariant(variant?: any): any;
         setVariant$com_spoonconsulting_lightning_ButtonIcon_ButtonIconVariant(variant: ButtonIcon.ButtonIconVariant): ButtonIcon;

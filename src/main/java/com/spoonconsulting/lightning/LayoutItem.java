@@ -23,11 +23,15 @@ public class LayoutItem extends JSContainer {
 		addClass("slds-col");
 	}
 
-	public String getAlignmentBumb() {
+	public String getAlignmentBump() {
 		return alignmentBumb;
 	}
+	
+	public LayoutItem setAlignmentBump(AlignmentBump al) {
+		return setAlignmentBump(al != null ? al.value : (String)null);
+	}
 
-	public LayoutItem setAlignmentBumb(String alignmentBumb) {
+	public LayoutItem setAlignmentBump(String alignmentBumb) {
 		this.alignmentBumb = alignmentBumb;
 		for (AlignmentBump a : AlignmentBump.values()) {
 			removeClass("slds-col_bump-" + a.value);
@@ -40,6 +44,10 @@ public class LayoutItem extends JSContainer {
 
 	public String getFlexibility() {
 		return flexibility;
+	}
+	
+	public LayoutItem setFlexibility(Flexibility flexi) {
+		return setFlexibility(flexi != null? flexi.value : (String)null);
 	}
 
 	public LayoutItem setFlexibility(String flexibility) {
@@ -90,6 +98,10 @@ public class LayoutItem extends JSContainer {
 
 	public String getPadding() {
 		return padding;
+	}
+	
+	public LayoutItem setPadding(Padding pading) {
+		return setPadding(pading != null? pading.value : (String)null);
 	}
 
 	public LayoutItem setPadding(String padding) {
@@ -147,6 +159,10 @@ public class LayoutItem extends JSContainer {
 		private AlignmentBump(String value) {
 			this.value = value;
 		}
+		
+		public String getValue() {
+			return value;
+		}
 	}
 
 	public enum Flexibility {
@@ -158,6 +174,11 @@ public class LayoutItem extends JSContainer {
 		private Flexibility(String val) {
 			value = val;
 		}
+		
+		public String getValue() {
+			return value;
+		}
+		
 	}
 
 	public enum Padding {
@@ -170,6 +191,10 @@ public class LayoutItem extends JSContainer {
 
 		private Padding(String val) {
 			value = val;
+		}
+		
+		public String getValue() {
+			return value;
 		}
 
 	}

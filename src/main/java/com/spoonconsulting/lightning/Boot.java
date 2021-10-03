@@ -1,6 +1,8 @@
 package com.spoonconsulting.lightning;
 
 
+import com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant;
+import com.spoonconsulting.lightning.LayoutItem.Padding;
 import com.spoonconsulting.lightning.TabSet.TabSetVariant;
 
 import framework.components.JSContainer;
@@ -17,6 +19,7 @@ public class Boot {
 
 		JSContainer app = new JSContainer("app", "div");
 		app.addClass("slds-card");
+		app.setStyle("height", "100vh");
 		
 				
 		app.addChild(getVerticalMenu());
@@ -60,6 +63,136 @@ public class Boot {
 		accordion.setAllowMultipleSectionOpen(true);
 		accordion.setActiveSectionName("section2");
 		return accordion;
+	}
+	
+	private static JSContainer getButtons() {
+		Layout layout = new Layout("l", "div");
+		layout.setMultipleRows(true);
+		
+		LayoutItem head = new LayoutItem("head", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM);
+		head.setSize(12);
+		
+		layout.addChild(head);
+		
+		ComboBox box= new ComboBox("variants");
+		Array<Object> variants = new Array<Object>();
+		for(Variant var : Variant.values()) {
+			Object variant = new Object();
+			variant.$set("value", var.getValue());
+			variant.$set("label", var.getValue());
+			variants.push(variant);
+		}
+		box.setOptions(variants);
+		box.setLabel("Variants");
+		
+		
+		ComboBox cbsize = new ComboBox("cbsize");
+		cbsize.setLabel("Change Size:");
+		Array<Object> sizes = new Array<Object>();
+		for(Size size : Size.values()) {
+			Option opt = new Option();
+			opt.$set("value", size.getValue());
+			opt.$set("label", size.getValue());
+			sizes.push(opt);
+		}
+		cbsize.setOptions(sizes);
+		
+		LayoutItem itemsize = new LayoutItem("ss", "div").setSize(12).setPadding(Padding.AROUND_MEDIUM);
+		layout.addChild(itemsize);
+		
+		
+		head.addChild(box);
+		
+		Button button = new Button("btn").setLabel("Button");
+		Button iconButton = new Button("btnIcon").setLabel("Button");
+		iconButton.setIconName("utility:check");
+		
+		Button iconButtonRight = new Button("iconBtnRight").setLabel("Button");
+		iconButtonRight.setIconName("utility:check");
+		iconButtonRight.setIconPosition(Button.ICON_POSITION_RIGHT);
+		
+		
+		LayoutItem item = new LayoutItem("btns", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM);
+		item.setSize(12);
+		layout.addChild(item);
+		
+		Layout btns = new Layout("btns", "div");
+		LayoutItem item1 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item2 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item3 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item4 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item5 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item6 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		
+		Button diablebtn = new Button("dis").setLabel("Click to disable");
+		diablebtn.setVariant(Variant.BRAND);
+		diablebtn.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				diablebtn.setDisabled(!diablebtn.isDisabled());
+			//	diablebtn.setIconName("utility:download");
+			//	diablebtn.setIconPosition(Button.ICON_POSITION_RIGHT);
+				diablebtn.setLabel("Disabled");
+			//	diablebtn.setPrefixIconName("utility:settings");
+				
+			}
+		}, "click");
+		
+		ButtonStateful stf = new ButtonStateful("stf");
+		stf.setIconNameWhenHover("utility:download");
+		stf.setLabelWhenHover("Hover");
+		stf.setIconNameWhenOff("utility:delete");
+		stf.setLabelWhenOff("Not selected");
+		stf.setIconNameWhenOn("utility:down");
+		stf.setLabelWhenOn("Selected");
+		stf.setVariant(Variant.DESTRUCTIVE);
+		
+		ButtonIcon btni = new ButtonIcon("btni", "utility:settings");
+		btni.setVariant(ButtonIconVariant.BORDER_FILLED);
+		btni.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				btni.setVariant(ButtonIconVariant.BRAND);
+			}
+		}, "click");
+		
+		item1.addChild(button);
+		item2.addChild(iconButton);
+		item3.addChild(iconButtonRight);
+		item4.addChild(diablebtn);
+		item5.addChild(stf);
+		item6.addChild(btni);
+		item.addChild(btns.addChild(item1).addChild(item2).addChild(item3).addChild(item4).addChild(item5).addChild(item6));
+		
+		
+		box.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				String variant = box.getValue();
+				button.setVariant(variant);
+				iconButton.setVariant(variant);
+				iconButtonRight.setVariant(variant);
+				
+			}
+		}, "change");
+		
+		
+		cbsize.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				String size = cbsize.getValue();
+				btni.setSize(size);
+			}
+		}, "change");
+		
+		itemsize.addChild(cbsize);
+		
+		return layout;
+		
 	}
 	
 	
@@ -129,12 +262,14 @@ public class Boot {
 	}
 	
 	public static TabSet getVerticalMenu() {
+		
 		TabSet set = new TabSet("menu");
-		set.setVariant(TabSetVariant.VERTICAL);
+		set.setVariant(TabSetVariant.VERTICAL).setStyle("height", "100vh");
 		
 		addVerticalTab("Accordion", getAccordionSample(), set);
 		addVerticalTab("Paths", getPathSample(), set);
 		addVerticalTab("Combo box", getSampleCOmbo(), set);
+		addVerticalTab("Buttons", getButtons(), set);
 		return set;
 	}
 }

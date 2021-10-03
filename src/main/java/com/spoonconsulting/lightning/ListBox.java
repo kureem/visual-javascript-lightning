@@ -153,11 +153,11 @@ public class ListBox extends JSContainer{
 				ListBox lb = (ListBox)getParent();
 				String oldValue = lb.getValue();
 				lb.setValue(getValue());
-				CustomEvent onchange = new CustomEvent("onchange");
+				CustomEvent onchange = new CustomEvent("change");
 				onchange.$set("source", this);
 				onchange.$set("value", getValue());
 				onchange.$set("oldValue", oldValue);
-				lb.fireListener("onchange", evt);
+				lb.fireListener("change", evt);
 			}
 		}
 		

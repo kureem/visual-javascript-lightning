@@ -69,12 +69,13 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 			
 			@Override
 			public void performAction(Renderable source, Event evt) {
-				fireListener("onchange", evt);
 				String val = dropdown.getValue();
 				input.setValue(val);
 				setExpand(false);
+				fireListener("change", evt);
+				
 			}
-		}, "onchange");
+		}, "change");
 		
 		input.addEventListener(new EventListener() {
 			
