@@ -3,20 +3,22 @@ package com.spoonconsulting.lightning;
 import framework.components.JSContainer;
 
 public class Card extends JSContainer{
+
 	private JSContainer header = new JSContainer("header", "div");
 	
 	private JSContainer media = new JSContainer("media", "header");
 	
 	private JSContainer mediaFigure = new JSContainer("media-figure", "div");
+	
 	private IconContainer icon = new IconContainer("icon", "standard:account");
 	
 	private JSContainer mediaBody = new JSContainer("media-body", "div");
+	
 	private JSContainer mediaBodyTitle = new JSContainer("title", "h2");
+	
 	private JSContainer title = new JSContainer("title", "span");
 	
 	private JSContainer mediaAction = new JSContainer("actions", "div");
-	
-	
 	
 	private JSContainer body = new JSContainer("body", "div");
 	
@@ -25,20 +27,39 @@ public class Card extends JSContainer{
 	public Card(String name, String tag) {
 		super(name, tag);
 		addClass("slds-card");
-		addChild(header.addClass("slds-card__header"));
-		header.addChild(media);
-		media.addClass("slds-media").addClass("slds-media_center").addClass("slds-has-flexi-truncate");
-		mediaFigure.addClass("slds-media__figure");
-		icon.setSize(Size.SMALL);
-		mediaBody.addClass("slds-media__body");
-		mediaBodyTitle.addClass("slds-card__header-title");
-		title.addClass("slds-text-heading_small").addClass("slds-truncate");
-		mediaBody.addChild(mediaBodyTitle.addChild(title));
-		mediaAction.addClass("slds-no-flex");
-		media.addChild(mediaFigure).addChild(mediaBody).addChild(mediaAction);
+		addChild(header
+					.addChild(media
+								.addChild(mediaFigure)
+								.addChild(mediaBody
+										.addChild(mediaBodyTitle
+												.addChild(title)))
+								.addChild(mediaAction)))
+		.addChild(body)
+		.addChild(footer);
 		
-		addChild(body.addClass("slds-card__body"));
-		addChild(footer.addClass("slds-card__footer"));
+		header.addClass("slds-card__header");
+		
+		media.addClass("slds-media")
+			.addClass("slds-media_center")
+			.addClass("slds-has-flexi-truncate");
+		
+		mediaFigure.addClass("slds-media__figure");
+		
+		icon.setSize(Size.SMALL);
+		
+		mediaBody.addClass("slds-media__body");
+		
+		mediaBodyTitle.addClass("slds-card__header-title");
+		
+		title.addClass("slds-text-heading_small")
+			.addClass("slds-truncate");
+		
+		mediaAction.addClass("slds-no-flex");
+		
+		body.addClass("slds-card__body");
+		
+		footer.addClass("slds-card__footer");
+		
 	}
 	
 	public JSContainer getSlot(String name) {
@@ -102,7 +123,6 @@ public class Card extends JSContainer{
 		}
 		return this;
 	}
-	
 	
 	public Card setVariant(CardVariant variant) {
 		return setVariant(variant != null?variant.value: (String)null);

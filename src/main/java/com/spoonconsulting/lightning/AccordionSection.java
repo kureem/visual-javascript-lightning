@@ -19,8 +19,6 @@ public class AccordionSection extends BaseLightning {
 
 	private Icon summaryActionIcon = new Icon("summary-action-icon","utility:switch");
 
-//	private JSContainer summaryContent = new JSContainer("summaryContent", "span");
-	
 	private JSContainer actionsSlot = new JSContainer("actions","span");
 
 	public AccordionSection(String name) {
@@ -28,27 +26,31 @@ public class AccordionSection extends BaseLightning {
 		addClass("slds-accordion__section");
 		addChild(summary.addClass("slds-accordion__summary"));
 		addChild(content.addClass("slds-accordion__content"));
+
 		summaryHeading.addClass("slds-accordion__summary-heading");
-		summary.addChild(summaryHeading);
-		
 		summaryHeading.addChild(summaryHeadingAction);
-		summaryHeadingAction.setIconName("utility:switch");
-		summaryHeadingAction.addClass("slds-button_reset").addClass("slds-accordion__summary-action");
+		
+		summary.addChild(summaryHeading);
+		summary.addChild(actionsSlot);
+		
+		summaryHeadingAction.setIconName("utility:switch")
+			.addClass("slds-button_reset")
+			.addClass("slds-accordion__summary-action");
 		summaryHeadingAction.getIcon().addClass("slds-accordion__summary-action-icon");
 		summaryHeadingAction.label.addClass("slds-accordion__summary-content");
 		
-		summary.addChild(actionsSlot);
-		summaryAction.addClass("slds-button").addClass("slds-button_reset").addClass("slds-accordion__summary-action");
+		
+		summaryAction.addClass("slds-button")
+			.addClass("slds-button_reset")
+			.addClass("slds-accordion__summary-action");
 		actionsSlot.addChild(summaryAction);
 
-		summaryActionIcon.addClass("slds-accordion__summary-action-icon").addClass("slds-button__icon")
-				.addClass("slds-button__icon_left");
-		summaryActionIcon.setAttribute("aria-hidden", "true");
-
+		summaryActionIcon.addClass("slds-accordion__summary-action-icon")
+			.addClass("slds-button__icon")
+			.addClass("slds-button__icon_left")
+			.setAttribute("aria-hidden", "true");
 		summaryAction.addChild(summaryActionIcon);
 
-	//	summaryContent.addClass("slds-accordion__summary-content");
-	//	summary.addChild(summaryContent);
 		setOpen(false);
 		summary.addEventListener(new EventListener() {
 			
@@ -63,7 +65,8 @@ public class AccordionSection extends BaseLightning {
 	public void setTitle(String title) {
 		super.setTitle(title);
 		summaryAction.setAttribute("title", title);
-		summaryHeadingAction.setLabel(title).setAttribute("title", title);
+		summaryHeadingAction.setLabel(title)
+			.setAttribute("title", title);
 	}
 	
 	public void toggle() {
@@ -109,8 +112,6 @@ public class AccordionSection extends BaseLightning {
 	public Icon getSummaryActionIcon() {
 		return summaryActionIcon;
 	}
-
-
 	
 	public JSContainer getSlot(String name) {
 		if(name == "actions") {

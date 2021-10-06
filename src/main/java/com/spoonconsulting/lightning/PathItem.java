@@ -21,10 +21,10 @@ public class PathItem extends JSContainer implements IStep{
 		stage.addChild(icon);
 		link.addChild(title);
 		
-		link.addClass("slds-path__link");
-		link.setAttribute("href", "javascript:void(0);");
-		link.setAttribute("role", "option");
-		link.setAttribute("tabindex", "-1");
+		link.addClass("slds-path__link")
+			.setAttribute("href", "javascript:void(0);")
+			.setAttribute("role", "option")
+			.setAttribute("tabindex", "-1");
 		
 		
 		stage.addClass("slds-path__stage");

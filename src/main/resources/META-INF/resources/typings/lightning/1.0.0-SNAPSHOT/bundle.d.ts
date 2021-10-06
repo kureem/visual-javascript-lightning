@@ -1429,8 +1429,8 @@ declare namespace com.spoonconsulting.lightning {
         class ButtonIconVariant_$WRAPPER {
             protected _$ordinal: number;
             protected _$name: string;
-            constructor(_$ordinal: number, _$name: string, value: any);
             value: any;
+            constructor(_$ordinal: number, _$name: string, value: any);
             getValue(): string;
             name(): string;
             ordinal(): number;
@@ -1454,8 +1454,8 @@ declare namespace com.spoonconsulting.lightning {
         class ButtonIconStatefulVariant_$WRAPPER {
             protected _$ordinal: number;
             protected _$name: string;
-            constructor(_$ordinal: number, _$name: string, value: any);
             value: any;
+            constructor(_$ordinal: number, _$name: string, value: any);
             getValue(): string;
             name(): string;
             ordinal(): number;

@@ -18,9 +18,11 @@ public class ButtonStateful extends BaseLightning {
 
 	public ButtonStateful(String name) {
 		super(name, "button");
-		addClass("slds-button");
-		addClass("slds-button_stateful");
-		addChild(btnNotSelected).addChild(btnSelected).addChild(btnSelectedFocus);
+		addClass("slds-button")
+		.addClass("slds-button_stateful")
+		.addChild(btnNotSelected)
+		.addChild(btnSelected)
+		.addChild(btnSelectedFocus);
 		
 		addEventListener(new EventListener() {
 			
@@ -29,6 +31,7 @@ public class ButtonStateful extends BaseLightning {
 				setSelected(!isSelected());
 			}
 		}, "click");
+		
 		setSelected(false);
 	}
 
@@ -153,7 +156,6 @@ public class ButtonStateful extends BaseLightning {
 			addChild(label);
 			setRendered(false);
 		}
-
 	}
 	
 	public void focus() {
@@ -162,5 +164,4 @@ public class ButtonStateful extends BaseLightning {
 			elm.focus();
 		}
 	}
-
 }

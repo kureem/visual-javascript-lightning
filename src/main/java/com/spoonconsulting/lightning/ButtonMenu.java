@@ -12,29 +12,27 @@ public class ButtonMenu extends BaseLightning{
 	
 	private Dropdown dropdown = new Dropdown("dropdown");
 
-	
 	private String menuAlignment = MenuAlignment.LEFT.value;
 	
 	private boolean nubbin= false;
 	
-	
-	
 	public ButtonMenu(String name, String tag) {
 		super(name, tag);
-		addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click");
-		button.setVariant(ButtonIconVariant.BORDER_FILLED);
-		button.setAttribute("aria-haspopup", "true");
-		button.setAttribute("aria-expanded", "true");
-		addChild(button);
-		addChild(dropdown);
-		button.addEventListener(new EventListener() {
-			
-			@Override
-			public void performAction(Renderable source, Event evt) {
-				toggle();
-			}
-		}, "click");
-
+		addClass("slds-dropdown-trigger")
+		.addClass("slds-dropdown-trigger_click")
+		.addChild(button)
+		.addChild(dropdown);
+		
+		button.setVariant(ButtonIconVariant.BORDER_FILLED)
+			.setAttribute("aria-haspopup", "true")
+			.setAttribute("aria-expanded", "true")
+			.addEventListener(new EventListener() {
+				
+				@Override
+				public void performAction(Renderable source, Event evt) {
+					toggle();
+				}
+			}, "click");
 	}
 	
 	public void toggle() {
@@ -84,11 +82,11 @@ public class ButtonMenu extends BaseLightning{
 	
 	public ButtonMenu setIconName(String iconName) {
 		if(iconName == "utility:down" || iconName == "utility:chevrondown") {
-			button.setPrefixIconName(null);
-			button.setIconName(iconName);
+			button.setPrefixIconName(null)
+				.setIconName(iconName);
 		}else {
-			button.setPrefixIconName(iconName);
-			button.setIconName("utility:down");
+			button.setPrefixIconName(iconName)
+				.setIconName("utility:down");
 		}
 		return this;
 	}
@@ -159,9 +157,6 @@ public class ButtonMenu extends BaseLightning{
 		return this.menuAlignment;
 	}
 	
-	
-	
-	
 	public boolean isNubbin() {
 		return nubbin;
 	}
@@ -190,26 +185,26 @@ public class ButtonMenu extends BaseLightning{
 		this.button.setVariant(variant);
 		return this;
 	}
-	
 
 	public void refresh() {
-		dropdown.removeClass("slds-dropdown_bottom")
-		.removeClass("slds-dropdown_left")
-		.removeClass("slds-dropdown_right")
-		.removeClass("slds-dropdown_center")
-		.removeClass("slds-dropdown_bottom-right")
-		.removeClass("slds-dropdown_bottom-left")
 		
-		.removeClass("slds-nubbin_left")
-		.removeClass("slds-nubbin_right")
-		.removeClass("slds-nubbin_center")
-		.removeClass("slds-nubbin_bottom-right")
-		.removeClass("slds-nubbin_bottom-left")
-		.removeClass("slds-nubbin_bottom")
-		.removeClass("slds-nubbin_top")
-		.removeClass("slds-nubbin_top-right")
-		  .removeClass("slds-nubbin_top-left")
-		;
+		String[] suffixes = new String[] {
+					"bottom", 
+					"left",
+					"right",
+					"center",
+					"bottom-right",
+					"bottom-left",
+					"top",
+					"top-right", 
+					"top-left"
+					};
+		
+		for(String suffix : suffixes) {
+			dropdown.removeClass("slds-dropdown_" + suffix)
+				.removeClass("slds-nubbin_" + suffix);
+		}
+		
 		
 		if(menuAlignment == MenuAlignment.BOTTOM_CENTER.value) {
 			dropdown.addClass("slds-dropdown_bottom");
@@ -217,12 +212,14 @@ public class ButtonMenu extends BaseLightning{
 				dropdown.addClass("slds-nubbin_bottom");
 			}
 		}else if(menuAlignment == MenuAlignment.BOTTOM_RIGHT.value) {
-			dropdown.addClass("slds-dropdown_right").addClass("slds-dropdown_bottom-right");
+			dropdown.addClass("slds-dropdown_right")
+				.addClass("slds-dropdown_bottom-right");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_bottom-right");
 			}
 		}else if(menuAlignment == MenuAlignment.BOTTOM_LEFT.value) {
-			dropdown.addClass("slds-dropdown_left").addClass("slds-dropdown_bottom-left");
+			dropdown.addClass("slds-dropdown_left")
+				.addClass("slds-dropdown_bottom-left");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_bottom-left");
 			}
@@ -248,7 +245,6 @@ public class ButtonMenu extends BaseLightning{
 			}
 		}
 	}
-
 
 	public enum MenuAlignment{
 		

@@ -14,7 +14,9 @@ import jsweet.lang.Object;
 public class BaseComboBox extends JSContainer implements InputField<String>{
 
 	private JSContainer combobox = new JSContainer("combobox", "div");
+
 	private JSContainer formElement = new JSContainer("formElement", "div");
+	
 	private  JSTextInput input = new JSTextInput("input");
 	
 	private ListBox dropdown = new ListBox("dropdown");
@@ -28,43 +30,50 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 	
 	public BaseComboBox(String name) {
 		super(name, "div");
-		addClass("slds-combobox_container");
-		
-		addChild(combobox);
+		addClass("slds-combobox_container")
+		.addChild(combobox);
+
 		combobox.addClass("slds-combobox")
-		.addClass("slds-dropdown-trigger")
-		.addClass("slds-dropdown-trigger_click")
-		.setAttribute("aria-expanded", "false")
-		.setAttribute("aria-haspopup", "listbox")
-		.setAttribute("role", "combobox");
+			.addClass("slds-dropdown-trigger")
+			.addClass("slds-dropdown-trigger_click")
+			.setAttribute("aria-expanded", "false")
+			.setAttribute("aria-haspopup", "listbox")
+			.setAttribute("role", "combobox")
+			.addChild(formElement)
+			.addChild(dropdown);
 		
-		
-		combobox.addChild(formElement);
 		formElement.setAttribute("role", "none")
-		.addClass("slds-combobox__form-element")
-		.addClass("slds-input-has-icon")
-		.addClass("slds-input-has-icon_right");
+			.addClass("slds-combobox__form-element")
+			.addClass("slds-input-has-icon")
+			.addClass("slds-input-has-icon_right")
+			.addChild(input)
+			.addChild(inputIconContainer);
 		
 		input.addClass("slds-input")
-		.addClass("slds-combobox__input")
-		.setAttribute("role", "textbox")
-		.setAttribute("autocomplete", "off")
-		.setAttribute("aria-autocomplete", "none")
-		.setAttribute("readonly", "true");
+			.addClass("slds-combobox__input")
+			.setAttribute("role", "textbox")
+			.setAttribute("autocomplete", "off")
+			.setAttribute("aria-autocomplete", "none")
+			.setAttribute("readonly", "true")
+			.addEventListener(new EventListener() {
+				
+				@Override
+				public void performAction(Renderable source, Event evt) {
+
+					toggleDropdown();
+				}
+			}, "click");
 		
-		formElement.addChild(input);
+		inputIconContainer.addClass("slds-input__icon-group")
+			.addClass("slds-input__icon-group_right")
+			.addChild(inputIcon);
 		
-		inputIconContainer.addClass("slds-input__icon-group").addClass("slds-input__icon-group_right");
-		inputIcon.setIconName("utility:down");
-		inputIcon.addClass("slds-input__icon").addClass("slds-input__icon_right");
-		inputIcon.setSize(Size.EXTRA_EXTRA_SMALL);
+		inputIcon.setIconName("utility:down")
+			.setSize(Size.EXTRA_EXTRA_SMALL)
+			.addClass("slds-input__icon")
+			.addClass("slds-input__icon_right");
 		inputIcon.getIcon().addClass("slds-icon-text-default");
-		inputIconContainer.addChild(inputIcon);
-		formElement.addChild(inputIconContainer);
-		
-		combobox.addChild(dropdown);
-		//dropdown.addClass("effe");
-		
+
 		dropdown.addEventListener(new EventListener() {
 			
 			@Override
@@ -73,19 +82,8 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 				input.setValue(val);
 				setExpand(false);
 				fireListener("change", evt);
-				
 			}
 		}, "change");
-		
-		input.addEventListener(new EventListener() {
-			
-			@Override
-			public void performAction(Renderable source, Event evt) {
-
-				toggleDropdown();
-			}
-		}, "click");
-		
 	}
 	
 	public BaseComboBox setOptions(Array<Object> options) {
@@ -103,12 +101,12 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 	
 	public BaseComboBox setExpand(boolean b) {
 		if(b) {
-			combobox.setAttribute("aria-expanded", "true");
-			combobox.addClass("slds-is-open");
+			combobox.setAttribute("aria-expanded", "true")
+				.addClass("slds-is-open");
 			dropdown.addClass("slds-dropdown_length_with-icon-7");
 		}else {
-			combobox.setAttribute("aria-expanded", "false");
-			combobox.removeClass("slds-is-open");
+			combobox.setAttribute("aria-expanded", "false")
+				.removeClass("slds-is-open");
 			dropdown.removeClass("slds-dropdown_length_with-icon-7");
 		}
 		return this;
@@ -123,7 +121,6 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 	public void setValue(String val) {
 		input.setValue(val);
 		dropdown.setValue(val);
-		
 	}
 
 	@Override
@@ -159,12 +156,11 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 	
 	public BaseComboBox setDropdownAlignment(String alignment) {
 		if(alignment == DROPDOWN_ALIGNMENT_BOTTOM_LEFT) {
-			//slds-dropdown_bottom
-			//slds-dropdown_bottom-left
-			dropdown.addClass("slds-dropdown_bottom").addClass("slds-dropdown_bottom-left");
-			
+			dropdown.addClass("slds-dropdown_bottom")
+				.addClass("slds-dropdown_bottom-left");
 		}else {
-			dropdown.removeClass("slds-dropdown_bottom").removeClass("slds-dropdown_bottom-left");
+			dropdown.removeClass("slds-dropdown_bottom")
+				.removeClass("slds-dropdown_bottom-left");
 		}
 		return this;
 	}
@@ -193,7 +189,4 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 			in.setCustomValidity(message);
 		return this;
 	}
-	
-	
-
 }

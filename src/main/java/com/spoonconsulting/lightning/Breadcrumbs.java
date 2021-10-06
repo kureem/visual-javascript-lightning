@@ -6,10 +6,11 @@ import jsweet.lang.Array;
 
 public class Breadcrumbs extends JSContainer{
 
-	
 	public Breadcrumbs(String name) {
 		super(name, "ol");
-		addClass("slds-breadcrumb").addClass("slds-list_horizontal").addClass("slds-wrap");
+		addClass("slds-breadcrumb")
+		.addClass("slds-list_horizontal")
+		.addClass("slds-wrap");
 	}
 	
 	public Breadcrumbs addBreadcrumb(Breadcrumb breadcrumb) {
@@ -37,8 +38,5 @@ public class Breadcrumbs extends JSContainer{
 			}
 		}
 		return null;
-		
 	}
-	
-
 }

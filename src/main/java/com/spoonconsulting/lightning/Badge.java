@@ -17,13 +17,15 @@ public class Badge extends BaseLightning{
 	public Badge(String name, String tag) {
 		super(name, "span");
 		addClass("slds-badge");
-//		addChild(leftBadgeIcon);
-		leftBadgeIcon.addClass("slds-badge__icon").addClass("slds-badge__icon_left");
-		leftBadgeIcon.addChild(leftIconContainer);
+		leftBadgeIcon.addClass("slds-badge__icon")
+			.addClass("slds-badge__icon_left")
+			.addChild(leftIconContainer);
+
 		addChild(label);
-//		addChild(rightBadgeIcon);
-		rightBadgeIcon.addClass("slds-badge__icon").addClass("slds-badge__icon_right");
-		rightBadgeIcon.addChild(rightIconContainer);
+
+		rightBadgeIcon.addClass("slds-badge__icon")
+			.addClass("slds-badge__icon_right")
+			.addChild(rightIconContainer);
 	}
 	
 	public Badge setIconAlternativeText(String altText) {
@@ -46,7 +48,6 @@ public class Badge extends BaseLightning{
 	}
 	
 	public Badge setIconPosition(String position) {
-		
 		clearChildren();
 		
 		if(position == POSITION_START) {
@@ -65,5 +66,4 @@ public class Badge extends BaseLightning{
 		this.label.setHtml(label);
 		return this;
 	}
-
 }

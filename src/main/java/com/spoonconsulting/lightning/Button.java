@@ -34,46 +34,49 @@ public class Button extends BaseLightning {
 		super(name, "button");
 		addClass("slds-button");
 		addChild(label);
-		icon.removeClass("slds-icon");
-		icon.addClass("slds-button__icon");
-		icon.setAttribute("aria-hidden", "true");
-		icon.setAttribute("focusabled", "false");
+		icon.removeClass("slds-icon")
+			.addClass("slds-button__icon")
+			.setAttribute("aria-hidden", "true")
+			.setAttribute("focusabled", "false");
 		
-		prefixIcon.removeClass("slds-icon");
-		prefixIcon.addClass("slds-button__icon");
-		prefixIcon.setAttribute("aria-hidden", "true");
-		prefixIcon.setAttribute("focusabled", "false");
+		prefixIcon.removeClass("slds-icon")
+			.addClass("slds-button__icon")
+			.setAttribute("aria-hidden", "true")
+			.setAttribute("focusabled", "false");
 		
-		
-		draft.addClass("slds-indicator_unsaved").addClass("slds-p-right_xx-small");
-		draft.setHtml("*");
+		draft.addClass("slds-indicator_unsaved")
+			.addClass("slds-p-right_xx-small")
+			.setHtml("*");
 	}
-	
-	
-	
 
 	public Button refresh() {
 		clearChildren();
+
 		if(prefixIconName != null && prefixIconName != "") {
 			addChild(prefixIcon);
 			prefixIcon.setIconName(prefixIconName);
-			icon.addClass("slds-button__icon_x-small").addClass("slds-m-left_xx-small");
+			icon.addClass("slds-button__icon_x-small")
+				.addClass("slds-m-left_xx-small");
 		}else {
-			icon.removeClass("slds-button__icon_x-small").removeClass("slds-m-left_xx-small");
+			icon.removeClass("slds-button__icon_x-small")
+				.removeClass("slds-m-left_xx-small");
 		}
 		
 		if (iconName != null && iconName != "") {
-			
-			icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
+			icon.removeClass("slds-button__icon_right")
+				.removeClass("slds-button__icon_left");
+
 			if (iconPosition == ICON_POSITION_LEFT || iconPosition == null) {
 				addChild(icon);
 				icon.addClass("slds-button__icon_left");
-				
 			}
+			
 			if (isDraft) {
 				addChild(draft);
 			}
+			
 			addChild(label);
+			
 			if (iconPosition == ICON_POSITION_RIGHT) {
 				addChild(icon);
 				icon.addClass("slds-button__icon_right");
@@ -85,15 +88,13 @@ public class Button extends BaseLightning {
 			}
 			addChild(label);
 		}
+	
 		if (isDraft) {
 			draft.setAttribute("title", draftAlternativeText);
 		}
-
 		setRendered(false);
 		return this;
 	}
-	
-	
 
 	public String getPrefixIconName() {
 		return prefixIconName;
@@ -166,9 +167,7 @@ public class Button extends BaseLightning {
 	}
 
 	public Button setType(String type) {
-
 		setAttribute("type", type);
-
 		return this;
 	}
 
@@ -189,12 +188,9 @@ public class Button extends BaseLightning {
 		for (Variant v : Variant.values()) {
 			removeClass("slds-button_" + v.getValue());
 		}
-
 		addClass("slds-button_" + variant);
 		return this;
 	}
-	
-	
 
 	public Icon getPrefixIcon() {
 		return prefixIcon;
@@ -220,5 +216,4 @@ public class Button extends BaseLightning {
 	public Icon getIcon() {
 		return icon;
 	}
-
 }

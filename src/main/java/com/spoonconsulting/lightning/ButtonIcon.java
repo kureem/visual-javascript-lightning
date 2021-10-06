@@ -23,8 +23,10 @@ public class ButtonIcon extends Button{
 		for(Size s : Size.values()) {
 			icon.removeClass("slds-button__icon_" + s.getValue());
 		}
-		if(size != null)
+		
+		if(size != null) {
 			icon.addClass("slds-button__icon_" + size);
+		}
 		return this;
 	}
 	
@@ -36,8 +38,6 @@ public class ButtonIcon extends Button{
 		setTitle(tooltip);
 		return this;
 	}
-	
-	
 	
 	@Override
 	public Button refresh() {
@@ -60,18 +60,13 @@ public class ButtonIcon extends Button{
 		return setVariant(variant.getValue());
 	}
 	
-	
-	
 	@Override
 	public Button setLabel(String label) {
 		getUILabel().setHtml(label);
 		return this;
 	}
 
-
-
 	public enum ButtonIconVariant{
-		
 		
 		BARE("bare"),
 		CONTAINER("container"),
@@ -81,13 +76,14 @@ public class ButtonIcon extends Button{
 		BARE_INVERSE("bare-inverse"),
 		BORDER_INVERSE("border-inverse");
 		
+		private String value;
+		
 		private ButtonIconVariant(String value) {
 			this.value = value;
 		}
-		private String value;
+
 		public String getValue() {
 			return this.value;
 		}
 	}
-
 }

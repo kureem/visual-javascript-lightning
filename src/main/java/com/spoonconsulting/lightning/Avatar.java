@@ -22,11 +22,13 @@ public class Avatar extends JSContainer{
 	public Avatar(String name) {
 		super(name, "span");
 		addClass("slds-avatar");
-		initial.addClass("slds-avatar__initials").addClass("slds-icon-standard-user");
-		iconContainer.addClass("slds-icon_container").addClass("slds-icon-standard-account");
+		initial.addClass("slds-avatar__initials")
+			.addClass("slds-icon-standard-user");
+		
+		iconContainer.addClass("slds-icon_container")
+			.addClass("slds-icon-standard-account");
 		iconContainer.addChild(fallbackIcon);
 		setType(TYPE_IMAGE);
-		
 	}
 	
 	public Avatar setType(String type) {
@@ -47,7 +49,9 @@ public class Avatar extends JSContainer{
 	}
 	
 	public Avatar setVariant(String type) {
-		removeClass("slds-avatar_" +VARIANT_CIRCLE).removeClass("slds-avatar_" +VARIANT_SQUARE).addClass("slds-avatar_" +type);
+		removeClass("slds-avatar_" +VARIANT_CIRCLE)
+			.removeClass("slds-avatar_" +VARIANT_SQUARE)
+			.addClass("slds-avatar_" +type);
 		return this;
 		
 	}
@@ -116,15 +120,13 @@ public class Avatar extends JSContainer{
 	}
 	
 	public Avatar setAlternativeText(String altText) {
-		this.img.setAttribute("alt", altText);
-		this.img.setAttribute("title", altText);
+		this.img.setAttribute("alt", altText)
+			.setAttribute("title", altText);
 		return this;
 	}
 	
 	public String getAlternativeText() {
 		return this.img.getAttribute("alt");
 	}
-	
-	
 
 }

@@ -15,5 +15,4 @@ public class BaseLightning extends JSContainer {
 	public String getTitle() {
 		return getAttribute("title");
 	}
-
 }
