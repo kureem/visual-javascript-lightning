@@ -3,16 +3,23 @@ package com.spoonconsulting.lightning;
 
 import com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant;
 import com.spoonconsulting.lightning.LayoutItem.Padding;
+import com.spoonconsulting.lightning.Modal.BackDrop;
 import com.spoonconsulting.lightning.TabSet.TabSetVariant;
 
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
+import framework.components.input.JSForm;
+import framework.components.input.JSTextInput;
 import jsweet.dom.Event;
 import jsweet.dom.Option;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
+import jsweet.util.StringTypes.button;
 
+import static jsweet.dom.Globals.alert;
+
+import jsweet.lang.JSON;
 public class Boot {
 
 	public static void main(String[] args) {
@@ -261,6 +268,89 @@ public class Boot {
 		verticalMenu.addTab(tab, panel);
 	}
 	
+	
+	private static JSContainer getModal() {
+		
+		JSContainer container = new JSContainer("ctn", "div");
+		Button button = new Button("open");
+		button.setVariant(Variant.BRAND);
+		button.setLabel("Open");
+		container.addChild(button);
+		
+		Modal modal = new Modal("modal");
+		FormElement<String> firstName = new FormElement<String>("firstName", new JSTextInput("firstName"));
+		FormElement<String> lastName = new FormElement<String>("lastName", new JSTextInput("lastName"));
+		FormElement<String> email = new FormElement<String>("email",new JSTextInput("email"));
+		firstName.setLabel("First Name");
+		lastName.setLabel("Last Name");
+		email.setLabel("Email");
+		
+		
+		JSForm form = new JSForm("form");
+		form.setStyle("padding", "0.5rem");
+		modal.setTitle("User Registration");
+		
+		form.addChild(firstName);
+		form.addChild(lastName);
+		form.addChild(email);
+		
+		modal.getContent().addChild(form);
+		
+		Button save = new Button("save");
+		save.setLabel("Save");
+		save.setVariant(Variant.BRAND);
+		
+		Button cancel = new Button("cancel");
+		cancel.setLabel("Cancel");
+		cancel.setVariant(Variant.NEUTRAL);
+		 
+		cancel.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				modal.close();
+			}
+		}, "click");
+		
+		
+		save.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				form.submit();
+			}
+		}, "click");
+		
+		form.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				Object data = form.getData();
+				alert(JSON.stringify(data));
+			}
+		},"onSubmit");
+		
+		
+		modal.getFooter().addChild(save);
+		modal.getFooter().addChild(cancel);
+		
+		
+		container.addChild(modal);
+		BackDrop bd = new BackDrop("bd");
+		container.addChild(bd);
+		modal.setBackdrop(bd);
+		
+		button.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				modal.open();
+			}
+		}, "click");
+		return container;
+		
+	}
+	
 	public static TabSet getVerticalMenu() {
 		
 		TabSet set = new TabSet("menu");
@@ -270,6 +360,7 @@ public class Boot {
 		addVerticalTab("Paths", getPathSample(), set);
 		addVerticalTab("Combo box", getSampleCOmbo(), set);
 		addVerticalTab("Buttons", getButtons(), set);
+		addVerticalTab("Modals", getModal(), set);
 		return set;
 	}
 }

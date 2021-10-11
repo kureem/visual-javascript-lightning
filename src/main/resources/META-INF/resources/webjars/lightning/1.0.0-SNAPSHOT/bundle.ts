@@ -300,7 +300,7 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
-    export class BaseComboBox extends JSContainer implements api.InputField<string> {
+    export class BaseComboBox<T> extends JSContainer implements api.InputField<T> {
         /*private*/ combobox: JSContainer;
 
         /*private*/ formElement: JSContainer;
@@ -335,7 +335,7 @@ namespace com.spoonconsulting.lightning {
             this.dropdown.addEventListener(new BaseComboBox.BaseComboBox$1(this), "change");
         }
 
-        public setOptions(options: Array<Object>): BaseComboBox {
+        public setOptions(options: Array<Object>): BaseComboBox<T> {
             this.dropdown.setOptions(options);
             return this;
         }
@@ -348,7 +348,7 @@ namespace com.spoonconsulting.lightning {
             return this.combobox.getAttribute("aria-expanded") === "true";
         }
 
-        public setExpand(b: boolean): BaseComboBox {
+        public setExpand(b: boolean): BaseComboBox<T> {
             if (b){
                 this.combobox.setAttribute("aria-expanded", "true").addClass("slds-is-open");
                 this.dropdown.addClass("slds-dropdown_length_with-icon-7");
@@ -359,21 +359,32 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
-        /**
-         * 
-         * @return {string}
-         */
-        public getValue(): string {
-            return this.input.getValue();
+        encode(s: string): T {
+            return <T><any>s;
+        }
+
+        decode(t: T): string {
+            if (t == null){
+                return <string>null;
+            }
+            return t.toString();
         }
 
         /**
          * 
-         * @param {string} val
+         * @return {*}
          */
-        public setValue(val: string) {
-            this.input.setValue(val);
-            this.dropdown.setValue(val);
+        public getValue(): T {
+            return this.encode(this.input.getValue());
+        }
+
+        /**
+         * 
+         * @param {*} val
+         */
+        public setValue(val: T) {
+            this.input.setValue(this.decode(val));
+            this.dropdown.setValue(this.decode(val));
         }
 
         /**
@@ -396,7 +407,7 @@ namespace com.spoonconsulting.lightning {
          * @param {string} binding
          * @return {*}
          */
-        public setBinding(binding: string): api.InputField<string> {
+        public setBinding(binding: string): api.InputField<T> {
             this.setAttribute("binding", binding);
             return this;
         }
@@ -406,12 +417,12 @@ namespace com.spoonconsulting.lightning {
          * @param {boolean} b
          * @return {*}
          */
-        public setRequired(b: boolean): api.InputField<string> {
+        public setRequired(b: boolean): api.InputField<T> {
             this.input.setRequired(b);
             return this;
         }
 
-        public setDisabled(b: boolean): BaseComboBox {
+        public setDisabled(b: boolean): BaseComboBox<T> {
             this.input.setDisabled(b);
             return this;
         }
@@ -420,7 +431,7 @@ namespace com.spoonconsulting.lightning {
             return this.input.getAttribute("disabled") === "true";
         }
 
-        public setDropdownAlignment(alignment: string): BaseComboBox {
+        public setDropdownAlignment(alignment: string): BaseComboBox<T> {
             if (alignment === BaseComboBox.DROPDOWN_ALIGNMENT_BOTTOM_LEFT){
                 this.dropdown.addClass("slds-dropdown_bottom").addClass("slds-dropdown_bottom-left");
             } else {
@@ -446,10 +457,26 @@ namespace com.spoonconsulting.lightning {
             return null;
         }
 
-        public setCustomValidity(message: string, type: string, description: string): BaseComboBox {
+        public setCustomValidity(message: string, type: string, description: string): BaseComboBox<T> {
             const __in: HTMLInputElement = <HTMLInputElement>this.input.getElement();
             if (__in != null)__in.setCustomValidity(message);
             return this;
+        }
+
+        public getCombobox(): JSContainer {
+            return this.combobox;
+        }
+
+        public getInput(): input.JSTextInput {
+            return this.input;
+        }
+
+        public getDropdown(): com.spoonconsulting.lightning.ListBox {
+            return this.dropdown;
+        }
+
+        public getInputIcon(): com.spoonconsulting.lightning.IconContainer {
+            return this.inputIcon;
         }
     }
     BaseComboBox["__class"] = "com.spoonconsulting.lightning.BaseComboBox";
@@ -685,6 +712,45 @@ namespace com.spoonconsulting.lightning {
             verticalMenu.addTab(tab, panel);
         }
 
+        /*private*/ static getModal(): JSContainer {
+            const container: JSContainer = new JSContainer("ctn", "div");
+            const button: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("open");
+            button.setVariant$com_spoonconsulting_lightning_Variant(com.spoonconsulting.lightning.Variant.BRAND);
+            button.setLabel("Open");
+            container.addChild(button);
+            const modal: com.spoonconsulting.lightning.Modal = new com.spoonconsulting.lightning.Modal("modal");
+            const firstName: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("firstName", new input.JSTextInput("firstName")));
+            const lastName: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("lastName", new input.JSTextInput("lastName")));
+            const email: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("email", new input.JSTextInput("email")));
+            firstName.setLabel("First Name");
+            lastName.setLabel("Last Name");
+            email.setLabel("Email");
+            const form: input.JSForm = new input.JSForm("form");
+            form.setStyle("padding", "0.5rem");
+            modal.setTitle("User Registration");
+            form.addChild(firstName);
+            form.addChild(lastName);
+            form.addChild(email);
+            modal.getContent().addChild(form);
+            const save: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("save");
+            save.setLabel("Save");
+            save.setVariant$com_spoonconsulting_lightning_Variant(com.spoonconsulting.lightning.Variant.BRAND);
+            const cancel: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("cancel");
+            cancel.setLabel("Cancel");
+            cancel.setVariant$com_spoonconsulting_lightning_Variant(com.spoonconsulting.lightning.Variant.NEUTRAL);
+            cancel.addEventListener(new Boot.Boot$5(modal), "click");
+            save.addEventListener(new Boot.Boot$6(form), "click");
+            form.addEventListener(new Boot.Boot$7(form), "onSubmit");
+            modal.getFooter().addChild(save);
+            modal.getFooter().addChild(cancel);
+            container.addChild(modal);
+            const bd: com.spoonconsulting.lightning.Modal.BackDrop = new com.spoonconsulting.lightning.Modal.BackDrop("bd");
+            container.addChild(bd);
+            modal.setBackdrop(bd);
+            button.addEventListener(new Boot.Boot$8(modal), "click");
+            return container;
+        }
+
         public static getVerticalMenu(): com.spoonconsulting.lightning.TabSet {
             const set: com.spoonconsulting.lightning.TabSet = new com.spoonconsulting.lightning.TabSet("menu");
             set.setVariant$com_spoonconsulting_lightning_TabSet_TabSetVariant(com.spoonconsulting.lightning.TabSet.TabSetVariant.VERTICAL).setStyle("height", "100vh");
@@ -692,6 +758,7 @@ namespace com.spoonconsulting.lightning {
             Boot.addVerticalTab("Paths", Boot.getPathSample(), set);
             Boot.addVerticalTab("Combo box", Boot.getSampleCOmbo(), set);
             Boot.addVerticalTab("Buttons", Boot.getButtons(), set);
+            Boot.addVerticalTab("Modals", Boot.getModal(), set);
             return set;
         }
     }
@@ -792,6 +859,75 @@ namespace com.spoonconsulting.lightning {
             }
         }
         Boot$4["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class Boot$5 implements api.EventListener {
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.modal.close();
+            }
+
+            constructor(private modal: any) {
+            }
+        }
+        Boot$5["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class Boot$6 implements api.EventListener {
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.form.submit();
+            }
+
+            constructor(private form: any) {
+            }
+        }
+        Boot$6["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class Boot$7 implements api.EventListener {
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                const data: Object = this.form.getData();
+                alert(JSON.stringify(data));
+            }
+
+            constructor(private form: any) {
+            }
+        }
+        Boot$7["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class Boot$8 implements api.EventListener {
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.modal.open();
+            }
+
+            constructor(private modal: any) {
+            }
+        }
+        Boot$8["__interfaces"] = ["framework.components.api.EventListener"];
 
 
     }
@@ -1053,6 +1189,191 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class CheckBox extends JSContainer implements api.InputField<boolean> {
+        /*private*/ checkbox: input.JSCheckBox;
+
+        /*private*/ checkBoxLabel: JSContainer;
+
+        /*private*/ label: JSContainer;
+
+        public constructor(name: string) {
+            super(name, "span");
+            this.checkbox = new input.JSCheckBox("input");
+            this.checkBoxLabel = new JSContainer("checkbox-label", "label");
+            this.label = new JSContainer("label", "span");
+            this.addClass("slds-checkbox");
+            this.addChild(this.checkbox);
+            this.addChild(this.checkBoxLabel);
+            this.checkBoxLabel.addClass("slds-checkbox__label");
+            this.checkBoxLabel.addChild("faux", "span", "slds-checkbox_faux");
+            this.label.addClass("slds-form-element__label");
+            this.checkBoxLabel.addChild(this.label);
+        }
+
+        getCheckBoxLabel(): JSContainer {
+            return this.checkBoxLabel;
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
+        }
+
+        public setLabel(label: string): CheckBox {
+            this.label.setHtml(label);
+            return this;
+        }
+
+        public getCheckBox(): input.JSCheckBox {
+            return this.checkbox;
+        }
+
+        /**
+         * 
+         * @return {boolean}
+         */
+        public getValue(): boolean {
+            return this.checkbox.getValue();
+        }
+
+        /**
+         * 
+         * @param {boolean} val
+         */
+        public setValue(val: boolean) {
+            this.checkbox.setValue(val);
+        }
+
+        /**
+         * 
+         */
+        public validate() {
+            this.checkbox.validate();
+        }
+
+        /**
+         * 
+         * @return {string}
+         */
+        public getBinding(): string {
+            return this.checkbox.getBinding();
+        }
+
+        /**
+         * 
+         * @param {string} binding
+         * @return {*}
+         */
+        public setBinding(binding: string): api.InputField<boolean> {
+            this.checkbox.setBinding(binding);
+            return this;
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {*}
+         */
+        public setRequired(b: boolean): api.InputField<boolean> {
+            this.checkbox.setRequired(b);
+            return this;
+        }
+    }
+    CheckBox["__class"] = "com.spoonconsulting.lightning.CheckBox";
+    CheckBox["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
+    export class CheckBoxButton extends JSContainer implements api.InputField<boolean> {
+        /*private*/ checkBox: input.JSCheckBox;
+
+        /*private*/ faux: JSContainer;
+
+        /*private*/ label: JSContainer;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.checkBox = new input.JSCheckBox("input");
+            this.faux = new JSContainer("faux", "label");
+            this.label = new JSContainer("label", "span");
+            this.addChild(this.checkBox);
+            this.addClass("slds-checkbox_add-button");
+            this.checkBox.addClass("slds-assistive-text");
+            this.addChild(this.faux);
+            this.faux.addChild(this.label);
+            this.label.addClass("slds-assistive-text");
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
+        }
+
+        public setLabel(label: string): CheckBoxButton {
+            this.label.setHtml(label);
+            return this;
+        }
+
+        public getCheckBox(): input.JSCheckBox {
+            return this.checkBox;
+        }
+
+        /**
+         * 
+         * @return {boolean}
+         */
+        public getValue(): boolean {
+            return this.checkBox.getValue();
+        }
+
+        /**
+         * 
+         * @param {boolean} val
+         */
+        public setValue(val: boolean) {
+            this.checkBox.setValue(val);
+        }
+
+        /**
+         * 
+         */
+        public validate() {
+            this.checkBox.validate();
+        }
+
+        /**
+         * 
+         * @return {string}
+         */
+        public getBinding(): string {
+            return this.checkBox.getBinding();
+        }
+
+        /**
+         * 
+         * @param {string} binding
+         * @return {*}
+         */
+        public setBinding(binding: string): api.InputField<boolean> {
+            this.checkBox.setBinding(binding);
+            return this;
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {*}
+         */
+        public setRequired(b: boolean): api.InputField<boolean> {
+            this.checkBox.setRequired(b);
+            return this;
+        }
+    }
+    CheckBoxButton["__class"] = "com.spoonconsulting.lightning.CheckBoxButton";
+    CheckBoxButton["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class Dropdown extends JSContainer {
         /*private*/ menu: com.spoonconsulting.lightning.Menu;
 
@@ -1133,34 +1454,65 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ variant: FormElement.FormElementVariant;
 
-        public constructor(name: string, input: api.InputField<T>) {
-            super(name, "div");
-            this.labelCtn = new JSContainer("label-ctn", "label");
-            this.required = new JSContainer("required", "abbr");
-            this.label = new JSContainer("label", "span");
-            this.controlCtn = new JSContainer("control-ctn", "div");
-            if (this.input === undefined) { this.input = null; }
-            if (this.value === undefined) { this.value = null; }
-            this.formElementIcon = new JSContainer("form-element-icon", "div");
-            this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
-            this.help = new JSContainer("help", "div");
-            this.variant = FormElement.FormElementVariant.STANDARD;
-            this.addClass("slds-form-element");
-            this.addChild(this.labelCtn);
-            this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
-            this.formElementIcon.addChild(this.fieldLevelHelp);
-            this.addChild(this.formElementIcon);
-            this.labelCtn.addClass("slds-form-element__label");
-            this.required.addClass("slds-required").setAttribute("title", "required");
-            this.labelCtn.addChild(this.required);
-            this.labelCtn.addChild(this.label);
-            this.addChild(this.controlCtn);
-            this.controlCtn.addClass("slds-form-element__control");
-            this.setInput(input);
-            this.addChild(this.help);
-            this.help.addClass("slds-form-element__help");
-            this.help.setStyle("display", "none");
-            this.setRequired(false);
+        public constructor(name?: any, input?: any) {
+            if (((typeof name === 'string') || name === null) && ((input != null && (input.constructor != null && input.constructor["__interfaces"] != null && input.constructor["__interfaces"].indexOf("framework.components.api.InputField") >= 0)) || input === null)) {
+                let __args = arguments;
+                super(name, "div");
+                if (this.input === undefined) { this.input = null; } 
+                if (this.value === undefined) { this.value = null; } 
+                this.labelCtn = new JSContainer("label-ctn", "label");
+                this.required = new JSContainer("required", "abbr");
+                this.label = new JSContainer("label", "span");
+                this.controlCtn = new JSContainer("control-ctn", "div");
+                this.formElementIcon = new JSContainer("form-element-icon", "div");
+                this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
+                this.help = new JSContainer("help", "div");
+                this.variant = FormElement.FormElementVariant.STANDARD;
+                this.addClass("slds-form-element");
+                this.addChild(this.labelCtn);
+                this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
+                this.formElementIcon.addChild(this.fieldLevelHelp);
+                this.addChild(this.formElementIcon);
+                this.labelCtn.addClass("slds-form-element__label");
+                this.required.addClass("slds-required").setAttribute("title", "required");
+                this.labelCtn.addChild(this.required);
+                this.labelCtn.addChild(this.label);
+                this.addChild(this.controlCtn);
+                this.controlCtn.addClass("slds-form-element__control");
+                this.setInput(input);
+                this.addChild(this.help);
+                this.help.addClass("slds-form-element__help");
+                this.help.setStyle("display", "none");
+                this.setRequired(false);
+            } else if (((typeof name === 'string') || name === null) && input === undefined) {
+                let __args = arguments;
+                super(name, "div");
+                if (this.input === undefined) { this.input = null; } 
+                if (this.value === undefined) { this.value = null; } 
+                this.labelCtn = new JSContainer("label-ctn", "label");
+                this.required = new JSContainer("required", "abbr");
+                this.label = new JSContainer("label", "span");
+                this.controlCtn = new JSContainer("control-ctn", "div");
+                this.formElementIcon = new JSContainer("form-element-icon", "div");
+                this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
+                this.help = new JSContainer("help", "div");
+                this.variant = FormElement.FormElementVariant.STANDARD;
+                this.addClass("slds-form-element");
+                this.addChild(this.labelCtn);
+                this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
+                this.formElementIcon.addChild(this.fieldLevelHelp);
+                this.addChild(this.formElementIcon);
+                this.labelCtn.addClass("slds-form-element__label");
+                this.required.addClass("slds-required").setAttribute("title", "required");
+                this.labelCtn.addChild(this.required);
+                this.labelCtn.addChild(this.label);
+                this.addChild(this.controlCtn);
+                this.controlCtn.addClass("slds-form-element__control");
+                this.addChild(this.help);
+                this.help.addClass("slds-form-element__help");
+                this.help.setStyle("display", "none");
+                this.setRequired(false);
+            } else throw new Error('invalid overload');
         }
 
         public setRequired(b: boolean): FormElement<T> {
@@ -1442,6 +1794,33 @@ namespace com.spoonconsulting.lightning {
     Icon["__class"] = "com.spoonconsulting.lightning.Icon";
     Icon["__interfaces"] = ["framework.components.api.Renderable"];
 
+
+}
+namespace com.spoonconsulting.lightning {
+    export enum InputType {
+        CHECKBOX, CHECKBOX_BUTTON, DATE, DATETIME, TIME, EMAIL, FILE, PASSWORD, SEARCH, TEL, URL, NUMBER, TEXT, TOGGLE
+    }
+
+    /** @ignore */
+    export class InputType_$WRAPPER {
+        /*private*/ value;
+
+        constructor(protected _$ordinal: number, protected _$name: string, value) {
+            if (this.value === undefined) { this.value = null; }
+            this.value = value;
+        }
+
+        public getValue(): string {
+            return this.value;
+        }
+        public name(): string { return this._$name; }
+        public ordinal(): number { return this._$ordinal; }
+        public compareTo(other: any): number { return this._$ordinal - (isNaN(other)?other._$ordinal:other); }
+    }
+    InputType["__class"] = "com.spoonconsulting.lightning.InputType";
+    InputType["__interfaces"] = ["java.lang.constant.Constable","java.lang.Comparable","java.io.Serializable"];
+
+    InputType["_$wrappers"] = {0: new InputType_$WRAPPER(0, "CHECKBOX", "checkbox"), 1: new InputType_$WRAPPER(1, "CHECKBOX_BUTTON", "checkbox-button"), 2: new InputType_$WRAPPER(2, "DATE", "date"), 3: new InputType_$WRAPPER(3, "DATETIME", "datetime"), 4: new InputType_$WRAPPER(4, "TIME", "time"), 5: new InputType_$WRAPPER(5, "EMAIL", "email"), 6: new InputType_$WRAPPER(6, "FILE", "file"), 7: new InputType_$WRAPPER(7, "PASSWORD", "password"), 8: new InputType_$WRAPPER(8, "SEARCH", "search"), 9: new InputType_$WRAPPER(9, "TEL", "tel"), 10: new InputType_$WRAPPER(10, "URL", "url"), 11: new InputType_$WRAPPER(11, "NUMBER", "number"), 12: new InputType_$WRAPPER(12, "TEXT", "text"), 13: new InputType_$WRAPPER(13, "TOGGLE", "toggle")};
 
 }
 namespace com.spoonconsulting.lightning {
@@ -2086,6 +2465,158 @@ namespace com.spoonconsulting.lightning {
     MenuSubHeader["__class"] = "com.spoonconsulting.lightning.MenuSubHeader";
     MenuSubHeader["__interfaces"] = ["framework.components.api.Renderable"];
 
+
+}
+namespace com.spoonconsulting.lightning {
+    export class Modal extends JSContainer {
+        /*private*/ container: JSContainer;
+
+        /*private*/ header: JSContainer;
+
+        /*private*/ content: JSContainer;
+
+        /*private*/ footer: JSContainer;
+
+        /*private*/ __close: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ title: JSContainer;
+
+        /*private*/ tagLine: JSContainer;
+
+        /*private*/ backdrop: Modal.BackDrop;
+
+        public constructor(name: string) {
+            super(name, "section");
+            this.container = new JSContainer("container", "div");
+            this.header = new JSContainer("header", "div");
+            this.content = new JSContainer("content", "div");
+            this.footer = new JSContainer("footer", "div");
+            this.__close = new com.spoonconsulting.lightning.ButtonIcon("close", "utility:close");
+            this.title = new JSContainer("title", "h2");
+            this.tagLine = new JSContainer("tagLine", "p");
+            this.backdrop = null;
+            this.setAttribute("role", "dialog");
+            this.setAttribute("tabindex", "-1");
+            this.setAttribute("aria-modal", "true");
+            this.addClass("slds-modal");
+            this.addChild(this.container);
+            this.container.addChild(this.header);
+            this.container.addChild(this.content);
+            this.container.addChild(this.footer);
+            this.container.addClass("slds-modal__container");
+            this.header.addClass("slds-modal__header");
+            this.content.addClass("slds-modal__content");
+            this.footer.addClass("slds-modal__footer");
+            this.__close.setSize$com_spoonconsulting_lightning_Size(com.spoonconsulting.lightning.Size.LARGE);
+            this.__close.setVariant$com_spoonconsulting_lightning_Variant(com.spoonconsulting.lightning.Variant.INVERSE);
+            this.__close.addClass("slds-modal__close");
+            this.header.addChild(this.__close);
+            this.title.addClass("slds-modal__title");
+            this.title.addClass("slds-hyphenate");
+            this.header.addChild(this.title);
+            this.tagLine.addClass("slds-m-top_x-small");
+            this.tagLine.setStyle("display", "none");
+            this.header.addChild(this.tagLine);
+            this.__close.addEventListener(new Modal.Modal$0(this), "click");
+        }
+
+        public close() {
+            this.removeClass("slds-fade-in-open");
+            if (this.backdrop != null){
+                this.backdrop.removeClass("slds-backdrop_open");
+            }
+        }
+
+        public open() {
+            this.addClass("slds-fade-in-open");
+            if (this.backdrop != null){
+                this.backdrop.addClass("slds-backdrop_open");
+            }
+        }
+
+        public getContainer(): JSContainer {
+            return this.container;
+        }
+
+        public getHeader(): JSContainer {
+            return this.header;
+        }
+
+        public getContent(): JSContainer {
+            return this.content;
+        }
+
+        public getFooter(): JSContainer {
+            return this.footer;
+        }
+
+        public getClose(): com.spoonconsulting.lightning.ButtonIcon {
+            return this.__close;
+        }
+
+        public getTitle(): string {
+            return this.title.getHtml();
+        }
+
+        public setTitle(title: string): Modal {
+            this.title.setHtml(title);
+            return this;
+        }
+
+        public getTagLine(): string {
+            return this.tagLine.getHtml();
+        }
+
+        public setTagLine(tagLine: string): Modal {
+            this.tagLine.setHtml(tagLine);
+            return this;
+        }
+
+        public getBackdrop(): Modal.BackDrop {
+            return this.backdrop;
+        }
+
+        public setBackdrop(backdrop: Modal.BackDrop) {
+            this.backdrop = backdrop;
+        }
+    }
+    Modal["__class"] = "com.spoonconsulting.lightning.Modal";
+    Modal["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace Modal {
+
+        export class BackDrop extends JSContainer {
+            public constructor(name: string) {
+                super(name, "div");
+                this.addClass("slds-backdrop");
+            }
+        }
+        BackDrop["__class"] = "com.spoonconsulting.lightning.Modal.BackDrop";
+        BackDrop["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+        export class Modal$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.close();
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        Modal$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
 
 }
 namespace com.spoonconsulting.lightning {
@@ -3145,6 +3676,495 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class VerticalNavigation extends JSContainer {
+        /*private*/ compact: boolean;
+
+        /*private*/ selectedItem: string;
+
+        /*private*/ selectedSection: string;
+
+        /*private*/ shaded: boolean;
+
+        public constructor(name: string) {
+            super(name, "nav");
+            this.compact = false;
+            this.selectedItem = null;
+            this.selectedSection = null;
+            this.shaded = false;
+            this.addClass("slds-nav-vertical__section");
+        }
+
+        public isCompact(): boolean {
+            return this.compact;
+        }
+
+        public setCompact(compact: boolean): VerticalNavigation {
+            this.compact = compact;
+            this.removeClass("slds-nav-vertical_compact");
+            if (compact){
+                this.addClass("slds-nav-vertical_compact");
+            }
+            return this;
+        }
+
+        public addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section: com.spoonconsulting.lightning.VerticalNavigationSection): VerticalNavigation {
+            this.addChild(section);
+            section.addEventListener(new VerticalNavigation.VerticalNavigation$0(this), "selected");
+            return this;
+        }
+
+        public addSection$java_lang_String$java_lang_String(name: string, label: string): com.spoonconsulting.lightning.VerticalNavigationSection {
+            const section: com.spoonconsulting.lightning.VerticalNavigationSection = new com.spoonconsulting.lightning.VerticalNavigationSection(name);
+            section.setLabel(label);
+            this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
+            return section;
+        }
+
+        public addSection(name?: any, label?: any): any {
+            if (((typeof name === 'string') || name === null) && ((typeof label === 'string') || label === null)) {
+                return <any>this.addSection$java_lang_String$java_lang_String(name, label);
+            } else if (((name != null && name instanceof <any>com.spoonconsulting.lightning.VerticalNavigationSection) || name === null) && label === undefined) {
+                return <any>this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(name);
+            } else throw new Error('invalid overload');
+        }
+
+        public getSection(name: string): com.spoonconsulting.lightning.VerticalNavigationSection {
+            {
+                let array170 = this.getSections();
+                for(let index169=0; index169 < array170.length; index169++) {
+                    let section = array170[index169];
+                    {
+                        if (section.getName() === name){
+                            return section;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public getItem$java_lang_String(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
+            {
+                let array172 = this.getItems();
+                for(let index171=0; index171 < array172.length; index171++) {
+                    let item = array172[index171];
+                    {
+                        if (item.getName() === name){
+                            return item;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public getItem$java_lang_String$java_lang_String(sectionName: string, itemName: string): com.spoonconsulting.lightning.VerticalNavigationItem {
+            const section: com.spoonconsulting.lightning.VerticalNavigationSection = this.getSection(sectionName);
+            if (section != null){
+                return section.getItem(itemName);
+            }
+            return null;
+        }
+
+        public getItem(sectionName?: any, itemName?: any): any {
+            if (((typeof sectionName === 'string') || sectionName === null) && ((typeof itemName === 'string') || itemName === null)) {
+                return <any>this.getItem$java_lang_String$java_lang_String(sectionName, itemName);
+            } else if (((typeof sectionName === 'string') || sectionName === null) && itemName === undefined) {
+                return <any>this.getItem$java_lang_String(sectionName);
+            } else throw new Error('invalid overload');
+        }
+
+        public addSections(...sections: com.spoonconsulting.lightning.VerticalNavigationSection[]): VerticalNavigation {
+            for(let index173=0; index173 < sections.length; index173++) {
+                let section = sections[index173];
+                {
+                    this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
+                }
+            }
+            return this;
+        }
+
+        public getSections(): Array<com.spoonconsulting.lightning.VerticalNavigationSection> {
+            const result: Array<any> = this.getChildren();
+            return result;
+        }
+
+        public getSelectedItem(): string {
+            return this.selectedItem;
+        }
+
+        public setSelectedItem$java_lang_String$java_lang_String(selectedSection: string, selectedItem: string): VerticalNavigation {
+            this.selectedItem = selectedItem;
+            this.selectedSection = selectedSection;
+            {
+                let array175 = this.getSections();
+                for(let index174=0; index174 < array175.length; index174++) {
+                    let section = array175[index174];
+                    {
+                        if (section.getName() !== selectedSection){
+                            section.setSelectedItem(null);
+                        }
+                    }
+                }
+            }
+            return this;
+        }
+
+        public setSelectedItem(selectedSection?: any, selectedItem?: any): any {
+            if (((typeof selectedSection === 'string') || selectedSection === null) && ((typeof selectedItem === 'string') || selectedItem === null)) {
+                return <any>this.setSelectedItem$java_lang_String$java_lang_String(selectedSection, selectedItem);
+            } else if (((typeof selectedSection === 'string') || selectedSection === null) && selectedItem === undefined) {
+                return <any>this.setSelectedItem$java_lang_String(selectedSection);
+            } else throw new Error('invalid overload');
+        }
+
+        public getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem> {
+            const result: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = <any>(new Array<com.spoonconsulting.lightning.VerticalNavigationItem>());
+            {
+                let array177 = this.getSections();
+                for(let index176=0; index176 < array177.length; index176++) {
+                    let section = array177[index176];
+                    {
+                        {
+                            let array179 = section.getItems();
+                            for(let index178=0; index178 < array179.length; index178++) {
+                                let item = array179[index178];
+                                {
+                                    result.push(item);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public getSelectedSection(): string {
+            return this.selectedSection;
+        }
+
+        public setSelectedItem$java_lang_String(selectedItem: string): VerticalNavigation {
+            this.selectedItem = selectedItem;
+            {
+                let array181 = this.getItems();
+                for(let index180=0; index180 < array181.length; index180++) {
+                    let item = array181[index180];
+                    {
+                        item.setSelected(item.getName() === selectedItem);
+                        if (item.getName() === selectedItem){
+                            this.selectedSection = item.getSection().getName();
+                        }
+                    }
+                }
+            }
+            return this;
+        }
+
+        public isShaded(): boolean {
+            return this.shaded;
+        }
+
+        public setShaded(shaded: boolean): VerticalNavigation {
+            this.shaded = shaded;
+            this.removeClass("slds-nav-vertical_shade");
+            if (shaded){
+                this.addClass("slds-nav-vertical_shade");
+            }
+            return this;
+        }
+    }
+    VerticalNavigation["__class"] = "com.spoonconsulting.lightning.VerticalNavigation";
+    VerticalNavigation["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace VerticalNavigation {
+
+        export class VerticalNavigation$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                const selected: api.Renderable = <api.Renderable><any>evt["selectedItem"];
+                this.__parent.setSelectedItem(source.getName(), selected.getName());
+                evt["selectedSection"] = source;
+                this.__parent.fireListener("selected", evt);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        VerticalNavigation$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class VerticalNavigationItem extends JSContainer {
+        /*private*/ action: JSContainer;
+
+        /*private*/ label: JSContainer;
+
+        /*private*/ selected: boolean;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.action = new JSContainer("action", "a");
+            this.label = new JSContainer("label", "span");
+            this.selected = false;
+            this.addClass("slds-nav-vertical__item").setAttribute("role", "listitem");
+            this.addChild(this.action);
+            this.action.addClass("slds-nav-vertical__action").setAttribute("href", "javascript:void(0);");
+            this.action.addChild(this.label);
+            this.action.addEventListener(new VerticalNavigationItem.VerticalNavigationItem$0(this), "click");
+        }
+
+        public getSection(): com.spoonconsulting.lightning.VerticalNavigationSection {
+            return <any>(this.getAncestorWithClass<any>("slds-nav-vertical__section"));
+        }
+
+        public setSelected(b: boolean): VerticalNavigationItem {
+            this.selected = b;
+            this.removeClass("slds-is-active");
+            if (b){
+                this.addClass("slds-is-active");
+                this.setAttribute("aria-current", "page");
+            } else {
+                this.setAttribute("aria-current", null);
+            }
+            return this;
+        }
+
+        public isSelected(): boolean {
+            return this.selected;
+        }
+
+        getAction(): JSContainer {
+            return this.action;
+        }
+
+        public setLabel(label: string): VerticalNavigationItem {
+            this.label.setHtml(label);
+            return this;
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
+        }
+
+        public setHref(href: string): VerticalNavigationItem {
+            this.action.setAttribute("href", href);
+            return this;
+        }
+
+        public getHref(): string {
+            return this.action.getAttribute("href");
+        }
+    }
+    VerticalNavigationItem["__class"] = "com.spoonconsulting.lightning.VerticalNavigationItem";
+    VerticalNavigationItem["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace VerticalNavigationItem {
+
+        export class VerticalNavigationItem$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.setSelected(true);
+                const event: CustomEvent = new CustomEvent("selected");
+                event["source"] = source.getParent();
+                this.__parent.fireListener("selected", event);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        VerticalNavigationItem$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class VerticalNavigationSection extends JSContainer {
+        /*private*/ label: JSContainer;
+
+        /*private*/ list: JSContainer;
+
+        /*private*/ selectedItem: string;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.label = new JSContainer("label", "h2");
+            this.list = new JSContainer("list", "div");
+            this.selectedItem = null;
+            this.addClass("slds-nav-vertical__section");
+            this.addChild(this.label);
+            this.label.addClass("slds-nav-vertical__title");
+            this.addChild(this.list);
+            this.list.setAttribute("role", "list");
+            this.list.setAttribute("aria-describedby", this.label.getId());
+            this.addEventListener(new VerticalNavigationSection.VerticalNavigationSection$0(this), "selected");
+        }
+
+        public addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item: com.spoonconsulting.lightning.VerticalNavigationItem): VerticalNavigationSection {
+            this.list.addChild(item);
+            item.addEventListener(new VerticalNavigationSection.VerticalNavigationSection$1(this), "selected");
+            return this;
+        }
+
+        public setSelectedItem(name: string): VerticalNavigationSection {
+            this.selectedItem = name;
+            const items: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = this.getItems();
+            for(let index182=0; index182 < items.length; index182++) {
+                let item = items[index182];
+                {
+                    item.setSelected(item.getName() === name);
+                }
+            }
+            return this;
+        }
+
+        public addItem$java_lang_String$java_lang_String(name: string, label: string): com.spoonconsulting.lightning.VerticalNavigationItem {
+            const item: com.spoonconsulting.lightning.VerticalNavigationItem = new com.spoonconsulting.lightning.VerticalNavigationItem(name);
+            item.setLabel(label);
+            this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
+            return item;
+        }
+
+        public addItem$java_lang_String$java_lang_String$int(name: string, label: string, badgeCount: number): com.spoonconsulting.lightning.VerticalNavigationItemBadge {
+            const item: com.spoonconsulting.lightning.VerticalNavigationItemBadge = new com.spoonconsulting.lightning.VerticalNavigationItemBadge(name);
+            item.setLabel(label);
+            item.setBadgeCount(badgeCount);
+            this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
+            return item;
+        }
+
+        public addItem$java_lang_String$java_lang_String$java_lang_String(name: string, label: string, iconName: string): com.spoonconsulting.lightning.VerticalNavigationItemIcon {
+            const item: com.spoonconsulting.lightning.VerticalNavigationItemIcon = new com.spoonconsulting.lightning.VerticalNavigationItemIcon(name);
+            item.setLabel(label);
+            item.setIconName(iconName);
+            this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
+            return item;
+        }
+
+        public addItem(name?: any, label?: any, iconName?: any): any {
+            if (((typeof name === 'string') || name === null) && ((typeof label === 'string') || label === null) && ((typeof iconName === 'string') || iconName === null)) {
+                return <any>this.addItem$java_lang_String$java_lang_String$java_lang_String(name, label, iconName);
+            } else if (((typeof name === 'string') || name === null) && ((typeof label === 'string') || label === null) && ((typeof iconName === 'number') || iconName === null)) {
+                return <any>this.addItem$java_lang_String$java_lang_String$int(name, label, iconName);
+            } else if (((typeof name === 'string') || name === null) && ((typeof label === 'string') || label === null) && iconName === undefined) {
+                return <any>this.addItem$java_lang_String$java_lang_String(name, label);
+            } else if (((name != null && name instanceof <any>com.spoonconsulting.lightning.VerticalNavigationItem) || name === null) && label === undefined && iconName === undefined) {
+                return <any>this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(name);
+            } else throw new Error('invalid overload');
+        }
+
+        public getItem(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
+            {
+                let array184 = this.getItems();
+                for(let index183=0; index183 < array184.length; index183++) {
+                    let item = array184[index183];
+                    {
+                        if (item.getName() === name){
+                            return item;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public getSelectedItem(): string {
+            return this.selectedItem;
+        }
+
+        public addItems(...items: com.spoonconsulting.lightning.VerticalNavigationItem[]): VerticalNavigationSection {
+            for(let index185=0; index185 < items.length; index185++) {
+                let item = items[index185];
+                {
+                    this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
+                }
+            }
+            return this;
+        }
+
+        public getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem> {
+            const result: Array<any> = this.list.getChildren();
+            return result;
+        }
+
+        public setLabel(label: string): VerticalNavigationSection {
+            this.label.setHtml(label);
+            return this;
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
+        }
+    }
+    VerticalNavigationSection["__class"] = "com.spoonconsulting.lightning.VerticalNavigationSection";
+    VerticalNavigationSection["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace VerticalNavigationSection {
+
+        export class VerticalNavigationSection$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        VerticalNavigationSection$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class VerticalNavigationSection$1 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.setSelectedItem(source.getName());
+                evt["selectedItem"] = source;
+                this.__parent.fireListener("selected", evt);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        VerticalNavigationSection$1["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
     export class Path extends com.spoonconsulting.lightning.AbstractProgress implements com.spoonconsulting.lightning.IProgress {
         /*private*/ track: JSContainer;
 
@@ -3274,6 +4294,124 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class TimeInput extends com.spoonconsulting.lightning.BaseComboBox<Date> {
+        /*private*/ min: string;
+
+        /*private*/ max: string;
+
+        public constructor(name: string) {
+            super(name);
+            this.min = "00:00";
+            this.max = "23:30";
+            this.getInputIcon().setIconName("utility:clock");
+        }
+
+        /**
+         * 
+         * @param {string} s
+         * @return {Date}
+         */
+        encode(s: string): Date {
+            if (s == null){
+                return null;
+            }
+            if (s === ""){
+                return null;
+            }
+            const parts: string[] = s.split(":");
+            const dt: Date = new Date();
+            dt.setHours(/* parseInt */parseInt(parts[0]));
+            dt.setMinutes(/* parseInt */parseInt(parts[1]));
+            return dt;
+        }
+
+        public decode$jsweet_lang_Date(t: Date): string {
+            if (t == null){
+                return "";
+            }
+            const hrs: number = t.getHours();
+            const mins: number = t.getMinutes();
+            return this.to2dp(hrs) + ":" + this.to2dp(mins);
+        }
+
+        /**
+         * 
+         * @param {Date} t
+         * @return {string}
+         */
+        public decode(t?: any): any {
+            if (((t != null && t instanceof <any>Date) || t === null)) {
+                return <any>this.decode$jsweet_lang_Date(t);
+            } else if (((t != null) || t === null)) {
+                return super.decode(t);
+            } else throw new Error('invalid overload');
+        }
+
+        /*private*/ to2dp(i: number): string {
+            return i < 10 ? "0" + i : i + "";
+        }
+
+        public refresh() {
+            const start: string[] = this.min.split(":");
+            const end: string[] = this.max.split(":");
+            const startHr: number = /* parseInt */parseInt(start[0]);
+            const startMin: number = /* parseInt */parseInt(start[1]);
+            const endHr: number = /* parseInt */parseInt(end[0]);
+            const endMin: number = /* parseInt */parseInt(end[1]);
+            const options: Array<Object> = <any>(new Array<Object>());
+            for(let i: number = startHr; i <= endHr; i++) {{
+                const zero: Object = <Object>new Object();
+                zero["label"] = i < 10 ? "0" + i + ":00" : i + ":00";
+                zero["value"] = i < 10 ? "0" + i + ":00" : i + ":00";
+                const quater: Object = <Object>new Object();
+                quater["label"] = i < 10 ? "0" + i + ":15" : i + ":15";
+                quater["value"] = i < 10 ? "0" + i + ":15" : i + ":15";
+                const half: Object = <Object>new Object();
+                half["label"] = i < 10 ? "0" + i + ":30" : i + ":30";
+                half["value"] = i < 10 ? "0" + i + ":30" : i + ":30";
+                const tquater: Object = <Object>new Object();
+                tquater["label"] = i < 10 ? "0" + i + ":45" : i + ":45";
+                tquater["value"] = i < 10 ? "0" + i + ":45" : i + ":45";
+                if (i === startHr){
+                    if (startMin < 15){
+                        options.push(zero);
+                    }
+                    if (startMin < 30){
+                        options.push(quater);
+                    }
+                    if (startMin < 45){
+                        options.push(half);
+                    }
+                    if (startMin < 60){
+                        options.push(tquater);
+                    }
+                } else if (i === endHr){
+                    options.push(zero);
+                    if (endMin >= 15){
+                        options.push(quater);
+                    }
+                    if (endMin >= 30){
+                        options.push(half);
+                    }
+                    if (endMin >= 45){
+                        options.push(tquater);
+                    }
+                } else {
+                    options.push(zero);
+                    options.push(quater);
+                    options.push(half);
+                    options.push(tquater);
+                }
+                this.setOptions(options);
+            };}
+        }
+    }
+    TimeInput["__class"] = "com.spoonconsulting.lightning.TimeInput";
+    TimeInput["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class Accordion extends com.spoonconsulting.lightning.BaseLightning {
         /*private*/ allowMultipleSectionOpen: boolean;
 
@@ -3292,8 +4430,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion {
-            for(let index169=0; index169 < accordionSections.length; index169++) {
-                let section = accordionSections[index169];
+            for(let index186=0; index186 < accordionSections.length; index186++) {
+                let section = accordionSections[index186];
                 {
                     this.addSection(section);
                 }
@@ -3303,9 +4441,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveSectionName(name: string): Accordion {
             {
-                let array171 = this.getChildren();
-                for(let index170=0; index170 < array171.length; index170++) {
-                    let r = array171[index170];
+                let array188 = this.getChildren();
+                for(let index187=0; index187 < array188.length; index187++) {
+                    let r = array188[index187];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -3321,9 +4459,9 @@ namespace com.spoonconsulting.lightning {
 
         public setOpen(name: string): Accordion {
             {
-                let array173 = this.getChildren();
-                for(let index172=0; index172 < array173.length; index172++) {
-                    let r = array173[index172];
+                let array190 = this.getChildren();
+                for(let index189=0; index189 < array190.length; index189++) {
+                    let r = array190[index189];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -3349,9 +4487,9 @@ namespace com.spoonconsulting.lightning {
             const sectionToggle: CustomEvent = new CustomEvent("onsectiontoggle");
             const openSections: Array<string> = <any>(new Array<string>());
             {
-                let array175 = this.getSections();
-                for(let index174=0; index174 < array175.length; index174++) {
-                    let sect = array175[index174];
+                let array192 = this.getSections();
+                for(let index191=0; index191 < array192.length; index191++) {
+                    let sect = array192[index191];
                     {
                         if (sect.isOpen()){
                             openSections.push(sect.getName());
@@ -3367,9 +4505,9 @@ namespace com.spoonconsulting.lightning {
 
         public setClose(name: string): Accordion {
             {
-                let array177 = this.getChildren();
-                for(let index176=0; index176 < array177.length; index176++) {
-                    let r = array177[index176];
+                let array194 = this.getChildren();
+                for(let index193=0; index193 < array194.length; index193++) {
+                    let r = array194[index193];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -3392,9 +4530,9 @@ namespace com.spoonconsulting.lightning {
         public getSections(): Array<com.spoonconsulting.lightning.AccordionSection> {
             const sections: Array<com.spoonconsulting.lightning.AccordionSection> = <any>(new Array<com.spoonconsulting.lightning.AccordionSection>());
             {
-                let array179 = this.getChildren();
-                for(let index178=0; index178 < array179.length; index178++) {
-                    let r = array179[index178];
+                let array196 = this.getChildren();
+                for(let index195=0; index195 < array196.length; index195++) {
+                    let r = array196[index195];
                     {
                         sections.push(<com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0]);
                     }
@@ -3405,9 +4543,9 @@ namespace com.spoonconsulting.lightning {
 
         public getSection(name: string): com.spoonconsulting.lightning.AccordionSection {
             {
-                let array181 = this.getChildren();
-                for(let index180=0; index180 < array181.length; index180++) {
-                    let r = array181[index180];
+                let array198 = this.getChildren();
+                for(let index197=0; index197 < array198.length; index197++) {
+                    let r = array198[index197];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -3568,27 +4706,51 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ rightBadgeIcon: JSContainer;
 
+        /*private*/ assistiveText: JSContainer;
+
         public static POSITION_START: string = "start";
 
         public static POSITION_END: string = "end";
 
-        public constructor(name: string, tag: string) {
+        /*private*/ iconPosition: string;
+
+        public constructor(name: string) {
             super(name, "span");
             this.label = new JSContainer("label", "span");
             this.leftIconContainer = new com.spoonconsulting.lightning.IconContainer("left-icon", "span");
             this.leftBadgeIcon = new JSContainer("left-badge-icon", "span");
             this.rightIconContainer = new com.spoonconsulting.lightning.IconContainer("right-icon", "span");
             this.rightBadgeIcon = new JSContainer("right-badge-icon", "span");
+            this.assistiveText = new JSContainer("assistive-text", "span");
+            this.iconPosition = null;
             this.addClass("slds-badge");
             this.leftBadgeIcon.addClass("slds-badge__icon").addClass("slds-badge__icon_left").addChild(this.leftIconContainer);
             this.addChild(this.label);
+            this.addChild(this.assistiveText);
             this.rightBadgeIcon.addClass("slds-badge__icon").addClass("slds-badge__icon_right").addChild(this.rightIconContainer);
+        }
+
+        public setAssistiveText(txt: string): Badge {
+            this.assistiveText.setHtml(txt);
+            return this;
+        }
+
+        public getAssistiveText(): string {
+            return this.assistiveText.getHtml();
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
         }
 
         public setIconAlternativeText(altText: string): Badge {
             this.leftIconContainer.setTitle(altText);
             this.rightIconContainer.setTitle(altText);
             return this;
+        }
+
+        public getIconAlternativeText(): string {
+            return this.leftIconContainer.getTitle();
         }
 
         public setIconName(iconName: string): Badge {
@@ -3604,12 +4766,22 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public getIconName(): string {
+            return this.leftIconContainer.getIcon().getIconName();
+        }
+
+        public getIconPosition(): string {
+            return this.iconPosition;
+        }
+
         public setIconPosition(position: string): Badge {
             this.clearChildren();
+            this.iconPosition = position;
             if (position === Badge.POSITION_START){
                 this.addChild(this.leftBadgeIcon);
             }
             this.addChild(this.label);
+            this.addChild(this.assistiveText);
             if (position === Badge.POSITION_END){
                 this.addChild(this.rightBadgeIcon);
             }
@@ -3810,9 +4982,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Button {
             {
-                let array183 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index182=0; index182 < array183.length; index182++) {
-                    let v = array183[index182];
+                let array200 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index199=0; index199 < array200.length; index199++) {
+                    let v = array200[index199];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -4062,8 +5234,8 @@ namespace com.spoonconsulting.lightning {
 
         public refresh() {
             const suffixes: string[] = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-            for(let index184=0; index184 < suffixes.length; index184++) {
-                let suffix = suffixes[index184];
+            for(let index201=0; index201 < suffixes.length; index201++) {
+                let suffix = suffixes[index201];
                 {
                     this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                 }
@@ -4233,9 +5405,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonStateful {
             {
-                let array186 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index185=0; index185 < array186.length; index185++) {
-                    let v = array186[index185];
+                let array203 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index202=0; index202 < array203.length; index202++) {
+                    let v = array203[index202];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -4427,8 +5599,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu {
-            for(let index187=0; index187 < items.length; index187++) {
-                let item = items[index187];
+            for(let index204=0; index204 < items.length; index204++) {
+                let item = items[index204];
                 {
                     this.addMenuItem(item);
                 }
@@ -4875,15 +6047,15 @@ namespace com.spoonconsulting.lightning {
 }
 namespace com.spoonconsulting.lightning {
     export class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
-        /*private*/ combo: com.spoonconsulting.lightning.BaseComboBox;
+        /*private*/ combo: com.spoonconsulting.lightning.BaseComboBox<string>;
 
         /*private*/ messageWhenValueMissing: string;
 
         public constructor(name: string) {
-            super(name, new com.spoonconsulting.lightning.BaseComboBox("combo"));
+            super(name, <any>(new com.spoonconsulting.lightning.BaseComboBox<string>("combo")));
             if (this.combo === undefined) { this.combo = null; }
             this.messageWhenValueMissing = "This field is required";
-            this.combo = <com.spoonconsulting.lightning.BaseComboBox><any>this.getInput();
+            this.combo = <com.spoonconsulting.lightning.BaseComboBox<string>><any>this.getInput();
             this.combo.removeClass("slds-input");
             this.combo.addEventListener(new ComboBox.ComboBox$0(this), "change");
         }
@@ -4960,6 +6132,90 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class Input extends com.spoonconsulting.lightning.FormElement<any> {
+        /*private*/ textInput: input.JSTextInput;
+
+        /*private*/ dateInput: input.JSDateInput;
+
+        /*private*/ timeInput: input.JSTimeInput;
+
+        /*private*/ numberInput: input.JSNumberInput;
+
+        public constructor(name: string) {
+            super(name);
+            this.textInput = new input.JSTextInput("input");
+            this.dateInput = new input.JSDateInput("input");
+            this.timeInput = new input.JSTimeInput("input");
+            this.numberInput = new input.JSNumberInput("input");
+            this.setInput(this.textInput);
+        }
+    }
+    Input["__class"] = "com.spoonconsulting.lightning.Input";
+    Input["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
+    export class VerticalNavigationItemBadge extends com.spoonconsulting.lightning.VerticalNavigationItem {
+        /*private*/ badge: com.spoonconsulting.lightning.Badge;
+
+        public constructor(name: string) {
+            super(name);
+            this.badge = new com.spoonconsulting.lightning.Badge("badge");
+            this.getAction().addChild(this.badge);
+            this.badge.addClass("slds-col_bump-left");
+            this.setBadgeCount(0);
+        }
+
+        public setAssistiveText(txt: string): VerticalNavigationItemBadge {
+            this.badge.setAssistiveText(txt);
+            return this;
+        }
+
+        public getAssistiveText(): string {
+            return this.badge.getAssistiveText();
+        }
+
+        public setBadgeCount(count: number): VerticalNavigationItemBadge {
+            this.badge.setLabel(count + "");
+            return this;
+        }
+
+        public getBadgeCount(): number {
+            return /* parseInt */parseInt(this.badge.getLabel());
+        }
+    }
+    VerticalNavigationItemBadge["__class"] = "com.spoonconsulting.lightning.VerticalNavigationItemBadge";
+    VerticalNavigationItemBadge["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
+    export class VerticalNavigationItemIcon extends com.spoonconsulting.lightning.VerticalNavigationItem {
+        /*private*/ icon: com.spoonconsulting.lightning.IconContainer;
+
+        public constructor(name: string) {
+            super(name);
+            this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
+            this.getAction().addChild(this.icon);
+            this.icon.addClass("slds-m-right_x-small").addClass("slds-line-height_reset");
+        }
+
+        public setIconName(iconName: string): VerticalNavigationItemIcon {
+            this.icon.setIconName(iconName);
+            return this;
+        }
+
+        public getIconName(): string {
+            return this.icon.getIcon().getIconName();
+        }
+    }
+    VerticalNavigationItemIcon["__class"] = "com.spoonconsulting.lightning.VerticalNavigationItemIcon";
+    VerticalNavigationItemIcon["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class ButtonIcon extends com.spoonconsulting.lightning.Button {
         public constructor(name: string, iconName: string) {
             super(name);
@@ -4980,9 +6236,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ButtonIcon {
             {
-                let array189 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index188=0; index188 < array189.length; index188++) {
-                    let s = array189[index188];
+                let array206 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index205=0; index205 < array206.length; index205++) {
+                    let s = array206[index205];
                     {
                         this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -5025,9 +6281,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonIcon {
             {
-                let array191 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index190=0; index190 < array191.length; index190++) {
-                    let v = array191[index190];
+                let array208 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index207=0; index207 < array208.length; index207++) {
+                    let v = array208[index207];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][v].getValue());
                     }

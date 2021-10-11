@@ -11,7 +11,7 @@ import jsweet.dom.HTMLInputElement;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
 
-public class BaseComboBox extends JSContainer implements InputField<String>{
+public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 
 	private JSContainer combobox = new JSContainer("combobox", "div");
 
@@ -86,7 +86,7 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 		}, "change");
 	}
 	
-	public BaseComboBox setOptions(Array<Object> options) {
+	public BaseComboBox<T> setOptions(Array<Object> options) {
 		this.dropdown.setOptions(options);
 		return this;
 	}
@@ -99,7 +99,7 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 		return combobox.getAttribute("aria-expanded") == "true";
 	}
 	
-	public BaseComboBox setExpand(boolean b) {
+	public BaseComboBox<T> setExpand(boolean b) {
 		if(b) {
 			combobox.setAttribute("aria-expanded", "true")
 				.addClass("slds-is-open");
@@ -111,16 +111,28 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 		}
 		return this;
 	}
-
-	@Override
-	public String getValue() {
-		return input.getValue();
+	
+	@SuppressWarnings("unchecked")
+	protected T encode(String s) {
+		return (T)s;
+	}
+	
+	protected String decode(T t) {
+		if(t == null) {
+			return (String)null;
+		}
+		return t.toString();
 	}
 
 	@Override
-	public void setValue(String val) {
-		input.setValue(val);
-		dropdown.setValue(val);
+	public T getValue() {
+		return encode( input.getValue());
+	}
+
+	@Override
+	public void setValue(T val) {
+		input.setValue(decode(val));
+		dropdown.setValue(decode(val));
 	}
 
 	@Override
@@ -134,18 +146,18 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 	}
 
 	@Override
-	public InputField<String> setBinding(String binding) {
+	public InputField<T> setBinding(String binding) {
 		setAttribute("binding", binding);
 		return this;
 	}
 
 	@Override
-	public InputField<String> setRequired(boolean b) {
+	public InputField<T> setRequired(boolean b) {
 		input.setRequired(b);
 		return this;
 	}
 	
-	public BaseComboBox setDisabled(boolean b) {
+	public BaseComboBox<T> setDisabled(boolean b) {
 		input.setDisabled(b);
 		return this;
 	}
@@ -154,7 +166,7 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 		return input.getAttribute("disabled") == "true";
 	}
 	
-	public BaseComboBox setDropdownAlignment(String alignment) {
+	public BaseComboBox<T> setDropdownAlignment(String alignment) {
 		if(alignment == DROPDOWN_ALIGNMENT_BOTTOM_LEFT) {
 			dropdown.addClass("slds-dropdown_bottom")
 				.addClass("slds-dropdown_bottom-left");
@@ -183,10 +195,28 @@ public class BaseComboBox extends JSContainer implements InputField<String>{
 		return null;
 	}
 	
-	public BaseComboBox setCustomValidity(String message, String type, String description) {
+	public BaseComboBox<T> setCustomValidity(String message, String type, String description) {
 		HTMLInputElement in = (HTMLInputElement)input.getElement();
 		if(in != null)
 			in.setCustomValidity(message);
 		return this;
 	}
+
+	public JSContainer getCombobox() {
+		return combobox;
+	}
+
+	public JSTextInput getInput() {
+		return input;
+	}
+
+	public ListBox getDropdown() {
+		return dropdown;
+	}
+
+	public IconContainer getInputIcon() {
+		return inputIcon;
+	}
+	
+	
 }

@@ -51,6 +51,7 @@ public class TabSet extends JSContainer {
 		return null;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Array<TabItem> getTabItems(){
 		Array result = tablist.getChildren();
 		return result;

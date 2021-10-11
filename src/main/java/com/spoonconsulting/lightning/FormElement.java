@@ -40,6 +40,25 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		setRequired(false);
 	}
 	
+	public FormElement(String name) {
+		super(name, "div");
+		addClass("slds-form-element");
+		addChild(labelCtn);
+		formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
+		formElementIcon.addChild(fieldLevelHelp);
+		addChild(formElementIcon);
+		labelCtn.addClass("slds-form-element__label");
+		required.addClass("slds-required").setAttribute("title", "required");
+		labelCtn.addChild(required);
+		labelCtn.addChild(label);
+		addChild(controlCtn);
+		controlCtn.addClass("slds-form-element__control");
+		addChild(help);
+		help.addClass("slds-form-element__help");
+		help.setStyle("display", "none");
+		setRequired(false);
+	}
+	
 	
 	public FormElement<T> setRequired(boolean b) {
 		required.setStyle("display", b?null:"none");

@@ -1,7 +1,5 @@
 package com.spoonconsulting.lightning;
 
-import framework.components.JSContainer;
-
 public class TabPanel extends BaseLightning{
 
 	public TabPanel(String name) {

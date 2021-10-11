@@ -95,7 +95,7 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
-    class BaseComboBox extends JSContainer implements api.InputField<string> {
+    class BaseComboBox<T> extends JSContainer implements api.InputField<T> {
         combobox: JSContainer;
         formElement: JSContainer;
         input: input.JSTextInput;
@@ -105,20 +105,22 @@ declare namespace com.spoonconsulting.lightning {
         static DROPDOWN_ALIGNMENT_BOTTOM_LEFT: string;
         static DROPDOWN_ALIGNMENT_TOP_LEFT: string;
         constructor(name: string);
-        setOptions(options: Array<Object>): BaseComboBox;
+        setOptions(options: Array<Object>): BaseComboBox<T>;
         toggleDropdown(): void;
         isExpanded(): boolean;
-        setExpand(b: boolean): BaseComboBox;
+        setExpand(b: boolean): BaseComboBox<T>;
+        encode(s: string): T;
+        decode(t: T): string;
         /**
          *
-         * @return {string}
+         * @return {*}
          */
-        getValue(): string;
+        getValue(): T;
         /**
          *
-         * @param {string} val
+         * @param {*} val
          */
-        setValue(val: string): void;
+        setValue(val: T): void;
         /**
          *
          */
@@ -133,20 +135,24 @@ declare namespace com.spoonconsulting.lightning {
          * @param {string} binding
          * @return {*}
          */
-        setBinding(binding: string): api.InputField<string>;
+        setBinding(binding: string): api.InputField<T>;
         /**
          *
          * @param {boolean} b
          * @return {*}
          */
-        setRequired(b: boolean): api.InputField<string>;
-        setDisabled(b: boolean): BaseComboBox;
+        setRequired(b: boolean): api.InputField<T>;
+        setDisabled(b: boolean): BaseComboBox<T>;
         isDisabled(): boolean;
-        setDropdownAlignment(alignment: string): BaseComboBox;
+        setDropdownAlignment(alignment: string): BaseComboBox<T>;
         getDropdownAlignment(): string;
         blur(): void;
         checkValidity(): boolean;
-        setCustomValidity(message: string, type: string, description: string): BaseComboBox;
+        setCustomValidity(message: string, type: string, description: string): BaseComboBox<T>;
+        getCombobox(): JSContainer;
+        getInput(): input.JSTextInput;
+        getDropdown(): com.spoonconsulting.lightning.ListBox;
+        getInputIcon(): com.spoonconsulting.lightning.IconContainer;
     }
     namespace BaseComboBox {
         class BaseComboBox$0 implements api.EventListener {
@@ -187,6 +193,7 @@ declare namespace com.spoonconsulting.lightning {
         static getSampleCOmbo(): JSContainer;
         static getPathSample(): JSContainer;
         static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
+        static getModal(): JSContainer;
         static getVerticalMenu(): com.spoonconsulting.lightning.TabSet;
     }
     namespace Boot {
@@ -243,6 +250,46 @@ declare namespace com.spoonconsulting.lightning {
              */
             performAction(source: api.Renderable, evt: Event): void;
             constructor(indicator: any);
+        }
+        class Boot$5 implements api.EventListener {
+            private modal;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(modal: any);
+        }
+        class Boot$6 implements api.EventListener {
+            private form;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(form: any);
+        }
+        class Boot$7 implements api.EventListener {
+            private form;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(form: any);
+        }
+        class Boot$8 implements api.EventListener {
+            private modal;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(modal: any);
         }
     }
 }
@@ -311,6 +358,91 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class CheckBox extends JSContainer implements api.InputField<boolean> {
+        checkbox: input.JSCheckBox;
+        checkBoxLabel: JSContainer;
+        label: JSContainer;
+        constructor(name: string);
+        getCheckBoxLabel(): JSContainer;
+        getLabel(): string;
+        setLabel(label: string): CheckBox;
+        getCheckBox(): input.JSCheckBox;
+        /**
+         *
+         * @return {boolean}
+         */
+        getValue(): boolean;
+        /**
+         *
+         * @param {boolean} val
+         */
+        setValue(val: boolean): void;
+        /**
+         *
+         */
+        validate(): void;
+        /**
+         *
+         * @return {string}
+         */
+        getBinding(): string;
+        /**
+         *
+         * @param {string} binding
+         * @return {*}
+         */
+        setBinding(binding: string): api.InputField<boolean>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setRequired(b: boolean): api.InputField<boolean>;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class CheckBoxButton extends JSContainer implements api.InputField<boolean> {
+        checkBox: input.JSCheckBox;
+        faux: JSContainer;
+        label: JSContainer;
+        constructor(name: string);
+        getLabel(): string;
+        setLabel(label: string): CheckBoxButton;
+        getCheckBox(): input.JSCheckBox;
+        /**
+         *
+         * @return {boolean}
+         */
+        getValue(): boolean;
+        /**
+         *
+         * @param {boolean} val
+         */
+        setValue(val: boolean): void;
+        /**
+         *
+         */
+        validate(): void;
+        /**
+         *
+         * @return {string}
+         */
+        getBinding(): string;
+        /**
+         *
+         * @param {string} binding
+         * @return {*}
+         */
+        setBinding(binding: string): api.InputField<boolean>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setRequired(b: boolean): api.InputField<boolean>;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Dropdown extends JSContainer {
         menu: com.spoonconsulting.lightning.Menu;
         spinnerContainer: JSContainer;
@@ -336,7 +468,7 @@ declare namespace com.spoonconsulting.lightning {
         fieldLevelHelp: com.spoonconsulting.lightning.Help;
         help: JSContainer;
         variant: FormElement.FormElementVariant;
-        constructor(name: string, input: api.InputField<T>);
+        constructor(name?: any, input?: any);
         setRequired(b: boolean): FormElement<T>;
         setLabel(label: string): FormElement<T>;
         setFieldLevelHelp(help: string): FormElement<T>;
@@ -421,6 +553,35 @@ declare namespace com.spoonconsulting.lightning {
         setSize$java_lang_String(size: string): Icon;
         setSize(size?: any): any;
         setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): Icon;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    enum InputType {
+        CHECKBOX = 0,
+        CHECKBOX_BUTTON = 1,
+        DATE = 2,
+        DATETIME = 3,
+        TIME = 4,
+        EMAIL = 5,
+        FILE = 6,
+        PASSWORD = 7,
+        SEARCH = 8,
+        TEL = 9,
+        URL = 10,
+        NUMBER = 11,
+        TEXT = 12,
+        TOGGLE = 13
+    }
+    /** @ignore */
+    class InputType_$WRAPPER {
+        protected _$ordinal: number;
+        protected _$name: string;
+        value: any;
+        constructor(_$ordinal: number, _$name: string, value: any);
+        getValue(): string;
+        name(): string;
+        ordinal(): number;
+        compareTo(other: any): number;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -618,6 +779,47 @@ declare namespace com.spoonconsulting.lightning {
         constructor(name: string);
         setLabel(label: string): MenuSubHeader;
         getLabel(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Modal extends JSContainer {
+        container: JSContainer;
+        header: JSContainer;
+        content: JSContainer;
+        footer: JSContainer;
+        __close: com.spoonconsulting.lightning.ButtonIcon;
+        title: JSContainer;
+        tagLine: JSContainer;
+        backdrop: Modal.BackDrop;
+        constructor(name: string);
+        close(): void;
+        open(): void;
+        getContainer(): JSContainer;
+        getHeader(): JSContainer;
+        getContent(): JSContainer;
+        getFooter(): JSContainer;
+        getClose(): com.spoonconsulting.lightning.ButtonIcon;
+        getTitle(): string;
+        setTitle(title: string): Modal;
+        getTagLine(): string;
+        setTagLine(tagLine: string): Modal;
+        getBackdrop(): Modal.BackDrop;
+        setBackdrop(backdrop: Modal.BackDrop): void;
+    }
+    namespace Modal {
+        class BackDrop extends JSContainer {
+            constructor(name: string);
+        }
+        class Modal$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -957,6 +1159,116 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class VerticalNavigation extends JSContainer {
+        compact: boolean;
+        selectedItem: string;
+        selectedSection: string;
+        shaded: boolean;
+        constructor(name: string);
+        isCompact(): boolean;
+        setCompact(compact: boolean): VerticalNavigation;
+        addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section: com.spoonconsulting.lightning.VerticalNavigationSection): VerticalNavigation;
+        addSection$java_lang_String$java_lang_String(name: string, label: string): com.spoonconsulting.lightning.VerticalNavigationSection;
+        addSection(name?: any, label?: any): any;
+        getSection(name: string): com.spoonconsulting.lightning.VerticalNavigationSection;
+        getItem$java_lang_String(name: string): com.spoonconsulting.lightning.VerticalNavigationItem;
+        getItem$java_lang_String$java_lang_String(sectionName: string, itemName: string): com.spoonconsulting.lightning.VerticalNavigationItem;
+        getItem(sectionName?: any, itemName?: any): any;
+        addSections(...sections: com.spoonconsulting.lightning.VerticalNavigationSection[]): VerticalNavigation;
+        getSections(): Array<com.spoonconsulting.lightning.VerticalNavigationSection>;
+        getSelectedItem(): string;
+        setSelectedItem$java_lang_String$java_lang_String(selectedSection: string, selectedItem: string): VerticalNavigation;
+        setSelectedItem(selectedSection?: any, selectedItem?: any): any;
+        getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem>;
+        getSelectedSection(): string;
+        setSelectedItem$java_lang_String(selectedItem: string): VerticalNavigation;
+        isShaded(): boolean;
+        setShaded(shaded: boolean): VerticalNavigation;
+    }
+    namespace VerticalNavigation {
+        class VerticalNavigation$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class VerticalNavigationItem extends JSContainer {
+        action: JSContainer;
+        label: JSContainer;
+        selected: boolean;
+        constructor(name: string);
+        getSection(): com.spoonconsulting.lightning.VerticalNavigationSection;
+        setSelected(b: boolean): VerticalNavigationItem;
+        isSelected(): boolean;
+        getAction(): JSContainer;
+        setLabel(label: string): VerticalNavigationItem;
+        getLabel(): string;
+        setHref(href: string): VerticalNavigationItem;
+        getHref(): string;
+    }
+    namespace VerticalNavigationItem {
+        class VerticalNavigationItem$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class VerticalNavigationSection extends JSContainer {
+        label: JSContainer;
+        list: JSContainer;
+        selectedItem: string;
+        constructor(name: string);
+        addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item: com.spoonconsulting.lightning.VerticalNavigationItem): VerticalNavigationSection;
+        setSelectedItem(name: string): VerticalNavigationSection;
+        addItem$java_lang_String$java_lang_String(name: string, label: string): com.spoonconsulting.lightning.VerticalNavigationItem;
+        addItem$java_lang_String$java_lang_String$int(name: string, label: string, badgeCount: number): com.spoonconsulting.lightning.VerticalNavigationItemBadge;
+        addItem$java_lang_String$java_lang_String$java_lang_String(name: string, label: string, iconName: string): com.spoonconsulting.lightning.VerticalNavigationItemIcon;
+        addItem(name?: any, label?: any, iconName?: any): any;
+        getItem(name: string): com.spoonconsulting.lightning.VerticalNavigationItem;
+        getSelectedItem(): string;
+        addItems(...items: com.spoonconsulting.lightning.VerticalNavigationItem[]): VerticalNavigationSection;
+        getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem>;
+        setLabel(label: string): VerticalNavigationSection;
+        getLabel(): string;
+    }
+    namespace VerticalNavigationSection {
+        class VerticalNavigationSection$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class VerticalNavigationSection$1 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Path extends com.spoonconsulting.lightning.AbstractProgress implements com.spoonconsulting.lightning.IProgress {
         track: JSContainer;
         scrollerContainer: JSContainer;
@@ -999,6 +1311,28 @@ declare namespace com.spoonconsulting.lightning {
          * @return {*}
          */
         addStep(label?: any, value?: any): any;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class TimeInput extends com.spoonconsulting.lightning.BaseComboBox<Date> {
+        min: string;
+        max: string;
+        constructor(name: string);
+        /**
+         *
+         * @param {string} s
+         * @return {Date}
+         */
+        encode(s: string): Date;
+        decode$jsweet_lang_Date(t: Date): string;
+        /**
+         *
+         * @param {Date} t
+         * @return {string}
+         */
+        decode(t?: any): any;
+        to2dp(i: number): string;
+        refresh(): void;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -1062,11 +1396,19 @@ declare namespace com.spoonconsulting.lightning {
         leftBadgeIcon: JSContainer;
         rightIconContainer: com.spoonconsulting.lightning.IconContainer;
         rightBadgeIcon: JSContainer;
+        assistiveText: JSContainer;
         static POSITION_START: string;
         static POSITION_END: string;
-        constructor(name: string, tag: string);
+        iconPosition: string;
+        constructor(name: string);
+        setAssistiveText(txt: string): Badge;
+        getAssistiveText(): string;
+        getLabel(): string;
         setIconAlternativeText(altText: string): Badge;
+        getIconAlternativeText(): string;
         setIconName(iconName: string): Badge;
+        getIconName(): string;
+        getIconPosition(): string;
         setIconPosition(position: string): Badge;
         setLabel(label: string): Badge;
     }
@@ -1364,7 +1706,7 @@ declare namespace com.spoonconsulting.lightning {
 }
 declare namespace com.spoonconsulting.lightning {
     class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
-        combo: com.spoonconsulting.lightning.BaseComboBox;
+        combo: com.spoonconsulting.lightning.BaseComboBox<string>;
         messageWhenValueMissing: string;
         constructor(name: string);
         setDisabled(b: boolean): ComboBox;
@@ -1389,6 +1731,33 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor(__parent: any);
         }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Input extends com.spoonconsulting.lightning.FormElement<any> {
+        textInput: input.JSTextInput;
+        dateInput: input.JSDateInput;
+        timeInput: input.JSTimeInput;
+        numberInput: input.JSNumberInput;
+        constructor(name: string);
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class VerticalNavigationItemBadge extends com.spoonconsulting.lightning.VerticalNavigationItem {
+        badge: com.spoonconsulting.lightning.Badge;
+        constructor(name: string);
+        setAssistiveText(txt: string): VerticalNavigationItemBadge;
+        getAssistiveText(): string;
+        setBadgeCount(count: number): VerticalNavigationItemBadge;
+        getBadgeCount(): number;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class VerticalNavigationItemIcon extends com.spoonconsulting.lightning.VerticalNavigationItem {
+        icon: com.spoonconsulting.lightning.IconContainer;
+        constructor(name: string);
+        setIconName(iconName: string): VerticalNavigationItemIcon;
+        getIconName(): string;
     }
 }
 declare namespace com.spoonconsulting.lightning {
