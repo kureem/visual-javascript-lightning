@@ -63,34 +63,222 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    /**
+     * Constructs an avatar with the given name
+     * @param {string} name - The name of the avatar
+     * @class
+     * @extends JSContainer
+     * @author Kureem Rossaye
+     */
     class Avatar extends JSContainer {
         img: JSContainer;
         fallbackIcon: com.spoonconsulting.lightning.Icon;
         iconContainer: JSContainer;
         initial: JSContainer;
+        /**
+         * Static variable for image type of avatar.
+         */
         static TYPE_IMAGE: string;
+        /**
+         * Static variable for initial image type of avatar.
+         */
         static TYPE_INITIAL: string;
+        /**
+         * Static variable for icon type of avatar.
+         */
         static TYPE_ICON: string;
+        /**
+         * Static variable for square variant of avatar
+         */
         static VARIANT_SQUARE: string;
+        /**
+         * static variable for circle variant of avatar
+         */
         static VARIANT_CIRCLE: string;
         type: string;
+        size: string;
         constructor(name: string);
+        /**
+         * Sets the type of the {@link Avatar}.
+         * <p>An {@link Avatar} comes in 3 types:</p>
+         * <ol>
+         * <li>Initials - {@link Avatar#TYPE_INITIAL}</li>
+         * <li>Icon - {@link Avatar#TYPE_ICON}</li>
+         * <li>Image - {@link Avatar#TYPE_IMAGE}</li>
+         * </ol>
+         * <p><b>The Icon type</b></p>
+         * <ul>
+         * <li>The icon type will take as parameter the usual icon notation of salesforce, e.g. utility:settings.</li>
+         * <li>Use the method <span>{@link Avatar#setFallbackIconName(String)} to set the name of the icon</li>
+         * <li>You would usually use this type when the image is not accessible</li>
+         * </ul>
+         * <div><b>The initials type</b></div>
+         * <p>
+         * <ul>
+         * <li>The initials type will display 3 characters as initials.</li>
+         * <li>Use the method {@link Avatar#setInitials(String)} to set the initials</li>
+         * </ul>
+         * <div><b>The image type</b></div>
+         * <ul>
+         * <li>The image type will take the url or an image or base64 encoded image as parameter.</li>
+         * <li>use the method {@link Avatar#setSrc(String)} to set the src of the image to display in the avatar</li>
+         * </ul>
+         *
+         * @param {string} type - The type of the the {@link Avatar} (initials, image, icon)
+         * @return {com.spoonconsulting.lightning.Avatar} -The current {@link Avatar}
+         * @see {@link Avatar#setSrc(String)}
+         * @see {@link Avatar#setInitials(String)}
+         * @see {@link Avatar#setFallbackIconName(String)}
+         */
         setType(type: string): Avatar;
+        /**
+         * The type of the {@link Avatar}
+         * <p>An {@link Avatar} comes in 3 types:</p>
+         * <ol>
+         * <li>Initials - {@link Avatar#TYPE_INITIAL}</li>
+         * <li>Icon - {@link Avatar#TYPE_ICON}</li>
+         * <li>Image - {@link Avatar#TYPE_IMAGE}</li>
+         * </ol>
+         * @return {string} - The type of the {@link Avatar}
+         * @see {@link Avatar#setType(String)}
+         */
         getType(): string;
-        setVariant(type: string): Avatar;
+        /**
+         * Sets the variant of the {@link Avatar}<br>
+         * The {@link Avatar} comes with 2 variants which are circle and square</br>
+         * @param {string} variant - The variant, possible values
+         * <ul>
+         * <li>{@link Avatar#VARIANT_CIRCLE}</li>
+         * <li>{@link Avatar#VARIANT_SQUARE}</li>
+         * </ul>
+         *
+         * @return {com.spoonconsulting.lightning.Avatar} - The current {@link Avatar}
+         */
+        setVariant(variant: string): Avatar;
+        /**
+         * The variant of the {@link Avatar}. Possible value are circle and square
+         * <ul>
+         * <li>{@link Avatar#VARIANT_CIRCLE}</li>
+         * <li>{@link Avatar#VARIANT_SQUARE}</li>
+         * </ul>
+         * @return {string} - The variant of the {@link Avatar}
+         */
         getVariant(): string;
-        setSize(size: com.spoonconsulting.lightning.Size): Avatar;
+        setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): Avatar;
+        /**
+         * Sets the size of the {@link Avatar}. Possible values are<br>
+         * <ul>
+         * <li>{@link Size#X_SMALL}</li>
+         * <li>{@link Size#SMALL}</li>
+         * <li>{@link Size#MEDIUM}</li>
+         * <li>{@link Size#LARGE}</li>
+         * </ul>
+         * @param {com.spoonconsulting.lightning.Size} size - The size of the {@link Avatar}
+         * @return {com.spoonconsulting.lightning.Avatar} The current {@link Avatar}
+         */
+        setSize(size?: any): any;
+        /**
+         * The size of the {@link Avatar}
+         * @return {string} The size of the {@link Avatar}
+         */
+        getSize(): string;
+        setSize$java_lang_String(size: string): Avatar;
+        /**
+         * Sets the title attribute. Message that appears when hovering with the mouse
+         * @param {string} title - The message that appears when hovering with the mouse
+         * @return {com.spoonconsulting.lightning.Avatar} - This current instance
+         */
         setTitle(title: string): Avatar;
+        /**
+         * The title attribute. Message that appears when hovering with the mouse
+         * @return {string} - The message that appears when hovering with the mouse
+         */
+        getTitle(): string;
+        /**
+         * The initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @return {string} - The initial type of the avatar is initials<br>
+         */
         getInitials(): string;
+        /**
+         * Sets the initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @param {string} initials - The initials that appears when the type of the avatar is initials<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar} instance
+         */
         setInitials(initials: string): Avatar;
+        /**
+         * The icon name of the icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @return {string} - The icon that appears when the type of the avatar is icon<br>
+         */
         getFallbackIconName(): string;
+        /**
+         * Sets the icon name of the icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @param {string} fallbackIconName - The icon that appears when the type of the avatar is icon<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         setFallbackIconName(fallbackIconName: string): Avatar;
+        /**
+         * Sets the image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @param {string} src - The source of the image that appears when the type of the avatar is image<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         setSrc(src: string): Avatar;
+        /**
+         * The source of the image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @return {string} The source of the image that appears when the type of the avatar is image<br>
+         */
         getSrc(): string;
+        /**
+         * The image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @return {JSContainer} - The image that appears when the type of the avatar is image<br>
+         */
         getImg(): JSContainer;
+        /**
+         * * The icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @return {com.spoonconsulting.lightning.Icon} - The icon that appears when the type of the avatar is icon<br>
+         */
         getFallbackIcon(): com.spoonconsulting.lightning.Icon;
+        /**
+         * The component containing the initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @return {JSContainer} - The component containing initial that appears when the type of the avatar is initials<br>
+         */
         getInitial(): JSContainer;
+        /**
+         * An alternative text that appears when the icon cannot be displayed
+         * @param {string} altText - The text to appear when the icon cannot be displayed
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         setAlternativeText(altText: string): Avatar;
+        /**
+         * The alternative text that appears when the icon cannot be displayed
+         * @return {string} - The text that appears when the icon cannot be displayed
+         */
         getAlternativeText(): string;
     }
 }
@@ -1336,22 +1524,110 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    /**
+     * <p>
+     * An {@link Accordion} displays vertically stacked sections of content that you can expand and collapse. <br>
+     * Click a section's header to expand its content. Users can control how much content is visible at once, and don't need to scroll as much to see the content of a page.
+     * </p>
+     *
+     * <p>
+     * To create an {@link AccordionSection}, add an instance of {@link AccordionSection} using the method {@link Accordion#addSection(AccordionSection)}.
+     * </p>
+     *
+     * <p>
+     * By default, only one section can be open at a time. <br>
+     * You can close a section by opening another section. <br>
+     * You can configure the accordion to allow multiple sections to be open, and then the sections can be opened and closed by clicking section headers.
+     * <br> To allow multiple sections to be open use the method {@link Accordion#setAllowMultipleSectionOpen(boolean)}
+     *
+     * </p>
+     *
+     * <p>
+     * Lazy initialization can be implemented by using the onsectiontoggle event. When a section is open for the first time, its content is constructed and added.
+     * </p>
+     *
+     * <p>
+     * <div>Supported events:</div>
+     * <p>
+     * <ul>
+     * <li>onsectiontoggle&nbsp; &nbsp; This event is triggered whenever there is a change in the accordion. i.e any section is open or closed.</li>
+     * </ul>
+     * </p>
+     * </p>
+     * @author Kureem Rossaye
+     * <a href="mailto:kureem.rossaye@spoonconsulting.com">kureem.rossaye@spoonconsulting.com</a>
+     * @param {string} name
+     * @class
+     * @extends com.spoonconsulting.lightning.BaseLightning
+     */
     class Accordion extends com.spoonconsulting.lightning.BaseLightning {
         allowMultipleSectionOpen: boolean;
         constructor(name: string);
+        /**
+         * Add a {@link AccordionSection} to the {@link Accordion}.
+         * @param {com.spoonconsulting.lightning.AccordionSection} section - The {@link AccordionSection} to add
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         addSection(section: com.spoonconsulting.lightning.AccordionSection): Accordion;
+        /**
+         * Add {@link AccordionSection}s to the accordion
+         * @param {com.spoonconsulting.lightning.AccordionSection[]} accordionSections - The sections to add to the accordion
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion;
+        /**
+         * Synonymous to {@link Accordion#setOpen(String)}
+         * @param {string} name - the name of the {@link AccordionSection} to activate / open
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         setActiveSectionName(name: string): Accordion;
+        /**
+         * Opens the {@link AccordionSection} with the given name<br>
+         * Also close the other {@link AccordionSection}s if necessary.<Br>
+         * if the {@link Accordion#isAllowMultipleSectionOpen()} = false, then the other {@link AccordionSection}s will be closed.<br>
+         * On the other hand, if {@link Accordion#isAllowMultipleSection} = true, then the other {@link AccordionSection}s that are open, will remain open.<br>
+         * @param {string} name - The name of the {@link AccordionSection} to open
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         setOpen(name: string): Accordion;
         fireSectionToggle(): void;
+        /**
+         * Close the {@link AccordionSection} with the specified name
+         * @param {string} name - The name of the {@link AccordionSection} to close
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         setClose(name: string): Accordion;
+        /**
+         * If the {@link Accordion} allows multiple {@link AccordionSection} to be opened
+         * @return {boolean} - Whether the {@link Accordion} allows multiple {@link AccordionSection} to be opened
+         */
         isAllowMultipleSectionOpen(): boolean;
+        /**
+         * Configures the {@link Accordion}, to allow multiple {@link AccordionSection}s to be opened
+         * @param {boolean} allowMultipleSectionOpen - if multiple {@link AccordionSection}s allowed to be opened
+         */
         setAllowMultipleSectionOpen(allowMultipleSectionOpen: boolean): void;
+        /**
+         * @return {com.spoonconsulting.lightning.AccordionSection[]} - The {@link AccordionSection}s in the {@link Accordion}
+         */
         getSections(): Array<com.spoonconsulting.lightning.AccordionSection>;
+        /**
+         * Returns the accordion section with the given name.
+         * @param {string} name - The name of the {@link AccordionSection} to return.
+         * @return
+         * @return {com.spoonconsulting.lightning.AccordionSection}
+         */
         getSection(name: string): com.spoonconsulting.lightning.AccordionSection;
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    /**
+     * Constructs a new {@link AccordionSection} with the given name
+     * @param {string} name
+     * @class
+     * @extends com.spoonconsulting.lightning.BaseLightning
+     * @author Kureem Rossaye<br>
+     */
     class AccordionSection extends com.spoonconsulting.lightning.BaseLightning {
         summary: JSContainer;
         content: JSContainer;
@@ -1362,19 +1638,66 @@ declare namespace com.spoonconsulting.lightning {
         actionsSlot: JSContainer;
         constructor(name: string);
         /**
-         *
+         * Sets the title of the {@link AccordionSection}
          * @param {string} title
          */
         setTitle(title: string): void;
+        /**
+         * Toggles the {@link AccordionSection}. Closes it if it is open, and opens it if it is closed.
+         */
         toggle(): void;
+        /**
+         * Whether the {@link AccordionSection} is open
+         * @return {boolean} - True if the {@link AccordionSection} is open and false if closed
+         */
         isOpen(): boolean;
+        /**
+         * Whether to open or close this {@link AccordionSection}
+         * @param {boolean} b - Opens it if true, closes it if false
+         * @return {com.spoonconsulting.lightning.AccordionSection} - The updated {@link AccordionSection}
+         */
         setOpen(b: boolean): AccordionSection;
+        /**
+         *
+         * @return {JSContainer} - The summary container of the accordion section.
+         */
         getSummary(): JSContainer;
+        /**
+         * The content slot of the {@link AccordionSection}
+         * @return {JSContainer} - The content slot of the {@link AccordionSection}
+         */
         getContent(): JSContainer;
+        /**
+         * The summary heading of the {@link AccordionSection}
+         * @return {JSContainer} - The summary heading of the {@link AccordionSection}
+         */
         getSummaryHeading(): JSContainer;
+        /**
+         * The summary action of the {@link AccordionSection}
+         * @return {JSContainer} - The summary action of the {@link AccordionSection}
+         */
         getSummaryAction(): JSContainer;
+        /**
+         * The summary action icon of the {@link AccordionSection}
+         * @return {com.spoonconsulting.lightning.Icon} - The summary action icon of the {@link AccordionSection}
+         */
         getSummaryActionIcon(): com.spoonconsulting.lightning.Icon;
+        /**
+         * The slot with the specified name
+         * <ul>
+         * <li>actions - the actions slot where action button can be added (ButtonIcon)</li>
+         * <li>content - Will return the content slot which is the body of the</li>
+         * </ul>
+         * @param {string} name - The name of the slot. Possible values are: actions, &nbsp;content
+         * @return
+         * @return {JSContainer}
+         */
         getSlot(name: string): JSContainer;
+        /**
+         * The action slot where {@link ButtonIcon} can be added
+         * @return {JSContainer} - The {@link JSContainer} of the action slot
+         */
+        geActionsSlot(): JSContainer;
     }
     namespace AccordionSection {
         class AccordionSection$0 implements api.EventListener {

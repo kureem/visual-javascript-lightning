@@ -160,6 +160,13 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    /**
+     * Constructs an avatar with the given name
+     * @param {string} name - The name of the avatar
+     * @class
+     * @extends JSContainer
+     * @author Kureem Rossaye
+     */
     export class Avatar extends JSContainer {
         /*private*/ img: JSContainer;
 
@@ -169,17 +176,34 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ initial: JSContainer;
 
+        /**
+         * Static variable for image type of avatar.
+         */
         public static TYPE_IMAGE: string = "image";
 
+        /**
+         * Static variable for initial image type of avatar.
+         */
         public static TYPE_INITIAL: string = "initial";
 
+        /**
+         * Static variable for icon type of avatar.
+         */
         public static TYPE_ICON: string = "icon";
 
+        /**
+         * Static variable for square variant of avatar
+         */
         public static VARIANT_SQUARE: string = "square";
 
+        /**
+         * static variable for circle variant of avatar
+         */
         public static VARIANT_CIRCLE: string = "circle";
 
         /*private*/ type: string;
+
+        /*private*/ size: string;
 
         public constructor(name: string) {
             super(name, "span");
@@ -188,6 +212,7 @@ namespace com.spoonconsulting.lightning {
             this.iconContainer = new JSContainer("iconContainer", "span");
             this.initial = new JSContainer("initial", "abbr");
             if (this.type === undefined) { this.type = null; }
+            this.size = com.spoonconsulting.lightning.Size["_$wrappers"][com.spoonconsulting.lightning.Size.MEDIUM].getValue();
             this.addClass("slds-avatar");
             this.initial.addClass("slds-avatar__initials").addClass("slds-icon-standard-user");
             this.iconContainer.addClass("slds-icon_container").addClass("slds-icon-standard-account");
@@ -195,6 +220,38 @@ namespace com.spoonconsulting.lightning {
             this.setType(Avatar.TYPE_IMAGE);
         }
 
+        /**
+         * Sets the type of the {@link Avatar}.
+         * <p>An {@link Avatar} comes in 3 types:</p>
+         * <ol>
+         * <li>Initials - {@link Avatar#TYPE_INITIAL}</li>
+         * <li>Icon - {@link Avatar#TYPE_ICON}</li>
+         * <li>Image - {@link Avatar#TYPE_IMAGE}</li>
+         * </ol>
+         * <p><b>The Icon type</b></p>
+         * <ul>
+         * <li>The icon type will take as parameter the usual icon notation of salesforce, e.g. utility:settings.</li>
+         * <li>Use the method <span>{@link Avatar#setFallbackIconName(String)} to set the name of the icon</li>
+         * <li>You would usually use this type when the image is not accessible</li>
+         * </ul>
+         * <div><b>The initials type</b></div>
+         * <p>
+         * <ul>
+         * <li>The initials type will display 3 characters as initials.</li>
+         * <li>Use the method {@link Avatar#setInitials(String)} to set the initials</li>
+         * </ul>
+         * <div><b>The image type</b></div>
+         * <ul>
+         * <li>The image type will take the url or an image or base64 encoded image as parameter.</li>
+         * <li>use the method {@link Avatar#setSrc(String)} to set the src of the image to display in the avatar</li>
+         * </ul>
+         * 
+         * @param {string} type - The type of the the {@link Avatar} (initials, image, icon)
+         * @return {com.spoonconsulting.lightning.Avatar} -The current {@link Avatar}
+         * @see {@link Avatar#setSrc(String)}
+         * @see {@link Avatar#setInitials(String)}
+         * @see {@link Avatar#setFallbackIconName(String)}
+         */
         public setType(type: string): Avatar {
             this.clearChildren();
             if (type === Avatar.TYPE_IMAGE){
@@ -208,15 +265,45 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * The type of the {@link Avatar}
+         * <p>An {@link Avatar} comes in 3 types:</p>
+         * <ol>
+         * <li>Initials - {@link Avatar#TYPE_INITIAL}</li>
+         * <li>Icon - {@link Avatar#TYPE_ICON}</li>
+         * <li>Image - {@link Avatar#TYPE_IMAGE}</li>
+         * </ol>
+         * @return {string} - The type of the {@link Avatar}
+         * @see {@link Avatar#setType(String)}
+         */
         public getType(): string {
             return this.type;
         }
 
-        public setVariant(type: string): Avatar {
-            this.removeClass("slds-avatar_" + Avatar.VARIANT_CIRCLE).removeClass("slds-avatar_" + Avatar.VARIANT_SQUARE).addClass("slds-avatar_" + type);
+        /**
+         * Sets the variant of the {@link Avatar}<br>
+         * The {@link Avatar} comes with 2 variants which are circle and square</br>
+         * @param {string} variant - The variant, possible values
+         * <ul>
+         * <li>{@link Avatar#VARIANT_CIRCLE}</li>
+         * <li>{@link Avatar#VARIANT_SQUARE}</li>
+         * </ul>
+         * 
+         * @return {com.spoonconsulting.lightning.Avatar} - The current {@link Avatar}
+         */
+        public setVariant(variant: string): Avatar {
+            this.removeClass("slds-avatar_" + Avatar.VARIANT_CIRCLE).removeClass("slds-avatar_" + Avatar.VARIANT_SQUARE).addClass("slds-avatar_" + this.type);
             return this;
         }
 
+        /**
+         * The variant of the {@link Avatar}. Possible value are circle and square
+         * <ul>
+         * <li>{@link Avatar#VARIANT_CIRCLE}</li>
+         * <li>{@link Avatar#VARIANT_SQUARE}</li>
+         * </ul>
+         * @return {string} - The variant of the {@link Avatar}
+         */
         public getVariant(): string {
             if (this.hasClass("slds-avatar_" + Avatar.VARIANT_CIRCLE)){
                 return Avatar.VARIANT_CIRCLE;
@@ -225,7 +312,38 @@ namespace com.spoonconsulting.lightning {
             }
         }
 
-        public setSize(size: com.spoonconsulting.lightning.Size): Avatar {
+        public setSize$com_spoonconsulting_lightning_Size(size: com.spoonconsulting.lightning.Size): Avatar {
+            return this.setSize$java_lang_String(size != null ? com.spoonconsulting.lightning.Size["_$wrappers"][size].getValue() : com.spoonconsulting.lightning.Size["_$wrappers"][com.spoonconsulting.lightning.Size.MEDIUM].getValue());
+        }
+
+        /**
+         * Sets the size of the {@link Avatar}. Possible values are<br>
+         * <ul>
+         * <li>{@link Size#X_SMALL}</li>
+         * <li>{@link Size#SMALL}</li>
+         * <li>{@link Size#MEDIUM}</li>
+         * <li>{@link Size#LARGE}</li>
+         * </ul>
+         * @param {com.spoonconsulting.lightning.Size} size - The size of the {@link Avatar}
+         * @return {com.spoonconsulting.lightning.Avatar} The current {@link Avatar}
+         */
+        public setSize(size?: any): any {
+            if (((typeof size === 'number') || size === null)) {
+                return <any>this.setSize$com_spoonconsulting_lightning_Size(size);
+            } else if (((typeof size === 'string') || size === null)) {
+                return <any>this.setSize$java_lang_String(size);
+            } else throw new Error('invalid overload');
+        }
+
+        /**
+         * The size of the {@link Avatar}
+         * @return {string} The size of the {@link Avatar}
+         */
+        public getSize(): string {
+            return this.size;
+        }
+
+        public setSize$java_lang_String(size: string): Avatar {
             {
                 let array130 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
                 for(let index129=0; index129 < array130.length; index129++) {
@@ -235,10 +353,20 @@ namespace com.spoonconsulting.lightning {
                     }
                 }
             }
-            this.addClass("slds-avatar_" + com.spoonconsulting.lightning.Size["_$wrappers"][size].getValue());
+            if (size != null){
+                this.addClass("slds-avatar_" + size);
+                this.size = size;
+            } else {
+                this.size = com.spoonconsulting.lightning.Size["_$wrappers"][com.spoonconsulting.lightning.Size.MEDIUM].getValue();
+            }
             return this;
         }
 
+        /**
+         * Sets the title attribute. Message that appears when hovering with the mouse
+         * @param {string} title - The message that appears when hovering with the mouse
+         * @return {com.spoonconsulting.lightning.Avatar} - This current instance
+         */
         public setTitle(title: string): Avatar {
             this.img.setAttribute("title", title);
             this.initial.setAttribute("title", title);
@@ -246,50 +374,133 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * The title attribute. Message that appears when hovering with the mouse
+         * @return {string} - The message that appears when hovering with the mouse
+         */
+        public getTitle(): string {
+            return this.img.getAttribute("title");
+        }
+
+        /**
+         * The initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @return {string} - The initial type of the avatar is initials<br>
+         */
         public getInitials(): string {
             return this.initial.getHtml();
         }
 
+        /**
+         * Sets the initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @param {string} initials - The initials that appears when the type of the avatar is initials<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar} instance
+         */
         public setInitials(initials: string): Avatar {
             this.initial.setHtml(initials);
             return this;
         }
 
+        /**
+         * The icon name of the icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @return {string} - The icon that appears when the type of the avatar is icon<br>
+         */
         public getFallbackIconName(): string {
             return this.fallbackIcon.getIconName();
         }
 
+        /**
+         * Sets the icon name of the icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @param {string} fallbackIconName - The icon that appears when the type of the avatar is icon<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         public setFallbackIconName(fallbackIconName: string): Avatar {
             this.fallbackIcon.setIconName(fallbackIconName);
             return this;
         }
 
+        /**
+         * Sets the image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @param {string} src - The source of the image that appears when the type of the avatar is image<br>
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         public setSrc(src: string): Avatar {
             this.img.setAttribute("src", src);
             return this;
         }
 
+        /**
+         * The source of the image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @return {string} The source of the image that appears when the type of the avatar is image<br>
+         */
         public getSrc(): string {
             return this.img.getAttribute("src");
         }
 
+        /**
+         * The image that appears when the type of the avatar is image<br>
+         * This methods works only for image type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_IMAGE}
+         * @return {JSContainer} - The image that appears when the type of the avatar is image<br>
+         */
         public getImg(): JSContainer {
             return this.img;
         }
 
+        /**
+         * * The icon that appears when the type of the avatar is icon<br>
+         * This methods works only for icon type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_ICON}
+         * @return {com.spoonconsulting.lightning.Icon} - The icon that appears when the type of the avatar is icon<br>
+         */
         public getFallbackIcon(): com.spoonconsulting.lightning.Icon {
             return this.fallbackIcon;
         }
 
+        /**
+         * The component containing the initials that appears when the type of the avatar is initials<br>
+         * This methods works only for initial type
+         * @see {@link Avatar#setType(String)}
+         * @see {@link Avatar#TYPE_INITIAL}
+         * @return {JSContainer} - The component containing initial that appears when the type of the avatar is initials<br>
+         */
         public getInitial(): JSContainer {
             return this.initial;
         }
 
+        /**
+         * An alternative text that appears when the icon cannot be displayed
+         * @param {string} altText - The text to appear when the icon cannot be displayed
+         * @return {com.spoonconsulting.lightning.Avatar} - This current {@link Avatar}
+         */
         public setAlternativeText(altText: string): Avatar {
             this.img.setAttribute("alt", altText).setAttribute("title", altText);
             return this;
         }
 
+        /**
+         * The alternative text that appears when the icon cannot be displayed
+         * @return {string} - The text that appears when the icon cannot be displayed
+         */
         public getAlternativeText(): string {
             return this.img.getAttribute("alt");
         }
@@ -2772,7 +2983,7 @@ namespace com.spoonconsulting.lightning {
             this.clearChildren();
             this.pillIconContainer.clearChildren();
             this.pillIconContainer.addChild(avatar);
-            avatar.setSize(com.spoonconsulting.lightning.Size.MEDIUM);
+            avatar.setSize$com_spoonconsulting_lightning_Size(com.spoonconsulting.lightning.Size.MEDIUM);
             this.addChild(this.pillIconContainer).addChild(this.pillAction).addChild(this.closeButton);
             this.setRendered(false);
             return this;
@@ -4412,6 +4623,42 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    /**
+     * <p>
+     * An {@link Accordion} displays vertically stacked sections of content that you can expand and collapse. <br>
+     * Click a section's header to expand its content. Users can control how much content is visible at once, and don't need to scroll as much to see the content of a page.
+     * </p>
+     * 
+     * <p>
+     * To create an {@link AccordionSection}, add an instance of {@link AccordionSection} using the method {@link Accordion#addSection(AccordionSection)}.
+     * </p>
+     * 
+     * <p>
+     * By default, only one section can be open at a time. <br>
+     * You can close a section by opening another section. <br>
+     * You can configure the accordion to allow multiple sections to be open, and then the sections can be opened and closed by clicking section headers.
+     * <br> To allow multiple sections to be open use the method {@link Accordion#setAllowMultipleSectionOpen(boolean)}
+     * 
+     * </p>
+     * 
+     * <p>
+     * Lazy initialization can be implemented by using the onsectiontoggle event. When a section is open for the first time, its content is constructed and added.
+     * </p>
+     * 
+     * <p>
+     * <div>Supported events:</div>
+     * <p>
+     * <ul>
+     * <li>onsectiontoggle&nbsp; &nbsp; This event is triggered whenever there is a change in the accordion. i.e any section is open or closed.</li>
+     * </ul>
+     * </p>
+     * </p>
+     * @author Kureem Rossaye
+     * <a href="mailto:kureem.rossaye@spoonconsulting.com">kureem.rossaye@spoonconsulting.com</a>
+     * @param {string} name
+     * @class
+     * @extends com.spoonconsulting.lightning.BaseLightning
+     */
     export class Accordion extends com.spoonconsulting.lightning.BaseLightning {
         /*private*/ allowMultipleSectionOpen: boolean;
 
@@ -4421,6 +4668,11 @@ namespace com.spoonconsulting.lightning {
             this.addClass("slds-accordion");
         }
 
+        /**
+         * Add a {@link AccordionSection} to the {@link Accordion}.
+         * @param {com.spoonconsulting.lightning.AccordionSection} section - The {@link AccordionSection} to add
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         public addSection(section: com.spoonconsulting.lightning.AccordionSection): Accordion {
             const li: JSContainer = new JSContainer("li");
             li.addClass("slds-accordion__list-item");
@@ -4429,6 +4681,11 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * Add {@link AccordionSection}s to the accordion
+         * @param {com.spoonconsulting.lightning.AccordionSection[]} accordionSections - The sections to add to the accordion
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         public addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion {
             for(let index186=0; index186 < accordionSections.length; index186++) {
                 let section = accordionSections[index186];
@@ -4439,29 +4696,28 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * Synonymous to {@link Accordion#setOpen(String)}
+         * @param {string} name - the name of the {@link AccordionSection} to activate / open
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         public setActiveSectionName(name: string): Accordion {
+            return this.setOpen(name);
+        }
+
+        /**
+         * Opens the {@link AccordionSection} with the given name<br>
+         * Also close the other {@link AccordionSection}s if necessary.<Br>
+         * if the {@link Accordion#isAllowMultipleSectionOpen()} = false, then the other {@link AccordionSection}s will be closed.<br>
+         * On the other hand, if {@link Accordion#isAllowMultipleSection} = true, then the other {@link AccordionSection}s that are open, will remain open.<br>
+         * @param {string} name - The name of the {@link AccordionSection} to open
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
+        public setOpen(name: string): Accordion {
             {
                 let array188 = this.getChildren();
                 for(let index187=0; index187 < array188.length; index187++) {
                     let r = array188[index187];
-                    {
-                        const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
-                        if (section.getName() === name){
-                            section.setOpen(true);
-                        } else {
-                            section.setOpen(false);
-                        }
-                    }
-                }
-            }
-            return this;
-        }
-
-        public setOpen(name: string): Accordion {
-            {
-                let array190 = this.getChildren();
-                for(let index189=0; index189 < array190.length; index189++) {
-                    let r = array190[index189];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -4483,13 +4739,13 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
-        public fireSectionToggle() {
+        /*private*/ fireSectionToggle() {
             const sectionToggle: CustomEvent = new CustomEvent("onsectiontoggle");
             const openSections: Array<string> = <any>(new Array<string>());
             {
-                let array192 = this.getSections();
-                for(let index191=0; index191 < array192.length; index191++) {
-                    let sect = array192[index191];
+                let array190 = this.getSections();
+                for(let index189=0; index189 < array190.length; index189++) {
+                    let sect = array190[index189];
                     {
                         if (sect.isOpen()){
                             openSections.push(sect.getName());
@@ -4503,11 +4759,16 @@ namespace com.spoonconsulting.lightning {
             this.fireListener("onsectiontoggle", sectionToggle);
         }
 
+        /**
+         * Close the {@link AccordionSection} with the specified name
+         * @param {string} name - The name of the {@link AccordionSection} to close
+         * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
+         */
         public setClose(name: string): Accordion {
             {
-                let array194 = this.getChildren();
-                for(let index193=0; index193 < array194.length; index193++) {
-                    let r = array194[index193];
+                let array192 = this.getChildren();
+                for(let index191=0; index191 < array192.length; index191++) {
+                    let r = array192[index191];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -4519,20 +4780,31 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * If the {@link Accordion} allows multiple {@link AccordionSection} to be opened
+         * @return {boolean} - Whether the {@link Accordion} allows multiple {@link AccordionSection} to be opened
+         */
         public isAllowMultipleSectionOpen(): boolean {
             return this.allowMultipleSectionOpen;
         }
 
+        /**
+         * Configures the {@link Accordion}, to allow multiple {@link AccordionSection}s to be opened
+         * @param {boolean} allowMultipleSectionOpen - if multiple {@link AccordionSection}s allowed to be opened
+         */
         public setAllowMultipleSectionOpen(allowMultipleSectionOpen: boolean) {
             this.allowMultipleSectionOpen = allowMultipleSectionOpen;
         }
 
+        /**
+         * @return {com.spoonconsulting.lightning.AccordionSection[]} - The {@link AccordionSection}s in the {@link Accordion}
+         */
         public getSections(): Array<com.spoonconsulting.lightning.AccordionSection> {
             const sections: Array<com.spoonconsulting.lightning.AccordionSection> = <any>(new Array<com.spoonconsulting.lightning.AccordionSection>());
             {
-                let array196 = this.getChildren();
-                for(let index195=0; index195 < array196.length; index195++) {
-                    let r = array196[index195];
+                let array194 = this.getChildren();
+                for(let index193=0; index193 < array194.length; index193++) {
+                    let r = array194[index193];
                     {
                         sections.push(<com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0]);
                     }
@@ -4541,11 +4813,17 @@ namespace com.spoonconsulting.lightning {
             return sections;
         }
 
+        /**
+         * Returns the accordion section with the given name.
+         * @param {string} name - The name of the {@link AccordionSection} to return.
+         * @return
+         * @return {com.spoonconsulting.lightning.AccordionSection}
+         */
         public getSection(name: string): com.spoonconsulting.lightning.AccordionSection {
             {
-                let array198 = this.getChildren();
-                for(let index197=0; index197 < array198.length; index197++) {
-                    let r = array198[index197];
+                let array196 = this.getChildren();
+                for(let index195=0; index195 < array196.length; index195++) {
+                    let r = array196[index195];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -4563,6 +4841,13 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    /**
+     * Constructs a new {@link AccordionSection} with the given name
+     * @param {string} name
+     * @class
+     * @extends com.spoonconsulting.lightning.BaseLightning
+     * @author Kureem Rossaye<br>
+     */
     export class AccordionSection extends com.spoonconsulting.lightning.BaseLightning {
         /*private*/ summary: JSContainer;
 
@@ -4606,7 +4891,7 @@ namespace com.spoonconsulting.lightning {
         }
 
         /**
-         * 
+         * Sets the title of the {@link AccordionSection}
          * @param {string} title
          */
         public setTitle(title: string) {
@@ -4615,14 +4900,26 @@ namespace com.spoonconsulting.lightning {
             this.summaryHeadingAction.setLabel(title).setAttribute("title", title);
         }
 
+        /**
+         * Toggles the {@link AccordionSection}. Closes it if it is open, and opens it if it is closed.
+         */
         public toggle() {
             this.setOpen(!this.isOpen());
         }
 
+        /**
+         * Whether the {@link AccordionSection} is open
+         * @return {boolean} - True if the {@link AccordionSection} is open and false if closed
+         */
         public isOpen(): boolean {
             return this.hasClass("slds-is-open");
         }
 
+        /**
+         * Whether to open or close this {@link AccordionSection}
+         * @param {boolean} b - Opens it if true, closes it if false
+         * @return {com.spoonconsulting.lightning.AccordionSection} - The updated {@link AccordionSection}
+         */
         public setOpen(b: boolean): AccordionSection {
             const accordion: com.spoonconsulting.lightning.Accordion = <any>(this.getAncestorWithClass<any>("slds-accordion"));
             if (b && !this.isOpen()){
@@ -4638,32 +4935,70 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        /**
+         * 
+         * @return {JSContainer} - The summary container of the accordion section.
+         */
         public getSummary(): JSContainer {
             return this.summary;
         }
 
+        /**
+         * The content slot of the {@link AccordionSection}
+         * @return {JSContainer} - The content slot of the {@link AccordionSection}
+         */
         public getContent(): JSContainer {
             return this.content;
         }
 
+        /**
+         * The summary heading of the {@link AccordionSection}
+         * @return {JSContainer} - The summary heading of the {@link AccordionSection}
+         */
         public getSummaryHeading(): JSContainer {
             return this.summaryHeading;
         }
 
+        /**
+         * The summary action of the {@link AccordionSection}
+         * @return {JSContainer} - The summary action of the {@link AccordionSection}
+         */
         public getSummaryAction(): JSContainer {
             return this.summaryAction;
         }
 
+        /**
+         * The summary action icon of the {@link AccordionSection}
+         * @return {com.spoonconsulting.lightning.Icon} - The summary action icon of the {@link AccordionSection}
+         */
         public getSummaryActionIcon(): com.spoonconsulting.lightning.Icon {
             return this.summaryActionIcon;
         }
 
+        /**
+         * The slot with the specified name
+         * <ul>
+         * <li>actions - the actions slot where action button can be added (ButtonIcon)</li>
+         * <li>content - Will return the content slot which is the body of the</li>
+         * </ul>
+         * @param {string} name - The name of the slot. Possible values are: actions, &nbsp;content
+         * @return
+         * @return {JSContainer}
+         */
         public getSlot(name: string): JSContainer {
             if (name === "actions"){
                 return this.actionsSlot;
             } else {
                 return this.content;
             }
+        }
+
+        /**
+         * The action slot where {@link ButtonIcon} can be added
+         * @return {JSContainer} - The {@link JSContainer} of the action slot
+         */
+        public geActionsSlot(): JSContainer {
+            return this.actionsSlot;
         }
     }
     AccordionSection["__class"] = "com.spoonconsulting.lightning.AccordionSection";
@@ -4982,9 +5317,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Button {
             {
-                let array200 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index199=0; index199 < array200.length; index199++) {
-                    let v = array200[index199];
+                let array198 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index197=0; index197 < array198.length; index197++) {
+                    let v = array198[index197];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -5234,8 +5569,8 @@ namespace com.spoonconsulting.lightning {
 
         public refresh() {
             const suffixes: string[] = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-            for(let index201=0; index201 < suffixes.length; index201++) {
-                let suffix = suffixes[index201];
+            for(let index199=0; index199 < suffixes.length; index199++) {
+                let suffix = suffixes[index199];
                 {
                     this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                 }
@@ -5405,9 +5740,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonStateful {
             {
-                let array203 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index202=0; index202 < array203.length; index202++) {
-                    let v = array203[index202];
+                let array201 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Variant[] = []; for(let val in com.spoonconsulting.lightning.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index200=0; index200 < array201.length; index200++) {
+                    let v = array201[index200];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.Variant["_$wrappers"][v].getValue());
                     }
@@ -5599,8 +5934,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu {
-            for(let index204=0; index204 < items.length; index204++) {
-                let item = items[index204];
+            for(let index202=0; index202 < items.length; index202++) {
+                let item = items[index202];
                 {
                     this.addMenuItem(item);
                 }
@@ -6236,9 +6571,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ButtonIcon {
             {
-                let array206 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index205=0; index205 < array206.length; index205++) {
-                    let s = array206[index205];
+                let array204 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.Size[] = []; for(let val in com.spoonconsulting.lightning.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index203=0; index203 < array204.length; index203++) {
+                    let s = array204[index203];
                     {
                         this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.Size["_$wrappers"][s].getValue());
                     }
@@ -6281,9 +6616,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonIcon {
             {
-                let array208 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index207=0; index207 < array208.length; index207++) {
-                    let v = array208[index207];
+                let array206 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index205=0; index205 < array206.length; index205++) {
+                    let v = array206[index205];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant["_$wrappers"][v].getValue());
                     }
