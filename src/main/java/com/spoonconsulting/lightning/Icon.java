@@ -1,6 +1,7 @@
 package com.spoonconsulting.lightning;
 
 import framework.components.JSContainer;
+import jsweet.lang.Object;
 
 public class Icon extends JSContainer{
 
@@ -17,10 +18,20 @@ public class Icon extends JSContainer{
 	
 	
 	private Icon setIcon(String group, String name) {
-		String html = "<use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"$base-assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>";
-		html = html.replace("$base-assets", GlobalConfigs.BASE_ASSETS);
+		Object icons = (Object)IconData.getIconData().$get(group);
+		if(icons != null) {
+			Object icon = (Object)icons.$get(name);
+			if(icon != null) {
+				String html = (String)icon.$get("html");
+				String viewBox =(String)icon.$get("viewBox");
+				setAttribute("viewBox", viewBox);
+				setHtml(html);
+			}
+		}
+		//String html = "<use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"$base-assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>";
+		//html = html.replace("$base-assets", GlobalConfigs.BASE_ASSETS);
 		//setHtml("<use xlink:href=\"/assets/icons/"+group+"-sprite/svg/symbols.svg#"+name+"\"></use>");
-		setHtml(html);
+		//setHtml(html);
 		return this;
 	}
 	

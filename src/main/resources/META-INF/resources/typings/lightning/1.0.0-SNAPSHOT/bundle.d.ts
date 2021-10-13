@@ -744,6 +744,18 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class IconData {
+        static DATA_: Object;
+        static getIcon(html: string, viewBox: string): Object;
+        static getIconData(): Object;
+        static getIconGroup_action(): Object;
+        static getIconGroup_custom(): Object;
+        static getIconGroup_doctype(): Object;
+        static getIconGroup_standard(): Object;
+        static getIconGroup_utility(): Object;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     enum InputType {
         CHECKBOX = 0,
         CHECKBOX_BUTTON = 1,
@@ -1713,6 +1725,28 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    /**
+     * <p>The badge is a component to display a small amount of information.</p>
+     * <p>The badge can contain :</p>
+     * <p>
+     * <ul>
+     * <li>label - {@link #setLabel(String)}, {@link #getLabel()}</li>
+     * <li>icon - {@link #setIconName(String)}, {@link #getIconName()}</li>
+     * <li>assistive text - {@link #setAssistiveText(String)}, {@link #getAssistiveText()}</li>
+     * <li>icon alternative text - {@link #setIconAlternativeText(String)} {@link #getIconAlternativeText()}</li>
+     * </ul>
+     * <div>the icon can be positioned at start or end of the badge. i.e before or after the label.</div>
+     * <p>The icon is the standard salesforce icon</p>
+     * {@link #setIconPosition(String)}
+     * {@link #POSITION_START}
+     * {@link #POSITION_END}
+     * </p>
+     * Constructs a Badge with the specified name
+     * @param {string} name - The name of the badge
+     * @class
+     * @extends com.spoonconsulting.lightning.BaseLightning
+     * @author Kureem Rossaye<br>
+     */
     class Badge extends com.spoonconsulting.lightning.BaseLightning {
         label: JSContainer;
         leftIconContainer: com.spoonconsulting.lightning.IconContainer;
@@ -1720,19 +1754,78 @@ declare namespace com.spoonconsulting.lightning {
         rightIconContainer: com.spoonconsulting.lightning.IconContainer;
         rightBadgeIcon: JSContainer;
         assistiveText: JSContainer;
+        /**
+         * static variable to set the icon position to start
+         * @see {@link #setIconPosition(String)
+         */
         static POSITION_START: string;
+        /**
+         * static variable to set the icon position to end
+         * @see {@link #setIconPosition(String)
+         */
         static POSITION_END: string;
         iconPosition: string;
         constructor(name: string);
+        /**
+         * sets the assistive text for the badge<br>
+         * The text is hidden
+         * @param {string} txt - The assistive text
+         * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
+         */
         setAssistiveText(txt: string): Badge;
+        /**
+         *
+         * @return {string} - The assistive text
+         */
         getAssistiveText(): string;
+        /**
+         * The label for the badge<br>
+         * @return {string} - The label for the badge
+         */
         getLabel(): string;
+        /**
+         * sets the icon alternative text when the icon is not rendered
+         * @param {string} altText - The alternative text when the icon is not rendered
+         * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
+         */
         setIconAlternativeText(altText: string): Badge;
+        /**
+         *
+         * @return {string} - The icon alternative text
+         */
         getIconAlternativeText(): string;
+        /**
+         * sets the icon name for the badge<br>
+         * takes the standard salesforce icon notation. e.g. utility:settings
+         * @param {string} iconName - The icon name of the badge
+         * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
+         */
         setIconName(iconName: string): Badge;
+        /**
+         *
+         * @return {string} - The icon name of the badge
+         */
         getIconName(): string;
+        /**
+         * @see {@link #POSITION_START}
+         * @see {@link #POSITION_END}
+         * @return {string} - The icon position of the badge
+         */
         getIconPosition(): string;
+        /**
+         * sets the icon position of the badge
+         * @param {string} position - The icon position of the badge
+         * @return  {com.spoonconsulting.lightning.Badge} The current instance of the badge
+         * @see {@link #POSITION_START}
+         * @see {@link #POSITION_END}
+         *
+         */
         setIconPosition(position: string): Badge;
+        /**
+         * sets the label for the badge
+         * @param {string} label - The label for the badge
+         * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
+         */
         setLabel(label: string): Badge;
     }
 }
