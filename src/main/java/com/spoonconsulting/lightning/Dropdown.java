@@ -1,5 +1,7 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+
 import framework.components.JSContainer;
 
 public class Dropdown extends JSContainer {

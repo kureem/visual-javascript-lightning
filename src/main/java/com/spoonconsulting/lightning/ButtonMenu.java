@@ -1,6 +1,8 @@
 package com.spoonconsulting.lightning;
 
-import com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant;
+import com.spoonconsulting.lightning.enums.MenuAlignment;
+import com.spoonconsulting.lightning.enums.Size;
+import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
 
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
@@ -12,7 +14,7 @@ public class ButtonMenu extends BaseLightning{
 	
 	private Dropdown dropdown = new Dropdown("dropdown");
 
-	private String menuAlignment = MenuAlignment.LEFT.value;
+	private String menuAlignment = MenuAlignment.LEFT.getValue();
 	
 	private boolean nubbin= false;
 	
@@ -144,7 +146,7 @@ public class ButtonMenu extends BaseLightning{
 	}
 	
 	public ButtonMenu setMenuAlignment(MenuAlignment alignment) {
-		return setMenuAlignment(alignment != null? alignment.value : MenuAlignment.AUTO.value);
+		return setMenuAlignment(alignment != null? alignment.getValue() : MenuAlignment.AUTO.getValue());
 	}
 	
 	public ButtonMenu setMenuAlignment(String alignment) {
@@ -206,34 +208,34 @@ public class ButtonMenu extends BaseLightning{
 		}
 		
 		
-		if(menuAlignment == MenuAlignment.BOTTOM_CENTER.value) {
+		if(menuAlignment == MenuAlignment.BOTTOM_CENTER.getValue()) {
 			dropdown.addClass("slds-dropdown_bottom");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_bottom");
 			}
-		}else if(menuAlignment == MenuAlignment.BOTTOM_RIGHT.value) {
+		}else if(menuAlignment == MenuAlignment.BOTTOM_RIGHT.getValue()) {
 			dropdown.addClass("slds-dropdown_right")
 				.addClass("slds-dropdown_bottom-right");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_bottom-right");
 			}
-		}else if(menuAlignment == MenuAlignment.BOTTOM_LEFT.value) {
+		}else if(menuAlignment == MenuAlignment.BOTTOM_LEFT.getValue()) {
 			dropdown.addClass("slds-dropdown_left")
 				.addClass("slds-dropdown_bottom-left");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_bottom-left");
 			}
-		}else if(menuAlignment == MenuAlignment.CENTER.value) {
+		}else if(menuAlignment == MenuAlignment.CENTER.getValue()) {
 			dropdown.addClass("slds-dropdown_center");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_top");
 			}
-		}else if(menuAlignment == MenuAlignment.RIGHT.value) {
+		}else if(menuAlignment == MenuAlignment.RIGHT.getValue()) {
 			dropdown.addClass("slds-dropdown_right");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_top-right");
 			}
-		}else if(menuAlignment == MenuAlignment.LEFT.value) {
+		}else if(menuAlignment == MenuAlignment.LEFT.getValue()) {
 			dropdown.addClass("slds-dropdown_left");
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_top-left");
@@ -243,23 +245,6 @@ public class ButtonMenu extends BaseLightning{
 			if(nubbin) {
 				dropdown.addClass("slds-nubbin_top-left");
 			}
-		}
-	}
-
-	public enum MenuAlignment{
-		
-		LEFT("top"),
-		RIGHT("right"),
-		CENTER("center"),
-		BOTTOM_LEFT("bottom-left"),
-		BOTTOM_RIGHT("bottom-right"),
-		BOTTOM_CENTER("bottom-center"),
-		AUTO("auto");
-		
-		private String value;
-		
-		private MenuAlignment(String val) {
-			this.value = val;
 		}
 	}
 }

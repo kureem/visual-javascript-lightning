@@ -1,8 +1,13 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Variants.FormElementVariant;
+
 import framework.components.JSContainer;
+import framework.components.api.EventListener;
 import framework.components.api.InputField;
+import framework.components.api.Renderable;
 import framework.components.api.ValidationException;
+import jsweet.dom.Event;
 
 public class FormElement<T> extends JSContainer implements InputField<T>{
 	
@@ -90,11 +95,20 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		if(value != null) {
 			setValue(value);
 		}
+		this.input.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				fireListener("change", evt);
+			}
+		}, "change");
 		return this;
 	}
 	
 	
-
+	public JSContainer getControlCtn() {
+		return this.controlCtn;
+	}
 
 	protected JSContainer getRequired() {
 		return required;
@@ -189,11 +203,11 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	
 	public FormElement<T> setVariant(String variant){
 		if(variant != null) {
-			if(variant == FormElementVariant.LABEL_HIDDEN.value) {
+			if(variant == FormElementVariant.LABEL_HIDDEN.getValue()) {
 				setVariant(FormElementVariant.LABEL_HIDDEN);
-			}else if(variant == FormElementVariant.LABEL_INLINE.value) {
+			}else if(variant == FormElementVariant.LABEL_INLINE.getValue()) {
 				setVariant(FormElementVariant.LABEL_INLINE);
-			}else if(variant == FormElementVariant.LABEL_STACKED.value) {
+			}else if(variant == FormElementVariant.LABEL_STACKED.getValue()) {
 				setVariant(FormElementVariant.LABEL_STACKED);
 			}else {
 				setVariant(FormElementVariant.STANDARD);
@@ -206,28 +220,8 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	
 	public String getVariant() {
 		if(variant != null)
-			return this.variant.value;
-		return FormElementVariant.STANDARD.value;
-	}
-	
-	
-	
-	
-	public enum FormElementVariant{
-		
-		STANDARD("standard"),
-		LABEL_HIDDEN("label-hidden"),
-		LABEL_INLINE("label-inline"),
-		LABEL_STACKED("label-stacked");
-		private String value;
-		
-		private FormElementVariant(String value) {
-			this.value = value;
-		}
-		
-		public String getValue() {
-			return this.value;
-		}
+			return this.variant.getValue();
+		return FormElementVariant.STANDARD.getValue();
 	}
 
 }

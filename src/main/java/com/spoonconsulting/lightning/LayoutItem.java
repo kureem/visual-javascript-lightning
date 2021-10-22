@@ -1,5 +1,9 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Direction;
+import com.spoonconsulting.lightning.enums.Flexibility;
+import com.spoonconsulting.lightning.enums.LayoutItemPadding;
+
 import framework.components.JSContainer;
 
 public class LayoutItem extends JSContainer {
@@ -27,14 +31,14 @@ public class LayoutItem extends JSContainer {
 		return alignmentBumb;
 	}
 	
-	public LayoutItem setAlignmentBump(AlignmentBump al) {
-		return setAlignmentBump(al != null ? al.value : (String)null);
+	public LayoutItem setAlignmentBump(Direction al) {
+		return setAlignmentBump(al != null ? al.getValue() : (String)null);
 	}
 
 	public LayoutItem setAlignmentBump(String alignmentBumb) {
 		this.alignmentBumb = alignmentBumb;
-		for (AlignmentBump a : AlignmentBump.values()) {
-			removeClass("slds-col_bump-" + a.value);
+		for (Direction a : Direction.values()) {
+			removeClass("slds-col_bump-" + a.getValue());
 		}
 		if (alignmentBumb != null)
 			addClass("slds-col_bump-" + alignmentBumb);
@@ -47,13 +51,13 @@ public class LayoutItem extends JSContainer {
 	}
 	
 	public LayoutItem setFlexibility(Flexibility flexi) {
-		return setFlexibility(flexi != null? flexi.value : (String)null);
+		return setFlexibility(flexi != null? flexi.getValue() : (String)null);
 	}
 
 	public LayoutItem setFlexibility(String flexibility) {
 		this.flexibility = flexibility;
 		for (Flexibility f : Flexibility.values()) {
-			removeClass("slds-" + f.value);
+			removeClass("slds-" + f.getValue());
 		}
 
 		if (flexibility != null) {
@@ -100,14 +104,14 @@ public class LayoutItem extends JSContainer {
 		return padding;
 	}
 	
-	public LayoutItem setPadding(Padding pading) {
-		return setPadding(pading != null? pading.value : (String)null);
+	public LayoutItem setPadding(LayoutItemPadding pading) {
+		return setPadding(pading != null? pading.getValue() : (String)null);
 	}
 
 	public LayoutItem setPadding(String padding) {
 		this.padding = padding;
-		for(Padding p : Padding.values()) {
-			removeClass("slds-p-" + p.value);
+		for(LayoutItemPadding p : LayoutItemPadding.values()) {
+			removeClass("slds-p-" + p.getValue());
 		}
 		
 		if(padding != null) {
@@ -147,56 +151,6 @@ public class LayoutItem extends JSContainer {
 			addClass("slds-small-size_" + size + "-of-12");
 		
 		return this;
-	}
-
-
-	public enum AlignmentBump {
-
-		TOP("top"), LEFT("left"), RIGHT("right"), BOTTOM("bottom");
-
-		private String value;
-
-		private AlignmentBump(String value) {
-			this.value = value;
-		}
-		
-		public String getValue() {
-			return value;
-		}
-	}
-
-	public enum Flexibility {
-
-		AUTO("auto"), SHRINK("shrink"), NO_SHRINK("no-shrink"), GROW("grow"), NO_GROW("no-grow"), NO_FLEX("no-flex");
-
-		private String value;
-
-		private Flexibility(String val) {
-			value = val;
-		}
-		
-		public String getValue() {
-			return value;
-		}
-		
-	}
-
-	public enum Padding {
-
-		HORIZONTAL_SMALL("horizontal_small"), HORIZONTAL_MEDIUM("horizontal_medium"),
-		HORIZONTAL_LARGE("horizontal_large"), AROUND_SMALL("around_small"), AROUND_MEDIUM("around_medium"),
-		AROUND_LARGE("around_large");
-
-		private String value;
-
-		private Padding(String val) {
-			value = val;
-		}
-		
-		public String getValue() {
-			return value;
-		}
-
 	}
 
 }

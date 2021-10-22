@@ -1,5 +1,7 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Variants.TabSetVariant;
+
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
@@ -83,7 +85,7 @@ public class TabSet extends JSContainer {
 	}
 	
 	public TabSet setVariant(TabSetVariant variant) {
-		return setVariant(variant != null? variant.value : "standard");
+		return setVariant(variant != null? variant.getValue() : "standard");
 	}
 	
 	public TabSet setVariant(String variant) {
@@ -111,7 +113,7 @@ public class TabSet extends JSContainer {
 		
 		
 		for(TabSetVariant va : TabSetVariant.values()) {
-			removeClass("slds-tabs_" + va.value);
+			removeClass("slds-tabs_" + va.getValue());
 		}
 		
 		if(variant == null) {
@@ -123,19 +125,6 @@ public class TabSet extends JSContainer {
 	}
 	
 	
-	public enum TabSetVariant{
-		
-		STANDARD("default"),
-		SCOPED("scoped"),
-		VERTICAL("vertical");
-		
-		private TabSetVariant(String value) {
-			this.value = value;
-		}
-		
-		private String value;
-	}
-
 	public class TabItem extends JSContainer {
 
 		private Tab tab;

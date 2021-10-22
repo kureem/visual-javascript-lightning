@@ -1,5 +1,8 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+import com.spoonconsulting.lightning.enums.Variants.Variant;
+
 import framework.components.JSContainer;
 
 public class Spinner extends JSContainer{

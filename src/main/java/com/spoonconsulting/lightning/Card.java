@@ -1,5 +1,8 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+import com.spoonconsulting.lightning.enums.Variants;
+
 import framework.components.JSContainer;
 
 public class Card extends JSContainer{
@@ -118,37 +121,21 @@ public class Card extends JSContainer{
 
 	public Card setVariant(String variant) {
 		removeClass("slds-card_narrow");
-		if(variant == CardVariant.NARROW.value) {
+		if(variant == Variants.CardVariant.NARROW.getValue()) {
 			addClass("slds-card_narrow");
 		}
 		return this;
 	}
 	
-	public Card setVariant(CardVariant variant) {
-		return setVariant(variant != null?variant.value: (String)null);
+	public Card setVariant(Variants.CardVariant variant) {
+		return setVariant(variant != null?variant.getValue(): (String)null);
 	}
 	
 	public String getVariant() {
 		if(hasClass("slds-card_narrow")) {
-			return CardVariant.NARROW.value;
+			return Variants.CardVariant.NARROW.getValue();
 		}else {
-			return CardVariant.BASE.value;
-		}
-	}
-	
-	public enum CardVariant {
-		
-		BASE("base"),
-		NARROW("narrow");
-		
-		private String value;
-		
-		private CardVariant(String value) {
-			this.value = value;
-		}
-		
-		public String getValue() {
-			return this.value;
+			return Variants.CardVariant.BASE.getValue();
 		}
 	}
 }

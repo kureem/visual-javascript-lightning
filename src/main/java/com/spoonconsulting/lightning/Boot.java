@@ -1,25 +1,22 @@
 package com.spoonconsulting.lightning;
 
 
-import com.spoonconsulting.lightning.ButtonIcon.ButtonIconVariant;
-import com.spoonconsulting.lightning.LayoutItem.Padding;
 import com.spoonconsulting.lightning.Modal.BackDrop;
-import com.spoonconsulting.lightning.TabSet.TabSetVariant;
+import com.spoonconsulting.lightning.enums.Direction;
+import com.spoonconsulting.lightning.enums.LayoutItemPadding;
+import com.spoonconsulting.lightning.enums.Size;
+import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
+import com.spoonconsulting.lightning.enums.Variants.TabSetVariant;
+import com.spoonconsulting.lightning.enums.Variants.Variant;
 
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
-import framework.components.input.JSForm;
 import framework.components.input.JSTextInput;
 import jsweet.dom.Event;
 import jsweet.dom.Option;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
-import jsweet.util.StringTypes.button;
-
-import static jsweet.dom.Globals.alert;
-
-import jsweet.lang.JSON;
 public class Boot {
 
 	public static void main(String[] args) {
@@ -76,7 +73,7 @@ public class Boot {
 		Layout layout = new Layout("l", "div");
 		layout.setMultipleRows(true);
 		
-		LayoutItem head = new LayoutItem("head", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM);
+		LayoutItem head = new LayoutItem("head", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM);
 		head.setSize(12);
 		
 		layout.addChild(head);
@@ -104,7 +101,7 @@ public class Boot {
 		}
 		cbsize.setOptions(sizes);
 		
-		LayoutItem itemsize = new LayoutItem("ss", "div").setSize(12).setPadding(Padding.AROUND_MEDIUM);
+		LayoutItem itemsize = new LayoutItem("ss", "div").setSize(12).setPadding(LayoutItemPadding.AROUND_MEDIUM);
 		layout.addChild(itemsize);
 		
 		
@@ -119,17 +116,17 @@ public class Boot {
 		iconButtonRight.setIconPosition(Button.ICON_POSITION_RIGHT);
 		
 		
-		LayoutItem item = new LayoutItem("btns", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM);
+		LayoutItem item = new LayoutItem("btns", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM);
 		item.setSize(12);
 		layout.addChild(item);
 		
 		Layout btns = new Layout("btns", "div");
-		LayoutItem item1 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
-		LayoutItem item2 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
-		LayoutItem item3 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
-		LayoutItem item4 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
-		LayoutItem item5 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
-		LayoutItem item6 = new LayoutItem("item1", "div").setPadding(LayoutItem.Padding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item1 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item2 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item3 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item4 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item5 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		LayoutItem item6 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		
 		Button diablebtn = new Button("dis").setLabel("Click to disable");
 		diablebtn.setVariant(Variant.BRAND);
@@ -286,15 +283,29 @@ public class Boot {
 		email.setLabel("Email");
 		
 		
-		JSForm form = new JSForm("form");
-		form.setStyle("padding", "0.5rem");
+		Section personalInfo = new Section("Personal Information");
+		personalInfo.setLabel("Personal Information");
+		Form frmPersonalInfo = new Form("");
+		frmPersonalInfo.
+			row(0).item(0).addElement("salutation").
+			getRow().item(1).addElement("firstName")
+			.form().addRow().item(0).addElement("lastName")
+			.row().item(1).addElement("email")
+			.form().addRow().item(0).addElement("addressLine1")
+			.row().item(1).addElement("addressLine2")
+			.form().addRow().item(0).addElement("city")
+			.row().item(1).addElement("postalCode");
+		personalInfo.getContent().addChild(frmPersonalInfo);
+		//JSForm form = new JSForm("form");
+		///form.setStyle("padding", "0.5rem");
 		modal.setTitle("User Registration");
 		
-		form.addChild(firstName);
-		form.addChild(lastName);
-		form.addChild(email);
+		//form.addChild(firstName);
+		//form.addChild(lastName);
+		//form.addChild(email);
 		
-		modal.getContent().addChild(form);
+		modal.getContent().addChild(personalInfo);
+		Utils.setPadding(modal.getContent(), Direction.HORIZONTAL, Size.MEDIUM);
 		
 		Button save = new Button("save");
 		save.setLabel("Save");
@@ -317,18 +328,18 @@ public class Boot {
 			
 			@Override
 			public void performAction(Renderable source, Event evt) {
-				form.submit();
+				//personalInfo.submit();
 			}
 		}, "click");
 		
-		form.addEventListener(new EventListener() {
+		/*form.addEventListener(new EventListener() {
 			
 			@Override
 			public void performAction(Renderable source, Event evt) {
 				Object data = form.getData();
 				alert(JSON.stringify(data));
 			}
-		},"onSubmit");
+		},"onSubmit");*/
 		
 		
 		modal.getFooter().addChild(save);

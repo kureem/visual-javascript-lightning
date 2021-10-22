@@ -1,5 +1,7 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;

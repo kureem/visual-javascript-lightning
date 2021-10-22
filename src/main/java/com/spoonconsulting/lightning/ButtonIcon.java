@@ -1,5 +1,8 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
+
 public class ButtonIcon extends Button{
 
 	public ButtonIcon(String name, String iconName) {
@@ -64,26 +67,5 @@ public class ButtonIcon extends Button{
 	public Button setLabel(String label) {
 		getUILabel().setHtml(label);
 		return this;
-	}
-
-	public enum ButtonIconVariant{
-		
-		BARE("bare"),
-		CONTAINER("container"),
-		BRAND("brand"),
-		BORDER("border"),
-		BORDER_FILLED("border-filled"),
-		BARE_INVERSE("bare-inverse"),
-		BORDER_INVERSE("border-inverse");
-		
-		private String value;
-		
-		private ButtonIconVariant(String value) {
-			this.value = value;
-		}
-
-		public String getValue() {
-			return this.value;
-		}
 	}
 }
