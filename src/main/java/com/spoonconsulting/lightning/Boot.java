@@ -2,13 +2,16 @@ package com.spoonconsulting.lightning;
 
 
 import com.spoonconsulting.lightning.Modal.BackDrop;
+import com.spoonconsulting.lightning.Utils.OptionsBuilder;
 import com.spoonconsulting.lightning.enums.Direction;
+import com.spoonconsulting.lightning.enums.IconName;
 import com.spoonconsulting.lightning.enums.LayoutItemPadding;
 import com.spoonconsulting.lightning.enums.Size;
 import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
 import com.spoonconsulting.lightning.enums.Variants.TabSetVariant;
 import com.spoonconsulting.lightning.enums.Variants.Variant;
 
+import def.js.JSON;
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
@@ -17,6 +20,8 @@ import jsweet.dom.Event;
 import jsweet.dom.Option;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
+
+import static jsweet.dom.Globals.alert;
 public class Boot {
 
 	public static void main(String[] args) {
@@ -249,6 +254,15 @@ public class Boot {
 			}
 		}, "click");
 		app.addChild(toggle);
+		
+		
+		Breadcrumbs bcs = new Breadcrumbs("brd");
+		bcs.addBreadcrumb(new Breadcrumb("home").setLabel("Home").setHref("#home"))
+		.addBreadcrumb(new Breadcrumb("contacts").setLabel("Contacts").setHref("#contacts"))
+		.addBreadcrumb(new Breadcrumb("internal").setLabel("Internal").setHref("#contacts/internal"));
+		
+		
+		app.addChild(bcs);
 		return app;
 	
 	}
@@ -296,6 +310,20 @@ public class Boot {
 			.form().addRow().item(0).addElement("city")
 			.row().item(1).addElement("postalCode");
 		personalInfo.getContent().addChild(frmPersonalInfo);
+		
+		
+		Section otherInfo = new Section("Other info");
+		otherInfo.setLabel("Other info");
+		Form frm = new Form("otdf");
+		
+		RadioGroup cbg = new RadioGroup("maritalStatus");
+		cbg.setLabel("Marital Status");
+		cbg.setOptions(OptionsBuilder.create().add("Single","Married", "Divorced" ).get());
+		frm.row(0).item(0).addChild(cbg);
+		otherInfo.getContent().addChild(frm);
+		
+		frm.row(0).item(1).addChild(new CheckBoxGroup("educationLevel").setOptions(OptionsBuilder.create().add("SC","HSC", "BA", "MA", "Phd").get()).setLabel("Education Level"));
+		
 		//JSForm form = new JSForm("form");
 		///form.setStyle("padding", "0.5rem");
 		modal.setTitle("User Registration");
@@ -305,6 +333,7 @@ public class Boot {
 		//form.addChild(email);
 		
 		modal.getContent().addChild(personalInfo);
+		modal.getContent().addChild(otherInfo);
 		Utils.setPadding(modal.getContent(), Direction.HORIZONTAL, Size.MEDIUM);
 		
 		Button save = new Button("save");
@@ -362,6 +391,77 @@ public class Boot {
 		
 	}
 	
+	
+	public static JSContainer getTree() {
+		String json= "[{\"label\":\"Western Sales Director\",\"name\":\"1\",\"expanded\":true,\"items\":[{\"label\":\"Western Sales Manager\",\"name\":\"2\",\"expanded\":true,\"items\":[{\"label\":\"CA Sales Rep\",\"name\":\"3\",\"expanded\":true,\"items\":[]},{\"label\":\"OR Sales Rep\",\"name\":\"4\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"Eastern Sales Director\",\"name\":\"5\",\"expanded\":false,\"items\":[{\"label\":\"Easter Sales Manager\",\"name\":\"6\",\"expanded\":true,\"items\":[{\"label\":\"NY Sales Rep\",\"name\":\"7\",\"expanded\":true,\"items\":[]},{\"label\":\"MA Sales Rep\",\"name\":\"8\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"International Sales Director\",\"name\":\"9\",\"expanded\":true,\"items\":[{\"label\":\"Asia Sales Manager\",\"name\":\"10\",\"expanded\":true,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"11\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"12\",\"expanded\":true,\"items\":[]}]},{\"label\":\"Europe Sales Manager\",\"name\":\"13\",\"expanded\":false,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"14\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"15\",\"expanded\":true,\"items\":[]}]}]}]";
+		
+		Array<Object> items = (Array<Object>)JSON.parse(json);
+		
+		Tree tree = new Tree("name");
+		tree.setItems(items);
+		return tree;
+	}
+	
+	
+	public static JSContainer getTiles() {
+		
+		Layout layout = new Layout("ll", "div");
+		layout.setMultipleRows(true);
+		LayoutItem item1 = new LayoutItem("item1","div");
+		item1.setSize(6);
+		item1.setPadding(LayoutItemPadding.AROUND_MEDIUM);
+		
+		LayoutItem item2 = new LayoutItem("item1","div");
+		item2.setSize(6);
+		item2.setPadding(LayoutItemPadding.AROUND_MEDIUM);
+		
+		layout.addChild(item1).addChild(item2);
+		
+		
+		Tile tile = new Tile("tile");
+		tile.setType(Tile.TYPE_MEDIA);
+		tile.setLabel("This is a tile");
+		//tile.getFiguresSlot().addChild(new IconContainer("icon", "div").setIconName(IconName.ACTION_ADD_CONTACT.getValue()));
+		tile.getBodySlot().addChild(getTree());
+		
+		Object add = new Object();
+		add.$set("value", "add");
+		add.$set("label", "Add New");
+		add.$set("iconName", IconName.UTILITY_ADD.getValue());
+		
+		Object del = new Object();
+		del.$set("value", "delete");
+		del.$set("label", "Delete");
+		del.$set("iconName", IconName.ACTION_DELETE.getValue());
+		
+		Array<Object> actions = new Array<Object>();
+		actions.push(add,del);
+		
+		tile.setActions(actions);
+		//tile.setStyle("width", "500px");
+		
+		tile.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				MenuItem item = (MenuItem)evt.$get("source");
+				alert(item.getValue());
+			}
+		}, "actiontriggered");
+		
+		item1.addChild(tile);
+		
+		Tile av = new Tile("av");
+		av.setLabel("Tile with avatar");
+		av.setAvatarSrc("https://cevasfdc.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10003&avatarId=10402");
+		av.setType(Tile.TYPE_MEDIA);
+		
+		av.getBodySlot().addChild(getButtons());
+		
+		item2.addChild(av);
+		return layout;
+	}
+	
 	public static TabSet getVerticalMenu() {
 		
 		TabSet set = new TabSet("menu");
@@ -372,6 +472,8 @@ public class Boot {
 		addVerticalTab("Combo box", getSampleCOmbo(), set);
 		addVerticalTab("Buttons", getButtons(), set);
 		addVerticalTab("Modals", getModal(), set);
+		addVerticalTab("Tree", getTree(), set);
+		addVerticalTab("Tile", getTiles(), set);
 		return set;
 	}
 }

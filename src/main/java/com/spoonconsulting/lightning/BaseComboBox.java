@@ -1,5 +1,6 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.ListBox.ListBoxOption;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
@@ -19,7 +20,7 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 
 	private JSContainer formElement = new JSContainer("formElement", "div");
 	
-	private  JSTextInput input = new JSTextInput("input");
+	private  JSTextInput input_ = new JSTextInput("input");
 	
 	private ListBox dropdown = new ListBox("dropdown");
 	
@@ -48,10 +49,10 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 			.addClass("slds-combobox__form-element")
 			.addClass("slds-input-has-icon")
 			.addClass("slds-input-has-icon_right")
-			.addChild(input)
+			.addChild(input_)
 			.addChild(inputIconContainer);
 		
-		input.addClass("slds-input")
+		input_.addClass("slds-input")
 			.addClass("slds-combobox__input")
 			.setAttribute("role", "textbox")
 			.setAttribute("autocomplete", "off")
@@ -80,8 +81,9 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 			
 			@Override
 			public void performAction(Renderable source, Event evt) {
-				String val = dropdown.getValue();
-				input.setValue(val);
+				ListBoxOption opt = dropdown.getSelectedOption();
+				if(opt != null)
+					input_.setValue(opt.getLabel());
 				setExpand(false);
 				fireListener("change", evt);
 			}
@@ -128,18 +130,24 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 
 	@Override
 	public T getValue() {
-		return encode( input.getValue());
+		return encode( dropdown.getValue());
 	}
 
 	@Override
 	public void setValue(T val) {
-		input.setValue(decode(val));
+		String value = decode(val);
+		ListBoxOption opt = dropdown.getOption(value);
+		if(opt != null) {
+			input_.setValue(opt.getLabel());
+		}else {
+			input_.setValue("");
+		}
 		dropdown.setValue(decode(val));
 	}
 
 	@Override
 	public void validate() throws ValidationException {
-		input.validate();
+		input_.validate();
 	}
 
 	@Override
@@ -155,17 +163,17 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 
 	@Override
 	public InputField<T> setRequired(boolean b) {
-		input.setRequired(b);
+		input_.setRequired(b);
 		return this;
 	}
 	
 	public BaseComboBox<T> setDisabled(boolean b) {
-		input.setDisabled(b);
+		input_.setDisabled(b);
 		return this;
 	}
 	
 	public Boolean isDisabled() {
-		return input.getAttribute("disabled") == "true";
+		return input_.getAttribute("disabled") == "true";
 	}
 	
 	public BaseComboBox<T> setDropdownAlignment(String alignment) {
@@ -184,13 +192,13 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 	}
 	
 	public void blur() {
-		HTMLInputElement in = (HTMLInputElement)input.getElement();
+		HTMLInputElement in = (HTMLInputElement)input_.getElement();
 		if(in != null)
 			in.blur();
 	}
 	
 	public Boolean checkValidity() {
-		HTMLInputElement in = (HTMLInputElement)input.getElement();
+		HTMLInputElement in = (HTMLInputElement)input_.getElement();
 		if(in != null) {
 			return in.checkValidity();
 		}
@@ -198,7 +206,7 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 	}
 	
 	public BaseComboBox<T> setCustomValidity(String message, String type, String description) {
-		HTMLInputElement in = (HTMLInputElement)input.getElement();
+		HTMLInputElement in = (HTMLInputElement)input_.getElement();
 		if(in != null)
 			in.setCustomValidity(message);
 		return this;
@@ -209,7 +217,7 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 	}
 
 	public JSTextInput getInput() {
-		return input;
+		return input_;
 	}
 
 	public ListBox getDropdown() {

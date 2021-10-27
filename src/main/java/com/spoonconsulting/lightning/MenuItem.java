@@ -36,7 +36,7 @@ public class MenuItem extends BaseLightning{
 		setAttribute("role", "menuitem");
 		label.addChild(checked_);
 		label.addChild(span);
-		checked_.setSize(Size.SMALL)
+		checked_.setSize(Size.EXTRA_SMALL)
 			.addClass("slds-icon-text-default")
 			.addClass( "slds-m-right_x-small")
 			.setAttribute("aria-hidden", "true")
@@ -45,13 +45,13 @@ public class MenuItem extends BaseLightning{
 		
 		span.addClass("slds-truncate");
 		
-		icon_.setSize(Size.SMALL);
+		icon_.setSize(Size.EXTRA_SMALL);
 		icon_.addClass("slds-icon-text-default")
 			.addClass("slds-m-left_small")
 			.addClass("slds-shrink-none")
 			.setAttribute("aria-hidden", "true");
 		
-		prefixIcon_.setSize(Size.SMALL);
+		prefixIcon_.setSize(Size.EXTRA_SMALL);
 		prefixIcon_.addClass("slds-icon-text-default")
 			.addClass("slds-m-left_small")
 			.addClass("slds-shrink-none")
@@ -93,6 +93,7 @@ public class MenuItem extends BaseLightning{
 	public MenuItem refresh() {
 		clearChildren();
 		label.clearChildren();
+		addChild(label);
 		if(checked) {
 			label.addChild(checked_);
 		}
@@ -107,6 +108,7 @@ public class MenuItem extends BaseLightning{
 		label.addChild(span);
 		if(iconName != null && iconName != "") {
 			addChild(icon_);
+			icon_.setSize(Size.EXTRA_SMALL);
 			icon_.setIconName(iconName);
 		}
 		setRendered(false);

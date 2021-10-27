@@ -1,6 +1,9 @@
 package com.spoonconsulting.lightning;
 
 import framework.components.JSContainer;
+import framework.components.api.EventListener;
+import framework.components.api.Renderable;
+import jsweet.dom.Event;
 
 public class Menu extends BaseLightning{
 
@@ -17,11 +20,24 @@ public class Menu extends BaseLightning{
 		setAttribute("aria-label", title);
 	}
 	
+	public void clearMenu() {
+		this.clearChildren();
+	}
+	
 	public Menu addMenuItem(MenuItem item) {
 		JSContainer li = new JSContainer("", "li");
 		li.addClass("slds-dropdown__item").setAttribute("role", "presentation");
 		addChild(li);
 		li.addChild(item);
+		item.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				evt.$set("source", source);
+				fireListener("select", evt);
+				
+			}
+		}, "click");
 		return this;
 	}
 	

@@ -7,6 +7,9 @@ import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
 import jsweet.dom.Event;
+import jsweet.lang.Array;
+import jsweet.lang.Object;
+import jsweet.util.StringTypes.option;
 
 public class ButtonMenu extends BaseLightning{
 
@@ -35,6 +38,16 @@ public class ButtonMenu extends BaseLightning{
 					toggle();
 				}
 			}, "click");
+		
+		setExpanded(false);
+		dropdown.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				setExpanded(false);
+				fireListener("select", evt);
+			}
+		}, "select");
 	}
 	
 	public void toggle() {
@@ -151,7 +164,7 @@ public class ButtonMenu extends BaseLightning{
 	
 	public ButtonMenu setMenuAlignment(String alignment) {
 		this.menuAlignment = alignment;
-		
+		refresh();
 		return this;
 	}
 	
@@ -247,4 +260,44 @@ public class ButtonMenu extends BaseLightning{
 			}
 		}
 	}
+	
+	public ButtonMenu clearMenu() {
+		this.dropdown.clearMenu();
+		return this;
+	}
+	
+	public ButtonMenu addItem(String value, String label, String iconName) {
+		MenuItem menuItem = new MenuItem(value);
+		menuItem.setLabel(label);
+		menuItem.setIconName(iconName);
+		menuItem.setValue(value);
+		addItem(menuItem);
+		return this;
+	}
+	
+	public ButtonMenu setOptions(Array<Object> options) {
+		clearMenu();
+		for(Object option : options) {
+			String value = (String) option.$get("value");
+			String label = (String) option.$get("label");
+			String iconName = (String) option.$get("iconName");
+			addItem( value, label, iconName);
+		}
+		return this;
+	}
+	
+	public ButtonMenu addItem(MenuItem item) {
+		dropdown.addItem(item);
+		return this;
+	}
+
+	public ButtonIcon getButton() {
+		return button;
+	}
+
+	public Dropdown getDropdown() {
+		return dropdown;
+	}
+	
+	
 }

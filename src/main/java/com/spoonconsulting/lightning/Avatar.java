@@ -3,6 +3,9 @@ package com.spoonconsulting.lightning;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
+import framework.components.api.EventListener;
+import framework.components.api.Renderable;
+import jsweet.dom.Event;
 
 /**
  * <p>This class represents an {@link Avatar}.</p>
@@ -145,6 +148,22 @@ public class Avatar extends JSContainer{
 		this.clearChildren();
 		if(type == TYPE_IMAGE) {
 			addChild(img);
+			img.addEventListener(new EventListener() {
+				
+				@Override
+				public void performAction(Renderable source, Event evt) {
+					
+				}
+			}, "load");
+			
+			img.addEventListener(new EventListener() {
+				
+				@Override
+				public void performAction(Renderable source, Event evt) {
+					// TODO Auto-generated method stub
+					
+				}
+			}, "error");
 		}else if(type == TYPE_ICON) {
 			addChild(iconContainer);
 		}else if(type == TYPE_INITIAL) {

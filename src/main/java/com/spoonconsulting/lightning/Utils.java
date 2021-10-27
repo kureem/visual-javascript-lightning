@@ -8,6 +8,8 @@ import com.spoonconsulting.lightning.enums.Theme;
 
 import framework.components.JSContainer;
 import framework.components.api.Renderable;
+import jsweet.lang.Array;
+import jsweet.lang.Object;
 import jsweet.util.StringTypes.text;
 
 public class Utils {
@@ -330,5 +332,43 @@ public class Utils {
 		}else {
 			r.removeClass("slds-has-flexi-truncate");
 		}
+	}
+	
+	
+	public static class OptionsBuilder{
+
+		private Array<Object> options = new Array<Object>();
+		
+		
+		public static OptionsBuilder create() {
+			return new OptionsBuilder();
+		}
+		
+		public OptionsBuilder add(String value, String label) {
+			Object opt = new Object();
+			opt.$set("value", value);
+			opt.$set("label", label);
+			options.push(opt);
+			return this;
+		}
+		
+		public OptionsBuilder addValuesLabels(String...strings) {
+			for(int i = 0; i < strings.length-1;i=i+2) {
+				add(strings[i], strings[i+1]);
+			}
+			return this;
+		}
+		
+		public OptionsBuilder add(String...strings) {
+			for(String s : strings) {
+				add(s,s);
+			}
+			return this;
+		}
+		
+		public Array<Object> get(){
+			return options;
+		}
+		
 	}
 }

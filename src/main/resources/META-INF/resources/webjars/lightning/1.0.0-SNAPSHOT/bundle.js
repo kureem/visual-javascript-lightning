@@ -219,6 +219,8 @@ var com;
                     this.clearChildren();
                     if (type === Avatar.TYPE_IMAGE) {
                         this.addChild(this.img);
+                        this.img.addEventListener(new Avatar.Avatar$0(this), "load");
+                        this.img.addEventListener(new Avatar.Avatar$1(this), "error");
                     }
                     else if (type === Avatar.TYPE_ICON) {
                         this.addChild(this.iconContainer);
@@ -482,6 +484,36 @@ var com;
             lightning.Avatar = Avatar;
             Avatar["__class"] = "com.spoonconsulting.lightning.Avatar";
             Avatar["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (Avatar) {
+                class Avatar$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                    }
+                }
+                Avatar.Avatar$0 = Avatar$0;
+                Avatar$0["__interfaces"] = ["framework.components.api.EventListener"];
+                class Avatar$1 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                    }
+                }
+                Avatar.Avatar$1 = Avatar$1;
+                Avatar$1["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Avatar = lightning.Avatar || (lightning.Avatar = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -495,14 +527,14 @@ var com;
                     super(name, "div");
                     this.combobox = new JSContainer("combobox", "div");
                     this.formElement = new JSContainer("formElement", "div");
-                    this.input = new input.JSTextInput("input");
+                    this.input_ = new input.JSTextInput("input");
                     this.dropdown = new com.spoonconsulting.lightning.ListBox("dropdown");
                     this.inputIconContainer = new JSContainer("input-icon-container", "div");
                     this.inputIcon = new com.spoonconsulting.lightning.IconContainer("input-icon", "div");
                     this.addClass("slds-combobox_container").addChild(this.combobox);
                     this.combobox.addClass("slds-combobox").addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click").setAttribute("aria-expanded", "false").setAttribute("aria-haspopup", "listbox").setAttribute("role", "combobox").addChild(this.formElement).addChild(this.dropdown);
-                    this.formElement.setAttribute("role", "none").addClass("slds-combobox__form-element").addClass("slds-input-has-icon").addClass("slds-input-has-icon_right").addChild(this.input).addChild(this.inputIconContainer);
-                    this.input.addClass("slds-input").addClass("slds-combobox__input").setAttribute("role", "textbox").setAttribute("autocomplete", "off").setAttribute("aria-autocomplete", "none").setAttribute("readonly", "true").addEventListener(new BaseComboBox.BaseComboBox$0(this), "click");
+                    this.formElement.setAttribute("role", "none").addClass("slds-combobox__form-element").addClass("slds-input-has-icon").addClass("slds-input-has-icon_right").addChild(this.input_).addChild(this.inputIconContainer);
+                    this.input_.addClass("slds-input").addClass("slds-combobox__input").setAttribute("role", "textbox").setAttribute("autocomplete", "off").setAttribute("aria-autocomplete", "none").setAttribute("readonly", "true").addEventListener(new BaseComboBox.BaseComboBox$0(this), "click");
                     this.inputIconContainer.addClass("slds-input__icon-group").addClass("slds-input__icon-group_right").addChild(this.inputIcon);
                     this.inputIcon.setIconName("utility:down").setSize(com.spoonconsulting.lightning.enums.Size.EXTRA_EXTRA_SMALL).addClass("slds-input__icon").addClass("slds-input__icon_right");
                     this.inputIcon.getIcon().addClass("slds-icon-text-default");
@@ -543,21 +575,28 @@ var com;
                  * @return {*}
                  */
                 getValue() {
-                    return this.encode(this.input.getValue());
+                    return this.encode(this.dropdown.getValue());
                 }
                 /**
                  *
                  * @param {*} val
                  */
                 setValue(val) {
-                    this.input.setValue(this.decode(val));
+                    const value = this.decode(val);
+                    const opt = this.dropdown.getOption(value);
+                    if (opt != null) {
+                        this.input_.setValue(opt.getLabel());
+                    }
+                    else {
+                        this.input_.setValue("");
+                    }
                     this.dropdown.setValue(this.decode(val));
                 }
                 /**
                  *
                  */
                 validate() {
-                    this.input.validate();
+                    this.input_.validate();
                 }
                 /**
                  *
@@ -581,15 +620,15 @@ var com;
                  * @return {*}
                  */
                 setRequired(b) {
-                    this.input.setRequired(b);
+                    this.input_.setRequired(b);
                     return this;
                 }
                 setDisabled(b) {
-                    this.input.setDisabled(b);
+                    this.input_.setDisabled(b);
                     return this;
                 }
                 isDisabled() {
-                    return this.input.getAttribute("disabled") === "true";
+                    return this.input_.getAttribute("disabled") === "true";
                 }
                 setDropdownAlignment(alignment) {
                     if (alignment === BaseComboBox.DROPDOWN_ALIGNMENT_BOTTOM_LEFT) {
@@ -604,19 +643,19 @@ var com;
                     return this.dropdown.hasClass("slds-dropdown_bottom") ? BaseComboBox.DROPDOWN_ALIGNMENT_BOTTOM_LEFT : BaseComboBox.DROPDOWN_ALIGNMENT_TOP_LEFT;
                 }
                 blur() {
-                    const __in = this.input.getElement();
+                    const __in = this.input_.getElement();
                     if (__in != null)
                         __in.blur();
                 }
                 checkValidity() {
-                    const __in = this.input.getElement();
+                    const __in = this.input_.getElement();
                     if (__in != null) {
                         return __in.checkValidity();
                     }
                     return null;
                 }
                 setCustomValidity(message, type, description) {
-                    const __in = this.input.getElement();
+                    const __in = this.input_.getElement();
                     if (__in != null)
                         __in.setCustomValidity(message);
                     return this;
@@ -625,7 +664,7 @@ var com;
                     return this.combobox;
                 }
                 getInput() {
-                    return this.input;
+                    return this.input_;
                 }
                 getDropdown() {
                     return this.dropdown;
@@ -665,8 +704,9 @@ var com;
                      * @param {Event} evt
                      */
                     performAction(source, evt) {
-                        const val = this.__parent.dropdown.getValue();
-                        this.__parent.input.setValue(val);
+                        const opt = this.__parent.dropdown.getSelectedOption();
+                        if (opt != null)
+                            this.__parent.input_.setValue(opt.getLabel());
                         this.__parent.setExpand(false);
                         this.__parent.fireListener("change", evt);
                     }
@@ -864,6 +904,9 @@ var com;
                     const toggle = new com.spoonconsulting.lightning.Button("toggle").setLabel("Toggle");
                     toggle.addEventListener(new Boot.Boot$4(indicator), "click");
                     app.addChild(toggle);
+                    const bcs = new com.spoonconsulting.lightning.Breadcrumbs("brd");
+                    bcs.addBreadcrumb(new com.spoonconsulting.lightning.Breadcrumb("home").setLabel("Home").setHref("#home")).addBreadcrumb(new com.spoonconsulting.lightning.Breadcrumb("contacts").setLabel("Contacts").setHref("#contacts")).addBreadcrumb(new com.spoonconsulting.lightning.Breadcrumb("internal").setLabel("Internal").setHref("#contacts/internal"));
+                    app.addChild(bcs);
                     return app;
                 }
                 /*private*/ static addVerticalTab(title, sample, verticalMenu) {
@@ -892,8 +935,18 @@ var com;
                     const frmPersonalInfo = new com.spoonconsulting.lightning.Form("");
                     frmPersonalInfo.row(0).item(0).addElement$java_lang_String("salutation").getRow().item(1).addElement$java_lang_String("firstName").form().addRow().item(0).addElement$java_lang_String("lastName").row().item(1).addElement$java_lang_String("email").form().addRow().item(0).addElement$java_lang_String("addressLine1").row().item(1).addElement$java_lang_String("addressLine2").form().addRow().item(0).addElement$java_lang_String("city").row().item(1).addElement$java_lang_String("postalCode");
                     personalInfo.getContent().addChild(frmPersonalInfo);
+                    const otherInfo = new com.spoonconsulting.lightning.Section("Other info");
+                    otherInfo.setLabel("Other info");
+                    const frm = new com.spoonconsulting.lightning.Form("otdf");
+                    const cbg = new com.spoonconsulting.lightning.RadioGroup("maritalStatus");
+                    cbg.setLabel("Marital Status");
+                    cbg.setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("Single", "Married", "Divorced").get());
+                    frm.row(0).item(0).addChild(cbg);
+                    otherInfo.getContent().addChild(frm);
+                    frm.row(0).item(1).addChild(new com.spoonconsulting.lightning.CheckBoxGroup("educationLevel").setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("SC", "HSC", "BA", "MA", "Phd").get()).setLabel("Education Level"));
                     modal.setTitle("User Registration");
                     modal.getContent().addChild(personalInfo);
+                    modal.getContent().addChild(otherInfo);
                     com.spoonconsulting.lightning.Utils.setPadding$framework_components_api_Renderable$com_spoonconsulting_lightning_enums_Direction$com_spoonconsulting_lightning_enums_Size(modal.getContent(), com.spoonconsulting.lightning.enums.Direction.HORIZONTAL, com.spoonconsulting.lightning.enums.Size.MEDIUM);
                     const save = new com.spoonconsulting.lightning.Button("save");
                     save.setLabel("Save");
@@ -912,6 +965,48 @@ var com;
                     button.addEventListener(new Boot.Boot$7(modal), "click");
                     return container;
                 }
+                static getTree() {
+                    const json = "[{\"label\":\"Western Sales Director\",\"name\":\"1\",\"expanded\":true,\"items\":[{\"label\":\"Western Sales Manager\",\"name\":\"2\",\"expanded\":true,\"items\":[{\"label\":\"CA Sales Rep\",\"name\":\"3\",\"expanded\":true,\"items\":[]},{\"label\":\"OR Sales Rep\",\"name\":\"4\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"Eastern Sales Director\",\"name\":\"5\",\"expanded\":false,\"items\":[{\"label\":\"Easter Sales Manager\",\"name\":\"6\",\"expanded\":true,\"items\":[{\"label\":\"NY Sales Rep\",\"name\":\"7\",\"expanded\":true,\"items\":[]},{\"label\":\"MA Sales Rep\",\"name\":\"8\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"International Sales Director\",\"name\":\"9\",\"expanded\":true,\"items\":[{\"label\":\"Asia Sales Manager\",\"name\":\"10\",\"expanded\":true,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"11\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"12\",\"expanded\":true,\"items\":[]}]},{\"label\":\"Europe Sales Manager\",\"name\":\"13\",\"expanded\":false,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"14\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"15\",\"expanded\":true,\"items\":[]}]}]}]";
+                    const items = JSON.parse(json);
+                    const tree = new com.spoonconsulting.lightning.Tree("name");
+                    tree.setItems(items);
+                    return tree;
+                }
+                static getTiles() {
+                    const layout = new com.spoonconsulting.lightning.Layout("ll", "div");
+                    layout.setMultipleRows(true);
+                    const item1 = new com.spoonconsulting.lightning.LayoutItem("item1", "div");
+                    item1.setSize(6);
+                    item1.setPadding$com_spoonconsulting_lightning_enums_LayoutItemPadding(com.spoonconsulting.lightning.enums.LayoutItemPadding.AROUND_MEDIUM);
+                    const item2 = new com.spoonconsulting.lightning.LayoutItem("item1", "div");
+                    item2.setSize(6);
+                    item2.setPadding$com_spoonconsulting_lightning_enums_LayoutItemPadding(com.spoonconsulting.lightning.enums.LayoutItemPadding.AROUND_MEDIUM);
+                    layout.addChild(item1).addChild(item2);
+                    const tile = new com.spoonconsulting.lightning.Tile("tile");
+                    tile.setType(com.spoonconsulting.lightning.Tile.TYPE_MEDIA);
+                    tile.setLabel("This is a tile");
+                    tile.getBodySlot().addChild(Boot.getTree());
+                    const add = new Object();
+                    add["value"] = "add";
+                    add["label"] = "Add New";
+                    add["iconName"] = com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_ADD].getValue();
+                    const del = new Object();
+                    del["value"] = "delete";
+                    del["label"] = "Delete";
+                    del["iconName"] = com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.ACTION_DELETE].getValue();
+                    const actions = (new Array());
+                    actions.push(add, del);
+                    tile.setActions(actions);
+                    tile.addEventListener(new Boot.Boot$8(), "actiontriggered");
+                    item1.addChild(tile);
+                    const av = new com.spoonconsulting.lightning.Tile("av");
+                    av.setLabel("Tile with avatar");
+                    av.setAvatarSrc("https://cevasfdc.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10003&avatarId=10402");
+                    av.setType(com.spoonconsulting.lightning.Tile.TYPE_MEDIA);
+                    av.getBodySlot().addChild(Boot.getButtons());
+                    item2.addChild(av);
+                    return layout;
+                }
                 static getVerticalMenu() {
                     const set = new com.spoonconsulting.lightning.TabSet("menu");
                     set.setVariant$com_spoonconsulting_lightning_enums_Variants_TabSetVariant(com.spoonconsulting.lightning.enums.Variants.TabSetVariant.VERTICAL).setStyle("height", "100vh");
@@ -920,6 +1015,8 @@ var com;
                     Boot.addVerticalTab("Combo box", Boot.getSampleCOmbo(), set);
                     Boot.addVerticalTab("Buttons", Boot.getButtons(), set);
                     Boot.addVerticalTab("Modals", Boot.getModal(), set);
+                    Boot.addVerticalTab("Tree", Boot.getTree(), set);
+                    Boot.addVerticalTab("Tile", Boot.getTiles(), set);
                     return set;
                 }
             }
@@ -1059,6 +1156,21 @@ var com;
                 }
                 Boot.Boot$7 = Boot$7;
                 Boot$7["__interfaces"] = ["framework.components.api.EventListener"];
+                class Boot$8 {
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        const item = evt["source"];
+                        alert(item.getValue());
+                    }
+                    constructor() {
+                    }
+                }
+                Boot.Boot$8 = Boot$8;
+                Boot$8["__interfaces"] = ["framework.components.api.EventListener"];
             })(Boot = lightning.Boot || (lightning.Boot = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
@@ -1323,6 +1435,7 @@ var com;
                     this.checkBoxLabel.addChild("faux", "span", "slds-checkbox_faux");
                     this.label.addClass("slds-form-element__label");
                     this.checkBoxLabel.addChild(this.label);
+                    this.checkBoxLabel.addEventListener(new CheckBox.CheckBox$0(this), "click");
                 }
                 getCheckBoxLabel() {
                     return this.checkBoxLabel;
@@ -1386,6 +1499,23 @@ var com;
             lightning.CheckBox = CheckBox;
             CheckBox["__class"] = "com.spoonconsulting.lightning.CheckBox";
             CheckBox["__interfaces"] = ["framework.components.api.InputField", "framework.components.api.Renderable"];
+            (function (CheckBox) {
+                class CheckBox$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        this.__parent.checkbox.getElement().click();
+                    }
+                }
+                CheckBox.CheckBox$0 = CheckBox$0;
+                CheckBox$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(CheckBox = lightning.CheckBox || (lightning.CheckBox = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -1486,9 +1616,13 @@ var com;
                     this.addChild(this.menu);
                     this.spinnerContainer.addClass("slds-spinner_container");
                     this.spinnerContainer.addChild(this.spinner.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.SMALL));
+                    this.menu.addEventListener(new Dropdown.Dropdown$0(this), "select");
                 }
                 getIsLoading() {
                     return this.isLoading;
+                }
+                clearMenu() {
+                    this.menu.clearMenu();
                 }
                 setIsLoading(isLoading) {
                     this.isLoading = isLoading;
@@ -1514,10 +1648,30 @@ var com;
                 getSpinner() {
                     return this.spinner;
                 }
+                getMenu() {
+                    return this.menu;
+                }
             }
             lightning.Dropdown = Dropdown;
             Dropdown["__class"] = "com.spoonconsulting.lightning.Dropdown";
             Dropdown["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (Dropdown) {
+                class Dropdown$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        this.__parent.fireListener("select", evt);
+                    }
+                }
+                Dropdown.Dropdown$0 = Dropdown$0;
+                Dropdown$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Dropdown = lightning.Dropdown || (lightning.Dropdown = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -5592,11 +5746,41 @@ var com;
                     }
                     return this;
                 }
-                getValue() {
+                getSelectedOption() {
                     {
                         let array152 = this.getChildren();
                         for (let index151 = 0; index151 < array152.length; index151++) {
                             let r = array152[index151];
+                            {
+                                const opt = r;
+                                if (opt.isChecked()) {
+                                    return opt;
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+                getOption(value) {
+                    {
+                        let array154 = this.getChildren();
+                        for (let index153 = 0; index153 < array154.length; index153++) {
+                            let r = array154[index153];
+                            {
+                                const opt = r;
+                                if (opt.getValue() === value) {
+                                    return opt;
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+                getValue() {
+                    {
+                        let array156 = this.getChildren();
+                        for (let index155 = 0; index155 < array156.length; index155++) {
+                            let r = array156[index155];
                             {
                                 const opt = r;
                                 if (opt.isChecked()) {
@@ -6111,13 +6295,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array154 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array158 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index153 = 0; index153 < array154.length; index153++) {
-                            let s = array154[index153];
+                        for (let index157 = 0; index157 < array158.length; index157++) {
+                            let s = array158[index157];
                             {
                                 this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -6461,6 +6645,108 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Radio extends JSContainer {
+                constructor(name) {
+                    super(name, "span");
+                    this.radio = new input.JSRadio("input");
+                    this.radioLabel = new JSContainer("radio-label", "label");
+                    this.label = new JSContainer("label", "span");
+                    this.addClass("slds-radio");
+                    this.addChild(this.radio);
+                    this.addChild(this.radioLabel);
+                    this.radioLabel.addClass("slds-radio__label");
+                    this.radioLabel.addChild("faux", "span", "slds-radio_faux");
+                    this.label.addClass("slds-form-element__label");
+                    this.radioLabel.addChild(this.label);
+                    this.radioLabel.addEventListener(new Radio.Radio$0(this), "click");
+                }
+                getRadioLabel() {
+                    return this.radioLabel;
+                }
+                getLabel() {
+                    return this.label.getHtml();
+                }
+                setLabel(label) {
+                    this.label.setHtml(label);
+                    return this;
+                }
+                getCheckBox() {
+                    return this.radio;
+                }
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                getValue() {
+                    return this.radio.getValue();
+                }
+                /**
+                 *
+                 * @param {boolean} val
+                 */
+                setValue(val) {
+                    this.radio.setValue(val);
+                }
+                /**
+                 *
+                 */
+                validate() {
+                    this.radio.validate();
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                getBinding() {
+                    return this.radio.getBinding();
+                }
+                /**
+                 *
+                 * @param {string} binding
+                 * @return {*}
+                 */
+                setBinding(binding) {
+                    this.radio.setBinding(binding);
+                    return this;
+                }
+                /**
+                 *
+                 * @param {boolean} b
+                 * @return {*}
+                 */
+                setRequired(b) {
+                    this.radio.setRequired(b);
+                    return this;
+                }
+            }
+            lightning.Radio = Radio;
+            Radio["__class"] = "com.spoonconsulting.lightning.Radio";
+            Radio["__interfaces"] = ["framework.components.api.InputField", "framework.components.api.Renderable"];
+            (function (Radio) {
+                class Radio$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        this.__parent.radio.getElement().click();
+                    }
+                }
+                Radio.Radio$0 = Radio$0;
+                Radio$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Radio = lightning.Radio || (lightning.Radio = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Section extends JSContainer {
                 constructor(name) {
                     super(name, "div");
@@ -6580,13 +6866,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array156 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array160 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index155 = 0; index155 < array156.length; index155++) {
-                            let s = array156[index155];
+                        for (let index159 = 0; index159 < array160.length; index159++) {
+                            let s = array160[index159];
                             {
                                 this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -6598,13 +6884,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array158 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array162 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index157 = 0; index157 < array158.length; index157++) {
-                            let v = array158[index157];
+                        for (let index161 = 0; index161 < array162.length; index161++) {
+                            let v = array162[index161];
                             {
                                 if (v !== com.spoonconsulting.lightning.enums.Variants.Variant.BASE)
                                     this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
@@ -6671,9 +6957,9 @@ var com;
                 }
                 setActiveTabValue(val) {
                     {
-                        let array160 = this.tablist.getChildren();
-                        for (let index159 = 0; index159 < array160.length; index159++) {
-                            let r = array160[index159];
+                        let array164 = this.tablist.getChildren();
+                        for (let index163 = 0; index163 < array164.length; index163++) {
+                            let r = array164[index163];
                             {
                                 const item = r;
                                 if (item.tab.getValue() === val) {
@@ -6688,9 +6974,9 @@ var com;
                 }
                 setActiveTabItem(item) {
                     {
-                        let array162 = this.tablist.getChildren();
-                        for (let index161 = 0; index161 < array162.length; index161++) {
-                            let r = array162[index161];
+                        let array166 = this.tablist.getChildren();
+                        for (let index165 = 0; index165 < array166.length; index165++) {
+                            let r = array166[index165];
                             {
                                 const titem = r;
                                 if (titem.getId() === item.getId()) {
@@ -6705,9 +6991,9 @@ var com;
                 }
                 getActiveTabItem() {
                     {
-                        let array164 = this.getTabItems();
-                        for (let index163 = 0; index163 < array164.length; index163++) {
-                            let item = array164[index163];
+                        let array168 = this.getTabItems();
+                        for (let index167 = 0; index167 < array168.length; index167++) {
+                            let item = array168[index167];
                             {
                                 if (item.isActive()) {
                                     return item;
@@ -6736,9 +7022,9 @@ var com;
                 }
                 getPanel(name) {
                     {
-                        let array166 = this.getChildren();
-                        for (let index165 = 0; index165 < array166.length; index165++) {
-                            let r = array166[index165];
+                        let array170 = this.getChildren();
+                        for (let index169 = 0; index169 < array170.length; index169++) {
+                            let r = array170[index169];
                             {
                                 if (r.getId() !== this.tablist.getId()) {
                                     if (r.getName() === name) {
@@ -6785,13 +7071,13 @@ var com;
                         this.tablist.addClass("slds-tabs_default__nav");
                     }
                     {
-                        let array168 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) {
+                        let array172 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index167 = 0; index167 < array168.length; index167++) {
-                            let va = array168[index167];
+                        for (let index171 = 0; index171 < array172.length; index171++) {
+                            let va = array172[index171];
                             {
                                 this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.enums.Variants.TabSetVariant["_$wrappers"][va].getValue());
                             }
@@ -6860,6 +7146,135 @@ var com;
                     TabItem$0["__interfaces"] = ["framework.components.api.EventListener"];
                 })(TabItem = TabSet.TabItem || (TabSet.TabItem = {}));
             })(TabSet = lightning.TabSet || (lightning.TabSet = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class Tile extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.media = new JSContainer("media", "div");
+                    this.body = new JSContainer("body", "div");
+                    this.bodyHeader = new JSContainer("bodyHeader", "div");
+                    this.title = new JSContainer("title", "h3");
+                    this.link = new JSContainer("link", "a");
+                    this.menuSlot = new JSContainer("menuSlot", "div");
+                    this.detail = new JSContainer("detail", "div");
+                    this.menu = new com.spoonconsulting.lightning.ButtonMenu("menu", "div");
+                    this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
+                    this.avatar = new com.spoonconsulting.lightning.Avatar("avatar");
+                    this.addClass("slds-tile");
+                    this.addChild(this.media);
+                    this.addChild(this.body);
+                    this.media.addClass("slds-media__figure");
+                    this.body.addClass("slds-media__body");
+                    this.body.addChild(this.bodyHeader);
+                    this.bodyHeader.addClass("slds-grid").addClass("slds-grid_align-spread").addClass("slds-has-flexi-truncate");
+                    this.bodyHeader.addChild(this.title);
+                    this.title.addChild(this.link);
+                    this.title.addClass("slds-tile__title").addClass("slds-truncate");
+                    this.bodyHeader.addChild(this.menuSlot);
+                    this.menuSlot.addClass("slds-shrink-none");
+                    this.body.addChild(this.detail);
+                    this.detail.addClass("slds-tile__detail");
+                    this.menu.addEventListener(new Tile.Tile$0(this), "select");
+                    this.media.addChild(this.icon);
+                    this.icon.setIconName(com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.STANDARD_ACCOUNT].getValue());
+                    this.icon.setSize(com.spoonconsulting.lightning.enums.Size.SMALL);
+                }
+                setIconName(iconName) {
+                    this.getFiguresSlot().clearChildren();
+                    this.media.addChild(this.icon);
+                    this.media.setRendered(false);
+                    this.icon.setIconName(iconName);
+                    this.icon.setSize(com.spoonconsulting.lightning.enums.Size.SMALL);
+                    return this;
+                }
+                setAvatarSrc(src) {
+                    this.media.clearChildren();
+                    this.media.addChild(this.avatar);
+                    this.media.setRendered(false);
+                    this.avatar.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.SMALL);
+                    this.avatar.setSrc(src);
+                    return this;
+                }
+                getBodySlot() {
+                    return this.detail;
+                }
+                getActionSlot() {
+                    return this.menuSlot;
+                }
+                getMenuSlot() {
+                    return this.menuSlot;
+                }
+                getFiguresSlot() {
+                    return this.media;
+                }
+                setType(type) {
+                    this.setAttribute("type", type);
+                    if (type === "media") {
+                        this.addClass("slds-media");
+                        this.media.setStyle("display", null);
+                    }
+                    else {
+                        this.removeClass("slds-media");
+                        this.media.setStyle("display", "none");
+                    }
+                    return this;
+                }
+                getType() {
+                    return this.getAttribute("type");
+                }
+                setLabel(label) {
+                    this.title.setAttribute("title", label);
+                    this.link.setHtml(label);
+                    return this;
+                }
+                getLabel() {
+                    return this.link.getHtml();
+                }
+                setHref(href) {
+                    this.link.setAttribute("href", href);
+                    return this;
+                }
+                getHref() {
+                    return this.link.getAttribute("href");
+                }
+                setActions(options) {
+                    this.menuSlot.clearChildren();
+                    this.menuSlot.addChild(this.menu);
+                    this.menu.setMenuAlignment$com_spoonconsulting_lightning_enums_MenuAlignment(com.spoonconsulting.lightning.enums.MenuAlignment.RIGHT);
+                    this.menuSlot.setRendered(false);
+                    this.menu.setOptions(options);
+                    return this;
+                }
+            }
+            Tile.TYPE_MEDIA = "media";
+            Tile.TYPE_STANDARD = "standard";
+            lightning.Tile = Tile;
+            Tile["__class"] = "com.spoonconsulting.lightning.Tile";
+            Tile["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (Tile) {
+                class Tile$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        this.__parent.fireListener("actiontriggered", evt);
+                    }
+                }
+                Tile.Tile$0 = Tile$0;
+                Tile$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Tile = lightning.Tile || (lightning.Tile = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -6969,6 +7384,228 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class Tree extends JSContainer {
+                constructor(name) {
+                    super(name, "div");
+                    this.heading = new JSContainer("heading", "h4");
+                    this.items = null;
+                    this.tree = null;
+                    this.addClass("slds-tree_container");
+                    this.addChild(this.heading);
+                    this.heading.addClass("slds-tree__group-header");
+                }
+                setHeading(heading) {
+                    this.heading.setHtml(heading);
+                    return this;
+                }
+                getHeading() {
+                    return this.heading.getHtml();
+                }
+                setItems(items) {
+                    this.clearChildren();
+                    this.addChild(this.heading);
+                    this.tree = new Tree.UITree(this, "heading", 1);
+                    this.addChild(this.tree);
+                    this.tree.setData(items);
+                    this.items = items;
+                    return this;
+                }
+                unselect(except) {
+                    if (this.tree != null) {
+                        this.tree.unselect(except);
+                    }
+                }
+                getItems() {
+                    return this.items;
+                }
+            }
+            lightning.Tree = Tree;
+            Tree["__class"] = "com.spoonconsulting.lightning.Tree";
+            Tree["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (Tree) {
+                class UITree extends JSContainer {
+                    constructor(__parent, name, level) {
+                        super(name, "ul");
+                        this.__parent = __parent;
+                        this.level = 1;
+                        this.level = level;
+                        this.setAttribute("role", "group");
+                        this.addClass("slds-tree");
+                    }
+                    setData(data) {
+                        this.clearChildren();
+                        this.setRendered(false);
+                        for (let index173 = 0; index173 < data.length; index173++) {
+                            let obj = data[index173];
+                            {
+                                const item = new Tree.UITreeItem(this.__parent, obj["name"], this.level);
+                                this.addChild(item);
+                                item.setData(obj);
+                            }
+                        }
+                        return this;
+                    }
+                    unselect(except) {
+                        {
+                            let array175 = this.getChildren();
+                            for (let index174 = 0; index174 < array175.length; index174++) {
+                                let c = array175[index174];
+                                {
+                                    const item = c;
+                                    item.unSelect(except);
+                                }
+                            }
+                        }
+                    }
+                }
+                Tree.UITree = UITree;
+                UITree["__class"] = "com.spoonconsulting.lightning.Tree.UITree";
+                UITree["__interfaces"] = ["framework.components.api.Renderable"];
+                class UITreeItem extends JSContainer {
+                    constructor(__parent, name, level) {
+                        super(name, "li");
+                        this.__parent = __parent;
+                        this.icon = new com.spoonconsulting.lightning.ButtonIcon("icon", "utility:chevronright");
+                        this.label = new JSContainer("label", "span");
+                        this.data = null;
+                        this.children = null;
+                        this.level = -1;
+                        this.level = level;
+                        this.setAttribute("aria-level", level + "");
+                        const wrapper = this.addChild("wrapper", "div", "slds-tree__item");
+                        this.addClass("UITreeItem");
+                        this.setAttribute("role", "treeitem");
+                        wrapper.addChild(this.icon);
+                        this.icon.addClass("slds-m-right_x-small");
+                        const labelWrapper = wrapper.addChild("label-wrapper", "span", "slds-has-flexi-truncate");
+                        labelWrapper.addChild(this.label);
+                        this.label.addClass("slds-tree__item-label").addClass("slds-truncate");
+                        this.icon.addEventListener(new UITreeItem.UITreeItem$0(this), "click");
+                        this.label.addEventListener(new UITreeItem.UITreeItem$1(this), "click");
+                    }
+                    setExpanded(b) {
+                        const children = this.data["items"];
+                        if (children == null || children.length <= 0) {
+                            this.icon.setStyle("visibility", "hidden");
+                        }
+                        else {
+                            this.icon.setStyle("visibility", null);
+                        }
+                        if (b) {
+                            this.setAttribute("aria-expanded", "true");
+                            if (children != null && children.length > 0) {
+                                if (this.children == null) {
+                                    this.children = new Tree.UITree(this.__parent, "tr", this.level + 1);
+                                    this.addChild(this.children);
+                                }
+                                this.children.setData(children);
+                                this.children.setStyle("display", null);
+                            }
+                        }
+                        else {
+                            this.setAttribute("aria-expanded", "false");
+                            if (this.children != null) {
+                                this.children.setStyle("display", "none");
+                            }
+                        }
+                    }
+                    setSelected(b) {
+                        if (b) {
+                            this.setAttribute("aria-selected", "true");
+                            const tr = (this.getAncestorWithClass("slds-tree_container"));
+                            tr.unselect(this);
+                            this.data["selected"] = true;
+                        }
+                        else {
+                            this.setAttribute("aria-selected", "false");
+                            this.data["selected"] = false;
+                        }
+                    }
+                    unSelect(except) {
+                        if (this.getId() !== except.getId()) {
+                            this.data["selected"] = false;
+                            this.setAttribute("aria-selected", "false");
+                        }
+                        if (this.children != null) {
+                            this.children.unselect(except);
+                        }
+                    }
+                    setData(data) {
+                        this.data = data;
+                        const label = data["label"];
+                        const name = data["name"];
+                        const expanded = data["expanded"];
+                        const selected = data["selected"];
+                        this.label.setHtml(label);
+                        this.setName(name);
+                        this.setExpanded(expanded);
+                        this.setSelected(selected);
+                    }
+                    getData() {
+                        return this.data;
+                    }
+                }
+                Tree.UITreeItem = UITreeItem;
+                UITreeItem["__class"] = "com.spoonconsulting.lightning.Tree.UITreeItem";
+                UITreeItem["__interfaces"] = ["framework.components.api.Renderable"];
+                (function (UITreeItem) {
+                    class UITreeItem$0 {
+                        constructor(__parent) {
+                            this.__parent = __parent;
+                        }
+                        /**
+                         *
+                         * @param {*} source
+                         * @param {Event} evt
+                         */
+                        performAction(source, evt) {
+                            const expanded = this.__parent.data["expanded"];
+                            if (expanded) {
+                                this.__parent.setExpanded(false);
+                                this.__parent.data["expanded"] = false;
+                            }
+                            else {
+                                this.__parent.setExpanded(true);
+                                this.__parent.data["expanded"] = true;
+                            }
+                        }
+                    }
+                    UITreeItem.UITreeItem$0 = UITreeItem$0;
+                    UITreeItem$0["__interfaces"] = ["framework.components.api.EventListener"];
+                    class UITreeItem$1 {
+                        constructor(__parent) {
+                            this.__parent = __parent;
+                        }
+                        /**
+                         *
+                         * @param {*} source
+                         * @param {Event} evt
+                         */
+                        performAction(source, evt) {
+                            const selected = this.__parent.data["selected"];
+                            if (!selected) {
+                                this.__parent.setSelected(true);
+                                this.__parent.data["selected"] = true;
+                                const tree = (source.getAncestorWithClass("slds-tree_container"));
+                                const evtSelected = new CustomEvent("selected");
+                                evtSelected["item"] = this.__parent.data;
+                                evtSelected["source"] = source.getAncestorWithClass("UITreeItem");
+                                tree.fireListener("selected", evtSelected);
+                            }
+                        }
+                    }
+                    UITreeItem.UITreeItem$1 = UITreeItem$1;
+                    UITreeItem$1["__interfaces"] = ["framework.components.api.EventListener"];
+                })(UITreeItem = Tree.UITreeItem || (Tree.UITreeItem = {}));
+            })(Tree = lightning.Tree || (lightning.Tree = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class Utils {
                 static camelCaseToLabel(sname) {
                     let result = "";
@@ -7011,26 +7648,26 @@ var com;
                 static setMargin(r, direction, size) {
                     Utils.setStyle(r, "slds-m", direction, size);
                 }
-                /*private*/ static setStyle(r, prefix, direction, size) {
+                static setStyle(r, prefix, direction, size) {
                     {
-                        let array170 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
+                        let array177 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index169 = 0; index169 < array170.length; index169++) {
-                            let dir = array170[index169];
+                        for (let index176 = 0; index176 < array177.length; index176++) {
+                            let dir = array177[index176];
                             {
                                 const css = prefix + "-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][dir].getValue();
                                 r.removeClass(css);
                                 {
-                                    let array172 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                                    let array179 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                                         if (!isNaN(val)) {
                                             result.push(parseInt(val, 10));
                                         }
                                     } return result; }();
-                                    for (let index171 = 0; index171 < array172.length; index171++) {
-                                        let s = array172[index171];
+                                    for (let index178 = 0; index178 < array179.length; index178++) {
+                                        let s = array179[index178];
                                         {
                                             const scss = css + "_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue();
                                             r.removeClass(scss);
@@ -7089,8 +7726,8 @@ var com;
                 getDescriptionList(...strings) {
                     const app = new JSContainer("list", "dl");
                     let isdt = true;
-                    for (let index173 = 0; index173 < strings.length; index173++) {
-                        let s = strings[index173];
+                    for (let index180 = 0; index180 < strings.length; index180++) {
+                        let s = strings[index180];
                         {
                             if (isdt) {
                                 const dt = new JSContainer("", "dt");
@@ -7112,8 +7749,8 @@ var com;
                     const app = new JSContainer("list", "dl");
                     app.addClass("slds-list_horizontal").addClass("slds-wrap");
                     let isdt = true;
-                    for (let index174 = 0; index174 < strings.length; index174++) {
-                        let s = strings[index174];
+                    for (let index181 = 0; index181 < strings.length; index181++) {
+                        let s = strings[index181];
                         {
                             if (isdt) {
                                 const dt = new JSContainer("", "dt");
@@ -7238,13 +7875,13 @@ var com;
                 }
                 static setPosition(r, position) {
                     {
-                        let array176 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Position) {
+                        let array183 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Position) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index175 = 0; index175 < array176.length; index175++) {
-                            let p = array176[index175];
+                        for (let index182 = 0; index182 < array183.length; index182++) {
+                            let p = array183[index182];
                             {
                                 r.removeClass("slds-is-" + com.spoonconsulting.lightning.enums.Position["_$wrappers"][p].getValue());
                             }
@@ -7308,13 +7945,13 @@ var com;
                 }
                 static setTextColor(r, color) {
                     {
-                        let array178 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Color) {
+                        let array185 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Color) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index177 = 0; index177 < array178.length; index177++) {
-                            let c = array178[index177];
+                        for (let index184 = 0; index184 < array185.length; index184++) {
+                            let c = array185[index184];
                             {
                                 r.removeClass("slds-text-color_" + com.spoonconsulting.lightning.enums.Color["_$wrappers"][c].getValue());
                             }
@@ -7329,13 +7966,13 @@ var com;
                 }
                 static setTheme(r, theme) {
                     {
-                        let array180 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Theme) {
+                        let array187 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Theme) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index179 = 0; index179 < array180.length; index179++) {
-                            let c = array180[index179];
+                        for (let index186 = 0; index186 < array187.length; index186++) {
+                            let c = array187[index186];
                             {
                                 r.removeClass("slds-theme_" + com.spoonconsulting.lightning.enums.Theme["_$wrappers"][c].getValue());
                             }
@@ -7358,6 +7995,56 @@ var com;
             }
             lightning.Utils = Utils;
             Utils["__class"] = "com.spoonconsulting.lightning.Utils";
+            (function (Utils) {
+                class OptionsBuilder {
+                    constructor() {
+                        this.options = (new Array());
+                    }
+                    static create() {
+                        return new Utils.OptionsBuilder();
+                    }
+                    add$java_lang_String$java_lang_String(value, label) {
+                        const opt = new Object();
+                        opt["value"] = value;
+                        opt["label"] = label;
+                        this.options.push(opt);
+                        return this;
+                    }
+                    add(value, label) {
+                        if (((typeof value === 'string') || value === null) && ((typeof label === 'string') || label === null)) {
+                            return this.add$java_lang_String$java_lang_String(value, label);
+                        }
+                        else if (((value != null && value instanceof Array && (value.length == 0 || value[0] == null || (typeof value[0] === 'string'))) || value === null) && label === undefined) {
+                            return this.add$java_lang_String_A(...value);
+                        }
+                        else
+                            throw new Error('invalid overload');
+                    }
+                    addValuesLabels(...strings) {
+                        for (let i = 0; i < strings.length - 1; i = i + 2) {
+                            {
+                                this.add$java_lang_String$java_lang_String(strings[i], strings[i + 1]);
+                            }
+                            ;
+                        }
+                        return this;
+                    }
+                    add$java_lang_String_A(...strings) {
+                        for (let index188 = 0; index188 < strings.length; index188++) {
+                            let s = strings[index188];
+                            {
+                                this.add$java_lang_String$java_lang_String(s, s);
+                            }
+                        }
+                        return this;
+                    }
+                    get() {
+                        return this.options;
+                    }
+                }
+                Utils.OptionsBuilder = OptionsBuilder;
+                OptionsBuilder["__class"] = "com.spoonconsulting.lightning.Utils.OptionsBuilder";
+            })(Utils = lightning.Utils || (lightning.Utils = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -7409,9 +8096,9 @@ var com;
                 }
                 getSection(name) {
                     {
-                        let array182 = this.getSections();
-                        for (let index181 = 0; index181 < array182.length; index181++) {
-                            let section = array182[index181];
+                        let array190 = this.getSections();
+                        for (let index189 = 0; index189 < array190.length; index189++) {
+                            let section = array190[index189];
                             {
                                 if (section.getName() === name) {
                                     return section;
@@ -7423,9 +8110,9 @@ var com;
                 }
                 getItem$java_lang_String(name) {
                     {
-                        let array184 = this.getItems();
-                        for (let index183 = 0; index183 < array184.length; index183++) {
-                            let item = array184[index183];
+                        let array192 = this.getItems();
+                        for (let index191 = 0; index191 < array192.length; index191++) {
+                            let item = array192[index191];
                             {
                                 if (item.getName() === name) {
                                     return item;
@@ -7453,8 +8140,8 @@ var com;
                         throw new Error('invalid overload');
                 }
                 addSections(...sections) {
-                    for (let index185 = 0; index185 < sections.length; index185++) {
-                        let section = sections[index185];
+                    for (let index193 = 0; index193 < sections.length; index193++) {
+                        let section = sections[index193];
                         {
                             this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
                         }
@@ -7472,9 +8159,9 @@ var com;
                     this.selectedItem = selectedItem;
                     this.selectedSection = selectedSection;
                     {
-                        let array187 = this.getSections();
-                        for (let index186 = 0; index186 < array187.length; index186++) {
-                            let section = array187[index186];
+                        let array195 = this.getSections();
+                        for (let index194 = 0; index194 < array195.length; index194++) {
+                            let section = array195[index194];
                             {
                                 if (section.getName() !== selectedSection) {
                                     section.setSelectedItem(null);
@@ -7497,14 +8184,14 @@ var com;
                 getItems() {
                     const result = (new Array());
                     {
-                        let array189 = this.getSections();
-                        for (let index188 = 0; index188 < array189.length; index188++) {
-                            let section = array189[index188];
+                        let array197 = this.getSections();
+                        for (let index196 = 0; index196 < array197.length; index196++) {
+                            let section = array197[index196];
                             {
                                 {
-                                    let array191 = section.getItems();
-                                    for (let index190 = 0; index190 < array191.length; index190++) {
-                                        let item = array191[index190];
+                                    let array199 = section.getItems();
+                                    for (let index198 = 0; index198 < array199.length; index198++) {
+                                        let item = array199[index198];
                                         {
                                             result.push(item);
                                         }
@@ -7521,9 +8208,9 @@ var com;
                 setSelectedItem$java_lang_String(selectedItem) {
                     this.selectedItem = selectedItem;
                     {
-                        let array193 = this.getItems();
-                        for (let index192 = 0; index192 < array193.length; index192++) {
-                            let item = array193[index192];
+                        let array201 = this.getItems();
+                        for (let index200 = 0; index200 < array201.length; index200++) {
+                            let item = array201[index200];
                             {
                                 item.setSelected(item.getName() === selectedItem);
                                 if (item.getName() === selectedItem) {
@@ -7678,8 +8365,8 @@ var com;
                 setSelectedItem(name) {
                     this.selectedItem = name;
                     const items = this.getItems();
-                    for (let index194 = 0; index194 < items.length; index194++) {
-                        let item = items[index194];
+                    for (let index202 = 0; index202 < items.length; index202++) {
+                        let item = items[index202];
                         {
                             item.setSelected(item.getName() === name);
                         }
@@ -7724,9 +8411,9 @@ var com;
                 }
                 getItem(name) {
                     {
-                        let array196 = this.getItems();
-                        for (let index195 = 0; index195 < array196.length; index195++) {
-                            let item = array196[index195];
+                        let array204 = this.getItems();
+                        for (let index203 = 0; index203 < array204.length; index203++) {
+                            let item = array204[index203];
                             {
                                 if (item.getName() === name) {
                                     return item;
@@ -7740,8 +8427,8 @@ var com;
                     return this.selectedItem;
                 }
                 addItems(...items) {
-                    for (let index197 = 0; index197 < items.length; index197++) {
-                        let item = items[index197];
+                    for (let index205 = 0; index205 < items.length; index205++) {
+                        let item = items[index205];
                         {
                             this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
                         }
@@ -8106,8 +8793,8 @@ var com;
                  * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
                  */
                 addSections(...accordionSections) {
-                    for (let index198 = 0; index198 < accordionSections.length; index198++) {
-                        let section = accordionSections[index198];
+                    for (let index206 = 0; index206 < accordionSections.length; index206++) {
+                        let section = accordionSections[index206];
                         {
                             this.addSection(section);
                         }
@@ -8132,9 +8819,9 @@ var com;
                  */
                 setOpen(name) {
                     {
-                        let array200 = this.getChildren();
-                        for (let index199 = 0; index199 < array200.length; index199++) {
-                            let r = array200[index199];
+                        let array208 = this.getChildren();
+                        for (let index207 = 0; index207 < array208.length; index207++) {
+                            let r = array208[index207];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -8160,9 +8847,9 @@ var com;
                     const sectionToggle = new CustomEvent("onsectiontoggle");
                     const openSections = (new Array());
                     {
-                        let array202 = this.getSections();
-                        for (let index201 = 0; index201 < array202.length; index201++) {
-                            let sect = array202[index201];
+                        let array210 = this.getSections();
+                        for (let index209 = 0; index209 < array210.length; index209++) {
+                            let sect = array210[index209];
                             {
                                 if (sect.isOpen()) {
                                     openSections.push(sect.getName());
@@ -8182,9 +8869,9 @@ var com;
                  */
                 setClose(name) {
                     {
-                        let array204 = this.getChildren();
-                        for (let index203 = 0; index203 < array204.length; index203++) {
-                            let r = array204[index203];
+                        let array212 = this.getChildren();
+                        for (let index211 = 0; index211 < array212.length; index211++) {
+                            let r = array212[index211];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -8215,9 +8902,9 @@ var com;
                 getSections() {
                     const sections = (new Array());
                     {
-                        let array206 = this.getChildren();
-                        for (let index205 = 0; index205 < array206.length; index205++) {
-                            let r = array206[index205];
+                        let array214 = this.getChildren();
+                        for (let index213 = 0; index213 < array214.length; index213++) {
+                            let r = array214[index213];
                             {
                                 sections.push(r.getChildren()[0]);
                             }
@@ -8228,14 +8915,13 @@ var com;
                 /**
                  * Returns the accordion section with the given name.
                  * @param {string} name - The name of the {@link AccordionSection} to return.
-                 * @return
-                 * @return {com.spoonconsulting.lightning.AccordionSection}
+                 * @return {com.spoonconsulting.lightning.AccordionSection} - The accordion section with the given name
                  */
                 getSection(name) {
                     {
-                        let array208 = this.getChildren();
-                        for (let index207 = 0; index207 < array208.length; index207++) {
-                            let r = array208[index207];
+                        let array216 = this.getChildren();
+                        for (let index215 = 0; index215 < array216.length; index215++) {
+                            let r = array216[index215];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -8728,13 +9414,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array210 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array218 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index209 = 0; index209 < array210.length; index209++) {
-                            let v = array210[index209];
+                        for (let index217 = 0; index217 < array218.length; index217++) {
+                            let v = array218[index217];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                             }
@@ -8810,6 +9496,8 @@ var com;
                     this.nubbin = false;
                     this.addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click").addChild(this.button).addChild(this.dropdown);
                     this.button.setVariant$com_spoonconsulting_lightning_enums_Variants_ButtonIconVariant(com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant.BORDER_FILLED).setAttribute("aria-haspopup", "true").setAttribute("aria-expanded", "true").addEventListener(new ButtonMenu.ButtonMenu$0(this), "click");
+                    this.setExpanded(false);
+                    this.dropdown.addEventListener(new ButtonMenu.ButtonMenu$1(this), "select");
                 }
                 toggle() {
                     this.setExpanded(!this.isExpanded());
@@ -8927,6 +9615,7 @@ var com;
                 }
                 setMenuAlignment$java_lang_String(alignment) {
                     this.menuAlignment = alignment;
+                    this.refresh();
                     return this;
                 }
                 getMenuAlignment() {
@@ -8967,8 +9656,8 @@ var com;
                 }
                 refresh() {
                     const suffixes = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-                    for (let index211 = 0; index211 < suffixes.length; index211++) {
-                        let suffix = suffixes[index211];
+                    for (let index219 = 0; index219 < suffixes.length; index219++) {
+                        let suffix = suffixes[index219];
                         {
                             this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                         }
@@ -9016,6 +9705,51 @@ var com;
                         }
                     }
                 }
+                clearMenu() {
+                    this.dropdown.clearMenu();
+                    return this;
+                }
+                addItem$java_lang_String$java_lang_String$java_lang_String(value, label, iconName) {
+                    const menuItem = new com.spoonconsulting.lightning.MenuItem(value);
+                    menuItem.setLabel(label);
+                    menuItem.setIconName(iconName);
+                    menuItem.setValue(value);
+                    this.addItem$com_spoonconsulting_lightning_MenuItem(menuItem);
+                    return this;
+                }
+                addItem(value, label, iconName) {
+                    if (((typeof value === 'string') || value === null) && ((typeof label === 'string') || label === null) && ((typeof iconName === 'string') || iconName === null)) {
+                        return this.addItem$java_lang_String$java_lang_String$java_lang_String(value, label, iconName);
+                    }
+                    else if (((value != null && value instanceof com.spoonconsulting.lightning.MenuItem) || value === null) && label === undefined && iconName === undefined) {
+                        return this.addItem$com_spoonconsulting_lightning_MenuItem(value);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                setOptions(options) {
+                    this.clearMenu();
+                    for (let index220 = 0; index220 < options.length; index220++) {
+                        let option = options[index220];
+                        {
+                            const value = option["value"];
+                            const label = option["label"];
+                            const iconName = option["iconName"];
+                            this.addItem$java_lang_String$java_lang_String$java_lang_String(value, label, iconName);
+                        }
+                    }
+                    return this;
+                }
+                addItem$com_spoonconsulting_lightning_MenuItem(item) {
+                    this.dropdown.addItem(item);
+                    return this;
+                }
+                getButton() {
+                    return this.button;
+                }
+                getDropdown() {
+                    return this.dropdown;
+                }
             }
             lightning.ButtonMenu = ButtonMenu;
             ButtonMenu["__class"] = "com.spoonconsulting.lightning.ButtonMenu";
@@ -9036,6 +9770,22 @@ var com;
                 }
                 ButtonMenu.ButtonMenu$0 = ButtonMenu$0;
                 ButtonMenu$0["__interfaces"] = ["framework.components.api.EventListener"];
+                class ButtonMenu$1 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        this.__parent.setExpanded(false);
+                        this.__parent.fireListener("select", evt);
+                    }
+                }
+                ButtonMenu.ButtonMenu$1 = ButtonMenu$1;
+                ButtonMenu$1["__interfaces"] = ["framework.components.api.EventListener"];
             })(ButtonMenu = lightning.ButtonMenu || (lightning.ButtonMenu = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
@@ -9100,13 +9850,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array213 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array222 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index212 = 0; index212 < array213.length; index212++) {
-                            let v = array213[index212];
+                        for (let index221 = 0; index221 < array222.length; index221++) {
+                            let v = array222[index221];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                             }
@@ -9270,16 +10020,20 @@ var com;
                     super.setTitle(title);
                     this.setAttribute("aria-label", title);
                 }
+                clearMenu() {
+                    this.clearChildren();
+                }
                 addMenuItem(item) {
                     const li = new JSContainer("", "li");
                     li.addClass("slds-dropdown__item").setAttribute("role", "presentation");
                     this.addChild(li);
                     li.addChild(item);
+                    item.addEventListener(new Menu.Menu$0(this), "click");
                     return this;
                 }
                 addMenuItems(...items) {
-                    for (let index214 = 0; index214 < items.length; index214++) {
-                        let item = items[index214];
+                    for (let index223 = 0; index223 < items.length; index223++) {
+                        let item = items[index223];
                         {
                             this.addMenuItem(item);
                         }
@@ -9294,6 +10048,24 @@ var com;
             lightning.Menu = Menu;
             Menu["__class"] = "com.spoonconsulting.lightning.Menu";
             Menu["__interfaces"] = ["framework.components.api.Renderable"];
+            (function (Menu) {
+                class Menu$0 {
+                    constructor(__parent) {
+                        this.__parent = __parent;
+                    }
+                    /**
+                     *
+                     * @param {*} source
+                     * @param {Event} evt
+                     */
+                    performAction(source, evt) {
+                        evt["source"] = source;
+                        this.__parent.fireListener("select", evt);
+                    }
+                }
+                Menu.Menu$0 = Menu$0;
+                Menu$0["__interfaces"] = ["framework.components.api.EventListener"];
+            })(Menu = lightning.Menu || (lightning.Menu = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));
@@ -9323,11 +10095,11 @@ var com;
                     this.setAttribute("role", "menuitem");
                     this.label.addChild(this.checked_);
                     this.label.addChild(this.span);
-                    this.checked_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.SMALL).addClass("slds-icon-text-default").addClass("slds-m-right_x-small").setAttribute("aria-hidden", "true").setAttribute("data-key", "check").setAttribute("focusable", "false");
+                    this.checked_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.EXTRA_SMALL).addClass("slds-icon-text-default").addClass("slds-m-right_x-small").setAttribute("aria-hidden", "true").setAttribute("data-key", "check").setAttribute("focusable", "false");
                     this.span.addClass("slds-truncate");
-                    this.icon_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.SMALL);
+                    this.icon_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.EXTRA_SMALL);
                     this.icon_.addClass("slds-icon-text-default").addClass("slds-m-left_small").addClass("slds-shrink-none").setAttribute("aria-hidden", "true");
-                    this.prefixIcon_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.SMALL);
+                    this.prefixIcon_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.EXTRA_SMALL);
                     this.prefixIcon_.addClass("slds-icon-text-default").addClass("slds-m-left_small").addClass("slds-shrink-none").setAttribute("aria-hidden", "true").setAttribute("focusable", "false");
                     this.draft_.addClass("slds-indicator_unsaved").setHtml("*");
                 }
@@ -9353,6 +10125,7 @@ var com;
                 refresh() {
                     this.clearChildren();
                     this.label.clearChildren();
+                    this.addChild(this.label);
                     if (this.checked) {
                         this.label.addChild(this.checked_);
                     }
@@ -9367,6 +10140,7 @@ var com;
                     this.label.addChild(this.span);
                     if (this.iconName != null && this.iconName !== "") {
                         this.addChild(this.icon_);
+                        this.icon_.setSize$com_spoonconsulting_lightning_enums_Size(com.spoonconsulting.lightning.enums.Size.EXTRA_SMALL);
                         this.icon_.setIconName$java_lang_String(this.iconName);
                     }
                     this.setRendered(false);
@@ -9653,6 +10427,160 @@ var com;
     (function (spoonconsulting) {
         var lightning;
         (function (lightning) {
+            class CheckBoxGroup extends com.spoonconsulting.lightning.FormElement {
+                constructor(name, ismulti) {
+                    if (((typeof name === 'string') || name === null) && ((typeof ismulti === 'boolean') || ismulti === null)) {
+                        let __args = arguments;
+                        super(name);
+                        if (this.list === undefined) {
+                            this.list = null;
+                        }
+                        this.list = new CheckBoxGroup.InnerList(this, name, ismulti);
+                        this.setInput(this.list);
+                    }
+                    else if (((typeof name === 'string') || name === null) && ismulti === undefined) {
+                        let __args = arguments;
+                        super(name);
+                        if (this.list === undefined) {
+                            this.list = null;
+                        }
+                        this.list = new CheckBoxGroup.InnerList(this, name, true);
+                        this.setInput(this.list);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                setOptions(options) {
+                    this.list.setOptions(options);
+                    return this;
+                }
+                getOptions() {
+                    return this.list.options;
+                }
+            }
+            lightning.CheckBoxGroup = CheckBoxGroup;
+            CheckBoxGroup["__class"] = "com.spoonconsulting.lightning.CheckBoxGroup";
+            CheckBoxGroup["__interfaces"] = ["framework.components.api.InputField", "framework.components.api.Renderable"];
+            (function (CheckBoxGroup) {
+                class InnerList extends JSContainer {
+                    constructor(__parent, name, ismulti) {
+                        super(name, "div");
+                        this.__parent = __parent;
+                        this.options = (new Array());
+                        this.required = false;
+                        this.ismulti = true;
+                        this.ismulti = ismulti;
+                    }
+                    setOptions(options) {
+                        this.options = options;
+                        this.clearChildren();
+                        for (let index224 = 0; index224 < options.length; index224++) {
+                            let option = options[index224];
+                            {
+                                const value = option["value"];
+                                const label = option["label"];
+                                if (this.ismulti) {
+                                    const cb = new com.spoonconsulting.lightning.CheckBox(value);
+                                    cb.setAttribute("val", value);
+                                    cb.setLabel(label);
+                                    this.addChild(cb);
+                                }
+                                else {
+                                    const name = this.getParent().getName() + "_radio";
+                                    const cb = new com.spoonconsulting.lightning.Radio(name);
+                                    cb.setAttribute("val", value);
+                                    cb.setLabel(label);
+                                    this.addChild(cb);
+                                }
+                            }
+                        }
+                    }
+                    /**
+                     *
+                     * @return {string[]}
+                     */
+                    getValue() {
+                        const result = (new Array());
+                        {
+                            let array226 = this.getChildren();
+                            for (let index225 = 0; index225 < array226.length; index225++) {
+                                let r = array226[index225];
+                                {
+                                    const cb = r;
+                                    if (cb.getValue()) {
+                                        result.push(cb.getAttribute("val"));
+                                    }
+                                }
+                            }
+                        }
+                        return result;
+                    }
+                    /**
+                     *
+                     * @param {string[]} val
+                     */
+                    setValue(val) {
+                        {
+                            let array228 = this.getChildren();
+                            for (let index227 = 0; index227 < array228.length; index227++) {
+                                let r = array228[index227];
+                                {
+                                    const name = r.getAttribute("val");
+                                    const cb = r;
+                                    cb.setValue(val.indexOf(name) >= 0);
+                                }
+                            }
+                        }
+                    }
+                    /**
+                     *
+                     */
+                    validate() {
+                        if (this.required) {
+                            if (this.getValue().length <= 0) {
+                                const ve = new api.ValidationException(api.ValidationException.valueMissing);
+                                throw ve;
+                            }
+                        }
+                    }
+                    /**
+                     *
+                     * @return {string}
+                     */
+                    getBinding() {
+                        return this.getName();
+                    }
+                    /**
+                     *
+                     * @param {string} binding
+                     * @return {*}
+                     */
+                    setBinding(binding) {
+                        this.setName(binding);
+                        return this;
+                    }
+                    /**
+                     *
+                     * @param {boolean} b
+                     * @return {*}
+                     */
+                    setRequired(b) {
+                        this.required = b;
+                        return this;
+                    }
+                }
+                CheckBoxGroup.InnerList = InnerList;
+                InnerList["__class"] = "com.spoonconsulting.lightning.CheckBoxGroup.InnerList";
+                InnerList["__interfaces"] = ["framework.components.api.InputField", "framework.components.api.Renderable"];
+            })(CheckBoxGroup = lightning.CheckBoxGroup || (lightning.CheckBoxGroup = {}));
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
             class ComboBox extends com.spoonconsulting.lightning.FormElement {
                 constructor(name) {
                     super(name, (new com.spoonconsulting.lightning.BaseComboBox("combo")));
@@ -9743,13 +10671,13 @@ var com;
                         return com.spoonconsulting.lightning.enums.InputType.TEXT;
                     }
                     {
-                        let array216 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.InputType) {
+                        let array230 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.InputType) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index215 = 0; index215 < array216.length; index215++) {
-                            let type = array216[index215];
+                        for (let index229 = 0; index229 < array230.length; index229++) {
+                            let type = array230[index229];
                             {
                                 if (com.spoonconsulting.lightning.enums.InputType["_$wrappers"][type].getValue() === stype) {
                                     return type;
@@ -9944,13 +10872,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array218 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array232 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index217 = 0; index217 < array218.length; index217++) {
-                            let s = array218[index217];
+                        for (let index231 = 0; index231 < array232.length; index231++) {
+                            let s = array232[index231];
                             {
                                 this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -9991,13 +10919,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array220 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) {
+                        let array234 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index219 = 0; index219 < array220.length; index219++) {
-                            let v = array220[index219];
+                        for (let index233 = 0; index233 < array234.length; index233++) {
+                            let v = array234[index233];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant["_$wrappers"][v].getValue());
                             }
@@ -10038,6 +10966,22 @@ var com;
             lightning.ButtonIcon = ButtonIcon;
             ButtonIcon["__class"] = "com.spoonconsulting.lightning.ButtonIcon";
             ButtonIcon["__interfaces"] = ["framework.components.api.Renderable"];
+        })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
+    })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
+})(com || (com = {}));
+(function (com) {
+    var spoonconsulting;
+    (function (spoonconsulting) {
+        var lightning;
+        (function (lightning) {
+            class RadioGroup extends com.spoonconsulting.lightning.CheckBoxGroup {
+                constructor(name) {
+                    super(name, false);
+                }
+            }
+            lightning.RadioGroup = RadioGroup;
+            RadioGroup["__class"] = "com.spoonconsulting.lightning.RadioGroup";
+            RadioGroup["__interfaces"] = ["framework.components.api.InputField", "framework.components.api.Renderable"];
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
     })(spoonconsulting = com.spoonconsulting || (com.spoonconsulting = {}));
 })(com || (com = {}));

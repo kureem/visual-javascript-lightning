@@ -168,7 +168,7 @@ public class Accordion extends BaseLightning {
 	/**
 	 * Returns the accordion section with the given name.
 	 * @param name - The name of the {@link AccordionSection} to return.
-	 * @return
+	 * @return - The accordion section with the given name
 	 */
 	public AccordionSection getSection(String name) {
 		for (Renderable r : getChildren()) {

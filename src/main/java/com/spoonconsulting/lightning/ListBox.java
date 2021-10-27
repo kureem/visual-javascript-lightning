@@ -22,14 +22,6 @@ public class ListBox extends JSContainer{
 		.addClass("slds-dropdown_fluid")
 		.addClass("slds-dropdown_left");
 		
-		//slds-listbox 
-		//slds-listbox_vertical 
-		//slds-dropdown 
-		//slds-dropdown_fluid 
-		//slds-dropdown_left 
-		
-		//slds-dropdown_bottom
-		//slds-dropdown_bottom-left
 	}
 	
 	public ListBox addOption(String value, String label) {
@@ -61,6 +53,26 @@ public class ListBox extends JSContainer{
 			}
 		}
 		return this;
+	}
+	
+	public ListBoxOption getSelectedOption() {
+		for(Renderable r : getChildren()) {
+			ListBoxOption opt = (ListBoxOption)r;
+			if(opt.isChecked()) {
+				return opt;
+			}
+		}
+		return null;
+	}
+	
+	public ListBoxOption getOption(String value) {
+		for(Renderable r : getChildren()) {
+			ListBoxOption opt = (ListBoxOption)r;
+			if(opt.getValue() == value) {
+				return opt;
+			}
+		}
+		return null;
 	}
 	
 	public String getValue() {

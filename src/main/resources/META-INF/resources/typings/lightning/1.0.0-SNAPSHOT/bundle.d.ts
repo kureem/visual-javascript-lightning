@@ -281,12 +281,34 @@ declare namespace com.spoonconsulting.lightning {
          */
         getAlternativeText(): string;
     }
+    namespace Avatar {
+        class Avatar$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class Avatar$1 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
 }
 declare namespace com.spoonconsulting.lightning {
     class BaseComboBox<T> extends JSContainer implements api.InputField<T> {
         combobox: JSContainer;
         formElement: JSContainer;
-        input: input.JSTextInput;
+        input_: input.JSTextInput;
         dropdown: com.spoonconsulting.lightning.ListBox;
         inputIconContainer: JSContainer;
         inputIcon: com.spoonconsulting.lightning.IconContainer;
@@ -382,6 +404,8 @@ declare namespace com.spoonconsulting.lightning {
         static getPathSample(): JSContainer;
         static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
         static getModal(): JSContainer;
+        static getTree(): JSContainer;
+        static getTiles(): JSContainer;
         static getVerticalMenu(): com.spoonconsulting.lightning.TabSet;
     }
     namespace Boot {
@@ -467,6 +491,15 @@ declare namespace com.spoonconsulting.lightning {
              */
             performAction(source: api.Renderable, evt: Event): void;
             constructor(modal: any);
+        }
+        class Boot$8 implements api.EventListener {
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor();
         }
     }
 }
@@ -593,6 +626,18 @@ declare namespace com.spoonconsulting.lightning {
          */
         setRequired(b: boolean): api.InputField<boolean>;
     }
+    namespace CheckBox {
+        class CheckBox$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
 }
 declare namespace com.spoonconsulting.lightning {
     class CheckBoxButton extends JSContainer implements api.InputField<boolean> {
@@ -644,10 +689,24 @@ declare namespace com.spoonconsulting.lightning {
         isLoading: boolean;
         constructor(name: string);
         getIsLoading(): boolean;
+        clearMenu(): void;
         setIsLoading(isLoading: boolean): Dropdown;
         addItem(item: com.spoonconsulting.lightning.MenuItem): Dropdown;
         addMenuDivider(): Dropdown;
         getSpinner(): com.spoonconsulting.lightning.Spinner;
+        getMenu(): com.spoonconsulting.lightning.Menu;
+    }
+    namespace Dropdown {
+        class Dropdown$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning.enums {
@@ -2488,6 +2547,8 @@ declare namespace com.spoonconsulting.lightning {
         addOption$jsweet_lang_Object(obj: Object): ListBox;
         setOptions(options: Array<Object>): ListBox;
         setValue(value: string): ListBox;
+        getSelectedOption(): ListBox.ListBoxOption;
+        getOption(value: string): ListBox.ListBoxOption;
         getValue(): string;
     }
     namespace ListBox {
@@ -2787,6 +2848,61 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class Radio extends JSContainer implements api.InputField<boolean> {
+        radio: input.JSRadio;
+        radioLabel: JSContainer;
+        label: JSContainer;
+        constructor(name: string);
+        getRadioLabel(): JSContainer;
+        getLabel(): string;
+        setLabel(label: string): Radio;
+        getCheckBox(): input.JSRadio;
+        /**
+         *
+         * @return {boolean}
+         */
+        getValue(): boolean;
+        /**
+         *
+         * @param {boolean} val
+         */
+        setValue(val: boolean): void;
+        /**
+         *
+         */
+        validate(): void;
+        /**
+         *
+         * @return {string}
+         */
+        getBinding(): string;
+        /**
+         *
+         * @param {string} binding
+         * @return {*}
+         */
+        setBinding(binding: string): api.InputField<boolean>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setRequired(b: boolean): api.InputField<boolean>;
+    }
+    namespace Radio {
+        class Radio$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Section extends JSContainer {
         sectionTitle: JSContainer;
         icon: com.spoonconsulting.lightning.Button;
@@ -2871,6 +2987,48 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class Tile extends JSContainer {
+        media: JSContainer;
+        body: JSContainer;
+        bodyHeader: JSContainer;
+        title: JSContainer;
+        link: JSContainer;
+        menuSlot: JSContainer;
+        detail: JSContainer;
+        menu: com.spoonconsulting.lightning.ButtonMenu;
+        icon: com.spoonconsulting.lightning.IconContainer;
+        avatar: com.spoonconsulting.lightning.Avatar;
+        static TYPE_MEDIA: string;
+        static TYPE_STANDARD: string;
+        constructor(name: string);
+        setIconName(iconName: string): Tile;
+        setAvatarSrc(src: string): Tile;
+        getBodySlot(): JSContainer;
+        getActionSlot(): JSContainer;
+        getMenuSlot(): JSContainer;
+        getFiguresSlot(): JSContainer;
+        setType(type: string): Tile;
+        getType(): string;
+        setLabel(label: string): Tile;
+        getLabel(): string;
+        setHref(href: string): Tile;
+        getHref(): string;
+        setActions(options: Array<Object>): Tile;
+    }
+    namespace Tile {
+        class Tile$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Toggle extends JSContainer implements api.InputField<boolean> {
         label: JSContainer;
         checkBox: input.JSCheckBox;
@@ -2916,6 +3074,64 @@ declare namespace com.spoonconsulting.lightning {
          * @return {*}
          */
         setRequired(b: boolean): api.InputField<boolean>;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Tree extends JSContainer {
+        heading: JSContainer;
+        items: Array<Object>;
+        tree: Tree.UITree;
+        constructor(name: string);
+        setHeading(heading: string): Tree;
+        getHeading(): string;
+        setItems(items: Array<Object>): Tree;
+        unselect(except: Tree.UITreeItem): void;
+        getItems(): Array<Object>;
+    }
+    namespace Tree {
+        class UITree extends JSContainer {
+            __parent: any;
+            level: number;
+            constructor(__parent: any, name: string, level: number);
+            setData(data: Array<Object>): Tree.UITree;
+            unselect(except: Tree.UITreeItem): void;
+        }
+        class UITreeItem extends JSContainer {
+            __parent: any;
+            icon: com.spoonconsulting.lightning.ButtonIcon;
+            label: JSContainer;
+            data: Object;
+            children: Tree.UITree;
+            level: number;
+            constructor(__parent: any, name: string, level: number);
+            setExpanded(b: boolean): void;
+            setSelected(b: boolean): void;
+            unSelect(except: Tree.UITreeItem): void;
+            setData(data: Object): void;
+            getData(): Object;
+        }
+        namespace UITreeItem {
+            class UITreeItem$0 implements api.EventListener {
+                __parent: any;
+                /**
+                 *
+                 * @param {*} source
+                 * @param {Event} evt
+                 */
+                performAction(source: api.Renderable, evt: Event): void;
+                constructor(__parent: any);
+            }
+            class UITreeItem$1 implements api.EventListener {
+                __parent: any;
+                /**
+                 *
+                 * @param {*} source
+                 * @param {Event} evt
+                 */
+                performAction(source: api.Renderable, evt: Event): void;
+                constructor(__parent: any);
+            }
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -2968,6 +3184,18 @@ declare namespace com.spoonconsulting.lightning {
         static setTheme(r: api.Renderable, theme: com.spoonconsulting.lightning.enums.Theme): void;
         static setTextTruncate(r: api.Renderable): void;
         static setHasFlexiTruncate(r: api.Renderable, hasFlexiTruncate: boolean): void;
+    }
+    namespace Utils {
+        class OptionsBuilder {
+            options: Array<Object>;
+            static create(): Utils.OptionsBuilder;
+            add$java_lang_String$java_lang_String(value: string, label: string): Utils.OptionsBuilder;
+            add(value?: any, label?: any): any;
+            addValuesLabels(...strings: string[]): Utils.OptionsBuilder;
+            add$java_lang_String_A(...strings: string[]): Utils.OptionsBuilder;
+            get(): Array<Object>;
+            constructor();
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -3238,8 +3466,7 @@ declare namespace com.spoonconsulting.lightning {
         /**
          * Returns the accordion section with the given name.
          * @param {string} name - The name of the {@link AccordionSection} to return.
-         * @return
-         * @return {com.spoonconsulting.lightning.AccordionSection}
+         * @return {com.spoonconsulting.lightning.AccordionSection} - The accordion section with the given name
          */
         getSection(name: string): com.spoonconsulting.lightning.AccordionSection;
     }
@@ -3531,9 +3758,26 @@ declare namespace com.spoonconsulting.lightning {
         setVariant(variant?: any): any;
         setVariant$java_lang_String(variant: string): ButtonMenu;
         refresh(): void;
+        clearMenu(): ButtonMenu;
+        addItem$java_lang_String$java_lang_String$java_lang_String(value: string, label: string, iconName: string): ButtonMenu;
+        addItem(value?: any, label?: any, iconName?: any): any;
+        setOptions(options: Array<Object>): ButtonMenu;
+        addItem$com_spoonconsulting_lightning_MenuItem(item: com.spoonconsulting.lightning.MenuItem): ButtonMenu;
+        getButton(): com.spoonconsulting.lightning.ButtonIcon;
+        getDropdown(): com.spoonconsulting.lightning.Dropdown;
     }
     namespace ButtonMenu {
         class ButtonMenu$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class ButtonMenu$1 implements api.EventListener {
             __parent: any;
             /**
              *
@@ -3615,9 +3859,22 @@ declare namespace com.spoonconsulting.lightning {
          * @param {string} title
          */
         setTitle(title: string): void;
+        clearMenu(): void;
         addMenuItem(item: com.spoonconsulting.lightning.MenuItem): Menu;
         addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu;
         addMenuDivider(): Menu;
+    }
+    namespace Menu {
+        class Menu$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -3711,6 +3968,55 @@ declare namespace com.spoonconsulting.lightning {
         constructor(name: string);
         setActive(b: boolean): TabPanel;
         isActive(): boolean;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class CheckBoxGroup extends com.spoonconsulting.lightning.FormElement<Array<string>> {
+        list: CheckBoxGroup.InnerList;
+        constructor(name?: any, ismulti?: any);
+        setOptions(options: Array<Object>): CheckBoxGroup;
+        getOptions(): Array<Object>;
+    }
+    namespace CheckBoxGroup {
+        class InnerList extends JSContainer implements api.InputField<Array<string>> {
+            __parent: any;
+            options: Array<Object>;
+            required: boolean;
+            ismulti: boolean;
+            constructor(__parent: any, name: string, ismulti: boolean);
+            setOptions(options: Array<Object>): void;
+            /**
+             *
+             * @return {string[]}
+             */
+            getValue(): Array<string>;
+            /**
+             *
+             * @param {string[]} val
+             */
+            setValue(val: Array<string>): void;
+            /**
+             *
+             */
+            validate(): void;
+            /**
+             *
+             * @return {string}
+             */
+            getBinding(): string;
+            /**
+             *
+             * @param {string} binding
+             * @return {*}
+             */
+            setBinding(binding: string): api.InputField<Array<string>>;
+            /**
+             *
+             * @param {boolean} b
+             * @return {*}
+             */
+            setRequired(b: boolean): api.InputField<Array<string>>;
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -3811,6 +4117,11 @@ declare namespace com.spoonconsulting.lightning {
          * @return {com.spoonconsulting.lightning.Button}
          */
         setLabel(label: string): com.spoonconsulting.lightning.Button;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class RadioGroup extends com.spoonconsulting.lightning.CheckBoxGroup {
+        constructor(name: string);
     }
 }
 declare namespace com.spoonconsulting.lightning {

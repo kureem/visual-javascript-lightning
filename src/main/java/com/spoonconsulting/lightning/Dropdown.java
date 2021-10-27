@@ -3,6 +3,9 @@ package com.spoonconsulting.lightning;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
+import framework.components.api.EventListener;
+import framework.components.api.Renderable;
+import jsweet.dom.Event;
 
 public class Dropdown extends JSContainer {
 
@@ -21,10 +24,21 @@ public class Dropdown extends JSContainer {
 		addChild(menu);
 		spinnerContainer.addClass("slds-spinner_container");
 		spinnerContainer.addChild(spinner.setSize(Size.SMALL));
+		menu.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				fireListener("select", evt);
+			}
+		}, "select");
 	}
 
 	public Boolean getIsLoading() {
 		return isLoading;
+	}
+	
+	public void clearMenu() {
+		menu.clearMenu();
 	}
 
 	public Dropdown setIsLoading(Boolean isLoading) {
@@ -53,6 +67,10 @@ public class Dropdown extends JSContainer {
 
 	public Spinner getSpinner() {
 		return spinner;
+	}
+
+	public Menu getMenu() {
+		return menu;
 	}
 
 	
