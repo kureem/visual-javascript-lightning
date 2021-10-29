@@ -6,6 +6,7 @@ import com.spoonconsulting.lightning.Utils.OptionsBuilder;
 import com.spoonconsulting.lightning.enums.Direction;
 import com.spoonconsulting.lightning.enums.IconName;
 import com.spoonconsulting.lightning.enums.LayoutItemPadding;
+import com.spoonconsulting.lightning.enums.MenuAlignment;
 import com.spoonconsulting.lightning.enums.Size;
 import com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant;
 import com.spoonconsulting.lightning.enums.Variants.TabSetVariant;
@@ -67,7 +68,7 @@ public class Boot {
 		
 		
 		section1.getContent().addChild(new JSContainer("h1").setHtml("Section 1 in accordion"));
-		section2.getContent().addChild(new JSContainer("h1").setHtml("Section 2 in accordion"));
+		section2.getContent().addChild(getAvatars());
 		
 		accordion.setAllowMultipleSectionOpen(true);
 		accordion.setActiveSectionName("section2");
@@ -125,13 +126,14 @@ public class Boot {
 		item.setSize(12);
 		layout.addChild(item);
 		
-		Layout btns = new Layout("btns", "div");
+		Layout btns = new Layout("btns", "div").setMultipleRows(true);
 		LayoutItem item1 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		LayoutItem item2 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		LayoutItem item3 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		LayoutItem item4 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		LayoutItem item5 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
 		LayoutItem item6 = new LayoutItem("item1", "div").setPadding(LayoutItemPadding.AROUND_MEDIUM).setSize(12/6);
+		
 		
 		Button diablebtn = new Button("dis").setLabel("Click to disable");
 		diablebtn.setVariant(Variant.BRAND);
@@ -199,6 +201,22 @@ public class Boot {
 		}, "change");
 		
 		itemsize.addChild(cbsize);
+		
+		btns.addChild(new LayoutItem("grp", "div").setSize(12).addChild(new ButtonGroup("gro")
+				.addButton(new Button("save").setLabel("Save").setVariant(Variant.NEUTRAL))
+				.addButton(new Button("edit").setLabel("Edit").setVariant(Variant.BRAND)) 
+				.addButton(new ButtonMenu("menu", "div").setLabel("Events").setMenuAlignment(MenuAlignment.RIGHT)
+						.setOptions(OptionsBuilder.create().addValuesLabels("clone", "Clone", "delete", "Delete", "assign", "Assign User").get()).addEventListener(new EventListener() {
+							
+							@Override
+							public void performAction(Renderable source, Event evt) {
+								MenuItem item = (MenuItem)evt.$get("source");
+								
+								alert(item.getValue());
+							}
+						}, "select"))
+				));
+		
 		
 		return layout;
 		
@@ -392,6 +410,27 @@ public class Boot {
 	}
 	
 	
+	public static JSContainer getBadge() {
+		
+		JSContainer ctn = new JSContainer("div");
+		
+		Badge badge1 = new Badge("badge1");
+		badge1.setAssistiveText("Assistive text");
+		badge1.setIconName(IconName.UTILITY_ADDUSER.getValue());
+		badge1.setLabel("Users: 123");
+		badge1.setIconPosition(Badge.ICON_POSITION_START);
+		
+		Badge badge2 = new Badge("bad").setLabel("New badge").setIconName(IconName.UTILITY_AGENT_HOME.getValue()).setIconPosition(Badge.ICON_POSITION_END);
+		
+		Badge b3 = new Badge("b3").setLabel("Hello badge").setIconName(IconName.UTILITY_AGGREGATION_POLICY.getValue()).setVariant(Badge.VARIANT_INVERSE);
+		
+		Badge b4 = new Badge("b4").setLabel("Simple badge");
+		
+		ctn.addChild(badge1).addChild(badge2).addChild(b3).addChild(b4);
+		return ctn;
+	}
+	
+	
 	public static JSContainer getTree() {
 		String json= "[{\"label\":\"Western Sales Director\",\"name\":\"1\",\"expanded\":true,\"items\":[{\"label\":\"Western Sales Manager\",\"name\":\"2\",\"expanded\":true,\"items\":[{\"label\":\"CA Sales Rep\",\"name\":\"3\",\"expanded\":true,\"items\":[]},{\"label\":\"OR Sales Rep\",\"name\":\"4\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"Eastern Sales Director\",\"name\":\"5\",\"expanded\":false,\"items\":[{\"label\":\"Easter Sales Manager\",\"name\":\"6\",\"expanded\":true,\"items\":[{\"label\":\"NY Sales Rep\",\"name\":\"7\",\"expanded\":true,\"items\":[]},{\"label\":\"MA Sales Rep\",\"name\":\"8\",\"expanded\":true,\"items\":[]}]}]},{\"label\":\"International Sales Director\",\"name\":\"9\",\"expanded\":true,\"items\":[{\"label\":\"Asia Sales Manager\",\"name\":\"10\",\"expanded\":true,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"11\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"12\",\"expanded\":true,\"items\":[]}]},{\"label\":\"Europe Sales Manager\",\"name\":\"13\",\"expanded\":false,\"items\":[{\"label\":\"Sales Rep1\",\"name\":\"14\",\"expanded\":true,\"items\":[]},{\"label\":\"Sales Rep2\",\"name\":\"15\",\"expanded\":true,\"items\":[]}]}]}]";
 		
@@ -456,10 +495,37 @@ public class Boot {
 		av.setAvatarSrc("https://cevasfdc.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10003&avatarId=10402");
 		av.setType(Tile.TYPE_MEDIA);
 		
-		av.getBodySlot().addChild(getButtons());
+		av.getBodySlot().addChild(getBadge());
 		
 		item2.addChild(av);
 		return layout;
+	}
+	
+	
+	public static JSContainer getAvatars() {
+		Avatar a1 = new Avatar("a1");
+		a1.setInitials("AKR");
+		a1.setType(Avatar.TYPE_INITIAL);
+		
+		Avatar a2 = new Avatar("a2");
+		a2.setType(Avatar.TYPE_IMAGE);
+		a2.setSrc("https://cevasfdc.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10003&avatarId=10402");
+		a2.setSize(Size.LARGE);
+		
+		Avatar a3 = new Avatar("a3");
+		a3.setType(Avatar.TYPE_ICON);
+		a3.setFallbackIconName(IconName.UTILITY_ATTACH.getValue());
+		
+		
+		Avatar a4 = new Avatar("a4")
+				.setType(Avatar.TYPE_ICON)
+				.setFallbackIconName(IconName.ACTION_ADD_CONTACT.getValue())
+				.setVariant(Avatar.VARIANT_CIRCLE);
+		
+		JSContainer c = new JSContainer("div");
+		c.addChild(a1).addChild(a2).addChild(a3).addChild(a4);
+		c.addChild(new Avatar("a5").setType(Avatar.TYPE_ICON).setFallbackIconName(IconName.CUSTOM_CUSTOM10.getValue()));
+		return c;
 	}
 	
 	public static TabSet getVerticalMenu() {

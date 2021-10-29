@@ -72,8 +72,7 @@ declare namespace com.spoonconsulting.lightning {
      */
     class Avatar extends JSContainer {
         img: JSContainer;
-        fallbackIcon: com.spoonconsulting.lightning.Icon;
-        iconContainer: JSContainer;
+        iconContainer_: com.spoonconsulting.lightning.IconContainer;
         initial: JSContainer;
         /**
          * Static variable for image type of avatar.
@@ -97,7 +96,10 @@ declare namespace com.spoonconsulting.lightning {
         static VARIANT_CIRCLE: string;
         type: string;
         size: string;
+        static min: number;
+        static max: number;
         constructor(name: string);
+        getRandomClass(): string;
         /**
          * Sets the type of the {@link Avatar}.
          * <p>An {@link Avatar} comes in 3 types:</p>
@@ -281,28 +283,6 @@ declare namespace com.spoonconsulting.lightning {
          */
         getAlternativeText(): string;
     }
-    namespace Avatar {
-        class Avatar$0 implements api.EventListener {
-            __parent: any;
-            /**
-             *
-             * @param {*} source
-             * @param {Event} evt
-             */
-            performAction(source: api.Renderable, evt: Event): void;
-            constructor(__parent: any);
-        }
-        class Avatar$1 implements api.EventListener {
-            __parent: any;
-            /**
-             *
-             * @param {*} source
-             * @param {Event} evt
-             */
-            performAction(source: api.Renderable, evt: Event): void;
-            constructor(__parent: any);
-        }
-    }
 }
 declare namespace com.spoonconsulting.lightning {
     class BaseComboBox<T> extends JSContainer implements api.InputField<T> {
@@ -404,8 +384,10 @@ declare namespace com.spoonconsulting.lightning {
         static getPathSample(): JSContainer;
         static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
         static getModal(): JSContainer;
+        static getBadge(): JSContainer;
         static getTree(): JSContainer;
         static getTiles(): JSContainer;
+        static getAvatars(): JSContainer;
         static getVerticalMenu(): com.spoonconsulting.lightning.TabSet;
     }
     namespace Boot {
@@ -454,6 +436,15 @@ declare namespace com.spoonconsulting.lightning {
             constructor(cbsize: any, btni: any);
         }
         class Boot$4 implements api.EventListener {
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor();
+        }
+        class Boot$5 implements api.EventListener {
             private indicator;
             /**
              *
@@ -463,7 +454,7 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor(indicator: any);
         }
-        class Boot$5 implements api.EventListener {
+        class Boot$6 implements api.EventListener {
             private modal;
             /**
              *
@@ -473,7 +464,7 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor(modal: any);
         }
-        class Boot$6 implements api.EventListener {
+        class Boot$7 implements api.EventListener {
             /**
              *
              * @param {*} source
@@ -482,7 +473,7 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor();
         }
-        class Boot$7 implements api.EventListener {
+        class Boot$8 implements api.EventListener {
             private modal;
             /**
              *
@@ -492,7 +483,7 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor(modal: any);
         }
-        class Boot$8 implements api.EventListener {
+        class Boot$9 implements api.EventListener {
             /**
              *
              * @param {*} source
@@ -3577,8 +3568,8 @@ declare namespace com.spoonconsulting.lightning {
      * <div>the icon can be positioned at start or end of the badge. i.e before or after the label.</div>
      * <p>The icon is the standard salesforce icon</p>
      * {@link #setIconPosition(String)}
-     * {@link #POSITION_START}
-     * {@link #POSITION_END}
+     * {@link #ICON_POSITION_START}
+     * {@link #ICON_POSITION_END}
      * </p>
      * Constructs a Badge with the specified name
      * @param {string} name - The name of the badge
@@ -3597,12 +3588,22 @@ declare namespace com.spoonconsulting.lightning {
          * static variable to set the icon position to start
          * @see {@link #setIconPosition(String)
          */
-        static POSITION_START: string;
+        static ICON_POSITION_START: string;
         /**
          * static variable to set the icon position to end
          * @see {@link #setIconPosition(String)
          */
-        static POSITION_END: string;
+        static ICON_POSITION_END: string;
+        /**
+         * static variable to set the variant of the badge as inverse
+         * @see Badge#setVariant(String)
+         */
+        static VARIANT_INVERSE: string;
+        /**
+         * static variable to set the variant of the badge as standard
+         * @see Badge#setVariant(String)
+         */
+        static VARIANT_STANDARD: string;
         iconPosition: string;
         constructor(name: string);
         /**
@@ -3646,8 +3647,8 @@ declare namespace com.spoonconsulting.lightning {
          */
         getIconName(): string;
         /**
-         * @see {@link #POSITION_START}
-         * @see {@link #POSITION_END}
+         * @see {@link #ICON_POSITION_START}
+         * @see {@link #ICON_POSITION_END}
          * @return {string} - The icon position of the badge
          */
         getIconPosition(): string;
@@ -3655,8 +3656,8 @@ declare namespace com.spoonconsulting.lightning {
          * sets the icon position of the badge
          * @param {string} position - The icon position of the badge
          * @return  {com.spoonconsulting.lightning.Badge} The current instance of the badge
-         * @see {@link #POSITION_START}
-         * @see {@link #POSITION_END}
+         * @see {@link #ICON_POSITION_START}
+         * @see {@link #ICON_POSITION_END}
          *
          */
         setIconPosition(position: string): Badge;
@@ -3666,6 +3667,21 @@ declare namespace com.spoonconsulting.lightning {
          * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
          */
         setLabel(label: string): Badge;
+        /**
+         * sets the variant of the badge.
+         * @see #VARIANT_INVERSE
+         * @see #VARIANT_STANDARD
+         * @param {string} variant - the variant of the badge
+         * @return {com.spoonconsulting.lightning.Badge} - The current instance of the badge
+         */
+        setVariant(variant: string): Badge;
+        /**
+         * The variant of the badge
+         * @see #VARIANT_INVERSE
+         * @see #VARIANT_STANDARD
+         * @return {string} - The variant of the badge
+         */
+        getVariant(): string;
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -3716,7 +3732,7 @@ declare namespace com.spoonconsulting.lightning {
 declare namespace com.spoonconsulting.lightning {
     class ButtonGroup extends com.spoonconsulting.lightning.BaseLightning {
         constructor(name: string);
-        addButton(btn: com.spoonconsulting.lightning.Button): ButtonGroup;
+        addButton(btn: JSContainer): ButtonGroup;
     }
 }
 declare namespace com.spoonconsulting.lightning {

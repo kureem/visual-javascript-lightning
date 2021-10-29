@@ -1,11 +1,13 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.IconName;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
 import jsweet.dom.Event;
+import jsweet.lang.Math;
 
 /**
  * <p>This class represents an {@link Avatar}.</p>
@@ -60,9 +62,11 @@ public class Avatar extends JSContainer{
 	
 	private JSContainer img = new JSContainer("image", "img");
 	
-	private Icon fallbackIcon = new Icon("fallback-icon","standard:user");
+	private IconContainer iconContainer_ = new IconContainer("iconContainer","span");
 	
-	private JSContainer iconContainer = new JSContainer("iconContainer", "span");
+//	private Icon fallbackIcon = new Icon("fallback-icon","standard:user");
+	
+	//private JSContainer iconContainer = new JSContainer("iconContainer", "span");
 	
 	private JSContainer initial =new JSContainer("initial","abbr");
 	
@@ -96,6 +100,9 @@ public class Avatar extends JSContainer{
 	
 	private String size = Size.MEDIUM.getValue();
 	
+	private static int min = -1;
+	private static int max = -1;
+	
 	/**
 	 * Constructs an avatar with the given name
 	 * @param name - The name of the avatar
@@ -104,12 +111,41 @@ public class Avatar extends JSContainer{
 		super(name, "span");
 		addClass("slds-avatar");
 		initial.addClass("slds-avatar__initials")
-			.addClass("slds-icon-standard-user");
+			.addClass(getRandomClass());
 		
-		iconContainer.addClass("slds-icon_container")
-			.addClass("slds-icon-standard-account");
-		iconContainer.addChild(fallbackIcon);
+		iconContainer_.setIconName(IconName.STANDARD_ACCOUNT.getValue());
+		//iconContainer.addClass("slds-icon_container")
+			//.addClass("slds-icon-standard-account");
+		//iconContainer.addChild(fallbackIcon);
 		setType(TYPE_IMAGE);
+	}
+	
+
+	
+	private String getRandomClass() {
+		if(min == -1) {
+			IconName start =   IconName.CUSTOM_CUSTOM1;
+			IconName end = IconName.CUSTOM_CUSTOM99;
+			int index = 0;
+			for(IconName ic : IconName.values()) {
+				if(ic.getValue() == start.getValue()) {
+					min = index; 
+				}
+				
+				if(ic.getValue() == end.getValue()) {
+					max = index;
+				}
+				index++;
+			}
+			//int max = IconName.values().length;
+			//int min = 0;
+			
+		}
+		
+		IconName rand  = IconName.values()[ (int) Math.floor(Math.random() * (max - min + 1) + min)];
+		
+		String cls = "slds-icon-$group-$name".replace("$group", rand.getGroup()).replace("$name", rand.getName()).replace("_", "-");
+		return cls;
 	}
 	
 	/**
@@ -148,24 +184,8 @@ public class Avatar extends JSContainer{
 		this.clearChildren();
 		if(type == TYPE_IMAGE) {
 			addChild(img);
-			img.addEventListener(new EventListener() {
-				
-				@Override
-				public void performAction(Renderable source, Event evt) {
-					
-				}
-			}, "load");
-			
-			img.addEventListener(new EventListener() {
-				
-				@Override
-				public void performAction(Renderable source, Event evt) {
-					// TODO Auto-generated method stub
-					
-				}
-			}, "error");
 		}else if(type == TYPE_ICON) {
-			addChild(iconContainer);
+			addChild(iconContainer_);
 		}else if(type == TYPE_INITIAL) {
 			addChild(initial);
 		}
@@ -202,7 +222,7 @@ public class Avatar extends JSContainer{
 	public Avatar setVariant(String variant) {
 		removeClass("slds-avatar_" +VARIANT_CIRCLE)
 			.removeClass("slds-avatar_" +VARIANT_SQUARE)
-			.addClass("slds-avatar_" +type);
+			.addClass("slds-avatar_" +variant);
 		return this;
 	}
 	
@@ -279,7 +299,7 @@ public class Avatar extends JSContainer{
 	public Avatar setTitle(String title) {
 		img.setAttribute("title", title);
 		initial.setAttribute("title", title);
-		fallbackIcon.setAttribute("title", title);
+		iconContainer_.setAttribute("title", title);
 		return this;
 	}
 	
@@ -323,7 +343,7 @@ public class Avatar extends JSContainer{
 	 * @return - The icon that appears when the type of the avatar is icon<br>
 	 */
 	public String getFallbackIconName() {
-		return this.fallbackIcon.getIconName();
+		return this.iconContainer_.getIcon().getIconName();
 	}
 
 	/**
@@ -335,7 +355,13 @@ public class Avatar extends JSContainer{
 	 * @return - This current {@link Avatar}
 	 */
 	public Avatar setFallbackIconName(String fallbackIconName) {
-		this.fallbackIcon.setIconName(fallbackIconName);
+		iconContainer_.setIconName(fallbackIconName);
+		if(fallbackIconName.contains("utility:") || fallbackIconName.contains("action:")) {
+			iconContainer_.getIcon().addClass("slds-icon-text-default");
+		}else {
+			iconContainer_.getIcon().removeClass("slds-icon-text-default");
+		}
+		//this.fallbackIcon.setIconName(fallbackIconName);
 		return this;
 	}
 	
@@ -348,9 +374,12 @@ public class Avatar extends JSContainer{
 	 * @return - This current {@link Avatar}
 	 */
 	public Avatar setSrc(String src) {
+		
 		this.img.setAttribute("src", src);
 		return this;
 	}
+	
+	
 	
 	/**
 	 * The source of the image that appears when the type of the avatar is image<br>
@@ -382,7 +411,7 @@ public class Avatar extends JSContainer{
 	 * @return - The icon that appears when the type of the avatar is icon<br>
 	 */
 	public Icon getFallbackIcon() {
-		return this.fallbackIcon;
+		return this.iconContainer_.getIcon();
 	}
 	
 	/**

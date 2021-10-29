@@ -1,5 +1,7 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.Size;
+
 import framework.components.JSContainer;
 
 /**
@@ -15,8 +17,8 @@ import framework.components.JSContainer;
  *<div>the icon can be positioned at start or end of the badge. i.e before or after the label.</div>
  *<p>The icon is the standard salesforce icon</p>
  * {@link #setIconPosition(String)}
- *{@link #POSITION_START}
- *{@link #POSITION_END}
+ *{@link #ICON_POSITION_START}
+ *{@link #ICON_POSITION_END}
  *</p>
  *
  * @author Kureem Rossaye<br>
@@ -38,13 +40,26 @@ public class Badge extends BaseLightning{
 	 * static variable to set the icon position to start
 	 * @see {@link #setIconPosition(String)
 	 */
-	public static String POSITION_START = "start";
+	public final static String ICON_POSITION_START = "start";
 	
 	/**
 	 * static variable to set the icon position to end
 	 * @see {@link #setIconPosition(String)
 	 */
-	public static String POSITION_END = "end";
+	public final static String ICON_POSITION_END = "end";
+	
+	/**
+	 * static variable to set the variant of the badge as inverse
+	 * @see Badge#setVariant(String)
+	 */
+	public final static String VARIANT_INVERSE = "inverse";
+	
+	/**
+	 * static variable to set the variant of the badge as standard
+	 * @see Badge#setVariant(String)
+	 */
+	public final static String VARIANT_STANDARD = "standard";
+	
 	
 	private String iconPosition = null;
 
@@ -61,8 +76,8 @@ public class Badge extends BaseLightning{
 	 *<div>the icon can be positioned at start or end of the badge. i.e before or after the label.</div>
 	 *<p>The icon is the standard salesforce icon</p>
 	 * {@link #setIconPosition(String)}
-	 *{@link #POSITION_START}
-	 *{@link #POSITION_END}
+	 *{@link #ICON_POSITION_START}
+	 *{@link #ICON_POSITION_END}
 	 *</p>
 	 *Constructs a Badge with the specified name
 	 * @param name - The name of the badge
@@ -76,10 +91,14 @@ public class Badge extends BaseLightning{
 
 		addChild(label);
 		addChild(assistiveText);
+		assistiveText.addClass("slds-assistive-text");
 
 		rightBadgeIcon.addClass("slds-badge__icon")
 			.addClass("slds-badge__icon_right")
 			.addChild(rightIconContainer);
+		
+		leftIconContainer.setSize(Size.EXTRA_EXTRA_SMALL).getIcon().addClass("slds-icon-text-default");
+		rightIconContainer.setSize(Size.EXTRA_EXTRA_SMALL).getIcon().addClass("slds-icon-text-default");
 	}
 	
 	/**
@@ -139,7 +158,7 @@ public class Badge extends BaseLightning{
 			leftIconContainer.setIconName(iconName);
 			rightIconContainer.setIconName(iconName);
 			if(getChildren().length ==1) {
-				setIconPosition(POSITION_START);
+				setIconPosition(ICON_POSITION_START);
 			}
 		}else {
 			setIconPosition("none");
@@ -156,8 +175,8 @@ public class Badge extends BaseLightning{
 	}
 	
 	/**
-	 * @see {@link #POSITION_START}
-	 * @see {@link #POSITION_END}
+	 * @see {@link #ICON_POSITION_START}
+	 * @see {@link #ICON_POSITION_END}
 	 * @return - The icon position of the badge
 	 */
 	public String getIconPosition() {
@@ -168,20 +187,20 @@ public class Badge extends BaseLightning{
 	 * sets the icon position of the badge
 	 * @param position - The icon position of the badge
 	 * @return  The current instance of the badge
-	 * @see {@link #POSITION_START}
-	 * @see {@link #POSITION_END}
+	 * @see {@link #ICON_POSITION_START}
+	 * @see {@link #ICON_POSITION_END}
 	
 	 */
 	public Badge setIconPosition(String position) {
 		clearChildren();
 		this.iconPosition = position;
-		if(position == POSITION_START) {
+		if(position == ICON_POSITION_START) {
 			addChild(leftBadgeIcon);
 		}
 		addChild(label);
 		addChild(assistiveText);
 		
-		if(position == POSITION_END) {
+		if(position == ICON_POSITION_END) {
 			addChild(rightBadgeIcon);
 		}
 		setRendered(false);
@@ -196,5 +215,37 @@ public class Badge extends BaseLightning{
 	public Badge setLabel(String label) {
 		this.label.setHtml(label);
 		return this;
+	}
+	
+	
+	/**
+	 * sets the variant of the badge.
+	 * @see #VARIANT_INVERSE
+	 * @see #VARIANT_STANDARD
+	 * @param variant - the variant of the badge
+	 * @return - The current instance of the badge
+	 */
+	public Badge setVariant(String variant) {
+		if(variant == VARIANT_INVERSE) {
+			addClass("slds-badge_inverse");
+		}else {
+			removeClass("slds-badge_inverse");
+		}
+		
+		return this;
+	}
+	
+	/**
+	 * The variant of the badge
+	 * @see #VARIANT_INVERSE
+	 * @see #VARIANT_STANDARD
+	 * @return - The variant of the badge
+	 */
+	public String getVariant() {
+		if(hasClass("slds-badge_inverse")) {
+			return VARIANT_INVERSE;
+		}else {
+			return VARIANT_STANDARD;
+		}
 	}
 }

@@ -9,7 +9,6 @@ import framework.components.api.Renderable;
 import jsweet.dom.Event;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
-import jsweet.util.StringTypes.option;
 
 public class ButtonMenu extends BaseLightning{
 

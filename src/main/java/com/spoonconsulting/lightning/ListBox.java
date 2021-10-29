@@ -75,6 +75,18 @@ public class ListBox extends JSContainer{
 		return null;
 	}
 	
+	public Array<Object> getOptions(){
+		Array<Object> result = new Array<Object>();
+		for(Renderable r : getChildren()) {
+			ListBoxOption opt = (ListBoxOption)r;
+			Object o = new Object();
+			o.$set("value", opt.getValue());
+			o.$set("label", opt.getLabel());
+			result.push(o);
+		}
+		return result;
+	}
+	
 	public String getValue() {
 		for(Renderable r : getChildren()) {
 			ListBoxOption opt = (ListBoxOption)r;
