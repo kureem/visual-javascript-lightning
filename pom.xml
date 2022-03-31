@@ -82,6 +82,8 @@
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
 					<targetVersion>ES6</targetVersion>
 					<encoding>UTF-8</encoding>
+					<header>header.txt</header>
+					<sourceMap>true</sourceMap>
 				</configuration>
 				<executions>
 					<execution>
@@ -201,6 +203,13 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>releases</name>
+			<url>https://maven.pkg.github.com/kureem/visual-javascript-lightning</url>
+		</repository>
+	</distributionManagement>
 	<organization>
 		<name>Spoon Consulting</name>
 		<url>http://www.spoonconsulting.com</url>

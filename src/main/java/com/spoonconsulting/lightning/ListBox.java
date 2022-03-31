@@ -11,6 +11,8 @@ import jsweet.lang.Array;
 import jsweet.lang.Object;
 
 public class ListBox extends JSContainer{
+	
+	private boolean checkable = false;
 
 	public ListBox(String name) {
 		super(name, "div");
@@ -24,8 +26,22 @@ public class ListBox extends JSContainer{
 		
 	}
 	
+	public boolean isCheckable() {
+		return checkable;
+	}
+
+	public void setCheckable(boolean checkable) {
+		this.checkable = checkable;
+		for(ListBoxOption opt : getUIOptions()) {
+			opt.setCheckable(checkable);
+		}
+		
+	}
+
 	public ListBox addOption(String value, String label) {
-		addChild(new ListBoxOption(value, label));
+		ListBoxOption opt = new ListBoxOption(value, label);
+		opt.setCheckable(checkable);
+		addChild(opt);
 		return this;
 	}
 	
@@ -55,6 +71,20 @@ public class ListBox extends JSContainer{
 		return this;
 	}
 	
+	public void moveUp() {
+		ListBoxOption opt = getSelectedOption();
+		if(opt != null) {
+			opt.moveUp();
+		}
+	}
+	
+	public void moveDown() {
+		ListBoxOption opt = getSelectedOption();
+		if(opt != null) {
+			opt.moveDown();
+		}
+	}
+	
 	public ListBoxOption getSelectedOption() {
 		for(Renderable r : getChildren()) {
 			ListBoxOption opt = (ListBoxOption)r;
@@ -73,6 +103,12 @@ public class ListBox extends JSContainer{
 			}
 		}
 		return null;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Array<ListBoxOption> getUIOptions(){
+		Array childrne = getChildren();
+		return childrne;
 	}
 	
 	public Array<Object> getOptions(){
@@ -106,6 +142,8 @@ public class ListBox extends JSContainer{
 		private IconContainer icon = new IconContainer("icon", "div");
 		
 		private JSContainer label = new JSContainer("label", "span");
+		
+		private boolean checkable = true;
 
 		public ListBoxOption(String value, String label) {
 			super(value, "div");
@@ -135,6 +173,35 @@ public class ListBox extends JSContainer{
 			addEventListener(this, "click");
 		}
 		
+		public void moveUp() {
+			ListBox bl = (ListBox)getParent();
+			double currentIndex = bl.getChildren().indexOf(this);
+			if(currentIndex > 0) {
+				bl.removeChild(this);
+				bl.addChildAt(currentIndex-1, this);
+				bl.setRendered(false);
+			}
+		}
+		
+		public void moveDown() {
+			ListBox bl = (ListBox)getParent();
+			double currentIndex = bl.getChildren().indexOf(this);
+			if(currentIndex < bl.getChildren().length -1) {
+				bl.removeChild(this);
+				bl.addChildAt(currentIndex+1, this);
+				bl.setRendered(false);
+			}
+		}
+		
+		public void setCheckable(boolean b) {
+			this.checkable = b;
+			if(!b) {
+				figure.setStyle("display", "none");
+			}else {
+				figure.setStyle("display", null);
+			}
+		}
+		
 		public ListBoxOption setValue(String value) {
 			setAttribute("data-value", value);
 			return this;
@@ -157,11 +224,21 @@ public class ListBox extends JSContainer{
 		public ListBoxOption setChecked(boolean b) {
 			if(b) {
 				setAttribute("aria-checked", "true");
-				figure.clearChildren();
-				figure.addChild(icon);
+				setAttribute("aria-selected", "true");
+				if(checkable) {
+					figure.clearChildren();
+					figure.addChild(icon);
+				}else {
+					addClass("slds-is-selected");
+				}
 			}else {
 				setAttribute("aria-checked", "false");
-				figure.clearChildren();
+				setAttribute("aria-selected", "false");
+				if(checkable) {
+					figure.clearChildren();
+				}else {
+					removeClass("slds-is-selected");
+				}
 				
 			}
 			setRendered(false);
@@ -182,6 +259,15 @@ public class ListBox extends JSContainer{
 				CustomEvent onchange = new CustomEvent("change");
 				onchange.$set("source", this);
 				onchange.$set("value", getValue());
+				onchange.$set("oldValue", oldValue);
+				lb.fireListener("change", evt);
+			}else {
+				ListBox lb = (ListBox)getParent();
+				String oldValue = lb.getValue();
+				lb.setValue(null);
+				CustomEvent onchange = new CustomEvent("change");
+				onchange.$set("source", this);
+				onchange.$set("value", null);
 				onchange.$set("oldValue", oldValue);
 				lb.fireListener("change", evt);
 			}

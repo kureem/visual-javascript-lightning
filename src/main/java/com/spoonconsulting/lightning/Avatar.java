@@ -4,9 +4,6 @@ import com.spoonconsulting.lightning.enums.IconName;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
-import framework.components.api.EventListener;
-import framework.components.api.Renderable;
-import jsweet.dom.Event;
 import jsweet.lang.Math;
 
 /**

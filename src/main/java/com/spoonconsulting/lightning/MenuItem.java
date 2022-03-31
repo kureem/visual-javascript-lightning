@@ -171,6 +171,7 @@ public class MenuItem extends BaseLightning{
 	public MenuItem setIconName(String iconName) {
 		this.iconName = iconName;
 		return refresh();
+		
 	}
 
 	public String getIconName() {

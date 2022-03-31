@@ -1,5 +1,6 @@
 package com.spoonconsulting.lightning;
 
+import com.spoonconsulting.lightning.enums.ModalSize;
 import com.spoonconsulting.lightning.enums.Size;
 import com.spoonconsulting.lightning.enums.Variants.Variant;
 
@@ -19,6 +20,8 @@ public class Modal extends JSContainer {
 	private JSContainer tagLine = new JSContainer("tagLine", "p");
 
 	private BackDrop backdrop = null;
+	
+	private String size;
 
 	public Modal(String name) {
 		super(name, "section");
@@ -118,6 +121,29 @@ public class Modal extends JSContainer {
 
 	public void setBackdrop(BackDrop backdrop) {
 		this.backdrop = backdrop;
+	}
+	
+	public Modal setSize(ModalSize size) {
+		if(size != null) {
+			setSize(size.getValue());
+		}else {
+			setSize((String)null);
+		}
+		return this;
+	}
+	
+	public String getSize() {
+		return size;
+	}
+	
+	public Modal setSize(String size) {
+		this.size = size;
+		for(ModalSize s : ModalSize.values()) {
+			removeClass("slds-modal_" + s.getValue());
+		}
+		if(size != null)
+			addClass("slds-modal_" + size);
+		return this;
 	}
 
 	public static class BackDrop extends JSContainer {

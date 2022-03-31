@@ -365,6 +365,16 @@ declare namespace com.spoonconsulting.lightning {
             performAction(source: api.Renderable, evt: Event): void;
             constructor(__parent: any);
         }
+        class BaseComboBox$2 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
     }
 }
 declare namespace com.spoonconsulting.lightning {
@@ -381,8 +391,10 @@ declare namespace com.spoonconsulting.lightning {
         static getAccordionSample(): JSContainer;
         static getButtons(): JSContainer;
         static getSampleCOmbo(): JSContainer;
+        static getDualListBox(): JSContainer;
         static getPathSample(): JSContainer;
         static addVerticalTab(title: string, sample: JSContainer, verticalMenu: com.spoonconsulting.lightning.TabSet): void;
+        static getTable(): JSContainer;
         static getModal(): JSContainer;
         static getBadge(): JSContainer;
         static getTree(): JSContainer;
@@ -673,6 +685,495 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class DataGrid extends JSContainer {
+        thead: JSContainer;
+        theadRow: JSContainer;
+        tbody: JSContainer;
+        data: Array<Object>;
+        columnWidthsMode: string;
+        columns: Array<Object>;
+        defaultSortDirection: string;
+        enableInfiniteLoading: boolean;
+        errors: Array<Object>;
+        hideCheckboxColumn: boolean;
+        hideTableHeader: boolean;
+        __isLoading: boolean;
+        keyField: string;
+        loadMoreOffset: string;
+        maxColumnWidth: string;
+        maxRowSelection: number;
+        minColumnWidth: string;
+        resizeColumnDisabled: boolean;
+        resizeStep: number;
+        rowNumberOffset: string;
+        showRowNumberColumn: boolean;
+        sortedBy: string;
+        sortDirection: string;
+        suppressBottomBar: boolean;
+        wrapTextMaxLines: number;
+        columns_: Object;
+        rowNumber: com.spoonconsulting.lightning.DataGridColHeader;
+        checkbox: com.spoonconsulting.lightning.DataGridColHeaderRowSelector;
+        colHeaderRenderer: (p1: com.spoonconsulting.lightning.DataGridColHeader, p2: Object, p3: Array<Object>, p4: string) => void;
+        cellRenderers: Object;
+        static WIDTH_MODE_FIXED: string;
+        static WIDTH_MODE_AUTO: string;
+        table: JSContainer;
+        scrollableY: JSContainer;
+        scrollableX: JSContainer;
+        constructor(name: string);
+        addCellRenderer(renderer: (p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void, type: string): DataGrid;
+        refreshHeader(): DataGrid;
+        getColumn(name: string): Object;
+        refreshBody(): DataGrid;
+        setSelectAll(b: boolean): DataGrid;
+        getSelectedItems(): Array<Object>;
+        getRows(): Array<com.spoonconsulting.lightning.DataGridRow>;
+        /**
+         * @return {Object} the cellRenderers
+         */
+        getCellRenderers(): Object;
+        refresh(): DataGrid;
+        getHead(): JSContainer;
+        getBody(): JSContainer;
+        setData(data: Array<Object>): DataGrid;
+        getSelectedRows(): Array<Object>;
+        setSelectedRows(rows: Array<Object>): DataGrid;
+        openInlineEdit(): DataGrid;
+        /**
+         * @return {string} the columnWidthsMode
+         */
+        getColumnWidthsMode(): string;
+        /**
+         * @param {string} columnWidthsMode the columnWidthsMode to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setColumnWidthsMode(columnWidthsMode: string): DataGrid;
+        /**
+         * @return {Object[]} the columns
+         */
+        getColumns(): Array<Object>;
+        /**
+         * @param {Object[]} columns the columns to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setColumns(columns: Array<Object>): DataGrid;
+        /**
+         * @return {string} the defaultSortDirection
+         */
+        getDefaultSortDirection(): string;
+        /**
+         * @param {string} defaultSortDirection the defaultSortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setDefaultSortDirection(defaultSortDirection: string): DataGrid;
+        /**
+         * @return {boolean} the enableInfiniteLoading
+         */
+        isEnableInfiniteLoading(): boolean;
+        /**
+         * @param {boolean} enableInfiniteLoading the enableInfiniteLoading to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setEnableInfiniteLoading(enableInfiniteLoading: boolean): DataGrid;
+        /**
+         * @return {Object[]} the errors
+         */
+        getErrors(): Array<Object>;
+        /**
+         * @param {Object[]} errors the errors to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setErrors(errors: Array<Object>): DataGrid;
+        /**
+         * @return {boolean} the hideCheckboxColumn
+         */
+        isHideCheckboxColumn(): boolean;
+        /**
+         * @param {boolean} hideCheckboxColumn the hideCheckboxColumn to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setHideCheckboxColumn(hideCheckboxColumn: boolean): DataGrid;
+        /**
+         * @return {boolean} the hideTableHeader
+         */
+        isHideTableHeader(): boolean;
+        /**
+         * @param {boolean} hideTableHeader the hideTableHeader to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setHideTableHeader(hideTableHeader: boolean): DataGrid;
+        /**
+         * @return {boolean} the isLoading
+         */
+        isLoading(): boolean;
+        /**
+         * @param {boolean} isLoading the isLoading to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setLoading(isLoading: boolean): DataGrid;
+        /**
+         * @return {string} the keyField
+         */
+        getKeyField(): string;
+        /**
+         * @param {string} keyField the keyField to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setKeyField(keyField: string): DataGrid;
+        /**
+         * @return {string} the loadMoreOffset
+         */
+        getLoadMoreOffset(): string;
+        /**
+         * @param {string} loadMoreOffset the loadMoreOffset to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setLoadMoreOffset(loadMoreOffset: string): DataGrid;
+        /**
+         * @return {string} the maxColumnWidth
+         */
+        getMaxColumnWidth(): string;
+        /**
+         * @param {string} maxColumnWidth the maxColumnWidth to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setMaxColumnWidth(maxColumnWidth: string): DataGrid;
+        /**
+         * @return {number} the maxRowSelection
+         */
+        getMaxRowSelection(): number;
+        /**
+         * @param {number} maxRowSelection the maxRowSelection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setMaxRowSelection(maxRowSelection: number): DataGrid;
+        /**
+         * @return {string} the minxColumnWidth
+         */
+        getMinColumnWidth(): string;
+        /**
+         * @param {string} minxColumnWidth the minxColumnWidth to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setMinColumnWidth(minxColumnWidth: string): DataGrid;
+        /**
+         * @return {boolean} the resizeColumnDisabled
+         */
+        isResizeColumnDisabled(): boolean;
+        /**
+         * @param {boolean} resizeColumnDisabled the resizeColumnDisabled to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setResizeColumnDisabled(resizeColumnDisabled: boolean): DataGrid;
+        /**
+         * @return {number} the resizeStep
+         */
+        getResizeStep(): number;
+        /**
+         * @param {number} resizeStep the resizeStep to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setResizeStep(resizeStep: number): DataGrid;
+        /**
+         * @return {string} the rowNumberOffset
+         */
+        getRowNumberOffset(): string;
+        /**
+         * @param {string} rowNumberOffset the rowNumberOffset to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setRowNumberOffset(rowNumberOffset: string): DataGrid;
+        /**
+         * @return {boolean} the showRowNumberColumn
+         */
+        isShowRowNumberColumn(): boolean;
+        /**
+         * @param {boolean} showRowNumberColumn the showRowNumberColumn to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setShowRowNumberColumn(showRowNumberColumn: boolean): DataGrid;
+        /**
+         * @return {string} the sortedBy
+         */
+        getSortedBy(): string;
+        /**
+         * @param {string} sortedBy the sortedBy to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setSortedBy(sortedBy: string): DataGrid;
+        /**
+         * @return {string} the sortDirection
+         */
+        getSortDirection(): string;
+        /**
+         * @param {string} sortDirection the sortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setSortDirection(sortDirection: string): DataGrid;
+        /**
+         * @return {boolean} the suppressBottomBar
+         */
+        isSuppressBottomBar(): boolean;
+        /**
+         * @param {boolean} suppressBottomBar the suppressBottomBar to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setSuppressBottomBar(suppressBottomBar: boolean): DataGrid;
+        /**
+         * @return {number} the wrapTextMaxLines
+         */
+        getWrapTextMaxLines(): number;
+        /**
+         * @param {number} wrapTextMaxLines the wrapTextMaxLines to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        setWrapTextMaxLines(wrapTextMaxLines: number): DataGrid;
+        /**
+         * @return {Object[]} the data
+         */
+        getData(): Array<Object>;
+    }
+    namespace DataGrid {
+        class DataGrid$0 implements api.EventListener {
+            private column;
+            private cell;
+            private data;
+            private fieldName;
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any, column: any, cell: any, data: any, fieldName: any);
+        }
+        class DataGrid$1 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class DataGridCell extends JSContainer {
+        label: JSContainer;
+        content: JSContainer;
+        factory: JSContainer;
+        edit: com.spoonconsulting.lightning.ButtonIcon;
+        static ALIGNMENT_END: string;
+        static ALIGNMENT_START: string;
+        static ALIGNMENT_CENTER: string;
+        static ALIGNMENT_SPREAD: string;
+        constructor(name: string);
+        setEditable(b: boolean): DataGridCell;
+        isEditable(): boolean;
+        setLabel(label: string): DataGridCell;
+        getLabel(): string;
+        getContent(): JSContainer;
+        setAlignment(alignment: string): DataGridCell;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class DataGridColHeader extends JSContainer implements com.spoonconsulting.lightning.DataGridIColHeader {
+        resizable: JSContainer;
+        cellFixed: JSContainer;
+        action: JSContainer;
+        label: JSContainer;
+        arrowTrigger: JSContainer;
+        arrow: com.spoonconsulting.lightning.ButtonIcon;
+        range: JSContainer;
+        resizeHandle: JSContainer;
+        keyField: boolean;
+        visual: JSContainer;
+        icon: com.spoonconsulting.lightning.IconContainer;
+        sortIcon: com.spoonconsulting.lightning.IconContainer;
+        sortable: boolean;
+        defaultSortDirection: string;
+        sortDirection: string;
+        column: Object;
+        constructor(name: string, label: string);
+        setLabel(label: string): DataGridColHeader;
+        setWidth(width: string): DataGridColHeader;
+        getWidth(): string;
+        setResizable(b: boolean): DataGridColHeader;
+        isResizable(): boolean;
+        setHideDefaultActions(b: boolean): DataGridColHeader;
+        isHideDefaultActions(): boolean;
+        /**
+         * @return {boolean} the primaryField
+         */
+        isKeyField(): boolean;
+        /**
+         * @param {boolean} primaryField the primaryField to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        setKeyField(primaryField: boolean): DataGridColHeader;
+        setIconName(iconName: string): DataGridColHeader;
+        getIconName(): string;
+        /**
+         * @return {boolean} the sortable
+         */
+        isSortable(): boolean;
+        /**
+         * @param {boolean} sortable the sortable to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        setSortable(sortable: boolean): DataGridColHeader;
+        /**
+         * @return {string} the defaultSortDirection
+         */
+        getDefaultSortDirection(): string;
+        /**
+         * @param {string} defaultSortDirection the defaultSortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        setDefaultSortDirection(defaultSortDirection: string): DataGridColHeader;
+        setSortDirection(direction: string): DataGridColHeader;
+        getSortDirection(): string;
+        /**
+         * @return {Object} the column
+         */
+        getColumn(): Object;
+        /**
+         * @param {Object} column the column to set
+         */
+        setColumn(column: Object): void;
+    }
+    namespace DataGridColHeader {
+        class DataGridColHeader$0 implements api.EventListener {
+            private observer;
+            private configs;
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any, observer: any, configs: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class DataGridColHeaderRowSelector extends JSContainer implements com.spoonconsulting.lightning.DataGridIColHeader {
+        checkbox: com.spoonconsulting.lightning.CheckBox;
+        constructor(name: string);
+        isChecked(): boolean;
+        setChecked(b: boolean): DataGridColHeaderRowSelector;
+        setWidth(width: string): DataGridColHeaderRowSelector;
+        getWidth(): string;
+    }
+    namespace DataGridColHeaderRowSelector {
+        class DataGridColHeaderRowSelector$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    interface DataGridIColHeader extends api.Renderable {
+        setWidth(width: string): DataGridIColHeader;
+        getWidth(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class DataGridRow extends JSContainer {
+        grid: com.spoonconsulting.lightning.DataGrid;
+        rowNumber: com.spoonconsulting.lightning.DataGridCell;
+        checkbox: com.spoonconsulting.lightning.DataGridCellRowSelector;
+        line: Object;
+        index: number;
+        selected: boolean;
+        constructor(grid: com.spoonconsulting.lightning.DataGrid, line: Object, index: number);
+        refresh(): void;
+        /**
+         * @return {com.spoonconsulting.lightning.DataGrid} the grid
+         */
+        getGrid(): com.spoonconsulting.lightning.DataGrid;
+        /**
+         * @param {com.spoonconsulting.lightning.DataGrid} grid the grid to set
+         */
+        setGrid(grid: com.spoonconsulting.lightning.DataGrid): void;
+        /**
+         * @return {Object} the line
+         */
+        getLine(): Object;
+        /**
+         * @param {Object} line the line to set
+         */
+        setLine(line: Object): void;
+        /**
+         * @return {number} the index
+         */
+        getIndex(): number;
+        /**
+         * @param {number} index the index to set
+         */
+        setIndex(index: number): void;
+        /**
+         * @return {com.spoonconsulting.lightning.DataGridCell} the rowNumber
+         */
+        getRowNumber(): com.spoonconsulting.lightning.DataGridCell;
+        /**
+         * @return {com.spoonconsulting.lightning.DataGridCellRowSelector} the checkbox
+         */
+        getCheckbox(): com.spoonconsulting.lightning.DataGridCellRowSelector;
+        setSelected(b: boolean): DataGridRow;
+        isSelected(): boolean;
+    }
+    namespace DataGridRow {
+        class DataGridRow$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
+    class Draggable extends JSContainer {
+        element: HTMLElement;
+        bbox: ClientRect;
+        startX: number;
+        startY: number;
+        deltaX: number;
+        deltaY: number;
+        axis: string;
+        container: HTMLElement;
+        raf: number;
+        userMoved: EventListener;
+        userReleased: EventListener;
+        fn: (p1: string) => void;
+        userPressed: api.EventListener;
+        constructor(name: string, tag: string);
+        /**
+         * @return {string} the axis
+         */
+        getAxis(): string;
+        /**
+         * @param {string} axis the axis to set
+         */
+        setAxis(axis: string): void;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Dropdown extends JSContainer {
         menu: com.spoonconsulting.lightning.Menu;
         spinnerContainer: JSContainer;
@@ -700,6 +1201,88 @@ declare namespace com.spoonconsulting.lightning {
         }
     }
 }
+declare namespace com.spoonconsulting.lightning {
+    class DualingList extends JSContainer implements api.EventListener, api.InputField<Array<string>> {
+        labelAvailable: JSContainer;
+        labelSelected: JSContainer;
+        available: com.spoonconsulting.lightning.ListBox;
+        selected: com.spoonconsulting.lightning.ListBox;
+        right: com.spoonconsulting.lightning.ButtonIcon;
+        left: com.spoonconsulting.lightning.ButtonIcon;
+        up: com.spoonconsulting.lightning.ButtonIcon;
+        down: com.spoonconsulting.lightning.ButtonIcon;
+        options: Array<Object>;
+        requiredOptions: Array<string>;
+        required: boolean;
+        constructor(name: string);
+        setOptions(options: Array<Object>): DualingList;
+        getOptions(): Array<Object>;
+        moveUp(): void;
+        moveDown(): void;
+        addSelected(): void;
+        removeSelected(): void;
+        /**
+         *
+         * @param {*} source
+         * @param {Event} evt
+         */
+        performAction(source: api.Renderable, evt: Event): void;
+        /**
+         *
+         * @return {string[]}
+         */
+        getValue(): Array<string>;
+        /**
+         *
+         * @param {string[]} val
+         */
+        setValue(val: Array<string>): void;
+        /**
+         *
+         */
+        validate(): void;
+        /**
+         *
+         * @return {string}
+         */
+        getBinding(): string;
+        /**
+         *
+         * @param {string} binding
+         * @return {*}
+         */
+        setBinding(binding: string): api.InputField<Array<string>>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {*}
+         */
+        setRequired(b: boolean): api.InputField<Array<string>>;
+        setAddButtonLabel(label: string): DualingList;
+        getAddButtonLabel(): string;
+        setDisableReordering(b: boolean): DualingList;
+        isDisableReordering(): boolean;
+        setDisabled(b: boolean): DualingList;
+        isDisabled(): boolean;
+        setDownButtonLabel(label: string): DualingList;
+        getDownButtonLabel(): string;
+        setMax(max: number): DualingList;
+        getMax(): number;
+        setMin(min: number): DualingList;
+        getMin(): number;
+        setRemoveButtonLabel(label: string): DualingList;
+        getRemoveButtonLabel(): string;
+        getRequiredOptions(): Array<string>;
+        setRequiredOptions(requiredOptions: Array<string>): DualingList;
+        isRequired(): boolean;
+        setSourceLabel(label: string): DualingList;
+        getSourceLabel(): string;
+        setUpButtonLabel(label: string): DualingList;
+        getUpButtonLabel(): string;
+        setSelectedLabel(label: string): DualingList;
+        getSelectedLabel(): string;
+    }
+}
 declare namespace com.spoonconsulting.lightning.enums {
     enum Color {
         DEFAULT = 0,
@@ -720,6 +1303,24 @@ declare namespace com.spoonconsulting.lightning.enums {
         name(): string;
         ordinal(): number;
         compareTo(other: any): number;
+    }
+}
+declare namespace com.spoonconsulting.lightning.enums {
+    enum DataGridCellType {
+        ACTION = 0,
+        BOOLEAN = 1,
+        BUTTON = 2,
+        BUTTON_ICON = 3,
+        CURRENCY = 4,
+        DATE = 5,
+        DATE_LOCAL = 6,
+        EMAIL = 7,
+        LOCATION = 8,
+        NUMBER = 9,
+        PERCENT = 10,
+        PHONE = 11,
+        TEXT = 12,
+        URL = 13
     }
 }
 declare namespace com.spoonconsulting.lightning.enums {
@@ -2137,6 +2738,24 @@ declare namespace com.spoonconsulting.lightning.enums {
     }
 }
 declare namespace com.spoonconsulting.lightning.enums {
+    enum ModalSize {
+        SMALL = 0,
+        MEDIUM = 1,
+        LARGE = 2
+    }
+    /** @ignore */
+    class ModalSize_$WRAPPER {
+        protected _$ordinal: number;
+        protected _$name: string;
+        value: any;
+        constructor(_$ordinal: number, _$name: string, value: any);
+        getValue(): string;
+        name(): string;
+        ordinal(): number;
+        compareTo(other: any): number;
+    }
+}
+declare namespace com.spoonconsulting.lightning.enums {
     enum Position {
         STATIC = 0,
         FIXED = 1,
@@ -2247,7 +2866,8 @@ declare namespace com.spoonconsulting.lightning.enums {
             STANDARD = 0,
             LABEL_HIDDEN = 1,
             LABEL_INLINE = 2,
-            LABEL_STACKED = 3
+            LABEL_HORIZONTAL = 3,
+            LABEL_STACKED = 4
         }
         /** @ignore */
         class FormElementVariant_$WRAPPER {
@@ -2313,6 +2933,8 @@ declare namespace com.spoonconsulting.lightning {
             __parent: any;
             constructor(__parent: any, name: string);
             addItem(): FormRow.FormItem;
+            addCol(): FormRow.FormItem;
+            col(index: number): FormRow.FormItem;
             item(index: number): FormRow.FormItem;
             getForm(): com.spoonconsulting.lightning.Form;
             form(): com.spoonconsulting.lightning.Form;
@@ -2346,8 +2968,19 @@ declare namespace com.spoonconsulting.lightning {
         fieldLevelHelp: com.spoonconsulting.lightning.Help;
         help: JSContainer;
         variant: com.spoonconsulting.lightning.enums.Variants.FormElementVariant;
+        messageWhenValueMissing: string;
+        messageWhenRangeOverflow: string;
+        messageWhenRangeUnderflow: string;
+        messageWhenBadInput: string;
+        messageWhenPatternMismatch: string;
+        messageWhenStepMismatch: string;
+        messageWhenTooLong: string;
+        messageWhenTooShort: string;
+        messageWhenTypeMismatch: string;
+        messageWhenCustomError: string;
         constructor(name?: any, input?: any);
         setRequired(b: boolean): FormElement<T>;
+        isRequired(): boolean;
         setLabel(label: string): FormElement<T>;
         setFieldLevelHelp(help: string): FormElement<T>;
         setInput(input: api.InputField<T>): FormElement<T>;
@@ -2389,9 +3022,42 @@ declare namespace com.spoonconsulting.lightning {
         setVariant(variant?: any): any;
         setVariant$java_lang_String(variant: string): FormElement<T>;
         getVariant(): string;
+        handleValidationException(e: api.ValidationException): void;
+        reportValidity(): FormElement<T>;
+        showHelpMessageIfInvalid(): FormElement<T>;
+        getMessageWhenValueMissing(): string;
+        setMessageWhenValueMissing(messageWhenValueMissing: string): FormElement<T>;
+        getMessageWhenRangeOverflow(): string;
+        setMessageWhenRangeOverflow(messageWhenRangeOverflow: string): FormElement<T>;
+        getMessageWhenRangeUnderflow(): string;
+        setMessageWhenRangeUnderflow(messageWhenRangeUnderflow: string): FormElement<T>;
+        getMessageWhenBadInput(): string;
+        setMessageWhenBadInput(messageWhenBadInput: string): FormElement<T>;
+        getMessageWhenPatternMismatch(): string;
+        setMessageWhenPatternMismatch(messageWhenPatternMismatch: string): FormElement<T>;
+        getMessageWhenStepMismatch(): string;
+        setMessageWhenStepMismatch(messageWhenStepMismatch: string): FormElement<T>;
+        getMessageWhenTooLong(): string;
+        setMessageWhenTooLong(messageWhenTooLong: string): FormElement<T>;
+        getMessageWhenTooShort(): string;
+        setMessageWhenTooShort(messageWhenTooShort: string): FormElement<T>;
+        getMessageWhenTypeMismatch(): string;
+        setMessageWhenTypeMismatch(messageWhenTypeMismatch: string): FormElement<T>;
+        getMessageWhenCustomError(): string;
+        setMessageWhenCustomError(messageWhenCustomError: string): FormElement<T>;
     }
     namespace FormElement {
         class FormElement$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class FormElement$1 implements api.EventListener {
             __parent: any;
             /**
              *
@@ -2532,14 +3198,21 @@ declare namespace com.spoonconsulting.lightning {
 }
 declare namespace com.spoonconsulting.lightning {
     class ListBox extends JSContainer {
+        checkable: boolean;
         constructor(name: string);
+        isCheckable(): boolean;
+        setCheckable(checkable: boolean): void;
         addOption$java_lang_String$java_lang_String(value: string, label: string): ListBox;
         addOption(value?: any, label?: any): any;
         addOption$jsweet_lang_Object(obj: Object): ListBox;
         setOptions(options: Array<Object>): ListBox;
         setValue(value: string): ListBox;
+        moveUp(): void;
+        moveDown(): void;
         getSelectedOption(): ListBox.ListBoxOption;
         getOption(value: string): ListBox.ListBoxOption;
+        getUIOptions(): Array<ListBox.ListBoxOption>;
+        getOptions(): Array<Object>;
         getValue(): string;
     }
     namespace ListBox {
@@ -2549,7 +3222,11 @@ declare namespace com.spoonconsulting.lightning {
             body: JSContainer;
             icon: com.spoonconsulting.lightning.IconContainer;
             label: JSContainer;
+            checkable: boolean;
             constructor(__parent: any, value: string, label: string);
+            moveUp(): void;
+            moveDown(): void;
+            setCheckable(b: boolean): void;
             setValue(value: string): ListBox.ListBoxOption;
             getValue(): string;
             setLabel(label: string): ListBox.ListBoxOption;
@@ -2588,6 +3265,7 @@ declare namespace com.spoonconsulting.lightning {
         title: JSContainer;
         tagLine: JSContainer;
         backdrop: Modal.BackDrop;
+        size: string;
         constructor(name: string);
         close(): void;
         open(): void;
@@ -2602,6 +3280,10 @@ declare namespace com.spoonconsulting.lightning {
         setTagLine(tagLine: string): Modal;
         getBackdrop(): Modal.BackDrop;
         setBackdrop(backdrop: Modal.BackDrop): void;
+        setSize$com_spoonconsulting_lightning_enums_ModalSize(size: com.spoonconsulting.lightning.enums.ModalSize): Modal;
+        setSize(size?: any): any;
+        getSize(): string;
+        setSize$java_lang_String(size: string): Modal;
     }
     namespace Modal {
         class BackDrop extends JSContainer {
@@ -3072,10 +3754,19 @@ declare namespace com.spoonconsulting.lightning {
         heading: JSContainer;
         items: Array<Object>;
         tree: Tree.UITree;
+        nodeRenderer: (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void;
         constructor(name: string);
         setHeading(heading: string): Tree;
         getHeading(): string;
         setItems(items: Array<Object>): Tree;
+        /**
+         * @return {*} the nodeRenderer
+         */
+        getNodeRenderer(): (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void;
+        /**
+         * @param {*} nodeRenderer the nodeRenderer to set
+         */
+        setNodeRenderer(nodeRenderer: (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void): void;
         unselect(except: Tree.UITreeItem): void;
         getItems(): Array<Object>;
     }
@@ -3083,8 +3774,10 @@ declare namespace com.spoonconsulting.lightning {
         class UITree extends JSContainer {
             __parent: any;
             level: number;
-            constructor(__parent: any, name: string, level: number);
+            tree_: com.spoonconsulting.lightning.Tree;
+            constructor(__parent: any, name: string, level: number, tree: com.spoonconsulting.lightning.Tree);
             setData(data: Array<Object>): Tree.UITree;
+            getTree(): com.spoonconsulting.lightning.Tree;
             unselect(except: Tree.UITreeItem): void;
         }
         class UITreeItem extends JSContainer {
@@ -3094,7 +3787,8 @@ declare namespace com.spoonconsulting.lightning {
             data: Object;
             children: Tree.UITree;
             level: number;
-            constructor(__parent: any, name: string, level: number);
+            tree: com.spoonconsulting.lightning.Tree;
+            constructor(__parent: any, name: string, level: number, tree: com.spoonconsulting.lightning.Tree);
             setExpanded(b: boolean): void;
             setSelected(b: boolean): void;
             unSelect(except: Tree.UITreeItem): void;
@@ -3103,6 +3797,7 @@ declare namespace com.spoonconsulting.lightning {
         }
         namespace UITreeItem {
             class UITreeItem$0 implements api.EventListener {
+                private tree;
                 __parent: any;
                 /**
                  *
@@ -3110,7 +3805,7 @@ declare namespace com.spoonconsulting.lightning {
                  * @param {Event} evt
                  */
                 performAction(source: api.Renderable, evt: Event): void;
-                constructor(__parent: any);
+                constructor(__parent: any, tree: any);
             }
             class UITreeItem$1 implements api.EventListener {
                 __parent: any;
@@ -3127,6 +3822,11 @@ declare namespace com.spoonconsulting.lightning {
 }
 declare namespace com.spoonconsulting.lightning {
     class Utils {
+        static MONTHS: string[];
+        static MONTHS_$LI$(): string[];
+        static DAYS: string[];
+        static DAYS_$LI$(): string[];
+        static formatDate(dt: Date, format: string): string;
         static camelCaseToLabel(sname: string): string;
         static setPadding$framework_components_api_Renderable$com_spoonconsulting_lightning_enums_Direction(r: api.Renderable, direction: com.spoonconsulting.lightning.enums.Direction): void;
         static setPadding$framework_components_api_Renderable$com_spoonconsulting_lightning_enums_Direction$com_spoonconsulting_lightning_enums_Size(r: api.Renderable, direction: com.spoonconsulting.lightning.enums.Direction, size: com.spoonconsulting.lightning.enums.Size): void;
@@ -3175,8 +3875,25 @@ declare namespace com.spoonconsulting.lightning {
         static setTheme(r: api.Renderable, theme: com.spoonconsulting.lightning.enums.Theme): void;
         static setTextTruncate(r: api.Renderable): void;
         static setHasFlexiTruncate(r: api.Renderable, hasFlexiTruncate: boolean): void;
+        static isEmpty(val: any): boolean;
     }
     namespace Utils {
+        class ObjectBuilder {
+            obj: Object;
+            static create(): Utils.ObjectBuilder;
+            set$java_lang_String$java_lang_Object(key: string, value: any): Utils.ObjectBuilder;
+            set(key?: any, value?: any): any;
+            set$java_lang_String_A(...strings: string[]): Utils.ObjectBuilder;
+            get(): Object;
+            constructor();
+        }
+        class ArrayBuilder {
+            result: Array<Object>;
+            static create(): Utils.ArrayBuilder;
+            add(...val: Object[]): Utils.ArrayBuilder;
+            get(): Array<Object>;
+            constructor();
+        }
         class OptionsBuilder {
             options: Array<Object>;
             static create(): Utils.OptionsBuilder;
@@ -3745,6 +4462,7 @@ declare namespace com.spoonconsulting.lightning {
         toggle(): void;
         open(): void;
         close(): void;
+        setButtonSize(size: com.spoonconsulting.lightning.enums.Size): ButtonMenu;
         setExpanded(b: boolean): ButtonMenu;
         isExpanded(): boolean;
         getIsDraft(): boolean;
@@ -3987,6 +4705,26 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class DataGridCellRowSelector extends com.spoonconsulting.lightning.DataGridCell {
+        checkbox: com.spoonconsulting.lightning.CheckBox;
+        constructor(name: string);
+        isChecked(): boolean;
+        setChecked(b: boolean): DataGridCellRowSelector;
+    }
+    namespace DataGridCellRowSelector {
+        class DataGridCellRowSelector$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class CheckBoxGroup extends com.spoonconsulting.lightning.FormElement<Array<string>> {
         list: CheckBoxGroup.InnerList;
         constructor(name?: any, ismulti?: any);
@@ -4038,14 +4776,11 @@ declare namespace com.spoonconsulting.lightning {
 declare namespace com.spoonconsulting.lightning {
     class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
         combo: com.spoonconsulting.lightning.BaseComboBox<string>;
-        messageWhenValueMissing: string;
         constructor(name: string);
         setDisabled(b: boolean): ComboBox;
         isDisabled(): boolean;
         setDropdownAlignment(alignment: string): ComboBox;
         getDropdownAlignment(): string;
-        getMessageWhenValueMissing(): string;
-        setMessageWhenValueMissing(messageWhenValueMissing: string): void;
         setOptions(options: Array<Object>): ComboBox;
         blur(): void;
         checkValidity(): boolean;
@@ -4065,6 +4800,53 @@ declare namespace com.spoonconsulting.lightning {
     }
 }
 declare namespace com.spoonconsulting.lightning {
+    class DualListBox extends com.spoonconsulting.lightning.FormElement<Array<string>> {
+        __com_spoonconsulting_lightning_DualListBox_input: com.spoonconsulting.lightning.DualingList;
+        constructor(name: string);
+        /**
+         *
+         * @param {api.ValidationException} e
+         */
+        handleValidationException(e: api.ValidationException): void;
+        setOptions(options: Array<Object>): DualListBox;
+        getOptions(): Array<Object>;
+        setAddButtonLabel(label: string): DualListBox;
+        getAddButtonLabel(): string;
+        setDisableReordering(b: boolean): DualListBox;
+        isDisableReordering(): boolean;
+        setDownButtonLabel(label: string): DualListBox;
+        getDownButtonLabel(): string;
+        setMax(max: number): DualListBox;
+        getMax(): number;
+        setMin(min: number): DualListBox;
+        getMin(): number;
+        setRemoveButtonLabel(label: string): DualListBox;
+        getRemoveButtonLabel(): string;
+        getRequiredOptions(): Array<string>;
+        setRequiredOptions(requiredOptions: Array<string>): DualListBox;
+        setSourceLabel(label: string): DualListBox;
+        getSourceLabel(): string;
+        setUpButtonLabel(label: string): DualListBox;
+        getUpButtonLabel(): string;
+        /**
+         *
+         * @param {boolean} b
+         * @return {com.spoonconsulting.lightning.FormElement}
+         */
+        setRequired(b: boolean): com.spoonconsulting.lightning.FormElement<Array<string>>;
+        /**
+         *
+         * @param {boolean} b
+         * @return {com.spoonconsulting.lightning.FormElement}
+         */
+        setDisabled(b: boolean): com.spoonconsulting.lightning.FormElement<Array<string>>;
+        isRequired(): boolean;
+        isDisabled(): boolean;
+        setSelectedLabel(label: string): DualListBox;
+        getSelectedLabel(): string;
+    }
+}
+declare namespace com.spoonconsulting.lightning {
     class Input extends com.spoonconsulting.lightning.FormElement<any> {
         textInput: input.JSTextInput;
         dateInput: input.JSDateInput;
@@ -4073,6 +4855,15 @@ declare namespace com.spoonconsulting.lightning {
         checkBoxButton: com.spoonconsulting.lightning.CheckBoxButton;
         toggle: com.spoonconsulting.lightning.Toggle;
         type: string;
+        min: number;
+        max: number;
+        maxLength: number;
+        minLength: number;
+        multiple: boolean;
+        placeholder: string;
+        pattern: string;
+        step: number;
+        checked: boolean;
         constructor(name: string);
         getInputType(stype: string): com.spoonconsulting.lightning.enums.InputType;
         setType$java_lang_String(stype: string): Input;
@@ -4090,6 +4881,30 @@ declare namespace com.spoonconsulting.lightning {
          * @return {com.spoonconsulting.lightning.FormElement}
          */
         setLabel(label: string): com.spoonconsulting.lightning.FormElement<any>;
+        getMax(): number;
+        setMax(max: number): Input;
+        getMaxLength(): number;
+        setMaxLength(maxLength: number): Input;
+        getMinLength(): number;
+        setMinLength(minLength: number): Input;
+        isMultiple(): boolean;
+        setMultiple(multiple: boolean): Input;
+        getPlaceholder(): string;
+        setPlaceholder(placeholder: string): Input;
+        getPattern(): string;
+        setPattern(pattern: string): Input;
+        getStep(): number;
+        setStep(step: number): Input;
+        getType(): string;
+        getMin(): number;
+        isChecked(): boolean;
+        getTextInput(): input.JSTextInput;
+        getDateInput(): input.JSDateInput;
+        getNumberInput(): input.JSNumberInput;
+        getCheckBox(): com.spoonconsulting.lightning.CheckBox;
+        getCheckBoxButton(): com.spoonconsulting.lightning.CheckBoxButton;
+        getToggle(): com.spoonconsulting.lightning.Toggle;
+        setMin(min: number): Input;
     }
 }
 declare namespace com.spoonconsulting.lightning {

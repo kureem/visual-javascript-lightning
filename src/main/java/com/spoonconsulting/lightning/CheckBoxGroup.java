@@ -68,6 +68,7 @@ public class CheckBoxGroup extends FormElement<Array<String>>{
 			}
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public Array<String> getValue() {
 			Array<String> result= new Array<String>();
@@ -80,6 +81,7 @@ public class CheckBoxGroup extends FormElement<Array<String>>{
 			return result;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void setValue(Array<String> val) {
 			for(Renderable r : getChildren()) {

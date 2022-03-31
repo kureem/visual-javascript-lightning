@@ -52,7 +52,15 @@ public class Form extends JSContainer {
 			addChild(item);
 			return item;
 		}
+		
+		public FormItem addCol() {
+			return addItem();
+		}
 
+		public FormItem col(int index) {
+			return item(index);
+		}
+		
 		public FormItem item(int index) {
 			if (index >= getChildren().length) {
 				for (double i = getChildren().length; i <= index; i++) {

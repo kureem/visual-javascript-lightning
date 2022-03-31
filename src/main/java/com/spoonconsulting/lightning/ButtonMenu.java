@@ -61,6 +61,13 @@ public class ButtonMenu extends BaseLightning{
 		setExpanded(false);
 	}
 	
+	public ButtonMenu setButtonSize(Size size) {
+		this.button.setSize(size);
+		return this;
+	}
+	
+	
+	
 	public ButtonMenu setExpanded(boolean b) {
 		if(b) {
 			button.setAttribute("aria-expanded", "true");
@@ -278,6 +285,9 @@ public class ButtonMenu extends BaseLightning{
 		clearMenu();
 		for(Object option : options) {
 			String value = (String) option.$get("value");
+			if(value == null) {
+				value = (String)option.$get("name");
+			}
 			String label = (String) option.$get("label");
 			String iconName = (String) option.$get("iconName");
 			addItem( value, label, iconName);

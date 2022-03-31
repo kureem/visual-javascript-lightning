@@ -44,6 +44,7 @@ public class Variants {
 		STANDARD("standard"),
 		LABEL_HIDDEN("label-hidden"),
 		LABEL_INLINE("label-inline"),
+		LABEL_HORIZONTAL("label-inline"),
 		LABEL_STACKED("label-stacked");
 		private String value;
 		

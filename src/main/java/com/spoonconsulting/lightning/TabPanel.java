@@ -14,7 +14,7 @@ public class TabPanel extends BaseLightning{
 		if(b && !isActive()) {
 			removeClass("slds-hide");
 			addClass("slds-show");
-		}else if(isActive()) {
+		}else if(!b && isActive()) {
 			removeClass("slds-show");
 			addClass("slds-hide");
 		}

@@ -3,10 +3,10 @@ package com.spoonconsulting.lightning;
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
-import jsweet.dom.CustomEvent;
 import jsweet.dom.Event;
 import jsweet.lang.Array;
 import jsweet.lang.Object;
+import jsweet.util.function.TriFunction;
 
 public class Tree extends JSContainer{
 
@@ -16,6 +16,8 @@ public class Tree extends JSContainer{
 	
 	private UITree tree = null;
 	
+	
+	private TriFunction<Tree, Object, UITreeItem, Void> nodeRenderer;
 	
 	
 	public Tree(String name) {
@@ -38,7 +40,7 @@ public class Tree extends JSContainer{
 	public Tree setItems(Array<Object> items) {
 		this.clearChildren();
 		addChild(heading);
-		 tree = new UITree("heading",1);
+		 tree = new UITree("heading",1, this);
 		addChild(tree);
 		tree.setData(items);
 		this.items = items;
@@ -46,6 +48,22 @@ public class Tree extends JSContainer{
 	}
 	
 	
+	/**
+	 * @return the nodeRenderer
+	 */
+	public TriFunction<Tree, Object, UITreeItem, Void> getNodeRenderer() {
+		return nodeRenderer;
+	}
+
+
+	/**
+	 * @param nodeRenderer the nodeRenderer to set
+	 */
+	public void setNodeRenderer(TriFunction<Tree, Object, UITreeItem, Void> nodeRenderer) {
+		this.nodeRenderer = nodeRenderer;
+	}
+
+
 	private void unselect(UITreeItem except) {
 		if(tree != null) {
 			tree.unselect(except);
@@ -59,23 +77,33 @@ public class Tree extends JSContainer{
 	public class UITree extends JSContainer{
 		
 		private int level =1;
+		
+		private Tree tree_;
 
-		public UITree(String name, int level) {
+		public UITree(String name, int level, Tree tree) {
 			super(name, "ul");
 			this.level = level;
 			setAttribute("role", "group");
 			addClass("slds-tree");
+			this.tree_ = tree;
 		}
 		
 		public UITree setData(Array<Object> data) {
 			clearChildren();
 			setRendered(false);
 			for(Object obj : data) {
-				UITreeItem item = new UITreeItem((String)obj.$get("name"), level);
+				UITreeItem item = new UITreeItem((String)obj.$get("name"), level, tree_);
 				addChild(item);
 				item.setData(obj);
+				if(nodeRenderer != null) {
+					nodeRenderer.apply(tree_, obj, item);
+				}
 			}
 			return this;
+		}
+		
+		public Tree getTree() {
+			return tree_;
 		}
 		
 		public void unselect(UITreeItem except) {
@@ -98,8 +126,10 @@ public class Tree extends JSContainer{
 		
 		private int level = -1;
 		
-		public UITreeItem(String name, int level) {
+		private Tree tree;
+		public UITreeItem(String name, int level, Tree tree) {
 			super(name, "li");
+			this.tree = tree;
 			this.level = level;
 			setAttribute("aria-level", level + "");
 			JSContainer wrapper = addChild("wrapper", "div", "slds-tree__item");
@@ -120,8 +150,14 @@ public class Tree extends JSContainer{
 						setExpanded(false);
 						data.$set("expanded", false);
 					}else {
+						UITreeItem item = source.getAncestorWithClass("UITreeItem");
+						evt.$set("source",item );
+						evt.$set("item", data);
+						evt.$set("node", data);
+						
 						setExpanded(true);
 						data.$set("expanded", true);
+						tree.fireListener("expand", evt);
 					}
 				}
 			}, "click");
@@ -136,10 +172,10 @@ public class Tree extends JSContainer{
 						setSelected(true);
 						data.$set("selected", true);
 						Tree tree = source.getAncestorWithClass("slds-tree_container");
-						CustomEvent evtSelected = new CustomEvent("selected");
-						evtSelected.$set("item", data);
-						evtSelected.$set("source", source.getAncestorWithClass("UITreeItem"));
-						tree.fireListener("selected", evtSelected);
+						evt.$set("item", data);
+						evt.$set("node", data);
+						evt.$set("source", source.getAncestorWithClass("UITreeItem"));
+						tree.fireListener("select", evt);
 					}
 					
 				}
@@ -147,6 +183,7 @@ public class Tree extends JSContainer{
 			
 		}
 		
+		@SuppressWarnings("unchecked")
 		public void setExpanded(boolean b) {
 			Array<Object> children = (Array<Object>)data.$get("items");
 			if(children == null || children.length <=0) {
@@ -159,7 +196,7 @@ public class Tree extends JSContainer{
 				
 				if(children != null && children.length > 0) {
 					if(this.children == null) {
-						this.children = new UITree("tr", level + 1);
+						this.children = new UITree("tr", level + 1, tree);
 						addChild(this.children);
 					}
 					this.children.setData(children);

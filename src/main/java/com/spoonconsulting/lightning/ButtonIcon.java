@@ -24,10 +24,12 @@ public class ButtonIcon extends Button{
 	
 	public ButtonIcon setSize(String size) {
 		for(Size s : Size.values()) {
+			removeClass("slds-button_icon-" + s.getValue());
 			icon.removeClass("slds-button__icon_" + s.getValue());
 		}
 		
 		if(size != null) {
+			addClass("slds-button_icon-" + size);
 			icon.addClass("slds-button__icon_" + size);
 		}
 		return this;

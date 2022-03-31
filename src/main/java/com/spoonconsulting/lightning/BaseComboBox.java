@@ -88,6 +88,14 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 				fireListener("change", evt);
 			}
 		}, "change");
+		
+		input_.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				fireListener("blur", evt);
+			}
+		}, "blur");
 	}
 	
 	public BaseComboBox<T> setOptions(Array<Object> options) {

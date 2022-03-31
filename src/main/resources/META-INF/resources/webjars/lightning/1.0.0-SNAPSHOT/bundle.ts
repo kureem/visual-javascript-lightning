@@ -1,4 +1,18 @@
-/* Generated from Java with JSweet 3.0.0 - http://www.jsweet.org */
+/*
+ * Copyright 2012-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 namespace com.spoonconsulting.lightning {
     export abstract class AbstractProgress extends JSContainer implements com.spoonconsulting.lightning.IProgress {
         public constructor(name: string, tag: string) {
@@ -12,9 +26,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getStep(value: string): com.spoonconsulting.lightning.IStep {
             {
-                let array122 = this.getSteps();
-                for(let index121=0; index121 < array122.length; index121++) {
-                    let step = array122[index121];
+                let array533 = this.getSteps();
+                for(let index532=0; index532 < array533.length; index532++) {
+                    let step = array533[index532];
                     {
                         if (step.getValue() === value){
                             return step;
@@ -33,9 +47,9 @@ namespace com.spoonconsulting.lightning {
         public setCurrentStep(value: string): com.spoonconsulting.lightning.IProgress {
             let passedCurrent: boolean = false;
             {
-                let array124 = this.getSteps();
-                for(let index123=0; index123 < array124.length; index123++) {
-                    let step = array124[index123];
+                let array535 = this.getSteps();
+                for(let index534=0; index534 < array535.length; index534++) {
+                    let step = array535[index534];
                     {
                         if (step.getValue() === value){
                             step.setCurrent(true);
@@ -55,9 +69,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getCurrentStep(): com.spoonconsulting.lightning.IStep {
             {
-                let array126 = this.getSteps();
-                for(let index125=0; index125 < array126.length; index125++) {
-                    let step = array126[index125];
+                let array537 = this.getSteps();
+                for(let index536=0; index536 < array537.length; index536++) {
+                    let step = array537[index536];
                     {
                         if (step.isCurrent()){
                             return step;
@@ -85,9 +99,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getHasError(): boolean {
             {
-                let array128 = this.getSteps();
-                for(let index127=0; index127 < array128.length; index127++) {
-                    let step = array128[index127];
+                let array539 = this.getSteps();
+                for(let index538=0; index538 < array539.length; index538++) {
+                    let step = array539[index538];
                     {
                         if (step.getHasError()){
                             return true;
@@ -226,9 +240,9 @@ namespace com.spoonconsulting.lightning {
                 const end: com.spoonconsulting.lightning.enums.IconName = com.spoonconsulting.lightning.enums.IconName.CUSTOM_CUSTOM99;
                 let index: number = 0;
                 {
-                    let array130 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.IconName[] = []; for(let val in com.spoonconsulting.lightning.enums.IconName) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                    for(let index129=0; index129 < array130.length; index129++) {
-                        let ic = array130[index129];
+                    let array541 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.IconName[] = []; for(let val in com.spoonconsulting.lightning.enums.IconName) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                    for(let index540=0; index540 < array541.length; index540++) {
+                        let ic = array541[index540];
                         {
                             if (com.spoonconsulting.lightning.enums.IconName["_$wrappers"][ic].getValue() === com.spoonconsulting.lightning.enums.IconName["_$wrappers"][start].getValue()){
                                 Avatar.min = index;
@@ -371,9 +385,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Avatar {
             {
-                let array132 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index131=0; index131 < array132.length; index131++) {
-                    let s = array132[index131];
+                let array543 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index542=0; index542 < array543.length; index542++) {
+                    let s = array543[index542];
                     {
                         this.removeClass("slds-avatar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -575,6 +589,7 @@ namespace com.spoonconsulting.lightning {
             this.inputIcon.setIconName("utility:down").setSize(com.spoonconsulting.lightning.enums.Size.EXTRA_EXTRA_SMALL).addClass("slds-input__icon").addClass("slds-input__icon_right");
             this.inputIcon.getIcon().addClass("slds-icon-text-default");
             this.dropdown.addEventListener(new BaseComboBox.BaseComboBox$1(this), "change");
+            this.input_.addEventListener(new BaseComboBox.BaseComboBox$2(this), "blur");
         }
 
         public setOptions(options: Array<Object>): BaseComboBox<T> {
@@ -774,6 +789,25 @@ namespace com.spoonconsulting.lightning {
         BaseComboBox$1["__interfaces"] = ["framework.components.api.EventListener"];
 
 
+
+        export class BaseComboBox$2 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.fireListener("blur", evt);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        BaseComboBox$2["__interfaces"] = ["framework.components.api.EventListener"];
+
+
     }
 
 }
@@ -799,6 +833,9 @@ namespace com.spoonconsulting.lightning {
 namespace com.spoonconsulting.lightning {
     export class Boot {
         public static main(args: string[]) {
+            const d: com.spoonconsulting.lightning.Draggable = new com.spoonconsulting.lightning.Draggable("drag", "div");
+            d.setStyle("width", "100px").setStyle("height", "100px").setStyle("background", "red").setStyle("position", "relative");
+            d.setAxis("x");
             const app: JSContainer = new JSContainer("app", "div");
             app.addClass("slds-card");
             app.setStyle("height", "100vh");
@@ -843,9 +880,9 @@ namespace com.spoonconsulting.lightning {
             const box: com.spoonconsulting.lightning.ComboBox = new com.spoonconsulting.lightning.ComboBox("variants");
             const variants: Array<Object> = <any>(new Array<Object>());
             {
-                let array134 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index133=0; index133 < array134.length; index133++) {
-                    let __var = array134[index133];
+                let array545 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index544=0; index544 < array545.length; index544++) {
+                    let __var = array545[index544];
                     {
                         const variant: Object = <Object>new Object();
                         variant["value"] = com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][__var].getValue();
@@ -860,9 +897,9 @@ namespace com.spoonconsulting.lightning {
             cbsize.setLabel("Change Size:");
             const sizes: Array<Object> = <any>(new Array<Object>());
             {
-                let array136 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index135=0; index135 < array136.length; index135++) {
-                    let size = array136[index135];
+                let array547 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index546=0; index546 < array547.length; index546++) {
+                    let size = array547[index546];
                     {
                         const opt: any = {};
                         opt["value"] = com.spoonconsulting.lightning.enums.Size["_$wrappers"][size].getValue();
@@ -936,6 +973,23 @@ namespace com.spoonconsulting.lightning {
             return card;
         }
 
+        /*private*/ static getDualListBox(): JSContainer {
+            const lb: com.spoonconsulting.lightning.DualListBox = new com.spoonconsulting.lightning.DualListBox("dl");
+            lb.setLabel("Selected Options");
+            lb.setHelp("Wonder what will happe");
+            lb.setShowHelp(true);
+            lb.setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("Option 1", "Option 2", "Option 3", "Option 4", "Option 5").get());
+            const value: Array<string> = <any>(new Array<string>());
+            value.push("Option 2");
+            lb.setValue(value);
+            lb.setMin(2);
+            lb.setMax(4);
+            lb.setRequired(true);
+            lb.setRequiredOptions(value);
+            lb.setStyle("width", "100%");
+            return lb;
+        }
+
         /*private*/ static getPathSample(): JSContainer {
             const app: JSContainer = new JSContainer("div");
             const indicator: com.spoonconsulting.lightning.ProgressIndicator = new com.spoonconsulting.lightning.ProgressIndicator("pi");
@@ -964,6 +1018,20 @@ namespace com.spoonconsulting.lightning {
             verticalMenu.addTab(tab, panel);
         }
 
+        public static getTable(): JSContainer {
+            const sdata: string = "[{\"name\":\"Brent Frami\",\"email\":\"Justen_Stoltenberg48@gmail.com\",\"website\":\"https://orland.biz\",\"amount\":\"793.29\",\"phone\":\"1-218-432-4309 x498\",\"closeAt\":\"2022-07-01T09:58:46.962Z\",\"id\":\"e6623cd9-47fd-423a-b33d-27d940e8b7c9\"},{\"name\":\"Fae Greenfelder\",\"email\":\"Wendy25@gmail.com\",\"website\":\"http://laura.biz\",\"amount\":\"853.67\",\"phone\":\"1-039-080-4407\",\"closeAt\":\"2022-01-21T05:48:25.871Z\",\"id\":\"b3f7892d-bbef-46de-84d9-136b12a3e883\"},{\"name\":\"Kory Muller\",\"email\":\"Carolyne40@yahoo.com\",\"website\":\"http://alfonso.info\",\"amount\":\"958.23\",\"phone\":\"1-200-140-1219 x04828\",\"closeAt\":\"2021-12-25T19:24:23.350Z\",\"id\":\"68ea8f33-f748-4a4e-bd62-1efacf04a97a\"},{\"name\":\"Imelda Balistreri\",\"email\":\"Caesar.Brekke67@yahoo.com\",\"website\":\"http://gust.info\",\"amount\":\"63.29\",\"phone\":\"436.925.4903\",\"closeAt\":\"2022-05-29T05:56:30.283Z\",\"id\":\"0caf56e1-1c1b-4f26-b369-96783d2804ad\"},{\"name\":\"Mauricio Larkin\",\"email\":\"Earline_Grant@hotmail.com\",\"website\":\"http://salvatore.org\",\"amount\":\"678.68\",\"phone\":\"746.480.0915 x215\",\"closeAt\":\"2022-09-23T16:09:57.978Z\",\"id\":\"abd64232-23f6-4403-b9f4-0e8e92107e43\"},{\"name\":\"Magali Balistreri\",\"email\":\"Ryann.Kuhlman82@gmail.com\",\"website\":\"https://dolly.biz\",\"amount\":\"417.90\",\"phone\":\"(474) 967-3177\",\"closeAt\":\"2022-07-14T11:28:19.872Z\",\"id\":\"4e58d6b9-0880-4c70-a8b3-8793d664e717\"},{\"name\":\"Jovany Kuhic\",\"email\":\"Sabina_Luettgen@yahoo.com\",\"website\":\"https://octavia.com\",\"amount\":\"625.17\",\"phone\":\"1-061-441-5029 x80858\",\"closeAt\":\"2022-08-31T21:30:49.375Z\",\"id\":\"9b73b143-8a43-49a1-8b3f-18f15db438b1\"},{\"name\":\"Jayne Welch\",\"email\":\"Shawna.Hessel@gmail.com\",\"website\":\"http://jordan.net\",\"amount\":\"267.89\",\"phone\":\"1-124-101-9545 x335\",\"closeAt\":\"2021-12-17T12:11:57.150Z\",\"id\":\"22427ecb-28d7-4a85-b342-084bf6ea9558\"},{\"name\":\"Jay Collins\",\"email\":\"Marjory.Bailey63@gmail.com\",\"website\":\"http://jamir.biz\",\"amount\":\"532.84\",\"phone\":\"(182) 981-5646 x0556\",\"closeAt\":\"2022-01-29T08:46:18.766Z\",\"id\":\"c5d0cf6a-7e01-4635-a99b-1f96ef3f126c\"},{\"name\":\"Iva Green\",\"email\":\"Herminio.Hodkiewicz86@hotmail.com\",\"website\":\"http://lacy.biz\",\"amount\":\"170.27\",\"phone\":\"320-536-5340\",\"closeAt\":\"2022-03-05T06:57:47.879Z\",\"id\":\"72877874-2b4f-4e04-a92e-148b24a87e78\"},{\"name\":\"Harry O\'Keefe\",\"email\":\"Cleve.Kemmer43@yahoo.com\",\"website\":\"http://jacinthe.net\",\"amount\":\"197.30\",\"phone\":\"1-838-831-2098 x32327\",\"closeAt\":\"2022-09-30T04:48:00.590Z\",\"id\":\"9f6a4894-a440-4a74-b76f-8d44840d4d7a\"},{\"name\":\"Hillary Willms\",\"email\":\"Maia_Pfannerstill25@yahoo.com\",\"website\":\"http://kimberly.com\",\"amount\":\"843.21\",\"phone\":\"1-079-601-6278\",\"closeAt\":\"2022-04-18T06:11:55.146Z\",\"id\":\"894b8230-6251-4fc8-a373-2a9206ac991b\"},{\"name\":\"Michele Rogahn\",\"email\":\"Carlie.Hackett59@gmail.com\",\"website\":\"http://abby.name\",\"amount\":\"675.45\",\"phone\":\"1-906-428-6405\",\"closeAt\":\"2022-09-09T17:34:59.542Z\",\"id\":\"f630bc0c-40ea-4d3f-a828-e79c06b689c2\"},{\"name\":\"Lorena Lubowitz\",\"email\":\"Vernice.Gibson@gmail.com\",\"website\":\"https://carole.com\",\"amount\":\"485.16\",\"phone\":\"339-970-1997 x5168\",\"closeAt\":\"2022-08-21T18:48:41.849Z\",\"id\":\"80e83d73-b1b3-4315-b5af-57f4b778d18d\"},{\"name\":\"Meggie Davis\",\"email\":\"Caterina_Weimann92@yahoo.com\",\"website\":\"https://jimmie.info\",\"amount\":\"170.37\",\"phone\":\"321-691-3631\",\"closeAt\":\"2022-03-02T10:32:21.098Z\",\"id\":\"2fb5cae6-5e54-450d-8573-87cdf0ac2b1b\"},{\"name\":\"Derick Walsh\",\"email\":\"Carmela.Quitzon8@hotmail.com\",\"website\":\"https://estefania.org\",\"amount\":\"717.65\",\"phone\":\"1-144-225-7586\",\"closeAt\":\"2022-09-28T08:28:27.601Z\",\"id\":\"3261711b-2b43-4353-be53-b5ec72a7e99a\"},{\"name\":\"Madeline Wisozk\",\"email\":\"Annamarie_Brakus99@yahoo.com\",\"website\":\"https://reva.biz\",\"amount\":\"644.55\",\"phone\":\"(379) 200-5653\",\"closeAt\":\"2022-10-11T20:02:31.805Z\",\"id\":\"0dd69cc1-ab07-4935-9414-8c8b73aa86c0\"},{\"name\":\"Jordi Hoppe\",\"email\":\"Amy_Morissette60@yahoo.com\",\"website\":\"https://kaya.com\",\"amount\":\"452.10\",\"phone\":\"(324) 216-9859 x26110\",\"closeAt\":\"2021-11-11T22:26:21.553Z\",\"id\":\"4541163a-60a0-4b66-9c36-b7f0cf1aa28e\"},{\"name\":\"Corrine Brekke\",\"email\":\"Osvaldo.Hermiston@gmail.com\",\"website\":\"https://raheem.org\",\"amount\":\"750.43\",\"phone\":\"1-630-235-4694 x02611\",\"closeAt\":\"2021-12-01T11:24:31.141Z\",\"id\":\"c6b1befc-1730-4579-8bdc-4df8b05c81fa\"},{\"name\":\"Aliza Harris\",\"email\":\"Jazmin88@hotmail.com\",\"website\":\"http://justice.com\",\"amount\":\"285.05\",\"phone\":\"1-823-417-3608 x940\",\"closeAt\":\"2022-05-31T17:01:36.305Z\",\"id\":\"dc4b4bc3-61fb-4316-803e-bde84c26d3ab\"},{\"name\":\"Lauren Collier\",\"email\":\"Jewell_Greenfelder17@yahoo.com\",\"website\":\"https://arlie.org\",\"amount\":\"405.69\",\"phone\":\"765.166.5665\",\"closeAt\":\"2022-01-30T14:42:32.854Z\",\"id\":\"c00bd962-53bd-4080-8240-63ff7d5bbd0e\"},{\"name\":\"Chyna Carter\",\"email\":\"Demarco68@yahoo.com\",\"website\":\"http://eddie.net\",\"amount\":\"562.60\",\"phone\":\"473.691.2593 x05455\",\"closeAt\":\"2022-08-16T23:13:30.249Z\",\"id\":\"2f8bdad8-4c41-4223-91dd-1f0d407448e9\"},{\"name\":\"Arvid Simonis\",\"email\":\"Barry81@yahoo.com\",\"website\":\"https://bethany.info\",\"amount\":\"891.37\",\"phone\":\"1-796-722-6813 x50521\",\"closeAt\":\"2022-02-10T18:35:34.233Z\",\"id\":\"3a3a6e75-a92c-40c4-aa55-d5dc517ead0d\"},{\"name\":\"Jayde Larson\",\"email\":\"Shaun_Collins@hotmail.com\",\"website\":\"https://khalil.net\",\"amount\":\"260.27\",\"phone\":\"137.174.4794 x22494\",\"closeAt\":\"2021-12-24T10:54:07.162Z\",\"id\":\"c070bb12-1fbe-460e-9e26-342abd656fa7\"},{\"name\":\"Mekhi Parisian\",\"email\":\"Sarah_Reinger@gmail.com\",\"website\":\"https://zachery.com\",\"amount\":\"350.77\",\"phone\":\"(864) 279-9946 x8413\",\"closeAt\":\"2022-08-14T22:40:48.321Z\",\"id\":\"0cecf4a1-4eaf-49c8-bb60-2de380c95261\"},{\"name\":\"Pat Bergstrom\",\"email\":\"Trycia.Kris19@yahoo.com\",\"website\":\"https://jannie.name\",\"amount\":\"18.80\",\"phone\":\"(896) 280-3435\",\"closeAt\":\"2022-05-19T05:14:48.645Z\",\"id\":\"f98693d3-a898-4b16-9a0c-a65be239dc99\"},{\"name\":\"Reginald Russel\",\"email\":\"Glen16@hotmail.com\",\"website\":\"https://trisha.net\",\"amount\":\"934.99\",\"phone\":\"(548) 272-9617\",\"closeAt\":\"2022-09-03T09:20:02.144Z\",\"id\":\"a236573c-a778-4920-b130-6faa527e0f8b\"},{\"name\":\"Sunny Feest\",\"email\":\"Aisha.Runolfsdottir59@yahoo.com\",\"website\":\"https://annetta.com\",\"amount\":\"77.62\",\"phone\":\"(287) 935-9921 x4304\",\"closeAt\":\"2022-06-09T15:26:04.371Z\",\"id\":\"11fca3eb-9658-4779-90d8-78bfb387d9e1\"},{\"name\":\"Felipa Prosacco\",\"email\":\"Rosalind16@gmail.com\",\"website\":\"https://jamaal.name\",\"amount\":\"886.26\",\"phone\":\"635.998.7672 x4318\",\"closeAt\":\"2022-03-05T00:51:09.623Z\",\"id\":\"18c982e5-7b31-4d3c-b3cc-00f5be4e9aa5\"},{\"name\":\"Milton O\'Kon\",\"email\":\"Alfonso_Doyle@gmail.com\",\"website\":\"https://aniyah.net\",\"amount\":\"407.49\",\"phone\":\"(946) 711-0660\",\"closeAt\":\"2022-08-16T09:48:52.790Z\",\"id\":\"5ca25cd5-6150-4164-ae9a-90067b368533\"},{\"name\":\"Leslie Hirthe\",\"email\":\"Angelica51@yahoo.com\",\"website\":\"http://demarco.org\",\"amount\":\"15.50\",\"phone\":\"1-692-687-8026 x91582\",\"closeAt\":\"2022-04-30T03:06:48.217Z\",\"id\":\"b25fd907-064a-4012-b07d-8b1a1381fe95\"},{\"name\":\"Kristina Hackett\",\"email\":\"Jalyn_Hand42@hotmail.com\",\"website\":\"https://rory.org\",\"amount\":\"854.07\",\"phone\":\"(052) 308-5688\",\"closeAt\":\"2022-06-09T12:44:23.487Z\",\"id\":\"24c7f60e-72b5-46f6-997a-203dcec34d09\"},{\"name\":\"Vida Kihn\",\"email\":\"Barbara17@yahoo.com\",\"website\":\"http://magnolia.net\",\"amount\":\"144.07\",\"phone\":\"780-619-5426 x151\",\"closeAt\":\"2022-04-23T13:41:27.815Z\",\"id\":\"d77569ab-b745-49df-a8c0-929615c8b42f\"},{\"name\":\"Monica Robel\",\"email\":\"Assunta29@yahoo.com\",\"website\":\"http://dudley.name\",\"amount\":\"237.05\",\"phone\":\"699.588.3282 x637\",\"closeAt\":\"2022-09-13T13:31:18.658Z\",\"id\":\"e5d9b8be-17ca-4c3a-be13-69b13927a31e\"},{\"name\":\"Reese Torphy\",\"email\":\"Frederique_Lemke@gmail.com\",\"website\":\"http://madelynn.org\",\"amount\":\"25.92\",\"phone\":\"1-249-121-5685 x079\",\"closeAt\":\"2022-04-29T07:23:20.385Z\",\"id\":\"5055c431-32f1-4447-8c70-84fc1be4c4f9\"},{\"name\":\"Florencio Heller\",\"email\":\"Delpha_Donnelly@gmail.com\",\"website\":\"https://jerod.name\",\"amount\":\"358.33\",\"phone\":\"273-650-8736 x491\",\"closeAt\":\"2022-05-07T12:11:48.453Z\",\"id\":\"adaa9ef6-9998-4d88-bd9c-46d90d85431a\"},{\"name\":\"Keyon Kris\",\"email\":\"Jazmin.Stark@hotmail.com\",\"website\":\"https://kevin.biz\",\"amount\":\"724.77\",\"phone\":\"(448) 133-4673\",\"closeAt\":\"2021-12-08T11:05:25.540Z\",\"id\":\"244320f9-3a5e-4929-8ec2-19a3b8aefa6d\"},{\"name\":\"Joshuah Hodkiewicz\",\"email\":\"Ottis38@gmail.com\",\"website\":\"http://juston.biz\",\"amount\":\"288.59\",\"phone\":\"147.419.0719 x213\",\"closeAt\":\"2022-07-17T03:18:15.945Z\",\"id\":\"d5913b3c-d2de-419a-881e-d9b5fe1209ea\"},{\"name\":\"Carmine Kerluke\",\"email\":\"Nakia14@yahoo.com\",\"website\":\"https://bettye.info\",\"amount\":\"382.89\",\"phone\":\"1-418-931-2184 x9739\",\"closeAt\":\"2022-04-11T14:23:00.776Z\",\"id\":\"99dec1f4-efbe-450a-91a7-58b60970ede2\"},{\"name\":\"Coby Labadie\",\"email\":\"Jaydon.Hyatt@gmail.com\",\"website\":\"http://camron.net\",\"amount\":\"90.43\",\"phone\":\"187-849-1363 x887\",\"closeAt\":\"2022-09-25T21:58:50.229Z\",\"id\":\"2f6c542d-92fd-4ac6-a016-beb19e7a167d\"},{\"name\":\"Annabel Goodwin\",\"email\":\"Granville87@hotmail.com\",\"website\":\"https://dion.info\",\"amount\":\"843.13\",\"phone\":\"669-308-3909 x987\",\"closeAt\":\"2022-01-20T23:37:04.877Z\",\"id\":\"3e8d1fc7-c97f-4ec2-95bb-b3a7750ccb0c\"},{\"name\":\"Marcelle Maggio\",\"email\":\"Marielle_Kulas@hotmail.com\",\"website\":\"http://bryce.biz\",\"amount\":\"260.69\",\"phone\":\"(599) 298-8652\",\"closeAt\":\"2022-01-24T17:13:42.144Z\",\"id\":\"a535f4e3-c3bd-489c-9916-7aafc8358b84\"},{\"name\":\"Mayra Jenkins\",\"email\":\"Samson_Hermann8@hotmail.com\",\"website\":\"https://watson.com\",\"amount\":\"799.43\",\"phone\":\"094-221-3795 x0119\",\"closeAt\":\"2021-11-17T17:44:09.925Z\",\"id\":\"fccfaf8b-021e-4344-a79e-34198d4ca7bd\"},{\"name\":\"Barney Langosh\",\"email\":\"Adonis_Koelpin39@hotmail.com\",\"website\":\"http://clint.name\",\"amount\":\"141.99\",\"phone\":\"1-001-173-6157\",\"closeAt\":\"2022-08-26T08:52:14.009Z\",\"id\":\"3250dcb6-90ed-4569-b88c-b0b73f7db72d\"},{\"name\":\"Sierra Fritsch\",\"email\":\"Alvera_Cartwright29@gmail.com\",\"website\":\"https://john.org\",\"amount\":\"808.91\",\"phone\":\"236-852-8873 x61634\",\"closeAt\":\"2022-10-19T16:19:49.703Z\",\"id\":\"64fc536b-330a-4ea1-a897-3c3b21a161a5\"},{\"name\":\"Ashley Mertz\",\"email\":\"Michele.Mann@yahoo.com\",\"website\":\"http://ludie.org\",\"amount\":\"396.88\",\"phone\":\"1-714-143-5049 x4572\",\"closeAt\":\"2022-06-21T00:11:50.225Z\",\"id\":\"e0684008-c792-4910-a0a5-be910823fe7f\"},{\"name\":\"Caroline Abshire\",\"email\":\"Adelbert.Beahan@gmail.com\",\"website\":\"https://shania.com\",\"amount\":\"418.18\",\"phone\":\"938.978.1193\",\"closeAt\":\"2022-09-22T14:18:14.190Z\",\"id\":\"113bc52b-a270-43fc-b989-291aaca8e665\"},{\"name\":\"Murray Reynolds\",\"email\":\"Louvenia86@yahoo.com\",\"website\":\"https://pansy.net\",\"amount\":\"104.09\",\"phone\":\"524-138-7545 x21035\",\"closeAt\":\"2021-12-15T13:33:00.363Z\",\"id\":\"83535142-a073-4027-9742-66e4dbaf48c2\"},{\"name\":\"Odessa Hettinger\",\"email\":\"Ova44@gmail.com\",\"website\":\"https://makenna.biz\",\"amount\":\"509.27\",\"phone\":\"1-423-056-6489\",\"closeAt\":\"2022-07-09T23:03:46.997Z\",\"id\":\"e8aba4fb-d5f4-480b-9916-ee3ddcabecd9\"},{\"name\":\"Eugene Dickinson\",\"email\":\"Aurore60@gmail.com\",\"website\":\"http://dameon.net\",\"amount\":\"998.38\",\"phone\":\"1-706-676-3298 x964\",\"closeAt\":\"2022-06-12T00:14:59.300Z\",\"id\":\"e88da794-e5ac-434a-baa4-309469a8c4d5\"},{\"name\":\"Athena Hegmann\",\"email\":\"Ewald.Kub25@gmail.com\",\"website\":\"https://robyn.com\",\"amount\":\"607.39\",\"phone\":\"535.257.2178\",\"closeAt\":\"2022-09-28T08:10:08.709Z\",\"id\":\"2ebf8f62-d7de-45a4-923b-a155c439e770\"},{\"name\":\"Randal Doyle\",\"email\":\"Hermann_Durgan@yahoo.com\",\"website\":\"https://herbert.net\",\"amount\":\"969.92\",\"phone\":\"872-621-3655 x2570\",\"closeAt\":\"2022-07-24T00:45:56.600Z\",\"id\":\"9668319c-6402-41b6-b445-7dc189d6ce94\"},{\"name\":\"Misael Osinski\",\"email\":\"Ricardo.Mertz@yahoo.com\",\"website\":\"https://therese.net\",\"amount\":\"366.75\",\"phone\":\"1-527-857-8403\",\"closeAt\":\"2022-07-12T08:06:47.448Z\",\"id\":\"a4fec4af-d7c0-4572-95c5-d492dba6e667\"},{\"name\":\"Merl Stanton\",\"email\":\"Nico_McGlynn46@yahoo.com\",\"website\":\"http://marcelino.org\",\"amount\":\"726.91\",\"phone\":\"(195) 053-5066 x3329\",\"closeAt\":\"2021-12-08T14:21:25.481Z\",\"id\":\"a417bab9-5450-4a58-bf8c-1f0e673f6675\"},{\"name\":\"Lesly Williamson\",\"email\":\"Freda.White@hotmail.com\",\"website\":\"https://lorena.com\",\"amount\":\"391.89\",\"phone\":\"744-203-8952 x8235\",\"closeAt\":\"2022-09-10T23:14:43.539Z\",\"id\":\"1ed05d96-896b-4eac-9e01-005483021768\"},{\"name\":\"Ayla Metz\",\"email\":\"Lukas_Schimmel68@hotmail.com\",\"website\":\"http://travis.net\",\"amount\":\"500.03\",\"phone\":\"1-406-720-7540 x74309\",\"closeAt\":\"2022-10-28T00:36:36.945Z\",\"id\":\"59527d8b-be43-4cb1-8328-99baa4222406\"},{\"name\":\"Hailie Jast\",\"email\":\"Cristian.Boyer11@gmail.com\",\"website\":\"https://maynard.com\",\"amount\":\"423.67\",\"phone\":\"929.006.6659 x7049\",\"closeAt\":\"2022-02-26T16:02:59.025Z\",\"id\":\"50c2c768-33ae-42db-a4b4-fde6fe6d7d4d\"},{\"name\":\"Jairo Jakubowski\",\"email\":\"Dianna_Murazik@yahoo.com\",\"website\":\"http://jovanny.com\",\"amount\":\"415.86\",\"phone\":\"190-067-1311 x4613\",\"closeAt\":\"2022-03-31T02:10:17.472Z\",\"id\":\"1c2e3dc6-b7b4-498d-8f76-411279a530c3\"},{\"name\":\"Issac Medhurst\",\"email\":\"Malcolm_Wisoky47@hotmail.com\",\"website\":\"http://marlee.biz\",\"amount\":\"451.41\",\"phone\":\"500.632.8744\",\"closeAt\":\"2022-02-03T15:39:57.682Z\",\"id\":\"cf0d6ba4-97f8-4752-a7f5-0e34a57b5274\"},{\"name\":\"Claude Jast\",\"email\":\"Virgil.Wilderman34@gmail.com\",\"website\":\"https://genevieve.name\",\"amount\":\"758.85\",\"phone\":\"1-567-089-0359 x900\",\"closeAt\":\"2022-02-26T09:32:42.432Z\",\"id\":\"ece8c7ad-c83b-47ee-b24e-7154f71ccd03\"},{\"name\":\"Grayce Runolfsson\",\"email\":\"Kailyn_Fritsch@hotmail.com\",\"website\":\"http://florencio.org\",\"amount\":\"455.58\",\"phone\":\"1-753-696-6523\",\"closeAt\":\"2022-04-05T11:37:26.592Z\",\"id\":\"3763bd94-8cbf-4f16-824f-6757aa9e0a38\"},{\"name\":\"Wiley Rogahn\",\"email\":\"Nicklaus.Rempel1@hotmail.com\",\"website\":\"http://rene.biz\",\"amount\":\"561.07\",\"phone\":\"009.529.6444 x0856\",\"closeAt\":\"2022-01-27T02:04:58.804Z\",\"id\":\"f7101928-2f3d-4ed2-abad-6e9175699f77\"},{\"name\":\"Clair Dietrich\",\"email\":\"Michelle_Dare@hotmail.com\",\"website\":\"https://eliseo.info\",\"amount\":\"104.44\",\"phone\":\"1-366-357-6210 x742\",\"closeAt\":\"2021-12-24T23:07:25.305Z\",\"id\":\"4bf7173a-2271-4cb0-b847-7bf12c39cacf\"},{\"name\":\"Meagan Labadie\",\"email\":\"Bradley.Ward50@yahoo.com\",\"website\":\"https://dorian.info\",\"amount\":\"975.02\",\"phone\":\"394-885-9796\",\"closeAt\":\"2022-03-08T09:23:09.187Z\",\"id\":\"b82b8906-e152-4925-bc48-23df4fd34857\"},{\"name\":\"Audra Quigley\",\"email\":\"Eldridge_Satterfield@gmail.com\",\"website\":\"https://mikayla.name\",\"amount\":\"858.74\",\"phone\":\"(691) 697-4428 x220\",\"closeAt\":\"2022-01-13T20:29:01.698Z\",\"id\":\"f04ab9d0-2d5f-4a1e-9ab8-b837cb0e8791\"},{\"name\":\"Humberto Abshire\",\"email\":\"Ally.Dibbert65@yahoo.com\",\"website\":\"http://morris.biz\",\"amount\":\"76.29\",\"phone\":\"(297) 230-4976\",\"closeAt\":\"2022-10-31T12:58:51.790Z\",\"id\":\"e818990f-2efe-4bb6-843d-2057df765f37\"},{\"name\":\"Percy Grimes\",\"email\":\"Lizeth_Stamm@yahoo.com\",\"website\":\"https://giovanna.com\",\"amount\":\"199.36\",\"phone\":\"1-985-792-4149 x82815\",\"closeAt\":\"2022-07-13T14:01:18.931Z\",\"id\":\"d25a5622-822b-4ada-a10c-5447c7361821\"},{\"name\":\"Rhett Balistreri\",\"email\":\"Everardo.Huels@gmail.com\",\"website\":\"https://travis.name\",\"amount\":\"173.78\",\"phone\":\"1-661-111-1618\",\"closeAt\":\"2021-11-26T02:37:46.811Z\",\"id\":\"7ed143d2-d620-4d32-bc69-621a18bd852f\"},{\"name\":\"Edyth Flatley\",\"email\":\"Orland.Rath2@gmail.com\",\"website\":\"https://delmer.org\",\"amount\":\"107.13\",\"phone\":\"1-042-845-5534 x97184\",\"closeAt\":\"2022-07-11T04:46:09.548Z\",\"id\":\"302f504b-f66d-4a4d-9d17-88cd33858033\"},{\"name\":\"Tiffany Schaden\",\"email\":\"Mauricio.Streich97@hotmail.com\",\"website\":\"https://antonio.info\",\"amount\":\"664.35\",\"phone\":\"1-488-649-7466 x31964\",\"closeAt\":\"2022-02-01T20:18:41.127Z\",\"id\":\"25921893-a39c-47f0-84a5-24cb43dcf067\"},{\"name\":\"Romaine Dare\",\"email\":\"Katherine.Witting@hotmail.com\",\"website\":\"http://jayce.info\",\"amount\":\"116.39\",\"phone\":\"521.373.4501 x9019\",\"closeAt\":\"2022-05-06T04:26:56.203Z\",\"id\":\"4345d854-1853-478a-b54b-8e6085a2694b\"},{\"name\":\"Magdalen Goodwin\",\"email\":\"Suzanne.Reinger@yahoo.com\",\"website\":\"https://melvin.net\",\"amount\":\"475.70\",\"phone\":\"814-308-3126 x5667\",\"closeAt\":\"2022-04-24T14:07:23.774Z\",\"id\":\"e3e9a48c-7dba-4b74-b691-7b05f5c87f04\"},{\"name\":\"Leif Koepp\",\"email\":\"Magdalen_Rau@yahoo.com\",\"website\":\"http://ludie.name\",\"amount\":\"623.27\",\"phone\":\"1-915-710-3805 x797\",\"closeAt\":\"2022-07-02T23:00:58.885Z\",\"id\":\"405640ee-675d-4101-a395-a440fb3ec081\"},{\"name\":\"Marty Hermiston\",\"email\":\"Kaya.Murazik75@yahoo.com\",\"website\":\"http://jordyn.biz\",\"amount\":\"697.74\",\"phone\":\"1-614-946-5749 x798\",\"closeAt\":\"2022-03-04T20:47:00.848Z\",\"id\":\"d5ef4c00-aa7d-47df-94ff-5fe082e4176a\"},{\"name\":\"General Botsford\",\"email\":\"Harry.Jacobi81@gmail.com\",\"website\":\"http://ryder.info\",\"amount\":\"356.88\",\"phone\":\"855.394.1547 x77193\",\"closeAt\":\"2022-05-28T04:14:30.133Z\",\"id\":\"5c2486f1-9d06-4678-b705-f61e594d9fa0\"},{\"name\":\"Jazmyne Erdman\",\"email\":\"Uriah_Ernser96@gmail.com\",\"website\":\"https://merlin.biz\",\"amount\":\"329.86\",\"phone\":\"963-990-4856 x9779\",\"closeAt\":\"2021-12-23T04:34:38.161Z\",\"id\":\"5892d89e-90d8-4f4d-b163-c522aad7901f\"},{\"name\":\"Myrtie Pfeffer\",\"email\":\"Jewell_Wisoky59@yahoo.com\",\"website\":\"https://noah.name\",\"amount\":\"170.84\",\"phone\":\"1-057-226-6401 x92471\",\"closeAt\":\"2022-04-26T00:24:32.554Z\",\"id\":\"4b6ad740-d270-43c2-84ac-2ffdb19275f9\"},{\"name\":\"Reta Harvey\",\"email\":\"Anna62@hotmail.com\",\"website\":\"https://bryce.name\",\"amount\":\"922.16\",\"phone\":\"586-545-0879\",\"closeAt\":\"2022-09-28T03:11:23.630Z\",\"id\":\"5f13f21c-f6d6-4c8e-b24c-d1eedbdd2141\"},{\"name\":\"Jayson Stark\",\"email\":\"Kadin_Wiegand13@hotmail.com\",\"website\":\"http://otha.name\",\"amount\":\"260.42\",\"phone\":\"986.130.7495\",\"closeAt\":\"2022-08-16T17:54:32.879Z\",\"id\":\"566afa0c-dfa9-4073-bd93-2a0b6f18a181\"},{\"name\":\"Rahsaan Hartmann\",\"email\":\"Ricardo_Greenfelder@hotmail.com\",\"website\":\"https://holden.net\",\"amount\":\"550.59\",\"phone\":\"1-543-375-7456\",\"closeAt\":\"2022-08-23T12:23:08.231Z\",\"id\":\"da99ca8e-0aef-4f37-86a2-27ef5db5e275\"},{\"name\":\"Joannie Waters\",\"email\":\"Raheem_Pacocha25@yahoo.com\",\"website\":\"http://kaylie.name\",\"amount\":\"311.93\",\"phone\":\"(781) 730-5556 x1852\",\"closeAt\":\"2022-04-30T03:26:58.660Z\",\"id\":\"e8b50acb-fc76-477d-8f6d-3c8b37ca900c\"},{\"name\":\"Garnet Hoppe\",\"email\":\"Odell.Wehner@gmail.com\",\"website\":\"http://taya.com\",\"amount\":\"452.02\",\"phone\":\"(065) 414-6639 x9375\",\"closeAt\":\"2022-08-15T02:42:46.918Z\",\"id\":\"608db525-14d7-4634-a514-8f54dc2db1c0\"},{\"name\":\"June Powlowski\",\"email\":\"Brisa_Murazik74@hotmail.com\",\"website\":\"http://yolanda.info\",\"amount\":\"118.78\",\"phone\":\"986-465-1266\",\"closeAt\":\"2022-03-16T05:30:15.767Z\",\"id\":\"5080ae70-4fdb-43a4-a7c6-485bd230f3da\"},{\"name\":\"Zoey Rath\",\"email\":\"Orion.West@gmail.com\",\"website\":\"http://margarete.name\",\"amount\":\"336.75\",\"phone\":\"426-057-6009\",\"closeAt\":\"2022-09-04T08:18:27.074Z\",\"id\":\"8c0bf5cf-462d-4507-a4da-dbd77927967c\"},{\"name\":\"Carmine Wiza\",\"email\":\"Jamar.Balistreri52@gmail.com\",\"website\":\"http://jensen.org\",\"amount\":\"881.92\",\"phone\":\"(801) 395-1019\",\"closeAt\":\"2022-05-10T09:32:22.568Z\",\"id\":\"ed1a579f-aa7e-4379-a10d-c250c4ef6ecc\"},{\"name\":\"Melvin Powlowski\",\"email\":\"Isom_Bahringer@hotmail.com\",\"website\":\"https://gaylord.net\",\"amount\":\"824.86\",\"phone\":\"1-571-917-8984\",\"closeAt\":\"2021-12-22T09:18:58.246Z\",\"id\":\"459e0125-48ed-4b9a-a00e-6a288532892d\"},{\"name\":\"Jannie Rau\",\"email\":\"Filomena.Kub33@hotmail.com\",\"website\":\"https://anastasia.org\",\"amount\":\"655.96\",\"phone\":\"(909) 115-2830 x170\",\"closeAt\":\"2021-11-01T22:52:58.777Z\",\"id\":\"1aced5a5-40b8-47a2-9eb2-8eb5e8ba9b61\"},{\"name\":\"Rigoberto Harris\",\"email\":\"Candelario_Lakin@hotmail.com\",\"website\":\"http://margarett.net\",\"amount\":\"927.32\",\"phone\":\"651.908.6991 x116\",\"closeAt\":\"2021-11-11T20:47:03.240Z\",\"id\":\"9f960bc4-7e42-479f-b813-aa591f5e2c9d\"},{\"name\":\"Hosea Schaefer\",\"email\":\"Colin_Sipes@yahoo.com\",\"website\":\"https://geovany.biz\",\"amount\":\"500.26\",\"phone\":\"451.301.3607\",\"closeAt\":\"2022-06-07T06:48:28.470Z\",\"id\":\"3026b56f-6b2c-42e5-8847-c8b7bc17b1df\"},{\"name\":\"Adan Kilback\",\"email\":\"Efren.Bauch@yahoo.com\",\"website\":\"https://eunice.info\",\"amount\":\"192.09\",\"phone\":\"318.201.9017 x4793\",\"closeAt\":\"2022-03-19T04:23:08.746Z\",\"id\":\"3c11b03e-8bfd-4c92-b53f-b4f7aec443e5\"},{\"name\":\"Jordan Borer\",\"email\":\"Rosetta76@gmail.com\",\"website\":\"http://raleigh.org\",\"amount\":\"947.45\",\"phone\":\"1-607-627-4368 x47042\",\"closeAt\":\"2022-10-21T17:09:39.038Z\",\"id\":\"354d8993-403b-4084-8e27-24f4bad92168\"},{\"name\":\"Kareem Swaniawski\",\"email\":\"Lelah98@yahoo.com\",\"website\":\"https://emily.org\",\"amount\":\"803.59\",\"phone\":\"579-031-1315 x414\",\"closeAt\":\"2022-03-23T14:03:33.049Z\",\"id\":\"eee15af7-eb05-42d8-9efe-dcb91a593e5b\"},{\"name\":\"Margaretta Terry\",\"email\":\"Daisha.Morissette@gmail.com\",\"website\":\"https://richard.name\",\"amount\":\"439.00\",\"phone\":\"959.527.1733\",\"closeAt\":\"2022-05-05T06:18:31.836Z\",\"id\":\"82462d0a-6985-4f66-b40a-cc075cd48d35\"},{\"name\":\"Ryleigh Nienow\",\"email\":\"Kathryn_Macejkovic25@yahoo.com\",\"website\":\"http://summer.name\",\"amount\":\"429.51\",\"phone\":\"914-581-0319 x5998\",\"closeAt\":\"2022-02-01T08:09:01.258Z\",\"id\":\"cc775ab1-d527-4fa4-a279-450c17de7def\"},{\"name\":\"Carmen Hyatt\",\"email\":\"Desmond67@gmail.com\",\"website\":\"https://daisha.name\",\"amount\":\"184.06\",\"phone\":\"245-588-9748\",\"closeAt\":\"2022-08-07T19:51:29.325Z\",\"id\":\"cfbc834c-33c2-4a79-98d8-729c5c681202\"},{\"name\":\"Fausto Raynor\",\"email\":\"Van86@yahoo.com\",\"website\":\"https://sydni.name\",\"amount\":\"885.88\",\"phone\":\"083-726-0622\",\"closeAt\":\"2021-12-26T20:29:19.300Z\",\"id\":\"fc0d74dd-f44e-4d90-a08a-1c8fdd0d6796\"},{\"name\":\"Alfreda Cruickshank\",\"email\":\"Rosalia_Senger@hotmail.com\",\"website\":\"https://lenny.biz\",\"amount\":\"85.70\",\"phone\":\"100.644.2518\",\"closeAt\":\"2022-04-01T19:30:16.162Z\",\"id\":\"6361db39-14bc-4ffb-b8f8-f74df88a3657\"},{\"name\":\"Rozella O\'Hara\",\"email\":\"Kelvin_Harris13@hotmail.com\",\"website\":\"http://myrtis.com\",\"amount\":\"867.33\",\"phone\":\"1-122-597-1416 x893\",\"closeAt\":\"2021-11-22T21:28:49.125Z\",\"id\":\"c793b774-76d8-4b4c-8569-5ebc710ffaa4\"},{\"name\":\"Korbin Bradtke\",\"email\":\"Vincenza4@gmail.com\",\"website\":\"https://wellington.net\",\"amount\":\"918.25\",\"phone\":\"1-004-287-6378 x18815\",\"closeAt\":\"2022-04-25T16:18:31.037Z\",\"id\":\"d010f8b7-3761-4afb-ad87-88c1b3ad9f1f\"},{\"name\":\"Prince McClure\",\"email\":\"Terrill4@gmail.com\",\"website\":\"http://rosalia.net\",\"amount\":\"42.60\",\"phone\":\"1-270-301-0548\",\"closeAt\":\"2022-03-18T11:26:52.913Z\",\"id\":\"851d184c-fdfa-4ce5-b328-6548c0b6d138\"}]";
+            const data: Array<Object> = <Array<Object>>JSON.parse(sdata);
+            const scols: string = "[{\"label\":\"Name\",\"fieldName\":\"name\"},{\"label\":\"Website\",\"fieldName\":\"website\",\"type\":\"url\"},{\"label\":\"Phone\",\"fieldName\":\"phone\",\"type\":\"phone\"},{\"label\":\"Balance\",\"fieldName\":\"amount\",\"type\":\"currency\"},{\"label\":\"Close At\",\"fieldName\":\"closeAt\",\"type\":\"date\"},{\"type\":\"action\",\"typeAttributes\":{\"rowActions\":[{\"label\":\"Show details\",\"name\":\"show_details\"},{\"label\":\"Delete\",\"name\":\"delete\"}]}}]";
+            const columns: Array<Object> = <Array<Object>>JSON.parse(scols);
+            columns[0]["editable"] = true;
+            const grid: com.spoonconsulting.lightning.DataGrid = new com.spoonconsulting.lightning.DataGrid("grid");
+            grid.setColumns(columns);
+            grid.setData(data);
+            grid.refresh();
+            grid.setStyle("width", "1187px");
+            return grid;
+        }
+
         /*private*/ static getModal(): JSContainer {
             const container: JSContainer = new JSContainer("ctn", "div");
             const button: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("open");
@@ -971,29 +1039,42 @@ namespace com.spoonconsulting.lightning {
             button.setLabel("Open");
             container.addChild(button);
             const modal: com.spoonconsulting.lightning.Modal = new com.spoonconsulting.lightning.Modal("modal");
-            const firstName: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("firstName", new input.JSTextInput("firstName")));
-            const lastName: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("lastName", new input.JSTextInput("lastName")));
-            const email: com.spoonconsulting.lightning.FormElement<string> = <any>(new com.spoonconsulting.lightning.FormElement<string>("email", new input.JSTextInput("email")));
-            firstName.setLabel("First Name");
-            lastName.setLabel("Last Name");
-            email.setLabel("Email");
+            modal.setSize$com_spoonconsulting_lightning_enums_ModalSize(com.spoonconsulting.lightning.enums.ModalSize.LARGE);
             const personalInfo: com.spoonconsulting.lightning.Section = new com.spoonconsulting.lightning.Section("Personal Information");
             personalInfo.setLabel("Personal Information");
             const frmPersonalInfo: com.spoonconsulting.lightning.Form = new com.spoonconsulting.lightning.Form("");
-            frmPersonalInfo.row(0).item(0).addElement$java_lang_String("salutation").getRow().item(1).addElement$java_lang_String("firstName").form().addRow().item(0).addElement$java_lang_String("lastName").row().item(1).addElement$java_lang_String("email").form().addRow().item(0).addElement$java_lang_String("addressLine1").row().item(1).addElement$java_lang_String("addressLine2").form().addRow().item(0).addElement$java_lang_String("city").row().item(1).addElement$java_lang_String("postalCode");
+            frmPersonalInfo.row(0).item(0).addChild(new com.spoonconsulting.lightning.Input("salutation").setLabel("Salutation").setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(0).item(1).addChild(new com.spoonconsulting.lightning.Input("firstName").setLabel("First Name").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(1).item(0).addChild(new com.spoonconsulting.lightning.Input("lasttName").setLabel("Last Name").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(1).item(1).addChild(new com.spoonconsulting.lightning.Input("email").setLabel("Email").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(2).item(0).addChild(new com.spoonconsulting.lightning.Input("phone").setLabel("Phone").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(2).item(1).addChild(new com.spoonconsulting.lightning.Input("mobile").setLabel("Mobile Phone").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(3).item(0).addChild(new com.spoonconsulting.lightning.Input("addressLine1").setLabel("Addr Line 1").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(3).item(1).addChild(new com.spoonconsulting.lightning.Input("addressLine2").setLabel("Addr Line2").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(4).item(0).addChild(new com.spoonconsulting.lightning.Input("city").setLabel("City").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(4).item(1).addChild(new com.spoonconsulting.lightning.Input("postalCode").setLabel("Posttal Code").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(5).item(0).addChild(new com.spoonconsulting.lightning.Input("province").setLabel("Province").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(5).item(1).addChild(new com.spoonconsulting.lightning.Input("country").setLabel("Addr Line2").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
+            frmPersonalInfo.row(6).item(0).addChild(new com.spoonconsulting.lightning.Input("age").setMin(10).setType$com_spoonconsulting_lightning_enums_InputType(com.spoonconsulting.lightning.enums.InputType.NUMBER).setLabel("Age").setRequired(true).setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED));
             personalInfo.getContent().addChild(frmPersonalInfo);
             const otherInfo: com.spoonconsulting.lightning.Section = new com.spoonconsulting.lightning.Section("Other info");
             otherInfo.setLabel("Other info");
             const frm: com.spoonconsulting.lightning.Form = new com.spoonconsulting.lightning.Form("otdf");
             const cbg: com.spoonconsulting.lightning.RadioGroup = new com.spoonconsulting.lightning.RadioGroup("maritalStatus");
+            cbg.setStyle("width", "100%");
             cbg.setLabel("Marital Status");
             cbg.setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("Single", "Married", "Divorced").get());
             frm.row(0).item(0).addChild(cbg);
             otherInfo.getContent().addChild(frm);
-            frm.row(0).item(1).addChild(new com.spoonconsulting.lightning.CheckBoxGroup("educationLevel").setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("SC", "HSC", "BA", "MA", "Phd").get()).setLabel("Education Level"));
+            frm.row(0).item(1).addChild(new com.spoonconsulting.lightning.CheckBoxGroup("educationLevel").setOptions(com.spoonconsulting.lightning.Utils.OptionsBuilder.create().add$java_lang_String_A("SC", "HSC", "BA", "MA", "Phd").get()).setLabel("Education Level").setStyle("width", "100%"));
+            const options: com.spoonconsulting.lightning.Section = new com.spoonconsulting.lightning.Section("it").setLabel("Options");
+            const fmo: com.spoonconsulting.lightning.Form = new com.spoonconsulting.lightning.Form("fme");
+            fmo.row(0).item(0).addChild(Boot.getDualListBox());
+            options.getContent().addChild(fmo);
             modal.setTitle("User Registration");
             modal.getContent().addChild(personalInfo);
             modal.getContent().addChild(otherInfo);
+            modal.getContent().addChild(options);
             com.spoonconsulting.lightning.Utils.setPadding$framework_components_api_Renderable$com_spoonconsulting_lightning_enums_Direction$com_spoonconsulting_lightning_enums_Size(modal.getContent(), com.spoonconsulting.lightning.enums.Direction.HORIZONTAL, com.spoonconsulting.lightning.enums.Size.MEDIUM);
             const save: com.spoonconsulting.lightning.Button = new com.spoonconsulting.lightning.Button("save");
             save.setLabel("Save");
@@ -1099,6 +1180,7 @@ namespace com.spoonconsulting.lightning {
             Boot.addVerticalTab("Modals", Boot.getModal(), set);
             Boot.addVerticalTab("Tree", Boot.getTree(), set);
             Boot.addVerticalTab("Tile", Boot.getTiles(), set);
+            Boot.addVerticalTab("DataGrid", Boot.getTable(), set);
             return set;
         }
     }
@@ -1381,9 +1463,9 @@ namespace com.spoonconsulting.lightning {
         public getBreadcrumbs(): Array<com.spoonconsulting.lightning.Breadcrumb> {
             const result: Array<com.spoonconsulting.lightning.Breadcrumb> = <any>(new Array<com.spoonconsulting.lightning.Breadcrumb>());
             {
-                let array138 = this.getChildren();
-                for(let index137=0; index137 < array138.length; index137++) {
-                    let r = array138[index137];
+                let array549 = this.getChildren();
+                for(let index548=0; index548 < array549.length; index548++) {
+                    let r = array549[index548];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         result.push(bc);
@@ -1395,9 +1477,9 @@ namespace com.spoonconsulting.lightning {
 
         public getBreadcrumb(name: string): com.spoonconsulting.lightning.Breadcrumb {
             {
-                let array140 = this.getChildren();
-                for(let index139=0; index139 < array140.length; index139++) {
-                    let r = array140[index139];
+                let array551 = this.getChildren();
+                for(let index550=0; index550 < array551.length; index550++) {
+                    let r = array551[index550];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         if (bc.getName() === name){
@@ -1759,6 +1841,1503 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class DataGrid extends JSContainer {
+        /*private*/ thead: JSContainer;
+
+        /*private*/ theadRow: JSContainer;
+
+        /*private*/ tbody: JSContainer;
+
+        /*private*/ data: Array<Object>;
+
+        /*private*/ columnWidthsMode: string;
+
+        /*private*/ columns: Array<Object>;
+
+        /*private*/ defaultSortDirection: string;
+
+        /*private*/ enableInfiniteLoading: boolean;
+
+        /*private*/ errors: Array<Object>;
+
+        /*private*/ hideCheckboxColumn: boolean;
+
+        /*private*/ hideTableHeader: boolean;
+
+        /*private*/ __isLoading: boolean;
+
+        /*private*/ keyField: string;
+
+        /*private*/ loadMoreOffset: string;
+
+        /*private*/ maxColumnWidth: string;
+
+        /*private*/ maxRowSelection: number;
+
+        /*private*/ minColumnWidth: string;
+
+        /*private*/ resizeColumnDisabled: boolean;
+
+        /*private*/ resizeStep: number;
+
+        /*private*/ rowNumberOffset: string;
+
+        /*private*/ showRowNumberColumn: boolean;
+
+        /*private*/ sortedBy: string;
+
+        /*private*/ sortDirection: string;
+
+        /*private*/ suppressBottomBar: boolean;
+
+        /*private*/ wrapTextMaxLines: number;
+
+        /*private*/ columns_: Object;
+
+        /*private*/ rowNumber: com.spoonconsulting.lightning.DataGridColHeader;
+
+        /*private*/ checkbox: com.spoonconsulting.lightning.DataGridColHeaderRowSelector;
+
+        public colHeaderRenderer: (p1: com.spoonconsulting.lightning.DataGridColHeader, p2: Object, p3: Array<Object>, p4: string) => void;
+
+        /*private*/ cellRenderers: Object;
+
+        public static WIDTH_MODE_FIXED: string = "fixed";
+
+        public static WIDTH_MODE_AUTO: string = "auto";
+
+        /*private*/ table: JSContainer;
+
+        /*private*/ scrollableY: JSContainer;
+
+        /*private*/ scrollableX: JSContainer;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.thead = new JSContainer("thead", "thead");
+            this.theadRow = new JSContainer("thead-row", "tr");
+            this.tbody = new JSContainer("tbody", "tbody");
+            this.data = <any>(new Array<Object>());
+            this.columnWidthsMode = "fixed";
+            this.columns = <any>(new Array<Object>());
+            this.defaultSortDirection = "asc";
+            this.enableInfiniteLoading = true;
+            this.errors = <any>(new Array<Object>());
+            this.hideCheckboxColumn = false;
+            this.hideTableHeader = false;
+            this.__isLoading = false;
+            this.keyField = "";
+            this.loadMoreOffset = "20px";
+            this.maxColumnWidth = "1000px";
+            this.maxRowSelection = -1;
+            this.minColumnWidth = "20px";
+            this.resizeColumnDisabled = false;
+            this.resizeStep = 5;
+            this.rowNumberOffset = "32px";
+            this.showRowNumberColumn = false;
+            this.sortedBy = "";
+            this.sortDirection = this.defaultSortDirection;
+            this.suppressBottomBar = false;
+            this.wrapTextMaxLines = 1;
+            this.columns_ = <Object>new Object();
+            this.rowNumber = null;
+            this.checkbox = null;
+            if (this.colHeaderRenderer === undefined) { this.colHeaderRenderer = null; }
+            this.cellRenderers = <Object>new Object();
+            this.table = new JSContainer("table", "table");
+            this.scrollableY = new JSContainer("scrollable-y", "div");
+            this.scrollableX = new JSContainer("scrollable-x", "div");
+            this.scrollableX.addClass("slds-table_header-fixed_container").addClass("slds-scrollable_x").setStyle("height", "100%");
+            this.addChild(this.scrollableX);
+            this.scrollableY.addClass("slds-scrollable_y").setStyle("width", "100%");
+            this.scrollableX.addChild(this.scrollableY);
+            this.scrollableY.addChild(this.table);
+            this.table.addClass("slds-table");
+            this.table.addClass("slds-table_header-fixed");
+            this.table.addClass("slds-table_bordered");
+            this.table.addClass("slds-table_edit");
+            this.table.addClass("slds-table_resizable-cols");
+            this.table.addChild(this.thead);
+            this.table.addChild(this.tbody);
+            this.theadRow.addClass("slds-line-height_reset");
+            this.thead.addChild(this.theadRow);
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const sdate: string = <string>data[fieldName];
+                if (sdate != null){
+                    const dt: Date = new Date(Date.parse(sdate));
+                    const fdate: string = com.spoonconsulting.lightning.Utils.formatDate(dt, "MMM dd, yyyy");
+                    cell.setLabel(fdate);
+                }
+                return null;
+            }, "date");
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const scur: string = <string>data[fieldName];
+                cell.setAlignment(com.spoonconsulting.lightning.DataGridCell.ALIGNMENT_END);
+                cell.setLabel("$" + scur);
+                return null;
+            }, "currency");
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const scur: string = <string>data[fieldName];
+                const link: JSContainer = new JSContainer("a");
+                link.setAttribute("href", "tel:" + scur);
+                link.setHtml(scur);
+                cell.getContent().clearChildren();
+                cell.getContent().setRendered(false);
+                cell.getContent().addChild(link);
+                return null;
+            }, "phone");
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const scur: string = <string>data[fieldName];
+                const link: JSContainer = new JSContainer("a");
+                link.setAttribute("href", "mailto:" + scur);
+                link.setHtml(scur);
+                cell.getContent().clearChildren();
+                cell.getContent().setRendered(false);
+                cell.getContent().addChild(link);
+                return null;
+            }, "email");
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const url: string = <string>data[fieldName];
+                const link: JSContainer = new JSContainer("a");
+                link.setAttribute("href", url);
+                link.setHtml(url);
+                cell.getContent().clearChildren();
+                cell.getContent().setRendered(false);
+                cell.getContent().addChild(link);
+                return null;
+            }, "url");
+            this.addCellRenderer((cell, column, data, fieldName) => {
+                const typeAttributes: Object = <Object>column["typeAttributes"];
+                const rowActions: Array<Object> = <Array<Object>>typeAttributes["rowActions"];
+                const menu: com.spoonconsulting.lightning.ButtonMenu = new com.spoonconsulting.lightning.ButtonMenu("menu", "div");
+                menu.setButtonSize(com.spoonconsulting.lightning.enums.Size.EXTRA_SMALL);
+                menu.setStyle("position", "absolute");
+                menu.setOptions(rowActions);
+                cell.getContent().addChild(menu);
+                cell.getContent().addClass("slds-grid slds-align_absolute-center slds-grid_align-spread");
+                menu.setMenuAlignment$com_spoonconsulting_lightning_enums_MenuAlignment(com.spoonconsulting.lightning.enums.MenuAlignment.RIGHT);
+                menu.addEventListener(new DataGrid.DataGrid$0(this, column, cell, data, fieldName), "select");
+                return null;
+            }, "action");
+        }
+
+        public addCellRenderer(renderer: (p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void, type: string): DataGrid {
+            if (this.cellRenderers.hasOwnProperty(type)){
+                const renderes: Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void> = <Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void>>this.cellRenderers[type];
+                renderes.push(renderer);
+            } else {
+                const renderes: Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void> = <any>(new Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void>());
+                renderes.push(renderer);
+                this.cellRenderers[type] = renderes;
+            }
+            return this;
+        }
+
+        public refreshHeader(): DataGrid {
+            this.theadRow.clearChildren();
+            this.theadRow.setRendered(false);
+            if (this.hideTableHeader){
+                this.thead.setStyle("display", "none");
+            } else {
+                this.thead.setStyle("display", null);
+            }
+            if (this.showRowNumberColumn){
+                const th: JSContainer = new JSContainer("th");
+                th.setAttribute("scope", "col");
+                th.setAttribute("tabindex", "0");
+                this.rowNumber = new com.spoonconsulting.lightning.DataGridColHeader("rowNumber", "");
+                this.theadRow.addChild(th.addChild(this.rowNumber));
+                th.setStyle("width", "62px");
+                this.rowNumber.setWidth("62px");
+            }
+            if (!this.hideCheckboxColumn){
+                const th: JSContainer = new JSContainer("th");
+                th.setAttribute("scope", "col");
+                th.setAttribute("tabindex", "0");
+                th.setStyle("width", "32px");
+                this.checkbox = new com.spoonconsulting.lightning.DataGridColHeaderRowSelector("checkbox");
+                this.checkbox.addEventListener(new DataGrid.DataGrid$1(this), "change");
+                this.theadRow.addChild(th.addChild(this.checkbox));
+            }
+            for(let index552=0; index552 < this.columns.length; index552++) {
+                let column = this.columns[index552];
+                {
+                    let name: string = <string>column["fieldName"];
+                    let label: string = <string>column["label"];
+                    let type: string = <string>column["type"];
+                    if (name == null){
+                        name = "field" + (this.columns.indexOf(column) + 1);
+                        column["fieldName"] = name;
+                    }
+                    if (label == null){
+                        if (type != null){
+                            if (type === "action"){
+                                label = "";
+                            } else {
+                                label = type;
+                            }
+                        } else {
+                            type = name;
+                        }
+                        column["label"] = label;
+                    }
+                    const fixedWidth: number = <number>column["fixedWidth"];
+                    const initialWidth: number = <number>column["initialWidth"];
+                    const hideDefaultActions: boolean = <boolean>column["hideDefaultActions"];
+                    const iconName: string = <string>column["iconName"];
+                    const sortable: boolean = <boolean>column["sortable"];
+                    const keyField: string = <string>column["keyField"];
+                    const header: com.spoonconsulting.lightning.DataGridColHeader = new com.spoonconsulting.lightning.DataGridColHeader(name, label);
+                    if (fixedWidth != null && fixedWidth > -1){
+                        header.setWidth(fixedWidth + "px");
+                        header.setResizable(false);
+                    } else {
+                        if (initialWidth != null)header.setWidth(initialWidth + "px"); else {
+                            if (type !== "action"){
+                                header.setWidth("221px");
+                            } else {
+                                header.setWidth("50px");
+                            }
+                        }
+                    }
+                    header.setHideDefaultActions(hideDefaultActions);
+                    header.setIconName(iconName);
+                    if (sortable != null){
+                        header.setSortable(sortable);
+                    }
+                    if (name === this.sortedBy){
+                        header.setSortable(true);
+                        header.setDefaultSortDirection(this.defaultSortDirection);
+                        header.setSortDirection(this.sortDirection);
+                    }
+                    header.setKeyField(name === keyField);
+                    const th: JSContainer = new JSContainer("th");
+                    th.setAttribute("scope", "col");
+                    th.setAttribute("tabindex", "0");
+                    this.theadRow.addChild(th.addChild(header));
+                    header.setColumn(column);
+                    if (this.colHeaderRenderer != null){
+                        (target => (typeof target === 'function') ? target(header, column, this.columns, name) : (<any>target).apply(header, column, this.columns, name))(this.colHeaderRenderer);
+                    }
+                    this.columns_[name] = header;
+                    if (column["headerRenderer"] != null){
+                        const renderer: (p1: com.spoonconsulting.lightning.DataGridColHeader, p2: Object, p3: Array<Object>, p4: string) => void = <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2, arg3) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2, arg3)})(<any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2, arg3) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2, arg3)})(column["headerRenderer"]))));
+                        (target => (typeof target === 'function') ? target(header, column, this.columns, name) : (<any>target).apply(header, column, this.columns, name))(renderer);
+                    }
+                }
+            }
+            return this;
+        }
+
+        public getColumn(name: string): Object {
+            for(let index553=0; index553 < this.columns.length; index553++) {
+                let col = this.columns[index553];
+                {
+                    const fieldName: string = <string>col["fieldName"];
+                    if (fieldName === name){
+                        return col;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public refreshBody(): DataGrid {
+            this.tbody.clearChildren();
+            this.tbody.setRendered(false);
+            let index: number = 0;
+            for(let index554=0; index554 < this.data.length; index554++) {
+                let line = this.data[index554];
+                {
+                    const row: com.spoonconsulting.lightning.DataGridRow = new com.spoonconsulting.lightning.DataGridRow(this, line, index);
+                    this.tbody.addChild(row);
+                    row.refresh();
+                    index++;
+                }
+            }
+            return this;
+        }
+
+        public setSelectAll(b: boolean): DataGrid {
+            {
+                let array556 = this.getRows();
+                for(let index555=0; index555 < array556.length; index555++) {
+                    let row = array556[index555];
+                    {
+                        row.setSelected(b);
+                    }
+                }
+            }
+            return this;
+        }
+
+        public getSelectedItems(): Array<Object> {
+            const result: Array<Object> = <any>(new Array<Object>());
+            {
+                let array558 = this.getRows();
+                for(let index557=0; index557 < array558.length; index557++) {
+                    let row = array558[index557];
+                    {
+                        if (row.isSelected()){
+                            result.push(row.getLine());
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        public getRows(): Array<com.spoonconsulting.lightning.DataGridRow> {
+            const result: Array<any> = this.tbody.getChildren();
+            return result;
+        }
+
+        /**
+         * @return {Object} the cellRenderers
+         */
+        public getCellRenderers(): Object {
+            return this.cellRenderers;
+        }
+
+        public refresh(): DataGrid {
+            this.refreshHeader();
+            this.refreshBody();
+            return this;
+        }
+
+        public getHead(): JSContainer {
+            return this.thead;
+        }
+
+        public getBody(): JSContainer {
+            return this.tbody;
+        }
+
+        public setData(data: Array<Object>): DataGrid {
+            this.data = data;
+            return this;
+        }
+
+        public getSelectedRows(): Array<Object> {
+            return null;
+        }
+
+        public setSelectedRows(rows: Array<Object>): DataGrid {
+            return this;
+        }
+
+        public openInlineEdit(): DataGrid {
+            return this;
+        }
+
+        /**
+         * @return {string} the columnWidthsMode
+         */
+        public getColumnWidthsMode(): string {
+            return this.columnWidthsMode;
+        }
+
+        /**
+         * @param {string} columnWidthsMode the columnWidthsMode to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setColumnWidthsMode(columnWidthsMode: string): DataGrid {
+            this.columnWidthsMode = columnWidthsMode;
+            return this;
+        }
+
+        /**
+         * @return {Object[]} the columns
+         */
+        public getColumns(): Array<Object> {
+            return this.columns;
+        }
+
+        /**
+         * @param {Object[]} columns the columns to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setColumns(columns: Array<Object>): DataGrid {
+            this.columns = columns;
+            return this;
+        }
+
+        /**
+         * @return {string} the defaultSortDirection
+         */
+        public getDefaultSortDirection(): string {
+            return this.defaultSortDirection;
+        }
+
+        /**
+         * @param {string} defaultSortDirection the defaultSortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setDefaultSortDirection(defaultSortDirection: string): DataGrid {
+            this.defaultSortDirection = defaultSortDirection;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the enableInfiniteLoading
+         */
+        public isEnableInfiniteLoading(): boolean {
+            return this.enableInfiniteLoading;
+        }
+
+        /**
+         * @param {boolean} enableInfiniteLoading the enableInfiniteLoading to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setEnableInfiniteLoading(enableInfiniteLoading: boolean): DataGrid {
+            this.enableInfiniteLoading = enableInfiniteLoading;
+            return this;
+        }
+
+        /**
+         * @return {Object[]} the errors
+         */
+        public getErrors(): Array<Object> {
+            return this.errors;
+        }
+
+        /**
+         * @param {Object[]} errors the errors to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setErrors(errors: Array<Object>): DataGrid {
+            this.errors = errors;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the hideCheckboxColumn
+         */
+        public isHideCheckboxColumn(): boolean {
+            return this.hideCheckboxColumn;
+        }
+
+        /**
+         * @param {boolean} hideCheckboxColumn the hideCheckboxColumn to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setHideCheckboxColumn(hideCheckboxColumn: boolean): DataGrid {
+            this.hideCheckboxColumn = hideCheckboxColumn;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the hideTableHeader
+         */
+        public isHideTableHeader(): boolean {
+            return this.hideTableHeader;
+        }
+
+        /**
+         * @param {boolean} hideTableHeader the hideTableHeader to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setHideTableHeader(hideTableHeader: boolean): DataGrid {
+            this.hideTableHeader = hideTableHeader;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the isLoading
+         */
+        public isLoading(): boolean {
+            return this.__isLoading;
+        }
+
+        /**
+         * @param {boolean} isLoading the isLoading to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setLoading(isLoading: boolean): DataGrid {
+            this.__isLoading = isLoading;
+            return this;
+        }
+
+        /**
+         * @return {string} the keyField
+         */
+        public getKeyField(): string {
+            return this.keyField;
+        }
+
+        /**
+         * @param {string} keyField the keyField to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setKeyField(keyField: string): DataGrid {
+            this.keyField = keyField;
+            return this;
+        }
+
+        /**
+         * @return {string} the loadMoreOffset
+         */
+        public getLoadMoreOffset(): string {
+            return this.loadMoreOffset;
+        }
+
+        /**
+         * @param {string} loadMoreOffset the loadMoreOffset to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setLoadMoreOffset(loadMoreOffset: string): DataGrid {
+            this.loadMoreOffset = loadMoreOffset;
+            return this;
+        }
+
+        /**
+         * @return {string} the maxColumnWidth
+         */
+        public getMaxColumnWidth(): string {
+            return this.maxColumnWidth;
+        }
+
+        /**
+         * @param {string} maxColumnWidth the maxColumnWidth to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setMaxColumnWidth(maxColumnWidth: string): DataGrid {
+            this.maxColumnWidth = maxColumnWidth;
+            return this;
+        }
+
+        /**
+         * @return {number} the maxRowSelection
+         */
+        public getMaxRowSelection(): number {
+            return this.maxRowSelection;
+        }
+
+        /**
+         * @param {number} maxRowSelection the maxRowSelection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setMaxRowSelection(maxRowSelection: number): DataGrid {
+            this.maxRowSelection = maxRowSelection;
+            return this;
+        }
+
+        /**
+         * @return {string} the minxColumnWidth
+         */
+        public getMinColumnWidth(): string {
+            return this.minColumnWidth;
+        }
+
+        /**
+         * @param {string} minxColumnWidth the minxColumnWidth to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setMinColumnWidth(minxColumnWidth: string): DataGrid {
+            this.minColumnWidth = minxColumnWidth;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the resizeColumnDisabled
+         */
+        public isResizeColumnDisabled(): boolean {
+            return this.resizeColumnDisabled;
+        }
+
+        /**
+         * @param {boolean} resizeColumnDisabled the resizeColumnDisabled to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setResizeColumnDisabled(resizeColumnDisabled: boolean): DataGrid {
+            this.resizeColumnDisabled = resizeColumnDisabled;
+            return this;
+        }
+
+        /**
+         * @return {number} the resizeStep
+         */
+        public getResizeStep(): number {
+            return this.resizeStep;
+        }
+
+        /**
+         * @param {number} resizeStep the resizeStep to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setResizeStep(resizeStep: number): DataGrid {
+            this.resizeStep = resizeStep;
+            return this;
+        }
+
+        /**
+         * @return {string} the rowNumberOffset
+         */
+        public getRowNumberOffset(): string {
+            return this.rowNumberOffset;
+        }
+
+        /**
+         * @param {string} rowNumberOffset the rowNumberOffset to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setRowNumberOffset(rowNumberOffset: string): DataGrid {
+            this.rowNumberOffset = rowNumberOffset;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the showRowNumberColumn
+         */
+        public isShowRowNumberColumn(): boolean {
+            return this.showRowNumberColumn;
+        }
+
+        /**
+         * @param {boolean} showRowNumberColumn the showRowNumberColumn to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setShowRowNumberColumn(showRowNumberColumn: boolean): DataGrid {
+            this.showRowNumberColumn = showRowNumberColumn;
+            return this;
+        }
+
+        /**
+         * @return {string} the sortedBy
+         */
+        public getSortedBy(): string {
+            return this.sortedBy;
+        }
+
+        /**
+         * @param {string} sortedBy the sortedBy to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setSortedBy(sortedBy: string): DataGrid {
+            this.sortedBy = sortedBy;
+            return this;
+        }
+
+        /**
+         * @return {string} the sortDirection
+         */
+        public getSortDirection(): string {
+            return this.sortDirection;
+        }
+
+        /**
+         * @param {string} sortDirection the sortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setSortDirection(sortDirection: string): DataGrid {
+            this.sortDirection = sortDirection;
+            return this;
+        }
+
+        /**
+         * @return {boolean} the suppressBottomBar
+         */
+        public isSuppressBottomBar(): boolean {
+            return this.suppressBottomBar;
+        }
+
+        /**
+         * @param {boolean} suppressBottomBar the suppressBottomBar to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setSuppressBottomBar(suppressBottomBar: boolean): DataGrid {
+            this.suppressBottomBar = suppressBottomBar;
+            return this;
+        }
+
+        /**
+         * @return {number} the wrapTextMaxLines
+         */
+        public getWrapTextMaxLines(): number {
+            return this.wrapTextMaxLines;
+        }
+
+        /**
+         * @param {number} wrapTextMaxLines the wrapTextMaxLines to set
+         * @return {com.spoonconsulting.lightning.DataGrid}
+         */
+        public setWrapTextMaxLines(wrapTextMaxLines: number): DataGrid {
+            this.wrapTextMaxLines = wrapTextMaxLines;
+            return this;
+        }
+
+        /**
+         * @return {Object[]} the data
+         */
+        public getData(): Array<Object> {
+            return this.data;
+        }
+    }
+    DataGrid["__class"] = "com.spoonconsulting.lightning.DataGrid";
+    DataGrid["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace DataGrid {
+
+        export class DataGrid$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                evt["column"] = this.column;
+                evt["cell"] = this.cell;
+                evt["row"] = this.data;
+                evt["value"] = this.data[this.fieldName];
+                this.__parent.fireListener("rowaction", evt);
+            }
+
+            constructor(__parent: any, private column: any, private cell: any, private data: any, private fieldName: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGrid$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class DataGrid$1 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.setSelectAll(this.__parent.checkbox.isChecked());
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGrid$1["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class DataGridCell extends JSContainer {
+        /*private*/ label: JSContainer;
+
+        /*private*/ content: JSContainer;
+
+        /*private*/ factory: JSContainer;
+
+        /*private*/ edit: com.spoonconsulting.lightning.ButtonIcon;
+
+        public static ALIGNMENT_END: string = "end";
+
+        public static ALIGNMENT_START: string = "start";
+
+        public static ALIGNMENT_CENTER: string = "center";
+
+        public static ALIGNMENT_SPREAD: string = "spread";
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.label = new JSContainer("label", "span");
+            this.content = new JSContainer("content", "div");
+            this.factory = new JSContainer("factory", "div");
+            this.edit = new com.spoonconsulting.lightning.ButtonIcon("edit", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_EDIT].getValue());
+            this.setAttribute("role", "gridcell");
+            this.addChild(this.factory);
+            this.factory.addClass("slds-grid");
+            this.content.addClass("slds-truncate");
+            this.factory.addChild(this.content);
+            this.content.addChild(this.label);
+            this.edit.setAttribute("data-navigation", "enable");
+            this.edit.addClass("slds-cell-edit__button").addClass("slds-m-left_x-small");
+            this.edit.getIcon().setAttribute("class", "slds-button__icon slds-button__icon_hint slds-button__icon_lock slds-button__icon_small slds-button__icon_edit slds-icon slds-icon-text-default slds-icon_xx-small");
+            this.factory.addChild(this.edit);
+            this.edit.setStyle("display", "none");
+        }
+
+        public setEditable(b: boolean): DataGridCell {
+            if (b){
+                this.edit.setStyle("display", null);
+            } else {
+                this.edit.setStyle("display", "none");
+            }
+            return this;
+        }
+
+        public isEditable(): boolean {
+            return this.edit.getStyle("display") !== "none";
+        }
+
+        public setLabel(label: string): DataGridCell {
+            this.setAttribute("data-label", label);
+            this.label.setHtml(label);
+            return this;
+        }
+
+        public getLabel(): string {
+            return this.label.getHtml();
+        }
+
+        public getContent(): JSContainer {
+            return this.content;
+        }
+
+        public setAlignment(alignment: string): DataGridCell {
+            this.factory.removeClass("slds-grid_align-center");
+            this.factory.removeClass("slds-grid_align-start");
+            this.factory.removeClass("slds-grid_align-end");
+            this.factory.removeClass("slds-grid_align-spread");
+            this.factory.addClass("slds-grid_align-" + alignment);
+            return this;
+        }
+    }
+    DataGridCell["__class"] = "com.spoonconsulting.lightning.DataGridCell";
+    DataGridCell["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
+    export class DataGridColHeader extends JSContainer implements com.spoonconsulting.lightning.DataGridIColHeader {
+        /*private*/ resizable: JSContainer;
+
+        /*private*/ cellFixed: JSContainer;
+
+        /*private*/ action: JSContainer;
+
+        /*private*/ label: JSContainer;
+
+        /*private*/ arrowTrigger: JSContainer;
+
+        /*private*/ arrow: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ range: JSContainer;
+
+        /*private*/ resizeHandle: JSContainer;
+
+        /*private*/ keyField: boolean;
+
+        /*private*/ visual: JSContainer;
+
+        /*private*/ icon: com.spoonconsulting.lightning.IconContainer;
+
+        /*private*/ sortIcon: com.spoonconsulting.lightning.IconContainer;
+
+        /*private*/ sortable: boolean;
+
+        /*private*/ defaultSortDirection: string;
+
+        /*private*/ sortDirection: string;
+
+        /*private*/ column: Object;
+
+        public constructor(name: string, label: string) {
+            super(name, "div");
+            this.resizable = new JSContainer("resizable", "div");
+            this.cellFixed = new JSContainer("cell-fixed", "div");
+            this.action = new JSContainer("action", "a");
+            this.label = new JSContainer("label", "span");
+            this.arrowTrigger = new JSContainer("arrow-trigger", "div");
+            this.arrow = new com.spoonconsulting.lightning.ButtonIcon("arrow", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_CHEVRONDOWN].getValue());
+            this.range = new JSContainer("range", "input");
+            this.resizeHandle = new JSContainer("resize-handle", "span");
+            this.keyField = false;
+            this.visual = new JSContainer("visual", "div");
+            this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
+            this.sortIcon = new com.spoonconsulting.lightning.IconContainer("sortIcon", "div");
+            this.sortable = false;
+            this.defaultSortDirection = "asc";
+            this.sortDirection = this.defaultSortDirection;
+            if (this.column === undefined) { this.column = null; }
+            this.addChild(this.cellFixed);
+            this.cellFixed.addClass("slds-cell-fixed").addClass("slds-has-button-menu");
+            const configs: MutationObserverInit = <any>Object.defineProperty({
+
+            }, 'constructor', { configurable: true, value: { __interfaces: ["jsweet.dom.MutationObserverInit"] } });
+            configs.attributes = true;
+            const observer: MutationObserver = new MutationObserver((mutations: MutationRecord[], observer: MutationObserver) => {
+                for(let index559=0; index559 < mutations.length; index559++) {
+                    let mutation = mutations[index559];
+                    {
+                        this.setWidth((<HTMLElement>mutation.target).clientWidth + "px");
+                        this.render();
+                        console.info("Mutation: " + mutation.oldValue);
+                    }
+                }
+            });
+            this.cellFixed.addEventListener(new DataGridColHeader.DataGridColHeader$0(this, observer, configs), "click");
+            this.cellFixed.addChild(this.action);
+            this.action.addClass("slds-th__action");
+            this.action.addClass("slds-text-link_reset");
+            this.action.setAttribute("href", "javascript:void(0);").setAttribute("role", "button").setAttribute("tabindex", "-1").setAttribute("data-navigation", "enable").setAttribute("data-action-triggers", "enter");
+            this.visual.addClass("slds-grid").addClass("slds-grid_vertical-align-center").addClass("slds-has-flexi-truncate");
+            this.action.addChild(this.visual);
+            this.icon.setSize(com.spoonconsulting.lightning.enums.Size.EXTRA_EXTRA_SMALL);
+            this.visual.addChild(this.icon);
+            this.visual.addChild(this.label);
+            this.label.addClass("slds-truncate");
+            this.sortIcon.setIconName("utility:arrowdown");
+            this.sortIcon.setSize(com.spoonconsulting.lightning.enums.Size.EXTRA_EXTRA_SMALL);
+            this.visual.addChild(this.sortIcon);
+            this.sortIcon.setStyle("display", "none");
+            const navigation: JSContainer = new JSContainer("nav1", "div").setAttribute("data-navigation", "enable").setAttribute("tabindex", "-1");
+            this.action.addChild(navigation);
+            this.arrowTrigger.addClass("slds-th__action-button").addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click");
+            navigation.addChild(this.arrowTrigger);
+            this.arrow.removeClass("slds-button_icon");
+            this.arrow.addClass("slds-button_icon-bare");
+            this.arrowTrigger.addChild(this.arrow);
+            this.arrow.setAlternativeText("Show Actions");
+            this.setLabel(label);
+        }
+
+        public setLabel(label: string): DataGridColHeader {
+            this.label.setHtml(label);
+            this.label.setAttribute("title", label);
+            this.setAttribute("aria-label", label);
+            return this;
+        }
+
+        public setWidth(width: string): DataGridColHeader {
+            this.setStyle("width", width);
+            this.resizable.setStyle("width", width);
+            this.cellFixed.setStyle("width", width);
+            return this;
+        }
+
+        public getWidth(): string {
+            return this.getStyle("width");
+        }
+
+        public setResizable(b: boolean): DataGridColHeader {
+            return this;
+        }
+
+        public isResizable(): boolean {
+            return this.resizable.hasClass("slds-is-resizable");
+        }
+
+        public setHideDefaultActions(b: boolean): DataGridColHeader {
+            if (!b){
+                this.arrowTrigger.getParent().setStyle("display", null);
+            } else {
+                this.arrowTrigger.getParent().setStyle("display", "none");
+            }
+            return this;
+        }
+
+        public isHideDefaultActions(): boolean {
+            return this.arrowTrigger.getParent().getStyle("display") !== "none";
+        }
+
+        /**
+         * @return {boolean} the primaryField
+         */
+        public isKeyField(): boolean {
+            return this.keyField;
+        }
+
+        /**
+         * @param {boolean} primaryField the primaryField to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        public setKeyField(primaryField: boolean): DataGridColHeader {
+            this.keyField = primaryField;
+            return this;
+        }
+
+        public setIconName(iconName: string): DataGridColHeader {
+            if (iconName != null){
+                this.icon.setStyle("display", null);
+                this.icon.setIconName(iconName);
+            } else {
+                this.icon.setStyle("display", "none");
+            }
+            return this;
+        }
+
+        public getIconName(): string {
+            return this.icon.getIcon().getIconName();
+        }
+
+        /**
+         * @return {boolean} the sortable
+         */
+        public isSortable(): boolean {
+            return this.sortable;
+        }
+
+        /**
+         * @param {boolean} sortable the sortable to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        public setSortable(sortable: boolean): DataGridColHeader {
+            this.sortable = sortable;
+            if (sortable){
+                this.resizable.addClass("slds-is-sortable");
+            } else {
+                this.resizable.removeClass("slds-is-sortable");
+            }
+            return this;
+        }
+
+        /**
+         * @return {string} the defaultSortDirection
+         */
+        public getDefaultSortDirection(): string {
+            return this.defaultSortDirection;
+        }
+
+        /**
+         * @param {string} defaultSortDirection the defaultSortDirection to set
+         * @return {com.spoonconsulting.lightning.DataGridColHeader}
+         */
+        public setDefaultSortDirection(defaultSortDirection: string): DataGridColHeader {
+            this.defaultSortDirection = defaultSortDirection;
+            this.action.removeClass("slds-is-sorted_desc");
+            this.action.removeClass("slds-is-sorted_asc");
+            this.action.addClass("slds-is-sorted_" + defaultSortDirection);
+            return this;
+        }
+
+        public setSortDirection(direction: string): DataGridColHeader {
+            this.sortDirection = direction;
+            this.action.removeClass("slds-is-sorted_desc");
+            this.action.removeClass("slds-is-sorted_asc");
+            this.action.addClass("slds-is-sorted_" + direction);
+            return this;
+        }
+
+        public getSortDirection(): string {
+            return this.sortDirection;
+        }
+
+        /**
+         * @return {Object} the column
+         */
+        public getColumn(): Object {
+            return this.column;
+        }
+
+        /**
+         * @param {Object} column the column to set
+         */
+        public setColumn(column: Object) {
+            this.column = column;
+        }
+    }
+    DataGridColHeader["__class"] = "com.spoonconsulting.lightning.DataGridColHeader";
+    DataGridColHeader["__interfaces"] = ["framework.components.api.Renderable","com.spoonconsulting.lightning.DataGridIColHeader"];
+
+
+
+    export namespace DataGridColHeader {
+
+        export class DataGridColHeader$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.observer.observe(source.getElement(), this.configs);
+            }
+
+            constructor(__parent: any, private observer: any, private configs: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGridColHeader$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class DataGridColHeaderRowSelector extends JSContainer implements com.spoonconsulting.lightning.DataGridIColHeader {
+        /*private*/ checkbox: com.spoonconsulting.lightning.CheckBox;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.checkbox = new com.spoonconsulting.lightning.CheckBox("checkbox");
+            this.setStyle("width", "32px");
+            const wrapper: JSContainer = this.addChild("wrapper", "div");
+            wrapper.setStyle("width", "32px");
+            const cbwrapper: JSContainer = wrapper.addChild("cb-wrapper", "div", "slds-th__action slds-th__action_form slds-cell-fixed");
+            cbwrapper.setStyle("width", "32px").setStyle("outline", "none");
+            cbwrapper.addChild(this.checkbox);
+            this.checkbox.addEventListener(new DataGridColHeaderRowSelector.DataGridColHeaderRowSelector$0(this), "change");
+        }
+
+        public isChecked(): boolean {
+            return this.checkbox.getValue();
+        }
+
+        public setChecked(b: boolean): DataGridColHeaderRowSelector {
+            this.checkbox.setValue(b);
+            return this;
+        }
+
+        public setWidth(width: string): DataGridColHeaderRowSelector {
+            this.setStyle("width", width);
+            this.getChild("wrapper").setStyle("width", width).getChild("cb-wrapper").setStyle("width", width);
+            return this;
+        }
+
+        public getWidth(): string {
+            return this.getStyle("width");
+        }
+    }
+    DataGridColHeaderRowSelector["__class"] = "com.spoonconsulting.lightning.DataGridColHeaderRowSelector";
+    DataGridColHeaderRowSelector["__interfaces"] = ["framework.components.api.Renderable","com.spoonconsulting.lightning.DataGridIColHeader"];
+
+
+
+    export namespace DataGridColHeaderRowSelector {
+
+        export class DataGridColHeaderRowSelector$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.fireListener("change", evt);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGridColHeaderRowSelector$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export interface DataGridIColHeader extends api.Renderable {
+        setWidth(width: string): DataGridIColHeader;
+
+        getWidth(): string;
+    }
+}
+namespace com.spoonconsulting.lightning {
+    export class DataGridRow extends JSContainer {
+        /*private*/ grid: com.spoonconsulting.lightning.DataGrid;
+
+        /*private*/ rowNumber: com.spoonconsulting.lightning.DataGridCell;
+
+        /*private*/ checkbox: com.spoonconsulting.lightning.DataGridCellRowSelector;
+
+        /*private*/ line: Object;
+
+        /*private*/ index: number;
+
+        /*private*/ selected: boolean;
+
+        public constructor(grid: com.spoonconsulting.lightning.DataGrid, line: Object, index: number) {
+            super(index + "", "tr");
+            if (this.grid === undefined) { this.grid = null; }
+            this.rowNumber = null;
+            this.checkbox = null;
+            this.line = null;
+            this.index = -1;
+            this.selected = false;
+            this.grid = grid;
+            this.line = line;
+            this.index = index;
+            this.addClass("slds-hint-parent");
+        }
+
+        public refresh() {
+            this.clearChildren();
+            this.setRendered(false);
+            if (this.grid.isShowRowNumberColumn()){
+                const td: JSContainer = new JSContainer("rowNumber", "td");
+                td.setAttribute("tabindex", "-1");
+                td.setAttribute("role", "gridcell");
+                this.rowNumber = new com.spoonconsulting.lightning.DataGridCell("rowNumber");
+                this.rowNumber.setLabel((this.index + 1) + "");
+                this.rowNumber.setAlignment(com.spoonconsulting.lightning.DataGridCell.ALIGNMENT_CENTER);
+                td.addChild(this.rowNumber);
+                this.addChild(td);
+            }
+            if (!this.grid.isHideCheckboxColumn()){
+                this.checkbox = new com.spoonconsulting.lightning.DataGridCellRowSelector("checkbox");
+                const td: JSContainer = new JSContainer("checkbox", "td");
+                td.setAttribute("role", "gridcell");
+                td.setAttribute("tabindex", "-1");
+                td.addChild(this.checkbox);
+                this.addChild(td);
+                this.checkbox.addEventListener(new DataGridRow.DataGridRow$0(this), "change");
+            }
+            const columns: Array<Object> = this.grid.getColumns();
+            for(let index560=0; index560 < columns.length; index560++) {
+                let col = columns[index560];
+                {
+                    const fieldName: string = <string>col["fieldName"];
+                    const label: string = <string>col["label"];
+                    const editable: boolean = <boolean>col["editable"];
+                    const td: JSContainer = new JSContainer(fieldName, "td");
+                    td.setAttribute("tabindex", "-1");
+                    td.setAttribute("data-label", label);
+                    if (columns.indexOf(col) === 0){
+                        td.setTag("th");
+                        td.setAttribute("scope", "row");
+                    }
+                    const val: any = this.line[fieldName];
+                    const type: string = <string>col["type"];
+                    const cell: com.spoonconsulting.lightning.DataGridCell = new com.spoonconsulting.lightning.DataGridCell(fieldName);
+                    cell.setAttribute("data-label", label);
+                    td.addChild(cell);
+                    this.addChild(td);
+                    if (val != null)cell.setLabel(val.toString());
+                    if (editable){
+                        cell.setEditable(editable);
+                        td.addClass("slds-cell-edit");
+                        cell.setAlignment(com.spoonconsulting.lightning.DataGridCell.ALIGNMENT_SPREAD);
+                    }
+                    if (this.grid.getCellRenderers().hasOwnProperty(type)){
+                        const renderes: Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void> = <Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void>>this.grid.getCellRenderers()[type];
+                        for(let index561=0; index561 < renderes.length; index561++) {
+                            let r = renderes[index561];
+                            {
+                                (target => (typeof target === 'function') ? target(cell, col, this.line, fieldName) : (<any>target).apply(cell, col, this.line, fieldName))(r);
+                            }
+                        }
+                    }
+                    if (col["cellRenderer"] != null){
+                        const renderer: (p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void = <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2, arg3) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2, arg3)})(<any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2, arg3) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2, arg3)})(col["cellRenderer"]))));
+                        if (renderer != null){
+                            (target => (typeof target === 'function') ? target(cell, col, this.line, fieldName) : (<any>target).apply(cell, col, this.line, fieldName))(renderer);
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * @return {com.spoonconsulting.lightning.DataGrid} the grid
+         */
+        public getGrid(): com.spoonconsulting.lightning.DataGrid {
+            return this.grid;
+        }
+
+        /**
+         * @param {com.spoonconsulting.lightning.DataGrid} grid the grid to set
+         */
+        public setGrid(grid: com.spoonconsulting.lightning.DataGrid) {
+            this.grid = grid;
+        }
+
+        /**
+         * @return {Object} the line
+         */
+        public getLine(): Object {
+            return this.line;
+        }
+
+        /**
+         * @param {Object} line the line to set
+         */
+        public setLine(line: Object) {
+            this.line = line;
+        }
+
+        /**
+         * @return {number} the index
+         */
+        public getIndex(): number {
+            return this.index;
+        }
+
+        /**
+         * @param {number} index the index to set
+         */
+        public setIndex(index: number) {
+            this.index = index;
+        }
+
+        /**
+         * @return {com.spoonconsulting.lightning.DataGridCell} the rowNumber
+         */
+        public getRowNumber(): com.spoonconsulting.lightning.DataGridCell {
+            return this.rowNumber;
+        }
+
+        /**
+         * @return {com.spoonconsulting.lightning.DataGridCellRowSelector} the checkbox
+         */
+        public getCheckbox(): com.spoonconsulting.lightning.DataGridCellRowSelector {
+            return this.checkbox;
+        }
+
+        public setSelected(b: boolean): DataGridRow {
+            this.selected = b;
+            if (this.checkbox != null){
+                this.checkbox.setChecked(b);
+            }
+            return this;
+        }
+
+        public isSelected(): boolean {
+            return this.selected;
+        }
+    }
+    DataGridRow["__class"] = "com.spoonconsulting.lightning.DataGridRow";
+    DataGridRow["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace DataGridRow {
+
+        export class DataGridRow$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.selected = this.__parent.checkbox.isChecked();
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGridRow$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
+
+}
+namespace com.spoonconsulting.lightning {
+    export class Draggable extends JSContainer {
+        /*private*/ element: HTMLElement;
+
+        /*private*/ bbox: ClientRect;
+
+        /*private*/ startX: number;
+
+        /*private*/ startY: number;
+
+        /*private*/ deltaX: number;
+
+        /*private*/ deltaY: number;
+
+        /*private*/ axis: string;
+
+        /*private*/ container: HTMLElement;
+
+        raf: number;
+
+        /*private*/ userMoved: EventListener;
+
+        /*private*/ userReleased: EventListener;
+
+        /*private*/ fn: (p1: string) => void;
+
+        /*private*/ userPressed: api.EventListener;
+
+        public constructor(name: string, tag: string) {
+            super(name, tag);
+            if (this.element === undefined) { this.element = null; }
+            if (this.bbox === undefined) { this.bbox = null; }
+            if (this.startX === undefined) { this.startX = 0; }
+            if (this.startY === undefined) { this.startY = 0; }
+            if (this.deltaX === undefined) { this.deltaX = 0; }
+            if (this.deltaY === undefined) { this.deltaY = 0; }
+            if (this.axis === undefined) { this.axis = null; }
+            if (this.container === undefined) { this.container = null; }
+            this.raf = -1;
+            this.userMoved = (e) => {
+                const event: MouseEvent = <MouseEvent>e;
+                this.deltaX = event.clientX - this.startX;
+                this.deltaY = event.clientY - this.startY;
+                this.raf = requestAnimationFrame((time: number) => {
+                    if (this.axis === "x"){
+                        this.element.style.transform = "translateX(" + this.deltaX + "px)";
+                    } else if (this.axis === "y"){
+                        this.element.style.transform = "translateY(" + this.deltaY + "px)";
+                    } else {
+                        this.element.style.transform = "translate3d(" + this.deltaX + "px," + this.deltaY + "px, 0px)";
+                    }
+                    this.raf = -1;
+                });
+            };
+            this.userReleased = (event) => {
+                this.container.removeEventListener("pointermove", <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0)})(this.userMoved)));
+                eval("this.fn(\'d\')");
+                if (this.raf > -1){
+                    cancelAnimationFrame(this.raf);
+                    this.raf = -1;
+                }
+                if (this.axis === "x"){
+                    this.element.style.left = this.bbox.left + this.deltaX + "px";
+                    this.element.style.transform = "translateX(0px)";
+                } else if (this.axis === "y"){
+                    this.element.style.top = this.bbox.top + this.deltaY + "px";
+                    this.element.style.transform = "translateY(0px)";
+                } else {
+                    this.element.style.left = this.bbox.left + this.deltaX + "px";
+                    this.element.style.top = this.bbox.top + this.deltaY + "px";
+                    this.element.style.transform = "translate3d(0px,0px,0px)";
+                }
+                this.deltaX = this.deltaY = -1;
+            };
+            this.fn = (s) => {
+                this.container.removeEventListener("pointerup", <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0)})(this.userReleased)));
+                this.container.removeEventListener("pointercancel", <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0)})(this.userReleased)));
+                return null;
+            };
+            this.userPressed = { performAction: (source, e) => {
+                const event: MouseEvent = <MouseEvent>e;
+                this.element = <HTMLElement>event.target;
+                if (this.container == null)this.container = source.getElement();
+                if (this.element.classList.contains("draggable")){
+                    this.startX = event.clientX;
+                    this.startY = event.clientY;
+                    this.bbox = this.element.getBoundingClientRect();
+                    const o: Object = <Object>new Object();
+                    o["passive"] = true;
+                    eval("this.container.addEventListener(\'pointermove\', this.userMoved, o);");
+                    eval("this.container.addEventListener(\'pointerup\', this.userReleased, o);");
+                    eval("this.container.addEventListener(\'pointercancel\', this.userReleased, o);");
+                }
+            } };
+            this.addClass("draggable");
+            this.addEventListener(this.userPressed, "pointerdown");
+        }
+
+        /**
+         * @return {string} the axis
+         */
+        public getAxis(): string {
+            return this.axis;
+        }
+
+        /**
+         * @param {string} axis the axis to set
+         */
+        public setAxis(axis: string) {
+            this.axis = axis;
+        }
+    }
+    Draggable["__class"] = "com.spoonconsulting.lightning.Draggable";
+    Draggable["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class Dropdown extends JSContainer {
         /*private*/ menu: com.spoonconsulting.lightning.Menu;
 
@@ -1849,6 +3428,360 @@ namespace com.spoonconsulting.lightning {
     }
 
 }
+namespace com.spoonconsulting.lightning {
+    export class DualingList extends JSContainer implements api.EventListener, api.InputField<Array<string>> {
+        /*private*/ labelAvailable: JSContainer;
+
+        /*private*/ labelSelected: JSContainer;
+
+        /*private*/ available: com.spoonconsulting.lightning.ListBox;
+
+        /*private*/ selected: com.spoonconsulting.lightning.ListBox;
+
+        /*private*/ right: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ left: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ up: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ down: com.spoonconsulting.lightning.ButtonIcon;
+
+        /*private*/ options: Array<Object>;
+
+        /*private*/ requiredOptions: Array<string>;
+
+        /*private*/ required: boolean;
+
+        public constructor(name: string) {
+            super(name, "div");
+            this.labelAvailable = new JSContainer("label-available", "span");
+            this.labelSelected = new JSContainer("label-selected", "span");
+            this.available = new com.spoonconsulting.lightning.ListBox("available");
+            this.selected = new com.spoonconsulting.lightning.ListBox("selected");
+            this.right = new com.spoonconsulting.lightning.ButtonIcon("right", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_RIGHT].getValue());
+            this.left = new com.spoonconsulting.lightning.ButtonIcon("left", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_LEFT].getValue());
+            this.up = new com.spoonconsulting.lightning.ButtonIcon("up", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_UP].getValue());
+            this.down = new com.spoonconsulting.lightning.ButtonIcon("down", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_DOWN].getValue());
+            this.options = <any>(new Array<Object>());
+            this.requiredOptions = <any>(new Array<string>());
+            this.required = false;
+            this.addClass("slds-dueling-list");
+            this.addChild("slds-assistive-text", "div", "slds-assistive-text").setAttribute("aria-live", "assertive");
+            this.addChild("keyboard-interacton-2", "div", "slds-assistive-text").setHtml("Press Ctrl (Cmd on Mac) + Left Arrow or Ctrl (Cmd on Mac) + Right Arrow to move items between lists.");
+            this.addChild("col1", "div", "slds-dueling-list__column slds-dueling-list__column_responsive").addChild(this.labelAvailable.addClass("slds-form-element__label")).addChild(new JSContainer("list-options", "div").addClass("slds-dueling-list__options").addChild(this.available));
+            this.addChild("col1.1", "div", "slds-dueling-list__column").addChild(this.right).addChild(this.left);
+            this.addChild("col2", "div", "slds-dueling-list__column slds-dueling-list__column_responsive").addChild(this.labelSelected.addClass("slds-form-element__label")).addChild(new JSContainer("list-options", "div").addClass("slds-dueling-list__options").addChild(this.selected));
+            this.addChild("col2.1", "div", "slds-dueling-list__column").addChild(this.up).addChild(this.down);
+            this.available.setCheckable(false);
+            this.selected.setCheckable(false);
+            this.available.setAttribute("data-source-list", "true").setAttribute("aria-multiselectable", "true").setAttribute("aria-disabled", "false").setAttribute("data-dropdown-element", null);
+            this.selected.setAttribute("data-source-list", "true").setAttribute("aria-multiselectable", "true").setAttribute("aria-disabled", "false").setAttribute("data-dropdown-element", null);
+            this.right.addEventListener(this, "click").addClass("slds-button_icon-container");
+            this.left.addEventListener(this, "click").addClass("slds-button_icon-container");
+            this.up.addEventListener(this, "click").addClass("slds-button_icon-container");
+            this.down.addEventListener(this, "click").addClass("slds-button_icon-container");
+            this.setSourceLabel("Available");
+            this.setSelectedLabel("Selected");
+            this.setAddButtonLabel("Move selection to Selected");
+            this.setRemoveButtonLabel("Move selection to Available");
+            this.setUpButtonLabel("Move selection up");
+            this.setDownButtonLabel("Move selection down");
+            this.available.removeClass("slds-dropdown").removeClass("slds-dropdown_fluid").removeClass("slds-dropdown_left");
+            this.selected.removeClass("slds-dropdown").removeClass("slds-dropdown_fluid").removeClass("slds-dropdown_left");
+        }
+
+        public setOptions(options: Array<Object>): DualingList {
+            this.available.setOptions(options);
+            this.options = options;
+            return this;
+        }
+
+        public getOptions(): Array<Object> {
+            return this.options;
+        }
+
+        public moveUp() {
+            this.selected.moveUp();
+        }
+
+        public moveDown() {
+            this.selected.moveDown();
+        }
+
+        public addSelected() {
+            const max: number = this.getMax();
+            if (max == null || this.selected.getUIOptions().length < max){
+                const sel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.available.getSelectedOption();
+                if (sel != null){
+                    sel.setChecked(false);
+                    sel.setRendered(false);
+                    this.available.removeChild(sel);
+                    this.selected.addChild(sel);
+                    this.available.setRendered(false);
+                }
+            }
+        }
+
+        public removeSelected() {
+            const min: number = this.getMin();
+            if (min == null || this.selected.getUIOptions().length > min){
+                const sel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.selected.getSelectedOption();
+                if (sel != null){
+                    sel.setChecked(false);
+                    sel.setRendered(false);
+                    this.selected.removeChild(sel);
+                    this.available.addChild(sel);
+                    this.selected.setRendered(false);
+                }
+            }
+        }
+
+        /**
+         * 
+         * @param {*} source
+         * @param {Event} evt
+         */
+        public performAction(source: api.Renderable, evt: Event) {
+            if (source.getName() === "up"){
+                this.moveUp();
+            } else if (source.getName() === "down"){
+                this.moveDown();
+            } else if (source.getName() === "right"){
+                this.addSelected();
+            } else if (source.getName() === "left"){
+                this.removeSelected();
+            }
+        }
+
+        /**
+         * 
+         * @return {string[]}
+         */
+        public getValue(): Array<string> {
+            const result: Array<string> = <any>(new Array<string>());
+            {
+                let array563 = this.selected.getOptions();
+                for(let index562=0; index562 < array563.length; index562++) {
+                    let o = array563[index562];
+                    {
+                        const val: string = <string>o["value"];
+                        result.push(val);
+                    }
+                }
+            }
+            return result;
+        }
+
+        /**
+         * 
+         * @param {string[]} val
+         */
+        public setValue(val: Array<string>) {
+            const result: Array<Object> = <any>(new Array<Object>());
+            const tmp: Array<Object> = <any>(new Array<Object>());
+            for(let index564=0; index564 < this.options.length; index564++) {
+                let o = this.options[index564];
+                {
+                    const sval: string = <string>o["value"];
+                    if (val.indexOf(sval) >= 0){
+                        result.push(o);
+                    } else {
+                        tmp.push(o);
+                    }
+                }
+            }
+            this.selected.setOptions(result);
+            this.available.setOptions(tmp);
+            this.options = tmp;
+        }
+
+        /**
+         * 
+         */
+        public validate() {
+            const value: Array<string> = this.getValue();
+            if (this.isRequired()){
+                if (value.length === 0){
+                    throw new api.ValidationException(api.ValidationException.valueMissing);
+                }
+            }
+            const max: number = this.getMax();
+            const min: number = this.getMin();
+            if (value.length > max){
+                throw new api.ValidationException(api.ValidationException.rangeOverflow);
+            }
+            if (value.length < min){
+                throw new api.ValidationException(api.ValidationException.rangeOverflow);
+            }
+            const requiredOpts: Array<string> = this.getRequiredOptions();
+            for(let index565=0; index565 < requiredOpts.length; index565++) {
+                let s = requiredOpts[index565];
+                {
+                    if (value.indexOf(s) < 0){
+                        throw new api.ValidationException(api.ValidationException.valueMissing);
+                    }
+                }
+            }
+        }
+
+        /**
+         * 
+         * @return {string}
+         */
+        public getBinding(): string {
+            return this.getName();
+        }
+
+        /**
+         * 
+         * @param {string} binding
+         * @return {*}
+         */
+        public setBinding(binding: string): api.InputField<Array<string>> {
+            this.setName(binding);
+            return this;
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {*}
+         */
+        public setRequired(b: boolean): api.InputField<Array<string>> {
+            this.required = b;
+            return this;
+        }
+
+        public setAddButtonLabel(label: string): DualingList {
+            this.right.setTitle(label);
+            return this;
+        }
+
+        public getAddButtonLabel(): string {
+            return this.right.getTitle();
+        }
+
+        public setDisableReordering(b: boolean): DualingList {
+            this.getChild("col2.1").setStyle("display", b ? "none" : null);
+            return this;
+        }
+
+        public isDisableReordering(): boolean {
+            return this.getChild("col2.1").getStyle("display") === "none";
+        }
+
+        public setDisabled(b: boolean): DualingList {
+            this.left.setDisabled(b);
+            this.right.setDisabled(b);
+            this.up.setDisabled(b);
+            this.down.setDisabled(b);
+            this.selected.setAttribute("aria-disabled", b ? "true" : "false");
+            this.available.setAttribute("aria-disabled", b ? "true" : "false");
+            if (b){
+                this.getChild("col1").getChild("list-options").addClass("slds-is-disabled");
+                this.getChild("col2").getChild("list-options").addClass("slds-is-disabled");
+            } else {
+                this.getChild("col1").getChild("list-options").removeClass("slds-is-disabled");
+                this.getChild("col2").getChild("list-options").removeClass("slds-is-disabled");
+            }
+            return this;
+        }
+
+        public isDisabled(): boolean {
+            return this.left.isDisabled();
+        }
+
+        public setDownButtonLabel(label: string): DualingList {
+            this.down.setTitle(label);
+            return this;
+        }
+
+        public getDownButtonLabel(): string {
+            return this.down.getTitle();
+        }
+
+        public setMax(max: number): DualingList {
+            this.setAttribute("max", max + "");
+            return this;
+        }
+
+        public getMax(): number {
+            const smax: string = this.getAttribute("max");
+            if (smax != null){
+                return /* parseInt */parseInt(smax);
+            } else {
+                return null;
+            }
+        }
+
+        public setMin(min: number): DualingList {
+            this.setAttribute("min", min + "");
+            return this;
+        }
+
+        public getMin(): number {
+            const smin: string = this.getAttribute("min");
+            if (smin != null){
+                return /* parseInt */parseInt(smin);
+            } else {
+                return null;
+            }
+        }
+
+        public setRemoveButtonLabel(label: string): DualingList {
+            this.left.setTitle(label);
+            return this;
+        }
+
+        public getRemoveButtonLabel(): string {
+            return this.left.getTitle();
+        }
+
+        public getRequiredOptions(): Array<string> {
+            return this.requiredOptions;
+        }
+
+        public setRequiredOptions(requiredOptions: Array<string>): DualingList {
+            this.requiredOptions = requiredOptions;
+            return this;
+        }
+
+        public isRequired(): boolean {
+            return this.required;
+        }
+
+        public setSourceLabel(label: string): DualingList {
+            this.labelAvailable.setHtml(label);
+            return this;
+        }
+
+        public getSourceLabel(): string {
+            return this.labelAvailable.getHtml();
+        }
+
+        public setUpButtonLabel(label: string): DualingList {
+            this.up.setTitle(label);
+            return this;
+        }
+
+        public getUpButtonLabel(): string {
+            return this.up.getTitle();
+        }
+
+        public setSelectedLabel(label: string): DualingList {
+            this.labelSelected.setHtml(label);
+            return this;
+        }
+
+        public getSelectedLabel(): string {
+            return this.labelSelected.getHtml();
+        }
+    }
+    DualingList["__class"] = "com.spoonconsulting.lightning.DualingList";
+    DualingList["__interfaces"] = ["framework.components.api.EventListener","framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
 namespace com.spoonconsulting.lightning.enums {
     export enum Color {
         DEFAULT, SUCCESS, WEAK, ERROR, DESTRUCTIVE, INVERSE, INVERSE_WEAK
@@ -1875,6 +3808,11 @@ namespace com.spoonconsulting.lightning.enums {
 
     Color["_$wrappers"] = {0: new Color_$WRAPPER(0, "DEFAULT", "default"), 1: new Color_$WRAPPER(1, "SUCCESS", "success"), 2: new Color_$WRAPPER(2, "WEAK", "weak"), 3: new Color_$WRAPPER(3, "ERROR", "error"), 4: new Color_$WRAPPER(4, "DESTRUCTIVE", "destructive"), 5: new Color_$WRAPPER(5, "INVERSE", "inverse"), 6: new Color_$WRAPPER(6, "INVERSE_WEAK", "inverse-weak")};
 
+}
+namespace com.spoonconsulting.lightning.enums {
+    export enum DataGridCellType {
+        ACTION, BOOLEAN, BUTTON, BUTTON_ICON, CURRENCY, DATE, DATE_LOCAL, EMAIL, LOCATION, NUMBER, PERCENT, PHONE, TEXT, URL
+    }
 }
 namespace com.spoonconsulting.lightning.enums {
     export enum Direction {
@@ -2074,6 +4012,33 @@ namespace com.spoonconsulting.lightning.enums {
 
 }
 namespace com.spoonconsulting.lightning.enums {
+    export enum ModalSize {
+        SMALL, MEDIUM, LARGE
+    }
+
+    /** @ignore */
+    export class ModalSize_$WRAPPER {
+        /*private*/ value;
+
+        constructor(protected _$ordinal: number, protected _$name: string, value) {
+            if (this.value === undefined) { this.value = null; }
+            this.value = value;
+        }
+
+        public getValue(): string {
+            return this.value;
+        }
+        public name(): string { return this._$name; }
+        public ordinal(): number { return this._$ordinal; }
+        public compareTo(other: any): number { return this._$ordinal - (isNaN(other)?other._$ordinal:other); }
+    }
+    ModalSize["__class"] = "com.spoonconsulting.lightning.enums.ModalSize";
+    ModalSize["__interfaces"] = ["java.lang.constant.Constable","java.lang.Comparable","java.io.Serializable"];
+
+    ModalSize["_$wrappers"] = {0: new ModalSize_$WRAPPER(0, "SMALL", "small"), 1: new ModalSize_$WRAPPER(1, "MEDIUM", "medium"), 2: new ModalSize_$WRAPPER(2, "LARGE", "large")};
+
+}
+namespace com.spoonconsulting.lightning.enums {
     export enum Position {
         STATIC, FIXED, ABSOLUTE, RELATIVE
     }
@@ -2214,7 +4179,7 @@ namespace com.spoonconsulting.lightning.enums {
 
 
         export enum FormElementVariant {
-            STANDARD, LABEL_HIDDEN, LABEL_INLINE, LABEL_STACKED
+            STANDARD, LABEL_HIDDEN, LABEL_INLINE, LABEL_HORIZONTAL, LABEL_STACKED
         }
 
         /** @ignore */
@@ -2236,7 +4201,7 @@ namespace com.spoonconsulting.lightning.enums {
         FormElementVariant["__class"] = "com.spoonconsulting.lightning.enums.Variants.FormElementVariant";
         FormElementVariant["__interfaces"] = ["java.lang.constant.Constable","java.lang.Comparable","java.io.Serializable"];
 
-        FormElementVariant["_$wrappers"] = {0: new FormElementVariant_$WRAPPER(0, "STANDARD", "standard"), 1: new FormElementVariant_$WRAPPER(1, "LABEL_HIDDEN", "label-hidden"), 2: new FormElementVariant_$WRAPPER(2, "LABEL_INLINE", "label-inline"), 3: new FormElementVariant_$WRAPPER(3, "LABEL_STACKED", "label-stacked")};
+        FormElementVariant["_$wrappers"] = {0: new FormElementVariant_$WRAPPER(0, "STANDARD", "standard"), 1: new FormElementVariant_$WRAPPER(1, "LABEL_HIDDEN", "label-hidden"), 2: new FormElementVariant_$WRAPPER(2, "LABEL_INLINE", "label-inline"), 3: new FormElementVariant_$WRAPPER(3, "LABEL_HORIZONTAL", "label-inline"), 4: new FormElementVariant_$WRAPPER(4, "LABEL_STACKED", "label-stacked")};
 
 
         export enum TabSetVariant {
@@ -2346,6 +4311,14 @@ namespace com.spoonconsulting.lightning {
                 const item: FormRow.FormItem = new FormRow.FormItem(this, "item_" + this.getChildren().length);
                 this.addChild(item);
                 return item;
+            }
+
+            public addCol(): FormRow.FormItem {
+                return this.addItem();
+            }
+
+            public col(index: number): FormRow.FormItem {
+                return this.item(index);
             }
 
             public item(index: number): FormRow.FormItem {
@@ -2463,6 +4436,26 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ variant: com.spoonconsulting.lightning.enums.Variants.FormElementVariant;
 
+        /*private*/ messageWhenValueMissing: string;
+
+        /*private*/ messageWhenRangeOverflow: string;
+
+        /*private*/ messageWhenRangeUnderflow: string;
+
+        /*private*/ messageWhenBadInput: string;
+
+        /*private*/ messageWhenPatternMismatch: string;
+
+        /*private*/ messageWhenStepMismatch: string;
+
+        /*private*/ messageWhenTooLong: string;
+
+        /*private*/ messageWhenTooShort: string;
+
+        /*private*/ messageWhenTypeMismatch: string;
+
+        /*private*/ messageWhenCustomError: string;
+
         public constructor(name?: any, input?: any) {
             if (((typeof name === 'string') || name === null) && ((input != null && (input.constructor != null && input.constructor["__interfaces"] != null && input.constructor["__interfaces"].indexOf("framework.components.api.InputField") >= 0)) || input === null)) {
                 let __args = arguments;
@@ -2477,13 +4470,23 @@ namespace com.spoonconsulting.lightning {
                 this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
                 this.help = new JSContainer("help", "div");
                 this.variant = com.spoonconsulting.lightning.enums.Variants.FormElementVariant.STANDARD;
+                this.messageWhenValueMissing = null;
+                this.messageWhenRangeOverflow = null;
+                this.messageWhenRangeUnderflow = null;
+                this.messageWhenBadInput = null;
+                this.messageWhenPatternMismatch = null;
+                this.messageWhenStepMismatch = null;
+                this.messageWhenTooLong = null;
+                this.messageWhenTooShort = null;
+                this.messageWhenTypeMismatch = null;
+                this.messageWhenCustomError = null;
                 this.addClass("slds-form-element");
                 this.addChild(this.labelCtn);
                 this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
                 this.formElementIcon.addChild(this.fieldLevelHelp);
                 this.addChild(this.formElementIcon);
                 this.labelCtn.addClass("slds-form-element__label");
-                this.required.addClass("slds-required").setAttribute("title", "required");
+                this.required.addClass("slds-required").setAttribute("title", "required").setHtml("*");
                 this.labelCtn.addChild(this.required);
                 this.labelCtn.addChild(this.label);
                 this.addChild(this.controlCtn);
@@ -2506,13 +4509,23 @@ namespace com.spoonconsulting.lightning {
                 this.fieldLevelHelp = new com.spoonconsulting.lightning.Help("fieldLevelHelp");
                 this.help = new JSContainer("help", "div");
                 this.variant = com.spoonconsulting.lightning.enums.Variants.FormElementVariant.STANDARD;
+                this.messageWhenValueMissing = null;
+                this.messageWhenRangeOverflow = null;
+                this.messageWhenRangeUnderflow = null;
+                this.messageWhenBadInput = null;
+                this.messageWhenPatternMismatch = null;
+                this.messageWhenStepMismatch = null;
+                this.messageWhenTooLong = null;
+                this.messageWhenTooShort = null;
+                this.messageWhenTypeMismatch = null;
+                this.messageWhenCustomError = null;
                 this.addClass("slds-form-element");
                 this.addChild(this.labelCtn);
                 this.formElementIcon.addClass("slds-form-element__icon").setStyle("display", "none");
                 this.formElementIcon.addChild(this.fieldLevelHelp);
                 this.addChild(this.formElementIcon);
                 this.labelCtn.addClass("slds-form-element__label");
-                this.required.addClass("slds-required").setAttribute("title", "required");
+                this.required.addClass("slds-required").setAttribute("title", "required").setHtml("*");
                 this.labelCtn.addChild(this.required);
                 this.labelCtn.addChild(this.label);
                 this.addChild(this.controlCtn);
@@ -2526,7 +4539,14 @@ namespace com.spoonconsulting.lightning {
 
         public setRequired(b: boolean): FormElement<T> {
             this.required.setStyle("display", b ? null : "none");
+            if (this.input != null){
+                this.input.setRequired(b);
+            }
             return this;
+        }
+
+        public isRequired(): boolean {
+            return this.required.getStyle("display") !== "none";
         }
 
         public setLabel(label: string): FormElement<T> {
@@ -2554,6 +4574,8 @@ namespace com.spoonconsulting.lightning {
                 this.setValue(this.value);
             }
             this.input.addEventListener(new FormElement.FormElement$0(this), "change");
+            this.input.addEventListener(new FormElement.FormElement$1(this), "blur");
+            input.setRequired(this.isRequired());
             return this;
         }
 
@@ -2623,16 +4645,19 @@ namespace com.spoonconsulting.lightning {
         public setError(error: string): FormElement<T> {
             this.addClass("slds-has-error");
             this.help.setStyle("display", null).setHtml(error);
+            this.help.addClass("slds-has-error");
             return this;
         }
 
         public clearError(): FormElement<T> {
             this.removeClass("slds-has-error");
+            this.help.removeClass("slds-has-error").setStyle("display", "none");
             return this;
         }
 
         public setHelp(help: string): FormElement<T> {
             this.help.setStyle("display", null);
+            this.help.removeClass("slds-has-error");
             this.help.setHtml(help);
             return this;
         }
@@ -2647,7 +4672,7 @@ namespace com.spoonconsulting.lightning {
             this.removeClass("slds-form-element_horizontal");
             this.removeClass("slds-form-element_stacked");
             this.labelCtn.removeClass("slds-assistive-text");
-            if (variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_INLINE){
+            if (variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_INLINE || variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_HORIZONTAL){
                 this.addClass("slds-form-element_horizontal");
             } else if (variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED){
                 this.addClass("slds-form-element_stacked");
@@ -2673,6 +4698,8 @@ namespace com.spoonconsulting.lightning {
                     this.setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_INLINE);
                 } else if (variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant["_$wrappers"][com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED].getValue()){
                     this.setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_STACKED);
+                } else if (variant === com.spoonconsulting.lightning.enums.Variants.FormElementVariant["_$wrappers"][com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_HORIZONTAL].getValue()){
+                    this.setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.LABEL_HORIZONTAL);
                 } else {
                     this.setVariant$com_spoonconsulting_lightning_enums_Variants_FormElementVariant(com.spoonconsulting.lightning.enums.Variants.FormElementVariant.STANDARD);
                 }
@@ -2685,6 +4712,170 @@ namespace com.spoonconsulting.lightning {
         public getVariant(): string {
             if (this.variant != null)return com.spoonconsulting.lightning.enums.Variants.FormElementVariant["_$wrappers"][this.variant].getValue();
             return com.spoonconsulting.lightning.enums.Variants.FormElementVariant["_$wrappers"][com.spoonconsulting.lightning.enums.Variants.FormElementVariant.STANDARD].getValue();
+        }
+
+        handleValidationException(e: api.ValidationException) {
+            const msg: string = e.message;
+            const code: number = e.getCode();
+            if (code === api.ValidationException.badInput){
+                if (this.messageWhenBadInput != null){
+                    this.setError(this.messageWhenBadInput);
+                    return;
+                }
+            } else if (code === api.ValidationException.patternMismatch){
+                if (this.messageWhenPatternMismatch != null){
+                    this.setError(this.messageWhenPatternMismatch);
+                    return;
+                }
+            } else if (code === api.ValidationException.rangeOverflow){
+                if (this.messageWhenRangeOverflow != null){
+                    this.setError(this.messageWhenRangeOverflow);
+                    return;
+                }
+            } else if (code === api.ValidationException.rangeUnderflow){
+                if (this.messageWhenRangeUnderflow != null){
+                    this.setError(this.messageWhenRangeUnderflow);
+                    return;
+                }
+            } else if (code === api.ValidationException.stepMismatch){
+                if (this.messageWhenStepMismatch != null){
+                    this.setError(this.messageWhenStepMismatch);
+                    return;
+                }
+            } else if (code === api.ValidationException.tooLong){
+                if (this.messageWhenTooLong != null){
+                    this.setError(this.messageWhenTooLong);
+                    return;
+                }
+            } else if (code === api.ValidationException.typeMismatch){
+                if (this.messageWhenTypeMismatch != null){
+                    this.setError(this.messageWhenTypeMismatch);
+                    return;
+                }
+            } else if (code === api.ValidationException.valueMissing){
+                if (this.messageWhenValueMissing != null){
+                    this.setError(this.messageWhenValueMissing);
+                    return;
+                }
+            } else if (code === api.ValidationException.tooShort){
+                if (this.messageWhenTooShort != null){
+                    this.setError(this.messageWhenTooShort);
+                    return;
+                }
+            }
+            this.setError(msg);
+        }
+
+        public reportValidity(): FormElement<T> {
+            try {
+                this.validate();
+                this.clearError();
+            } catch(e) {
+                this.handleValidationException(e);
+            }
+            return this;
+        }
+
+        public showHelpMessageIfInvalid(): FormElement<T> {
+            if (this.isRequired()){
+                const val: T = this.getValue();
+                if (com.spoonconsulting.lightning.Utils.isEmpty(val)){
+                    this.setError(this.messageWhenValueMissing);
+                } else {
+                    this.clearError();
+                }
+            }
+            return this;
+        }
+
+        public getMessageWhenValueMissing(): string {
+            return this.messageWhenValueMissing;
+        }
+
+        public setMessageWhenValueMissing(messageWhenValueMissing: string): FormElement<T> {
+            this.messageWhenValueMissing = messageWhenValueMissing;
+            return this;
+        }
+
+        public getMessageWhenRangeOverflow(): string {
+            return this.messageWhenRangeOverflow;
+        }
+
+        public setMessageWhenRangeOverflow(messageWhenRangeOverflow: string): FormElement<T> {
+            this.messageWhenRangeOverflow = messageWhenRangeOverflow;
+            return this;
+        }
+
+        public getMessageWhenRangeUnderflow(): string {
+            return this.messageWhenRangeUnderflow;
+        }
+
+        public setMessageWhenRangeUnderflow(messageWhenRangeUnderflow: string): FormElement<T> {
+            this.messageWhenRangeUnderflow = messageWhenRangeUnderflow;
+            return this;
+        }
+
+        public getMessageWhenBadInput(): string {
+            return this.messageWhenBadInput;
+        }
+
+        public setMessageWhenBadInput(messageWhenBadInput: string): FormElement<T> {
+            this.messageWhenBadInput = messageWhenBadInput;
+            return this;
+        }
+
+        public getMessageWhenPatternMismatch(): string {
+            return this.messageWhenPatternMismatch;
+        }
+
+        public setMessageWhenPatternMismatch(messageWhenPatternMismatch: string): FormElement<T> {
+            this.messageWhenPatternMismatch = messageWhenPatternMismatch;
+            return this;
+        }
+
+        public getMessageWhenStepMismatch(): string {
+            return this.messageWhenStepMismatch;
+        }
+
+        public setMessageWhenStepMismatch(messageWhenStepMismatch: string): FormElement<T> {
+            this.messageWhenStepMismatch = messageWhenStepMismatch;
+            return this;
+        }
+
+        public getMessageWhenTooLong(): string {
+            return this.messageWhenTooLong;
+        }
+
+        public setMessageWhenTooLong(messageWhenTooLong: string): FormElement<T> {
+            this.messageWhenTooLong = messageWhenTooLong;
+            return this;
+        }
+
+        public getMessageWhenTooShort(): string {
+            return this.messageWhenTooShort;
+        }
+
+        public setMessageWhenTooShort(messageWhenTooShort: string): FormElement<T> {
+            this.messageWhenTooShort = messageWhenTooShort;
+            return this;
+        }
+
+        public getMessageWhenTypeMismatch(): string {
+            return this.messageWhenTypeMismatch;
+        }
+
+        public setMessageWhenTypeMismatch(messageWhenTypeMismatch: string): FormElement<T> {
+            this.messageWhenTypeMismatch = messageWhenTypeMismatch;
+            return this;
+        }
+
+        public getMessageWhenCustomError(): string {
+            return this.messageWhenCustomError;
+        }
+
+        public setMessageWhenCustomError(messageWhenCustomError: string): FormElement<T> {
+            this.messageWhenCustomError = messageWhenCustomError;
+            return this;
         }
     }
     FormElement["__class"] = "com.spoonconsulting.lightning.FormElement";
@@ -2710,6 +4901,25 @@ namespace com.spoonconsulting.lightning {
             }
         }
         FormElement$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class FormElement$1 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.reportValidity();
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        FormElement$1["__interfaces"] = ["framework.components.api.EventListener"];
 
 
     }
@@ -2788,9 +4998,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Icon {
             {
-                let array142 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index141=0; index141 < array142.length; index141++) {
-                    let s = array142[index141];
+                let array567 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index566=0; index566 < array567.length; index566++) {
+                    let s = array567[index566];
                     {
                         this.removeClass("slds-icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -4361,9 +6571,9 @@ namespace com.spoonconsulting.lightning {
         public setAlignmentBump$java_lang_String(alignmentBumb: string): LayoutItem {
             this.alignmentBumb = alignmentBumb;
             {
-                let array144 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index143=0; index143 < array144.length; index143++) {
-                    let a = array144[index143];
+                let array569 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index568=0; index568 < array569.length; index568++) {
+                    let a = array569[index568];
                     {
                         this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][a].getValue());
                     }
@@ -4392,9 +6602,9 @@ namespace com.spoonconsulting.lightning {
         public setFlexibility$java_lang_String(flexibility: string): LayoutItem {
             this.flexibility = flexibility;
             {
-                let array146 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.enums.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index145=0; index145 < array146.length; index145++) {
-                    let f = array146[index145];
+                let array571 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.enums.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index570=0; index570 < array571.length; index570++) {
+                    let f = array571[index570];
                     {
                         this.removeClass("slds-" + com.spoonconsulting.lightning.enums.Flexibility["_$wrappers"][f].getValue());
                     }
@@ -4402,8 +6612,8 @@ namespace com.spoonconsulting.lightning {
             }
             if (flexibility != null){
                 const fxs: string[] = flexibility.split(",");
-                for(let index147=0; index147 < fxs.length; index147++) {
-                    let fx = fxs[index147];
+                for(let index572=0; index572 < fxs.length; index572++) {
+                    let fx = fxs[index572];
                     {
                         this.addClass("slds-" + fx);
                     }
@@ -4457,9 +6667,9 @@ namespace com.spoonconsulting.lightning {
         public setPadding$java_lang_String(padding: string): LayoutItem {
             this.padding = padding;
             {
-                let array149 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.LayoutItemPadding[] = []; for(let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index148=0; index148 < array149.length; index148++) {
-                    let p = array149[index148];
+                let array574 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.LayoutItemPadding[] = []; for(let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index573=0; index573 < array574.length; index573++) {
+                    let p = array574[index573];
                     {
                         this.removeClass("slds-p-" + com.spoonconsulting.lightning.enums.LayoutItemPadding["_$wrappers"][p].getValue());
                     }
@@ -4504,13 +6714,35 @@ namespace com.spoonconsulting.lightning {
 }
 namespace com.spoonconsulting.lightning {
     export class ListBox extends JSContainer {
+        /*private*/ checkable: boolean;
+
         public constructor(name: string) {
             super(name, "div");
+            this.checkable = false;
             this.setAttribute("data-dropdown-element", "true").setAttribute("role", "listbox").addClass("slds-listbox").addClass("slds-listbox_vertical").addClass("slds-dropdown").addClass("slds-dropdown_fluid").addClass("slds-dropdown_left");
         }
 
+        public isCheckable(): boolean {
+            return this.checkable;
+        }
+
+        public setCheckable(checkable: boolean) {
+            this.checkable = checkable;
+            {
+                let array576 = this.getUIOptions();
+                for(let index575=0; index575 < array576.length; index575++) {
+                    let opt = array576[index575];
+                    {
+                        opt.setCheckable(checkable);
+                    }
+                }
+            }
+        }
+
         public addOption$java_lang_String$java_lang_String(value: string, label: string): ListBox {
-            this.addChild(new ListBox.ListBoxOption(this, value, label));
+            const opt: ListBox.ListBoxOption = new ListBox.ListBoxOption(this, value, label);
+            opt.setCheckable(this.checkable);
+            this.addChild(opt);
             return this;
         }
 
@@ -4530,8 +6762,8 @@ namespace com.spoonconsulting.lightning {
 
         public setOptions(options: Array<Object>): ListBox {
             this.clearChildren();
-            for(let index150=0; index150 < options.length; index150++) {
-                let option = options[index150];
+            for(let index577=0; index577 < options.length; index577++) {
+                let option = options[index577];
                 {
                     this.addOption$jsweet_lang_Object(option);
                 }
@@ -4541,9 +6773,9 @@ namespace com.spoonconsulting.lightning {
 
         public setValue(value: string): ListBox {
             {
-                let array152 = this.getChildren();
-                for(let index151=0; index151 < array152.length; index151++) {
-                    let r = array152[index151];
+                let array579 = this.getChildren();
+                for(let index578=0; index578 < array579.length; index578++) {
+                    let r = array579[index578];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.getValue() === value){
@@ -4557,11 +6789,25 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public moveUp() {
+            const opt: ListBox.ListBoxOption = this.getSelectedOption();
+            if (opt != null){
+                opt.moveUp();
+            }
+        }
+
+        public moveDown() {
+            const opt: ListBox.ListBoxOption = this.getSelectedOption();
+            if (opt != null){
+                opt.moveDown();
+            }
+        }
+
         public getSelectedOption(): ListBox.ListBoxOption {
             {
-                let array154 = this.getChildren();
-                for(let index153=0; index153 < array154.length; index153++) {
-                    let r = array154[index153];
+                let array581 = this.getChildren();
+                for(let index580=0; index580 < array581.length; index580++) {
+                    let r = array581[index580];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.isChecked()){
@@ -4575,9 +6821,9 @@ namespace com.spoonconsulting.lightning {
 
         public getOption(value: string): ListBox.ListBoxOption {
             {
-                let array156 = this.getChildren();
-                for(let index155=0; index155 < array156.length; index155++) {
-                    let r = array156[index155];
+                let array583 = this.getChildren();
+                for(let index582=0; index582 < array583.length; index582++) {
+                    let r = array583[index582];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.getValue() === value){
@@ -4589,11 +6835,34 @@ namespace com.spoonconsulting.lightning {
             return null;
         }
 
+        public getUIOptions(): Array<ListBox.ListBoxOption> {
+            const childrne: Array<any> = this.getChildren();
+            return childrne;
+        }
+
+        public getOptions(): Array<Object> {
+            const result: Array<Object> = <any>(new Array<Object>());
+            {
+                let array585 = this.getChildren();
+                for(let index584=0; index584 < array585.length; index584++) {
+                    let r = array585[index584];
+                    {
+                        const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
+                        const o: Object = <Object>new Object();
+                        o["value"] = opt.getValue();
+                        o["label"] = opt.getLabel();
+                        result.push(o);
+                    }
+                }
+            }
+            return result;
+        }
+
         public getValue(): string {
             {
-                let array158 = this.getChildren();
-                for(let index157=0; index157 < array158.length; index157++) {
-                    let r = array158[index157];
+                let array587 = this.getChildren();
+                for(let index586=0; index586 < array587.length; index586++) {
+                    let r = array587[index586];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.isChecked()){
@@ -4622,6 +6891,8 @@ namespace com.spoonconsulting.lightning {
 
             label: JSContainer;
 
+            checkable: boolean;
+
             public constructor(__parent: any, value: string, label: string) {
                 super(value, "div");
                 this.__parent = __parent;
@@ -4629,6 +6900,7 @@ namespace com.spoonconsulting.lightning {
                 this.body = new JSContainer("body", "span");
                 this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
                 this.label = new JSContainer("label", "span");
+                this.checkable = true;
                 this.setAttribute("role", "option").setAttribute("aria-checked", "false").setAttribute("aria-selected", "false").addClass("slds-media").addClass("slds-listbox__option").addClass("slds-media_center").addClass("slds-media_small").addClass("slds-listbox__option_plain");
                 this.addChild(this.figure).addChild(this.body);
                 this.figure.addClass("slds-media__figure").addClass("slds-listbox__option-icon");
@@ -4641,6 +6913,35 @@ namespace com.spoonconsulting.lightning {
                 this.setLabel(label);
                 this.setValue(value);
                 this.addEventListener(this, "click");
+            }
+
+            public moveUp() {
+                const bl: com.spoonconsulting.lightning.ListBox = <com.spoonconsulting.lightning.ListBox>this.getParent();
+                const currentIndex: number = bl.getChildren().indexOf(this);
+                if (currentIndex > 0){
+                    bl.removeChild(this);
+                    bl.addChildAt(currentIndex - 1, this);
+                    bl.setRendered(false);
+                }
+            }
+
+            public moveDown() {
+                const bl: com.spoonconsulting.lightning.ListBox = <com.spoonconsulting.lightning.ListBox>this.getParent();
+                const currentIndex: number = bl.getChildren().indexOf(this);
+                if (currentIndex < bl.getChildren().length - 1){
+                    bl.removeChild(this);
+                    bl.addChildAt(currentIndex + 1, this);
+                    bl.setRendered(false);
+                }
+            }
+
+            public setCheckable(b: boolean) {
+                this.checkable = b;
+                if (!b){
+                    this.figure.setStyle("display", "none");
+                } else {
+                    this.figure.setStyle("display", null);
+                }
             }
 
             public setValue(value: string): ListBox.ListBoxOption {
@@ -4665,11 +6966,21 @@ namespace com.spoonconsulting.lightning {
             public setChecked(b: boolean): ListBox.ListBoxOption {
                 if (b){
                     this.setAttribute("aria-checked", "true");
-                    this.figure.clearChildren();
-                    this.figure.addChild(this.icon);
+                    this.setAttribute("aria-selected", "true");
+                    if (this.checkable){
+                        this.figure.clearChildren();
+                        this.figure.addChild(this.icon);
+                    } else {
+                        this.addClass("slds-is-selected");
+                    }
                 } else {
                     this.setAttribute("aria-checked", "false");
-                    this.figure.clearChildren();
+                    this.setAttribute("aria-selected", "false");
+                    if (this.checkable){
+                        this.figure.clearChildren();
+                    } else {
+                        this.removeClass("slds-is-selected");
+                    }
                 }
                 this.setRendered(false);
                 return this;
@@ -4692,6 +7003,15 @@ namespace com.spoonconsulting.lightning {
                     const onchange: CustomEvent = new CustomEvent("change");
                     onchange["source"] = this;
                     onchange["value"] = this.getValue();
+                    onchange["oldValue"] = oldValue;
+                    lb.fireListener("change", evt);
+                } else {
+                    const lb: com.spoonconsulting.lightning.ListBox = <com.spoonconsulting.lightning.ListBox>this.getParent();
+                    const oldValue: string = lb.getValue();
+                    lb.setValue(null);
+                    const onchange: CustomEvent = new CustomEvent("change");
+                    onchange["source"] = this;
+                    onchange["value"] = null;
                     onchange["oldValue"] = oldValue;
                     lb.fireListener("change", evt);
                 }
@@ -4760,6 +7080,8 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ backdrop: Modal.BackDrop;
 
+        /*private*/ size: string;
+
         public constructor(name: string) {
             super(name, "section");
             this.container = new JSContainer("container", "div");
@@ -4770,6 +7092,7 @@ namespace com.spoonconsulting.lightning {
             this.title = new JSContainer("title", "h2");
             this.tagLine = new JSContainer("tagLine", "p");
             this.backdrop = null;
+            if (this.size === undefined) { this.size = null; }
             this.setAttribute("role", "dialog");
             this.setAttribute("tabindex", "-1");
             this.setAttribute("aria-modal", "true");
@@ -4853,6 +7176,42 @@ namespace com.spoonconsulting.lightning {
 
         public setBackdrop(backdrop: Modal.BackDrop) {
             this.backdrop = backdrop;
+        }
+
+        public setSize$com_spoonconsulting_lightning_enums_ModalSize(size: com.spoonconsulting.lightning.enums.ModalSize): Modal {
+            if (size != null){
+                this.setSize$java_lang_String(com.spoonconsulting.lightning.enums.ModalSize["_$wrappers"][size].getValue());
+            } else {
+                this.setSize$java_lang_String(<string>null);
+            }
+            return this;
+        }
+
+        public setSize(size?: any): any {
+            if (((typeof size === 'number') || size === null)) {
+                return <any>this.setSize$com_spoonconsulting_lightning_enums_ModalSize(size);
+            } else if (((typeof size === 'string') || size === null)) {
+                return <any>this.setSize$java_lang_String(size);
+            } else throw new Error('invalid overload');
+        }
+
+        public getSize(): string {
+            return this.size;
+        }
+
+        public setSize$java_lang_String(size: string): Modal {
+            this.size = size;
+            {
+                let array589 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.ModalSize[] = []; for(let val in com.spoonconsulting.lightning.enums.ModalSize) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index588=0; index588 < array589.length; index588++) {
+                    let s = array589[index588];
+                    {
+                        this.removeClass("slds-modal_" + com.spoonconsulting.lightning.enums.ModalSize["_$wrappers"][s].getValue());
+                    }
+                }
+            }
+            if (size != null)this.addClass("slds-modal_" + size);
+            return this;
         }
     }
     Modal["__class"] = "com.spoonconsulting.lightning.Modal";
@@ -5183,9 +7542,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ProgressBar {
             {
-                let array160 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index159=0; index159 < array160.length; index159++) {
-                    let s = array160[index159];
+                let array591 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index590=0; index590 < array591.length; index590++) {
+                    let s = array591[index590];
                     {
                         this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -5808,9 +8167,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Spinner {
             {
-                let array162 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index161=0; index161 < array162.length; index161++) {
-                    let s = array162[index161];
+                let array593 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index592=0; index592 < array593.length; index592++) {
+                    let s = array593[index592];
                     {
                         this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -5822,9 +8181,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Spinner {
             {
-                let array164 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index163=0; index163 < array164.length; index163++) {
-                    let v = array164[index163];
+                let array595 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index594=0; index594 < array595.length; index594++) {
+                    let v = array595[index594];
                     {
                         if (v !== com.spoonconsulting.lightning.enums.Variants.Variant.BASE)this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -5888,9 +8247,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabValue(val: string) {
             {
-                let array166 = this.tablist.getChildren();
-                for(let index165=0; index165 < array166.length; index165++) {
-                    let r = array166[index165];
+                let array597 = this.tablist.getChildren();
+                for(let index596=0; index596 < array597.length; index596++) {
+                    let r = array597[index596];
                     {
                         const item: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (item.tab.getValue() === val){
@@ -5905,9 +8264,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabItem(item: TabSet.TabItem) {
             {
-                let array168 = this.tablist.getChildren();
-                for(let index167=0; index167 < array168.length; index167++) {
-                    let r = array168[index167];
+                let array599 = this.tablist.getChildren();
+                for(let index598=0; index598 < array599.length; index598++) {
+                    let r = array599[index598];
                     {
                         const titem: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (titem.getId() === item.getId()){
@@ -5922,9 +8281,9 @@ namespace com.spoonconsulting.lightning {
 
         public getActiveTabItem(): TabSet.TabItem {
             {
-                let array170 = this.getTabItems();
-                for(let index169=0; index169 < array170.length; index169++) {
-                    let item = array170[index169];
+                let array601 = this.getTabItems();
+                for(let index600=0; index600 < array601.length; index600++) {
+                    let item = array601[index600];
                     {
                         if (item.isActive()){
                             return item;
@@ -5956,9 +8315,9 @@ namespace com.spoonconsulting.lightning {
 
         public getPanel(name: string): com.spoonconsulting.lightning.TabPanel {
             {
-                let array172 = this.getChildren();
-                for(let index171=0; index171 < array172.length; index171++) {
-                    let r = array172[index171];
+                let array603 = this.getChildren();
+                for(let index602=0; index602 < array603.length; index602++) {
+                    let r = array603[index602];
                     {
                         if (r.getId() !== this.tablist.getId()){
                             if (r.getName() === name){
@@ -6003,9 +8362,9 @@ namespace com.spoonconsulting.lightning {
                 this.tablist.addClass("slds-tabs_default__nav");
             }
             {
-                let array174 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index173=0; index173 < array174.length; index173++) {
-                    let va = array174[index173];
+                let array605 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index604=0; index604 < array605.length; index604++) {
+                    let va = array605[index604];
                     {
                         this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.enums.Variants.TabSetVariant["_$wrappers"][va].getValue());
                     }
@@ -6381,11 +8740,14 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ tree: Tree.UITree;
 
+        /*private*/ nodeRenderer: (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void;
+
         public constructor(name: string) {
             super(name, "div");
             this.heading = new JSContainer("heading", "h4");
             this.items = null;
             this.tree = null;
+            if (this.nodeRenderer === undefined) { this.nodeRenderer = null; }
             this.addClass("slds-tree_container");
             this.addChild(this.heading);
             this.heading.addClass("slds-tree__group-header");
@@ -6403,11 +8765,25 @@ namespace com.spoonconsulting.lightning {
         public setItems(items: Array<Object>): Tree {
             this.clearChildren();
             this.addChild(this.heading);
-            this.tree = new Tree.UITree(this, "heading", 1);
+            this.tree = new Tree.UITree(this, "heading", 1, this);
             this.addChild(this.tree);
             this.tree.setData(items);
             this.items = items;
             return this;
+        }
+
+        /**
+         * @return {*} the nodeRenderer
+         */
+        public getNodeRenderer(): (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void {
+            return <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2)})(this.nodeRenderer));
+        }
+
+        /**
+         * @param {*} nodeRenderer the nodeRenderer to set
+         */
+        public setNodeRenderer(nodeRenderer: (p1: Tree, p2: Object, p3: Tree.UITreeItem) => void) {
+            this.nodeRenderer = <any>(((funcInst: any) => { if (typeof funcInst == 'function') { return funcInst } return (arg0, arg1, arg2) =>  (funcInst['apply'] ? funcInst['apply'] : funcInst) .call(funcInst, arg0, arg1, arg2)})(nodeRenderer));
         }
 
         unselect(except: Tree.UITreeItem) {
@@ -6431,34 +8807,45 @@ namespace com.spoonconsulting.lightning {
             public __parent: any;
             level: number;
 
-            public constructor(__parent: any, name: string, level: number) {
+            tree_: com.spoonconsulting.lightning.Tree;
+
+            public constructor(__parent: any, name: string, level: number, tree: com.spoonconsulting.lightning.Tree) {
                 super(name, "ul");
                 this.__parent = __parent;
                 this.level = 1;
+                if (this.tree_ === undefined) { this.tree_ = null; }
                 this.level = level;
                 this.setAttribute("role", "group");
                 this.addClass("slds-tree");
+                this.tree_ = tree;
             }
 
             public setData(data: Array<Object>): Tree.UITree {
                 this.clearChildren();
                 this.setRendered(false);
-                for(let index175=0; index175 < data.length; index175++) {
-                    let obj = data[index175];
+                for(let index606=0; index606 < data.length; index606++) {
+                    let obj = data[index606];
                     {
-                        const item: Tree.UITreeItem = new Tree.UITreeItem(this.__parent, <string>obj["name"], this.level);
+                        const item: Tree.UITreeItem = new Tree.UITreeItem(this.__parent, <string>obj["name"], this.level, this.tree_);
                         this.addChild(item);
                         item.setData(obj);
+                        if (this.__parent.nodeRenderer != null){
+                            (target => (typeof target === 'function') ? target(this.tree_, obj, item) : (<any>target).apply(this.tree_, obj, item))(this.__parent.nodeRenderer);
+                        }
                     }
                 }
                 return this;
             }
 
+            public getTree(): com.spoonconsulting.lightning.Tree {
+                return this.tree_;
+            }
+
             public unselect(except: Tree.UITreeItem) {
                 {
-                    let array177 = this.getChildren();
-                    for(let index176=0; index176 < array177.length; index176++) {
-                        let c = array177[index176];
+                    let array608 = this.getChildren();
+                    for(let index607=0; index607 < array608.length; index607++) {
+                        let c = array608[index607];
                         {
                             const item: Tree.UITreeItem = <Tree.UITreeItem><any>c;
                             item.unSelect(except);
@@ -6484,7 +8871,9 @@ namespace com.spoonconsulting.lightning {
 
             level: number;
 
-            public constructor(__parent: any, name: string, level: number) {
+            tree: com.spoonconsulting.lightning.Tree;
+
+            public constructor(__parent: any, name: string, level: number, tree: com.spoonconsulting.lightning.Tree) {
                 super(name, "li");
                 this.__parent = __parent;
                 this.icon = new com.spoonconsulting.lightning.ButtonIcon("icon", "utility:chevronright");
@@ -6492,6 +8881,8 @@ namespace com.spoonconsulting.lightning {
                 this.data = null;
                 this.children = null;
                 this.level = -1;
+                if (this.tree === undefined) { this.tree = null; }
+                this.tree = tree;
                 this.level = level;
                 this.setAttribute("aria-level", level + "");
                 const wrapper: JSContainer = this.addChild("wrapper", "div", "slds-tree__item");
@@ -6502,7 +8893,7 @@ namespace com.spoonconsulting.lightning {
                 const labelWrapper: JSContainer = wrapper.addChild("label-wrapper", "span", "slds-has-flexi-truncate");
                 labelWrapper.addChild(this.label);
                 this.label.addClass("slds-tree__item-label").addClass("slds-truncate");
-                this.icon.addEventListener(new UITreeItem.UITreeItem$0(this), "click");
+                this.icon.addEventListener(new UITreeItem.UITreeItem$0(this, tree), "click");
                 this.label.addEventListener(new UITreeItem.UITreeItem$1(this), "click");
             }
 
@@ -6517,7 +8908,7 @@ namespace com.spoonconsulting.lightning {
                     this.setAttribute("aria-expanded", "true");
                     if (children != null && children.length > 0){
                         if (this.children == null){
-                            this.children = new Tree.UITree(this.__parent, "tr", this.level + 1);
+                            this.children = new Tree.UITree(this.__parent, "tr", this.level + 1, this.tree);
                             this.addChild(this.children);
                         }
                         this.children.setData(children);
@@ -6589,12 +8980,17 @@ namespace com.spoonconsulting.lightning {
                         this.__parent.setExpanded(false);
                         this.__parent.data["expanded"] = false;
                     } else {
+                        const item: Tree.UITreeItem = <any>(source.getAncestorWithClass<any>("UITreeItem"));
+                        evt["source"] = item;
+                        evt["item"] = this.__parent.data;
+                        evt["node"] = this.__parent.data;
                         this.__parent.setExpanded(true);
                         this.__parent.data["expanded"] = true;
+                        this.tree.fireListener("expand", evt);
                     }
                 }
 
-                constructor(__parent: any) {
+                constructor(__parent: any, private tree: any) {
                     this.__parent = __parent;
                 }
             }
@@ -6615,10 +9011,10 @@ namespace com.spoonconsulting.lightning {
                         this.__parent.setSelected(true);
                         this.__parent.data["selected"] = true;
                         const tree: com.spoonconsulting.lightning.Tree = <any>(source.getAncestorWithClass<any>("slds-tree_container"));
-                        const evtSelected: CustomEvent = new CustomEvent("selected");
-                        evtSelected["item"] = this.__parent.data;
-                        evtSelected["source"] = source.getAncestorWithClass<any>("UITreeItem");
-                        tree.fireListener("selected", evtSelected);
+                        evt["item"] = this.__parent.data;
+                        evt["node"] = this.__parent.data;
+                        evt["source"] = source.getAncestorWithClass<any>("UITreeItem");
+                        tree.fireListener("select", evt);
                     }
                 }
 
@@ -6636,6 +9032,36 @@ namespace com.spoonconsulting.lightning {
 }
 namespace com.spoonconsulting.lightning {
     export class Utils {
+        public static MONTHS: string[]; public static MONTHS_$LI$(): string[] { if (Utils.MONTHS == null) { Utils.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; }  return Utils.MONTHS; }
+
+        public static DAYS: string[]; public static DAYS_$LI$(): string[] { if (Utils.DAYS == null) { Utils.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; }  return Utils.DAYS; }
+
+        public static formatDate(dt: Date, format: string): string {
+            const date: number = dt.getDate();
+            const day: number = dt.getDay();
+            const month: number = dt.getMonth();
+            const year: number = dt.getFullYear();
+            const EEEE: string = Utils.DAYS_$LI$()[(<number>day|0)];
+            const EEE: string = EEEE.substring(0, 3);
+            const EE: string = EEE;
+            const MMMM: string = Utils.MONTHS_$LI$()[(<number>month|0)];
+            const MMM: string = MMMM.substring(0, 3);
+            const MM: string = month < 10 ? "0" + month : month + "";
+            const dd: string = date < 10 ? "0" + date : date + "";
+            const yyyy: string = year + "";
+            const yy: string = yyyy.substring(2);
+            format = /* replace */format.split("EEEE").join(EEEE);
+            format = /* replace */format.split("EEE").join(EEE);
+            format = /* replace */format.split("EE").join(EE);
+            format = /* replace */format.split("MMMM").join(MMMM);
+            format = /* replace */format.split("MMM").join(MMM);
+            format = /* replace */format.split("MM").join(MM);
+            format = /* replace */format.split("dd").join(dd);
+            format = /* replace */format.split("yyyy").join(yyyy);
+            format = /* replace */format.split("yy").join(yy);
+            return format;
+        }
+
         public static camelCaseToLabel(sname: string): string {
             let result: string = "";
             const name: string = <string>new String(sname);
@@ -6676,16 +9102,16 @@ namespace com.spoonconsulting.lightning {
 
         static setStyle(r: api.Renderable, prefix: string, direction: com.spoonconsulting.lightning.enums.Direction, size: com.spoonconsulting.lightning.enums.Size) {
             {
-                let array179 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index178=0; index178 < array179.length; index178++) {
-                    let dir = array179[index178];
+                let array610 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index609=0; index609 < array610.length; index609++) {
+                    let dir = array610[index609];
                     {
                         const css: string = prefix + "-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][dir].getValue();
                         r.removeClass(css);
                         {
-                            let array181 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                            for(let index180=0; index180 < array181.length; index180++) {
-                                let s = array181[index180];
+                            let array612 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                            for(let index611=0; index611 < array612.length; index611++) {
+                                let s = array612[index611];
                                 {
                                     const scss: string = css + "_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue();
                                     r.removeClass(scss);
@@ -6743,8 +9169,8 @@ namespace com.spoonconsulting.lightning {
         public getDescriptionList(...strings: string[]): api.Renderable {
             const app: JSContainer = new JSContainer("list", "dl");
             let isdt: boolean = true;
-            for(let index182=0; index182 < strings.length; index182++) {
-                let s = strings[index182];
+            for(let index613=0; index613 < strings.length; index613++) {
+                let s = strings[index613];
                 {
                     if (isdt){
                         const dt: JSContainer = new JSContainer("", "dt");
@@ -6766,8 +9192,8 @@ namespace com.spoonconsulting.lightning {
             const app: JSContainer = new JSContainer("list", "dl");
             app.addClass("slds-list_horizontal").addClass("slds-wrap");
             let isdt: boolean = true;
-            for(let index183=0; index183 < strings.length; index183++) {
-                let s = strings[index183];
+            for(let index614=0; index614 < strings.length; index614++) {
+                let s = strings[index614];
                 {
                     if (isdt){
                         const dt: JSContainer = new JSContainer("", "dt");
@@ -6897,9 +9323,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setPosition(r: api.Renderable, position: com.spoonconsulting.lightning.enums.Position) {
             {
-                let array185 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Position[] = []; for(let val in com.spoonconsulting.lightning.enums.Position) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index184=0; index184 < array185.length; index184++) {
-                    let p = array185[index184];
+                let array616 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Position[] = []; for(let val in com.spoonconsulting.lightning.enums.Position) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index615=0; index615 < array616.length; index615++) {
+                    let p = array616[index615];
                     {
                         r.removeClass("slds-is-" + com.spoonconsulting.lightning.enums.Position["_$wrappers"][p].getValue());
                     }
@@ -6974,9 +9400,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setTextColor(r: api.Renderable, color: com.spoonconsulting.lightning.enums.Color) {
             {
-                let array187 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Color[] = []; for(let val in com.spoonconsulting.lightning.enums.Color) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index186=0; index186 < array187.length; index186++) {
-                    let c = array187[index186];
+                let array618 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Color[] = []; for(let val in com.spoonconsulting.lightning.enums.Color) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index617=0; index617 < array618.length; index617++) {
+                    let c = array618[index617];
                     {
                         r.removeClass("slds-text-color_" + com.spoonconsulting.lightning.enums.Color["_$wrappers"][c].getValue());
                     }
@@ -6993,9 +9419,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setTheme(r: api.Renderable, theme: com.spoonconsulting.lightning.enums.Theme) {
             {
-                let array189 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Theme[] = []; for(let val in com.spoonconsulting.lightning.enums.Theme) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index188=0; index188 < array189.length; index188++) {
-                    let c = array189[index188];
+                let array620 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Theme[] = []; for(let val in com.spoonconsulting.lightning.enums.Theme) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index619=0; index619 < array620.length; index619++) {
+                    let c = array620[index619];
                     {
                         r.removeClass("slds-theme_" + com.spoonconsulting.lightning.enums.Theme["_$wrappers"][c].getValue());
                     }
@@ -7015,11 +9441,95 @@ namespace com.spoonconsulting.lightning {
                 r.removeClass("slds-has-flexi-truncate");
             }
         }
+
+        public static isEmpty(val: any): boolean {
+            if (val == null){
+                return true;
+            }
+            if (val + "" === ""){
+                return true;
+            }
+            if (Array.isArray(val)){
+                if ((<Array<any>>val).length <= 0){
+                    return true;
+                }
+            }
+            if (isNaN(<number>val)){
+                return true;
+            }
+            return false;
+        }
     }
     Utils["__class"] = "com.spoonconsulting.lightning.Utils";
 
 
     export namespace Utils {
+
+        export class ObjectBuilder {
+            obj: Object;
+
+            public static create(): Utils.ObjectBuilder {
+                return new Utils.ObjectBuilder();
+            }
+
+            public set$java_lang_String$java_lang_Object(key: string, value: any): Utils.ObjectBuilder {
+                this.obj[key] = value;
+                return this;
+            }
+
+            public set(key?: any, value?: any): any {
+                if (((typeof key === 'string') || key === null) && ((value != null) || value === null)) {
+                    return <any>this.set$java_lang_String$java_lang_Object(key, value);
+                } else if (((key != null && key instanceof <any>Array && (key.length == 0 || key[0] == null ||(typeof key[0] === 'string'))) || key === null) && value === undefined) {
+                    return <any>this.set$java_lang_String_A(...key);
+                } else throw new Error('invalid overload');
+            }
+
+            public set$java_lang_String_A(...strings: string[]): Utils.ObjectBuilder {
+                for(let i: number = 0; i < strings.length - 1; i = i + 2) {{
+                    this.set$java_lang_String$java_lang_Object(strings[i], strings[i + 1]);
+                };}
+                return this;
+            }
+
+            public get(): Object {
+                return this.obj;
+            }
+
+            constructor() {
+                this.obj = <Object>new Object();
+            }
+        }
+        ObjectBuilder["__class"] = "com.spoonconsulting.lightning.Utils.ObjectBuilder";
+
+
+        export class ArrayBuilder {
+            result: Array<Object>;
+
+            public static create(): Utils.ArrayBuilder {
+                return new Utils.ArrayBuilder();
+            }
+
+            public add(...val: Object[]): Utils.ArrayBuilder {
+                for(let index621=0; index621 < val.length; index621++) {
+                    let o = val[index621];
+                    {
+                        this.result.push(o);
+                    }
+                }
+                return this;
+            }
+
+            public get(): Array<Object> {
+                return this.result;
+            }
+
+            constructor() {
+                this.result = <any>(new Array<Object>());
+            }
+        }
+        ArrayBuilder["__class"] = "com.spoonconsulting.lightning.Utils.ArrayBuilder";
+
 
         export class OptionsBuilder {
             options: Array<Object>;
@@ -7052,8 +9562,8 @@ namespace com.spoonconsulting.lightning {
             }
 
             public add$java_lang_String_A(...strings: string[]): Utils.OptionsBuilder {
-                for(let index190=0; index190 < strings.length; index190++) {
-                    let s = strings[index190];
+                for(let index622=0; index622 < strings.length; index622++) {
+                    let s = strings[index622];
                     {
                         this.add$java_lang_String$java_lang_String(s, s);
                     }
@@ -7129,9 +9639,9 @@ namespace com.spoonconsulting.lightning {
 
         public getSection(name: string): com.spoonconsulting.lightning.VerticalNavigationSection {
             {
-                let array192 = this.getSections();
-                for(let index191=0; index191 < array192.length; index191++) {
-                    let section = array192[index191];
+                let array624 = this.getSections();
+                for(let index623=0; index623 < array624.length; index623++) {
+                    let section = array624[index623];
                     {
                         if (section.getName() === name){
                             return section;
@@ -7144,9 +9654,9 @@ namespace com.spoonconsulting.lightning {
 
         public getItem$java_lang_String(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
             {
-                let array194 = this.getItems();
-                for(let index193=0; index193 < array194.length; index193++) {
-                    let item = array194[index193];
+                let array626 = this.getItems();
+                for(let index625=0; index625 < array626.length; index625++) {
+                    let item = array626[index625];
                     {
                         if (item.getName() === name){
                             return item;
@@ -7174,8 +9684,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addSections(...sections: com.spoonconsulting.lightning.VerticalNavigationSection[]): VerticalNavigation {
-            for(let index195=0; index195 < sections.length; index195++) {
-                let section = sections[index195];
+            for(let index627=0; index627 < sections.length; index627++) {
+                let section = sections[index627];
                 {
                     this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
                 }
@@ -7196,9 +9706,9 @@ namespace com.spoonconsulting.lightning {
             this.selectedItem = selectedItem;
             this.selectedSection = selectedSection;
             {
-                let array197 = this.getSections();
-                for(let index196=0; index196 < array197.length; index196++) {
-                    let section = array197[index196];
+                let array629 = this.getSections();
+                for(let index628=0; index628 < array629.length; index628++) {
+                    let section = array629[index628];
                     {
                         if (section.getName() !== selectedSection){
                             section.setSelectedItem(null);
@@ -7220,14 +9730,14 @@ namespace com.spoonconsulting.lightning {
         public getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem> {
             const result: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = <any>(new Array<com.spoonconsulting.lightning.VerticalNavigationItem>());
             {
-                let array199 = this.getSections();
-                for(let index198=0; index198 < array199.length; index198++) {
-                    let section = array199[index198];
+                let array631 = this.getSections();
+                for(let index630=0; index630 < array631.length; index630++) {
+                    let section = array631[index630];
                     {
                         {
-                            let array201 = section.getItems();
-                            for(let index200=0; index200 < array201.length; index200++) {
-                                let item = array201[index200];
+                            let array633 = section.getItems();
+                            for(let index632=0; index632 < array633.length; index632++) {
+                                let item = array633[index632];
                                 {
                                     result.push(item);
                                 }
@@ -7246,9 +9756,9 @@ namespace com.spoonconsulting.lightning {
         public setSelectedItem$java_lang_String(selectedItem: string): VerticalNavigation {
             this.selectedItem = selectedItem;
             {
-                let array203 = this.getItems();
-                for(let index202=0; index202 < array203.length; index202++) {
-                    let item = array203[index202];
+                let array635 = this.getItems();
+                for(let index634=0; index634 < array635.length; index634++) {
+                    let item = array635[index634];
                     {
                         item.setSelected(item.getName() === selectedItem);
                         if (item.getName() === selectedItem){
@@ -7428,8 +9938,8 @@ namespace com.spoonconsulting.lightning {
         public setSelectedItem(name: string): VerticalNavigationSection {
             this.selectedItem = name;
             const items: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = this.getItems();
-            for(let index204=0; index204 < items.length; index204++) {
-                let item = items[index204];
+            for(let index636=0; index636 < items.length; index636++) {
+                let item = items[index636];
                 {
                     item.setSelected(item.getName() === name);
                 }
@@ -7474,9 +9984,9 @@ namespace com.spoonconsulting.lightning {
 
         public getItem(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
             {
-                let array206 = this.getItems();
-                for(let index205=0; index205 < array206.length; index205++) {
-                    let item = array206[index205];
+                let array638 = this.getItems();
+                for(let index637=0; index637 < array638.length; index637++) {
+                    let item = array638[index637];
                     {
                         if (item.getName() === name){
                             return item;
@@ -7492,8 +10002,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addItems(...items: com.spoonconsulting.lightning.VerticalNavigationItem[]): VerticalNavigationSection {
-            for(let index207=0; index207 < items.length; index207++) {
-                let item = items[index207];
+            for(let index639=0; index639 < items.length; index639++) {
+                let item = items[index639];
                 {
                     this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
                 }
@@ -7875,8 +10385,8 @@ namespace com.spoonconsulting.lightning {
          * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
          */
         public addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion {
-            for(let index208=0; index208 < accordionSections.length; index208++) {
-                let section = accordionSections[index208];
+            for(let index640=0; index640 < accordionSections.length; index640++) {
+                let section = accordionSections[index640];
                 {
                     this.addSection(section);
                 }
@@ -7903,9 +10413,9 @@ namespace com.spoonconsulting.lightning {
          */
         public setOpen(name: string): Accordion {
             {
-                let array210 = this.getChildren();
-                for(let index209=0; index209 < array210.length; index209++) {
-                    let r = array210[index209];
+                let array642 = this.getChildren();
+                for(let index641=0; index641 < array642.length; index641++) {
+                    let r = array642[index641];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -7931,9 +10441,9 @@ namespace com.spoonconsulting.lightning {
             const sectionToggle: CustomEvent = new CustomEvent("onsectiontoggle");
             const openSections: Array<string> = <any>(new Array<string>());
             {
-                let array212 = this.getSections();
-                for(let index211=0; index211 < array212.length; index211++) {
-                    let sect = array212[index211];
+                let array644 = this.getSections();
+                for(let index643=0; index643 < array644.length; index643++) {
+                    let sect = array644[index643];
                     {
                         if (sect.isOpen()){
                             openSections.push(sect.getName());
@@ -7954,9 +10464,9 @@ namespace com.spoonconsulting.lightning {
          */
         public setClose(name: string): Accordion {
             {
-                let array214 = this.getChildren();
-                for(let index213=0; index213 < array214.length; index213++) {
-                    let r = array214[index213];
+                let array646 = this.getChildren();
+                for(let index645=0; index645 < array646.length; index645++) {
+                    let r = array646[index645];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -7990,9 +10500,9 @@ namespace com.spoonconsulting.lightning {
         public getSections(): Array<com.spoonconsulting.lightning.AccordionSection> {
             const sections: Array<com.spoonconsulting.lightning.AccordionSection> = <any>(new Array<com.spoonconsulting.lightning.AccordionSection>());
             {
-                let array216 = this.getChildren();
-                for(let index215=0; index215 < array216.length; index215++) {
-                    let r = array216[index215];
+                let array648 = this.getChildren();
+                for(let index647=0; index647 < array648.length; index647++) {
+                    let r = array648[index647];
                     {
                         sections.push(<com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0]);
                     }
@@ -8008,9 +10518,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getSection(name: string): com.spoonconsulting.lightning.AccordionSection {
             {
-                let array218 = this.getChildren();
-                for(let index217=0; index217 < array218.length; index217++) {
-                    let r = array218[index217];
+                let array650 = this.getChildren();
+                for(let index649=0; index649 < array650.length; index649++) {
+                    let r = array650[index649];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -8508,6 +11018,7 @@ namespace com.spoonconsulting.lightning {
                 this.icon.removeClass("slds-button__icon_right").removeClass("slds-button__icon_left");
                 if (this.iconPosition === Button.ICON_POSITION_LEFT || this.iconPosition == null){
                     this.addChild(this.icon);
+                    this.icon.setIconName$java_lang_String(this.iconName);
                     this.icon.addClass("slds-button__icon_left");
                 }
                 if (this.isDraft){
@@ -8630,9 +11141,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Button {
             {
-                let array220 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index219=0; index219 < array220.length; index219++) {
-                    let v = array220[index219];
+                let array652 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index651=0; index651 < array652.length; index651++) {
+                    let v = array652[index651];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -8730,6 +11241,11 @@ namespace com.spoonconsulting.lightning {
 
         public close() {
             this.setExpanded(false);
+        }
+
+        public setButtonSize(size: com.spoonconsulting.lightning.enums.Size): ButtonMenu {
+            this.button.setSize$com_spoonconsulting_lightning_enums_Size(size);
+            return this;
         }
 
         public setExpanded(b: boolean): ButtonMenu {
@@ -8895,8 +11411,8 @@ namespace com.spoonconsulting.lightning {
 
         public refresh() {
             const suffixes: string[] = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-            for(let index221=0; index221 < suffixes.length; index221++) {
-                let suffix = suffixes[index221];
+            for(let index653=0; index653 < suffixes.length; index653++) {
+                let suffix = suffixes[index653];
                 {
                     this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                 }
@@ -8963,10 +11479,13 @@ namespace com.spoonconsulting.lightning {
 
         public setOptions(options: Array<Object>): ButtonMenu {
             this.clearMenu();
-            for(let index222=0; index222 < options.length; index222++) {
-                let option = options[index222];
+            for(let index654=0; index654 < options.length; index654++) {
+                let option = options[index654];
                 {
-                    const value: string = <string>option["value"];
+                    let value: string = <string>option["value"];
+                    if (value == null){
+                        value = <string>option["name"];
+                    }
                     const label: string = <string>option["label"];
                     const iconName: string = <string>option["iconName"];
                     this.addItem$java_lang_String$java_lang_String$java_lang_String(value, label, iconName);
@@ -9113,9 +11632,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonStateful {
             {
-                let array224 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index223=0; index223 < array224.length; index223++) {
-                    let v = array224[index223];
+                let array656 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index655=0; index655 < array656.length; index655++) {
+                    let v = array656[index655];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -9312,8 +11831,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu {
-            for(let index225=0; index225 < items.length; index225++) {
-                let item = items[index225];
+            for(let index657=0; index657 < items.length; index657++) {
+                let item = items[index657];
                 {
                     this.addMenuItem(item);
                 }
@@ -9768,7 +12287,7 @@ namespace com.spoonconsulting.lightning {
             if (b && !this.isActive()){
                 this.removeClass("slds-hide");
                 this.addClass("slds-show");
-            } else if (this.isActive()){
+            } else if (!b && this.isActive()){
                 this.removeClass("slds-show");
                 this.addClass("slds-hide");
             }
@@ -9782,6 +12301,55 @@ namespace com.spoonconsulting.lightning {
     TabPanel["__class"] = "com.spoonconsulting.lightning.TabPanel";
     TabPanel["__interfaces"] = ["framework.components.api.Renderable"];
 
+
+}
+namespace com.spoonconsulting.lightning {
+    export class DataGridCellRowSelector extends com.spoonconsulting.lightning.DataGridCell {
+        /*private*/ checkbox: com.spoonconsulting.lightning.CheckBox;
+
+        public constructor(name: string) {
+            super(name);
+            this.checkbox = new com.spoonconsulting.lightning.CheckBox("checkbox");
+            this.getContent().clearChildren();
+            this.getContent().addChild(this.checkbox);
+            this.checkbox.addEventListener(new DataGridCellRowSelector.DataGridCellRowSelector$0(this), "change");
+        }
+
+        public isChecked(): boolean {
+            return this.checkbox.getValue();
+        }
+
+        public setChecked(b: boolean): DataGridCellRowSelector {
+            this.checkbox.setValue(b);
+            return this;
+        }
+    }
+    DataGridCellRowSelector["__class"] = "com.spoonconsulting.lightning.DataGridCellRowSelector";
+    DataGridCellRowSelector["__interfaces"] = ["framework.components.api.Renderable"];
+
+
+
+    export namespace DataGridCellRowSelector {
+
+        export class DataGridCellRowSelector$0 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.fireListener("change", evt);
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        DataGridCellRowSelector$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+    }
 
 }
 namespace com.spoonconsulting.lightning {
@@ -9840,8 +12408,8 @@ namespace com.spoonconsulting.lightning {
             public setOptions(options: Array<Object>) {
                 this.options = options;
                 this.clearChildren();
-                for(let index226=0; index226 < options.length; index226++) {
-                    let option = options[index226];
+                for(let index658=0; index658 < options.length; index658++) {
+                    let option = options[index658];
                     {
                         const value: string = <string>option["value"];
                         const label: string = <string>option["label"];
@@ -9868,9 +12436,9 @@ namespace com.spoonconsulting.lightning {
             public getValue(): Array<string> {
                 const result: Array<string> = <any>(new Array<string>());
                 {
-                    let array228 = this.getChildren();
-                    for(let index227=0; index227 < array228.length; index227++) {
-                        let r = array228[index227];
+                    let array660 = this.getChildren();
+                    for(let index659=0; index659 < array660.length; index659++) {
+                        let r = array660[index659];
                         {
                             const cb: api.InputField<boolean> = <api.InputField<boolean>><any>r;
                             if (cb.getValue()){
@@ -9888,9 +12456,9 @@ namespace com.spoonconsulting.lightning {
              */
             public setValue(val: Array<string>) {
                 {
-                    let array230 = this.getChildren();
-                    for(let index229=0; index229 < array230.length; index229++) {
-                        let r = array230[index229];
+                    let array662 = this.getChildren();
+                    for(let index661=0; index661 < array662.length; index661++) {
+                        let r = array662[index661];
                         {
                             const name: string = r.getAttribute("val");
                             const cb: api.InputField<boolean> = <api.InputField<boolean>><any>r;
@@ -9951,12 +12519,9 @@ namespace com.spoonconsulting.lightning {
     export class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
         /*private*/ combo: com.spoonconsulting.lightning.BaseComboBox<string>;
 
-        /*private*/ messageWhenValueMissing: string;
-
         public constructor(name: string) {
             super(name, <any>(new com.spoonconsulting.lightning.BaseComboBox<string>("combo")));
             if (this.combo === undefined) { this.combo = null; }
-            this.messageWhenValueMissing = "This field is required";
             this.combo = <com.spoonconsulting.lightning.BaseComboBox<string>><any>this.getInput();
             this.combo.removeClass("slds-input");
             this.combo.addEventListener(new ComboBox.ComboBox$0(this), "change");
@@ -9978,14 +12543,6 @@ namespace com.spoonconsulting.lightning {
 
         public getDropdownAlignment(): string {
             return this.combo.getDropdownAlignment();
-        }
-
-        public getMessageWhenValueMissing(): string {
-            return this.messageWhenValueMissing;
-        }
-
-        public setMessageWhenValueMissing(messageWhenValueMissing: string) {
-            this.messageWhenValueMissing = messageWhenValueMissing;
         }
 
         public setOptions(options: Array<Object>): ComboBox {
@@ -10034,6 +12591,169 @@ namespace com.spoonconsulting.lightning {
 
 }
 namespace com.spoonconsulting.lightning {
+    export class DualListBox extends com.spoonconsulting.lightning.FormElement<Array<string>> {
+        /*private*/ __com_spoonconsulting_lightning_DualListBox_input: com.spoonconsulting.lightning.DualingList;
+
+        public constructor(name: string) {
+            super(name);
+            this.__com_spoonconsulting_lightning_DualListBox_input = new com.spoonconsulting.lightning.DualingList("input");
+            this.setInput(this.__com_spoonconsulting_lightning_DualListBox_input);
+            this.__com_spoonconsulting_lightning_DualListBox_input.removeClass("slds-input");
+        }
+
+        /**
+         * 
+         * @param {api.ValidationException} e
+         */
+        handleValidationException(e: api.ValidationException) {
+            const max: number = this.getMax();
+            const min: number = this.getMin();
+            if (max == null && min != null){
+                this.setMessageWhenRangeUnderflow(/* replace */"Select at least {0} options".split("{0}").join(min + ""));
+            } else if (min == null && max != null){
+                this.setMessageWhenRangeOverflow(/* replace */"Select at most {0} options".split("{0}").join(max + ""));
+            } else if (min != null && max != null){
+                this.setMessageWhenRangeOverflow(/* replace *//* replace */"Select at least {0} options [and a maximum of {1}]".split("{0}").join(min + "").split("{1}").join(max + ""));
+                this.setMessageWhenRangeUnderflow(/* replace *//* replace */"Select at least {0} options [and a maximum of {1}]".split("{0}").join(min + "").split("{1}").join(max + ""));
+            }
+            super.handleValidationException(e);
+        }
+
+        public setOptions(options: Array<Object>): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setOptions(options);
+            return this;
+        }
+
+        public getOptions(): Array<Object> {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getOptions();
+        }
+
+        public setAddButtonLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setAddButtonLabel(label);
+            return this;
+        }
+
+        public getAddButtonLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getAddButtonLabel();
+        }
+
+        public setDisableReordering(b: boolean): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setDisableReordering(b);
+            return this;
+        }
+
+        public isDisableReordering(): boolean {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.isDisableReordering();
+        }
+
+        public setDownButtonLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setDownButtonLabel(label);
+            return this;
+        }
+
+        public getDownButtonLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getDownButtonLabel();
+        }
+
+        public setMax(max: number): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setMax(max);
+            return this;
+        }
+
+        public getMax(): number {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getMax();
+        }
+
+        public setMin(min: number): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setMin(min);
+            return this;
+        }
+
+        public getMin(): number {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getMin();
+        }
+
+        public setRemoveButtonLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setRemoveButtonLabel(label);
+            return this;
+        }
+
+        public getRemoveButtonLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getRemoveButtonLabel();
+        }
+
+        public getRequiredOptions(): Array<string> {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getRequiredOptions();
+        }
+
+        public setRequiredOptions(requiredOptions: Array<string>): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setRequiredOptions(requiredOptions);
+            return this;
+        }
+
+        public setSourceLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setSourceLabel(label);
+            return this;
+        }
+
+        public getSourceLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getSourceLabel();
+        }
+
+        public setUpButtonLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setUpButtonLabel(label);
+            return this;
+        }
+
+        public getUpButtonLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getUpButtonLabel();
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {com.spoonconsulting.lightning.FormElement}
+         */
+        public setRequired(b: boolean): com.spoonconsulting.lightning.FormElement<Array<string>> {
+            if (this.__com_spoonconsulting_lightning_DualListBox_input != null)this.__com_spoonconsulting_lightning_DualListBox_input.setRequired(b);
+            return super.setRequired(b);
+        }
+
+        /**
+         * 
+         * @param {boolean} b
+         * @return {com.spoonconsulting.lightning.FormElement}
+         */
+        public setDisabled(b: boolean): com.spoonconsulting.lightning.FormElement<Array<string>> {
+            if (this.__com_spoonconsulting_lightning_DualListBox_input != null)this.__com_spoonconsulting_lightning_DualListBox_input.setDisabled(b);
+            return super.setDisabled(b);
+        }
+
+        public isRequired(): boolean {
+            if (this.__com_spoonconsulting_lightning_DualListBox_input != null)return this.__com_spoonconsulting_lightning_DualListBox_input.isRequired();
+            return false;
+        }
+
+        public isDisabled(): boolean {
+            if (this.__com_spoonconsulting_lightning_DualListBox_input != null)return this.__com_spoonconsulting_lightning_DualListBox_input.isDisabled();
+            return false;
+        }
+
+        public setSelectedLabel(label: string): DualListBox {
+            this.__com_spoonconsulting_lightning_DualListBox_input.setSelectedLabel(label);
+            return this;
+        }
+
+        public getSelectedLabel(): string {
+            return this.__com_spoonconsulting_lightning_DualListBox_input.getSelectedLabel();
+        }
+    }
+    DualListBox["__class"] = "com.spoonconsulting.lightning.DualListBox";
+    DualListBox["__interfaces"] = ["framework.components.api.InputField","framework.components.api.Renderable"];
+
+
+}
+namespace com.spoonconsulting.lightning {
     export class Input extends com.spoonconsulting.lightning.FormElement<any> {
         /*private*/ textInput: input.JSTextInput;
 
@@ -10049,6 +12769,24 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ type: string;
 
+        /*private*/ min: number;
+
+        /*private*/ max: number;
+
+        /*private*/ maxLength: number;
+
+        /*private*/ minLength: number;
+
+        /*private*/ multiple: boolean;
+
+        /*private*/ placeholder: string;
+
+        /*private*/ pattern: string;
+
+        /*private*/ step: number;
+
+        /*private*/ checked: boolean;
+
         public constructor(name: string) {
             super(name);
             this.textInput = new input.JSTextInput("input");
@@ -10058,6 +12796,15 @@ namespace com.spoonconsulting.lightning {
             this.checkBoxButton = new com.spoonconsulting.lightning.CheckBoxButton("input");
             this.toggle = new com.spoonconsulting.lightning.Toggle("input");
             this.type = com.spoonconsulting.lightning.enums.InputType["_$wrappers"][com.spoonconsulting.lightning.enums.InputType.TEXT].getValue();
+            this.min = -1;
+            this.max = -1;
+            this.maxLength = -1;
+            this.minLength = -1;
+            this.multiple = false;
+            this.placeholder = null;
+            this.pattern = null;
+            this.step = -1;
+            if (this.checked === undefined) { this.checked = false; }
             this.setInput(this.textInput);
         }
 
@@ -10066,9 +12813,9 @@ namespace com.spoonconsulting.lightning {
                 return com.spoonconsulting.lightning.enums.InputType.TEXT;
             }
             {
-                let array232 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.InputType[] = []; for(let val in com.spoonconsulting.lightning.enums.InputType) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index231=0; index231 < array232.length; index231++) {
-                    let type = array232[index231];
+                let array664 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.InputType[] = []; for(let val in com.spoonconsulting.lightning.enums.InputType) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index663=0; index663 < array664.length; index663++) {
+                    let type = array664[index663];
                     {
                         if (com.spoonconsulting.lightning.enums.InputType["_$wrappers"][type].getValue() === stype){
                             return type;
@@ -10154,7 +12901,7 @@ namespace com.spoonconsulting.lightning {
         public setChecked(b: boolean): Input {
             this.checkBox.setValue(b);
             this.checkBoxButton.setValue(b);
-            this.toggle.setVisible(b);
+            this.toggle.setValue(b);
             return this;
         }
 
@@ -10172,6 +12919,119 @@ namespace com.spoonconsulting.lightning {
             this.checkBox.setLabel(label);
             this.checkBoxButton.setLabel(label);
             this.toggle.setLabel(label);
+            return this;
+        }
+
+        public getMax(): number {
+            return this.max;
+        }
+
+        public setMax(max: number): Input {
+            this.max = max;
+            this.numberInput.setMax(<number>max);
+            return this;
+        }
+
+        public getMaxLength(): number {
+            return this.maxLength;
+        }
+
+        public setMaxLength(maxLength: number): Input {
+            this.textInput.setMaxLength(<number>maxLength);
+            this.maxLength = maxLength;
+            return this;
+        }
+
+        public getMinLength(): number {
+            return this.minLength;
+        }
+
+        public setMinLength(minLength: number): Input {
+            this.textInput.setAttribute("min-length", minLength + "");
+            this.minLength = minLength;
+            return this;
+        }
+
+        public isMultiple(): boolean {
+            return this.multiple;
+        }
+
+        public setMultiple(multiple: boolean): Input {
+            this.multiple = multiple;
+            return this;
+        }
+
+        public getPlaceholder(): string {
+            return this.placeholder;
+        }
+
+        public setPlaceholder(placeholder: string): Input {
+            this.textInput.setPlaceHolder(placeholder);
+            this.numberInput.setPlaceHolder(placeholder);
+            this.placeholder = placeholder;
+            return this;
+        }
+
+        public getPattern(): string {
+            return this.pattern;
+        }
+
+        public setPattern(pattern: string): Input {
+            this.textInput.setPattern(pattern);
+            this.numberInput.setPattern(pattern);
+            this.pattern = pattern;
+            return this;
+        }
+
+        public getStep(): number {
+            return this.step;
+        }
+
+        public setStep(step: number): Input {
+            this.numberInput.setPattern(this.pattern);
+            this.step = step;
+            return this;
+        }
+
+        public getType(): string {
+            return this.type;
+        }
+
+        public getMin(): number {
+            return this.min;
+        }
+
+        public isChecked(): boolean {
+            return this.checked;
+        }
+
+        public getTextInput(): input.JSTextInput {
+            return this.textInput;
+        }
+
+        public getDateInput(): input.JSDateInput {
+            return this.dateInput;
+        }
+
+        public getNumberInput(): input.JSNumberInput {
+            return this.numberInput;
+        }
+
+        public getCheckBox(): com.spoonconsulting.lightning.CheckBox {
+            return this.checkBox;
+        }
+
+        public getCheckBoxButton(): com.spoonconsulting.lightning.CheckBoxButton {
+            return this.checkBoxButton;
+        }
+
+        public getToggle(): com.spoonconsulting.lightning.Toggle {
+            return this.toggle;
+        }
+
+        public setMin(min: number): Input {
+            this.min = min;
+            this.numberInput.setMin(<number>min);
             return this;
         }
     }
@@ -10261,15 +13121,17 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ButtonIcon {
             {
-                let array234 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index233=0; index233 < array234.length; index233++) {
-                    let s = array234[index233];
+                let array666 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index665=0; index665 < array666.length; index665++) {
+                    let s = array666[index665];
                     {
+                        this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                         this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
                 }
             }
             if (size != null){
+                this.addClass("slds-button_icon-" + size);
                 this.icon.addClass("slds-button__icon_" + size);
             }
             return this;
@@ -10306,9 +13168,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonIcon {
             {
-                let array236 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index235=0; index235 < array236.length; index235++) {
-                    let v = array236[index235];
+                let array668 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index667=0; index667 < array668.length; index667++) {
+                    let v = array668[index667];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant["_$wrappers"][v].getValue());
                     }
@@ -10385,5 +13247,9 @@ namespace com.spoonconsulting.lightning {
 
 }
 
+
+com.spoonconsulting.lightning.Utils.DAYS_$LI$();
+
+com.spoonconsulting.lightning.Utils.MONTHS_$LI$();
 
 com.spoonconsulting.lightning.Boot.main(null);

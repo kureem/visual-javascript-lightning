@@ -70,6 +70,7 @@ public class Button extends BaseLightning {
 
 			if (iconPosition == ICON_POSITION_LEFT || iconPosition == null) {
 				addChild(icon);
+				icon.setIconName(iconName);
 				icon.addClass("slds-button__icon_left");
 			}
 			

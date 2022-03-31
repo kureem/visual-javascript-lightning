@@ -10,8 +10,6 @@ public class ComboBox extends FormElement<String>{
 
 	private BaseComboBox<String> combo;
 	
-	private String messageWhenValueMissing = "This field is required";
-	
 	public ComboBox(String name) {
 		super(name, new BaseComboBox<String>("combo"));
 		this.combo = (BaseComboBox<String>)getInput();
@@ -43,14 +41,7 @@ public class ComboBox extends FormElement<String>{
 		return combo.getDropdownAlignment();
 	}
 
-	public String getMessageWhenValueMissing() {
-		return messageWhenValueMissing;
-	}
-
-	public void setMessageWhenValueMissing(String messageWhenValueMissing) {
-		this.messageWhenValueMissing = messageWhenValueMissing;
-	}
-	
+		
 	public ComboBox setOptions(Array<Object> options) {
 		combo.setOptions(options);
 		return this;

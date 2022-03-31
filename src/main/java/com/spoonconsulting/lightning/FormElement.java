@@ -24,7 +24,20 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	private JSContainer help = new JSContainer("help", "div");
 	
 	private FormElementVariant variant = FormElementVariant.STANDARD;
-
+	
+	private String messageWhenValueMissing = null;	
+	private String messageWhenRangeOverflow = null;
+	private String messageWhenRangeUnderflow = null;
+	
+	private String messageWhenBadInput =null;	
+	private String messageWhenPatternMismatch = null;	
+	private String messageWhenStepMismatch = null;	
+	private String messageWhenTooLong =null;	
+	private String messageWhenTooShort = null;	
+	private String messageWhenTypeMismatch = null;	
+	private String messageWhenCustomError = null;
+	
+	
 	public FormElement(String name, InputField<T> input) {
 		super(name, "div");
 		addClass("slds-form-element");
@@ -33,7 +46,7 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		formElementIcon.addChild(fieldLevelHelp);
 		addChild(formElementIcon);
 		labelCtn.addClass("slds-form-element__label");
-		required.addClass("slds-required").setAttribute("title", "required");
+		required.addClass("slds-required").setAttribute("title", "required").setHtml("*");
 		labelCtn.addChild(required);
 		labelCtn.addChild(label);
 		addChild(controlCtn);
@@ -53,7 +66,7 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		formElementIcon.addChild(fieldLevelHelp);
 		addChild(formElementIcon);
 		labelCtn.addClass("slds-form-element__label");
-		required.addClass("slds-required").setAttribute("title", "required");
+		required.addClass("slds-required").setAttribute("title", "required").setHtml("*");
 		labelCtn.addChild(required);
 		labelCtn.addChild(label);
 		addChild(controlCtn);
@@ -67,7 +80,14 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	
 	public FormElement<T> setRequired(boolean b) {
 		required.setStyle("display", b?null:"none");
+		if(input != null) {
+			input.setRequired(b);
+		}
 		return this;
+	}
+	
+	public Boolean isRequired() {
+		return required.getStyle("display") != "none";
 	}
 	
 	
@@ -102,6 +122,15 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 				fireListener("change", evt);
 			}
 		}, "change");
+		
+		this.input.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+				reportValidity();
+			}
+		},"blur");
+		input.setRequired(isRequired());
 		return this;
 	}
 	
@@ -166,16 +195,19 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 	public FormElement<T> setError(String error){
 		addClass("slds-has-error");
 		help.setStyle("display", null).setHtml(error);
+		help.addClass("slds-has-error");
 		return this;
 	}
 	
 	public FormElement<T> clearError(){
 		removeClass("slds-has-error");
+		help.removeClass("slds-has-error").setStyle("display", "none");
 		return this;
 	}
 	
 	public FormElement<T> setHelp(String help){
 		this.help.setStyle("display", null);
+		this.help.removeClass("slds-has-error");
 		this.help.setHtml(help);
 		return this;
 	}
@@ -191,7 +223,7 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 		removeClass("slds-form-element_stacked");
 		labelCtn.removeClass("slds-assistive-text");
 		
-		if(variant == FormElementVariant.LABEL_INLINE) {
+		if(variant == FormElementVariant.LABEL_INLINE || variant == FormElementVariant.LABEL_HORIZONTAL) {
 			addClass("slds-form-element_horizontal");
 		}else if(variant == FormElementVariant.LABEL_STACKED) {
 			addClass("slds-form-element_stacked");
@@ -209,6 +241,8 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 				setVariant(FormElementVariant.LABEL_INLINE);
 			}else if(variant == FormElementVariant.LABEL_STACKED.getValue()) {
 				setVariant(FormElementVariant.LABEL_STACKED);
+			}else if(variant == FormElementVariant.LABEL_HORIZONTAL.getValue()) {
+				setVariant(FormElementVariant.LABEL_HORIZONTAL);
 			}else {
 				setVariant(FormElementVariant.STANDARD);
 			}
@@ -223,5 +257,174 @@ public class FormElement<T> extends JSContainer implements InputField<T>{
 			return this.variant.getValue();
 		return FormElementVariant.STANDARD.getValue();
 	}
+	
+	protected void handleValidationException(ValidationException e) {
+		String msg = e.getMessage();
+		int code = e.getCode();
+		if(code == ValidationException.badInput) {
+			if(messageWhenBadInput != null) {
+				setError(messageWhenBadInput);
+				return ;
+			}
+		}else if(code== ValidationException.patternMismatch) {
+			if(messageWhenPatternMismatch != null) {
+				setError(messageWhenPatternMismatch);
+				return ;
+			}
+		}else if(code == ValidationException.rangeOverflow) {
+			if(messageWhenRangeOverflow != null) {
+				
+				setError(messageWhenRangeOverflow);
+				return ;
+			}
+		}else if(code == ValidationException.rangeUnderflow) {
+			if(messageWhenRangeUnderflow != null) {
+				setError(messageWhenRangeUnderflow);
+				return ;
+			}
+		}else if(code == ValidationException.stepMismatch) {
+			if(messageWhenStepMismatch != null) {
+				setError(messageWhenStepMismatch);
+				return ;
+			}
+		}else if(code == ValidationException.tooLong) {
+			if(messageWhenTooLong != null) {
+				setError(messageWhenTooLong);
+				return ;
+			}
+		}else if(code == ValidationException.typeMismatch) {
+			if(messageWhenTypeMismatch != null) {
+				setError(messageWhenTypeMismatch);
+				return ;
+			}
+		}else if(code == ValidationException.valueMissing) {
+			if(messageWhenValueMissing != null) {
+				setError(messageWhenValueMissing);
+				return ;
+			}
+		}else if(code == ValidationException.tooShort) {
+			if(messageWhenTooShort != null) {
+				setError(messageWhenTooShort);
+				return ;
+			}
+		}
+		setError(msg);
+	}
+	
+	public FormElement<T> reportValidity(){
+		try {
+			validate();
+			clearError();
+		}catch(ValidationException e) {
+			handleValidationException(e);
+		}
+		return this;
+	}
+	
+	public FormElement<T> showHelpMessageIfInvalid(){
+		if(isRequired()) {
+			T val = getValue();
+			if(Utils.isEmpty(val)) {
+				setError(messageWhenValueMissing);
+			}else {
+				clearError();
+			}
+		}
+		return this;
+	}
+	
+	public String getMessageWhenValueMissing() {
+		return messageWhenValueMissing;
+	}
+
+	public FormElement<T> setMessageWhenValueMissing(String messageWhenValueMissing) {
+		this.messageWhenValueMissing = messageWhenValueMissing;
+		return this;
+	}
+
+	public String getMessageWhenRangeOverflow() {
+		return messageWhenRangeOverflow;
+	}
+
+	public FormElement<T> setMessageWhenRangeOverflow(String messageWhenRangeOverflow) {
+		this.messageWhenRangeOverflow = messageWhenRangeOverflow;
+		return this;
+	}
+
+	public String getMessageWhenRangeUnderflow() {
+		return messageWhenRangeUnderflow;
+	}
+
+	public FormElement<T> setMessageWhenRangeUnderflow(String messageWhenRangeUnderflow) {
+		this.messageWhenRangeUnderflow = messageWhenRangeUnderflow;
+		return this;
+	}
+
+	public String getMessageWhenBadInput() {
+		return messageWhenBadInput;
+	}
+
+	public FormElement<T> setMessageWhenBadInput(String messageWhenBadInput) {
+		this.messageWhenBadInput = messageWhenBadInput;
+		return this;
+	}
+
+	public String getMessageWhenPatternMismatch() {
+		return messageWhenPatternMismatch;
+	}
+
+	public FormElement<T> setMessageWhenPatternMismatch(String messageWhenPatternMismatch) {
+		this.messageWhenPatternMismatch = messageWhenPatternMismatch;
+		return this;
+	}
+
+	public String getMessageWhenStepMismatch() {
+		return messageWhenStepMismatch;
+	}
+
+	public FormElement<T> setMessageWhenStepMismatch(String messageWhenStepMismatch) {
+		this.messageWhenStepMismatch = messageWhenStepMismatch;
+		return this;
+	}
+
+	public String getMessageWhenTooLong() {
+		return messageWhenTooLong;
+	}
+
+	public FormElement<T> setMessageWhenTooLong(String messageWhenTooLong) {
+		this.messageWhenTooLong = messageWhenTooLong;
+		return this;
+	}
+
+	public String getMessageWhenTooShort() {
+		return messageWhenTooShort;
+	}
+
+	public FormElement<T> setMessageWhenTooShort(String messageWhenTooShort) {
+		this.messageWhenTooShort = messageWhenTooShort;
+		return this;
+	}
+
+	public String getMessageWhenTypeMismatch() {
+		return messageWhenTypeMismatch;
+	}
+
+	public FormElement<T> setMessageWhenTypeMismatch(String messageWhenTypeMismatch) {
+		this.messageWhenTypeMismatch = messageWhenTypeMismatch;
+		return this;
+	}
+
+	public String getMessageWhenCustomError() {
+		return messageWhenCustomError;
+	}
+
+	public FormElement<T> setMessageWhenCustomError(String messageWhenCustomError) {
+		this.messageWhenCustomError = messageWhenCustomError;
+		return this;
+	}
+
+	
+	
+	
 
 }

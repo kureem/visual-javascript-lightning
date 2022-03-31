@@ -9,10 +9,47 @@ import com.spoonconsulting.lightning.enums.Theme;
 import framework.components.JSContainer;
 import framework.components.api.Renderable;
 import jsweet.lang.Array;
+import jsweet.lang.Date;
 import jsweet.lang.Object;
-import jsweet.util.StringTypes.text;
 
 public class Utils {
+	
+	public final static String[] MONTHS = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	
+	public final static String[] DAYS =  new String[] {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+//dd-MM-MMM-MMMM-yyyy EE-EEE-EEEE
+//03-11-Nov-November-2021 Wed-Wed-Wednesday
+	
+	public final static String formatDate(Date dt, String format) {
+		double date = dt.getDate();
+		double day = dt.getDay();
+		double month = dt.getMonth();
+		double year = dt.getFullYear();
+		
+		String EEEE = DAYS[(int)day];
+		String EEE = EEEE.substring(0, 3);
+		String EE = EEE;
+		String MMMM = MONTHS[(int)month];
+		String MMM = MMMM.substring(0,3);
+		String MM = month < 10? "0" + month: month + "";
+		String dd = date < 10? "0" + date: date + "";
+		String yyyy = year + "";
+		String yy = yyyy.substring(2);
+		
+		
+		format = format.replace("EEEE", EEEE);
+		format = format.replace("EEE", EEE);
+		format = format.replace("EE", EE);
+		format = format.replace("MMMM", MMMM);
+		format = format.replace("MMM", MMM);
+		format = format.replace("MM", MM);
+		format = format.replace("dd", dd);
+		format = format.replace("yyyy", yyyy);
+		format = format.replace("yy", yy);
+		///
+		return format;
+		
+	}
 	
 	public static String camelCaseToLabel(String sname) {
 		String result = "";
@@ -334,6 +371,71 @@ public class Utils {
 		}
 	}
 	
+	@SuppressWarnings("rawtypes")
+	public static boolean isEmpty(java.lang.Object val) {
+		if(val == null) {
+			return true;
+		}
+		
+		if(val + "" == "") {
+			return true;
+		}
+		
+		if(Array.isArray(val)) {
+			if(((Array)val).length <=0){
+				return true;
+			}
+		}
+		
+		if(jsweet.lang.Globals.isNaN((Double)val)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static class ObjectBuilder{
+		Object obj = new Object();
+		
+		public static ObjectBuilder create() {
+			return new ObjectBuilder();
+		}
+		
+		public ObjectBuilder set(String key, java.lang.Object value) {
+			obj.$set(key, value);
+			return this;
+		}
+		
+		public ObjectBuilder set(String...strings) {
+			for(int i = 0; i < strings.length-1;i=i+2) {
+				set(strings[i], strings[i+1]);
+			}
+			return this;
+		}
+		
+		public Object get() {
+			return obj;
+		}
+	}
+	
+	public static class ArrayBuilder{
+		Array<Object> result = new Array<Object>();
+		
+		public static ArrayBuilder create() {
+			return new ArrayBuilder();
+		}
+		
+		public ArrayBuilder add(Object...val) {
+			for(Object o : val) {
+				result.push(o);
+			}
+			return this;
+		}
+		
+		public Array<Object> get(){
+			return result;
+		}
+	}
 	
 	public static class OptionsBuilder{
 
