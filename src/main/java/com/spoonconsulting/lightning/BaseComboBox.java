@@ -98,6 +98,16 @@ public class BaseComboBox<T> extends JSContainer implements InputField<T>{
 		}, "blur");
 	}
 	
+	
+	public BaseComboBox<T> setStrict(boolean b){
+		if(b) {
+			input_.setAttribute("readonly","true");
+		}else {
+			input_.setAttribute("readonly",null);
+		}
+		return this;
+	}
+	
 	public BaseComboBox<T> setOptions(Array<Object> options) {
 		this.dropdown.setOptions(options);
 		return this;

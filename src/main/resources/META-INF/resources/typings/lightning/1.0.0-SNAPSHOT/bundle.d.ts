@@ -295,6 +295,7 @@ declare namespace com.spoonconsulting.lightning {
         static DROPDOWN_ALIGNMENT_BOTTOM_LEFT: string;
         static DROPDOWN_ALIGNMENT_TOP_LEFT: string;
         constructor(name: string);
+        setStrict(b: boolean): BaseComboBox<T>;
         setOptions(options: Array<Object>): BaseComboBox<T>;
         toggleDropdown(): void;
         isExpanded(): boolean;
@@ -386,7 +387,7 @@ declare namespace com.spoonconsulting.lightning {
 }
 declare namespace com.spoonconsulting.lightning {
     class Boot {
-        static main(args: string[]): void;
+        static main_(args: string[]): void;
         static getExampleTab(example: JSContainer): com.spoonconsulting.lightning.TabSet;
         static getAccordionSample(): JSContainer;
         static getButtons(): JSContainer;
@@ -631,6 +632,16 @@ declare namespace com.spoonconsulting.lightning {
     }
     namespace CheckBox {
         class CheckBox$0 implements api.EventListener {
+            __parent: any;
+            /**
+             *
+             * @param {*} source
+             * @param {Event} evt
+             */
+            performAction(source: api.Renderable, evt: Event): void;
+            constructor(__parent: any);
+        }
+        class CheckBox$1 implements api.EventListener {
             __parent: any;
             /**
              *
@@ -1184,6 +1195,7 @@ declare namespace com.spoonconsulting.lightning {
         clearMenu(): void;
         setIsLoading(isLoading: boolean): Dropdown;
         addItem(item: com.spoonconsulting.lightning.MenuItem): Dropdown;
+        getItem(name: string): com.spoonconsulting.lightning.MenuItem;
         addMenuDivider(): Dropdown;
         getSpinner(): com.spoonconsulting.lightning.Spinner;
         getMenu(): com.spoonconsulting.lightning.Menu;
@@ -4458,6 +4470,7 @@ declare namespace com.spoonconsulting.lightning {
         dropdown: com.spoonconsulting.lightning.Dropdown;
         menuAlignment: string;
         nubbin: boolean;
+        sticky: boolean;
         constructor(name: string, tag: string);
         toggle(): void;
         open(): void;
@@ -4497,8 +4510,11 @@ declare namespace com.spoonconsulting.lightning {
         addItem(value?: any, label?: any, iconName?: any): any;
         setOptions(options: Array<Object>): ButtonMenu;
         addItem$com_spoonconsulting_lightning_MenuItem(item: com.spoonconsulting.lightning.MenuItem): ButtonMenu;
+        getMenuItem(name: string): com.spoonconsulting.lightning.MenuItem;
         getButton(): com.spoonconsulting.lightning.ButtonIcon;
         getDropdown(): com.spoonconsulting.lightning.Dropdown;
+        isSticky(): boolean;
+        setSticky(sticky: boolean): void;
     }
     namespace ButtonMenu {
         class ButtonMenu$0 implements api.EventListener {
@@ -4595,6 +4611,7 @@ declare namespace com.spoonconsulting.lightning {
         setTitle(title: string): void;
         clearMenu(): void;
         addMenuItem(item: com.spoonconsulting.lightning.MenuItem): Menu;
+        getMenuItem(name: string): com.spoonconsulting.lightning.MenuItem;
         addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu;
         addMenuDivider(): Menu;
     }
@@ -4777,6 +4794,8 @@ declare namespace com.spoonconsulting.lightning {
     class ComboBox extends com.spoonconsulting.lightning.FormElement<string> {
         combo: com.spoonconsulting.lightning.BaseComboBox<string>;
         constructor(name: string);
+        setStrict(b: boolean): ComboBox;
+        getCombo(): com.spoonconsulting.lightning.BaseComboBox<string>;
         setDisabled(b: boolean): ComboBox;
         isDisabled(): boolean;
         setDropdownAlignment(alignment: string): ComboBox;

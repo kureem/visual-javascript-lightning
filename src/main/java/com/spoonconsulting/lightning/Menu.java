@@ -41,6 +41,15 @@ public class Menu extends BaseLightning{
 		return this;
 	}
 	
+	public MenuItem getMenuItem(String name) {
+		for(Renderable ctn : getChildren()) {
+			if(ctn.getChildren().$get(0).getName() == name) {
+				return (MenuItem)ctn.getChildren().$get(0);
+			}
+		}
+		return null;
+	}
+	
 	public Menu addMenuItems(MenuItem...items) {
 		for(MenuItem item : items) {
 			addMenuItem(item);

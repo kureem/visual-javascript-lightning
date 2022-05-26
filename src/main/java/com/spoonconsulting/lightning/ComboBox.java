@@ -23,6 +23,15 @@ public class ComboBox extends FormElement<String>{
 		}, "change");
 	}
 	
+	public ComboBox setStrict(boolean b) {
+		combo.setStrict(b);
+		return this;
+	}
+	
+	public BaseComboBox<String> getCombo(){
+		return combo;
+	}
+	
 	public ComboBox setDisabled(boolean b) {
 		combo.setDisabled(b);
 		return this;

@@ -59,6 +59,10 @@ public class Dropdown extends JSContainer {
 		menu.addMenuItem(item);
 		return this;
 	}
+	
+	public MenuItem getItem(String name) {
+		return menu.getMenuItem(name);
+	}
 
 	public Dropdown addMenuDivider() {
 		menu.addMenuDivider();

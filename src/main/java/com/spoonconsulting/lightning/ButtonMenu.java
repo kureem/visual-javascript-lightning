@@ -20,6 +20,8 @@ public class ButtonMenu extends BaseLightning{
 	
 	private boolean nubbin= false;
 	
+	private boolean sticky = false;
+	
 	public ButtonMenu(String name, String tag) {
 		super(name, tag);
 		addClass("slds-dropdown-trigger")
@@ -43,7 +45,8 @@ public class ButtonMenu extends BaseLightning{
 			
 			@Override
 			public void performAction(Renderable source, Event evt) {
-				setExpanded(false);
+				if(!sticky)
+					setExpanded(false);
 				fireListener("select", evt);
 			}
 		}, "select");
@@ -72,9 +75,11 @@ public class ButtonMenu extends BaseLightning{
 		if(b) {
 			button.setAttribute("aria-expanded", "true");
 			addClass("slds-is-open");
+			getDropdown().setStyle("display", "block");
 		}else {
 			button.setAttribute("aria-expanded", "false");
 			removeClass("slds-is-open");
+			getDropdown().setStyle("display", "none");
 		}
 		return this;
 	}
@@ -297,15 +302,27 @@ public class ButtonMenu extends BaseLightning{
 	
 	public ButtonMenu addItem(MenuItem item) {
 		dropdown.addItem(item);
+		
 		return this;
 	}
-
+	
+	public MenuItem getMenuItem(String name) {
+		return dropdown.getItem(name);
+	}
 	public ButtonIcon getButton() {
 		return button;
 	}
 
 	public Dropdown getDropdown() {
 		return dropdown;
+	}
+
+	public boolean isSticky() {
+		return sticky;
+	}
+
+	public void setSticky(boolean sticky) {
+		this.sticky = sticky;
 	}
 	
 	

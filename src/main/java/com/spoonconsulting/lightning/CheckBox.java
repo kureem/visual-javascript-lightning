@@ -32,6 +32,15 @@ public class CheckBox extends JSContainer implements InputField<Boolean> {
 				checkbox.getElement().click();
 			}
 		}, "click");
+		
+		checkbox.addEventListener(new EventListener() {
+			
+			@Override
+			public void performAction(Renderable source, Event evt) {
+
+				setValue(checkbox.isChecked());
+			}
+		}, "click");
 	}
 	
 	

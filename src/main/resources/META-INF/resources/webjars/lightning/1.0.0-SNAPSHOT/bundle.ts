@@ -26,9 +26,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getStep(value: string): com.spoonconsulting.lightning.IStep {
             {
-                let array533 = this.getSteps();
-                for(let index532=0; index532 < array533.length; index532++) {
-                    let step = array533[index532];
+                let array678 = this.getSteps();
+                for(let index677=0; index677 < array678.length; index677++) {
+                    let step = array678[index677];
                     {
                         if (step.getValue() === value){
                             return step;
@@ -47,9 +47,9 @@ namespace com.spoonconsulting.lightning {
         public setCurrentStep(value: string): com.spoonconsulting.lightning.IProgress {
             let passedCurrent: boolean = false;
             {
-                let array535 = this.getSteps();
-                for(let index534=0; index534 < array535.length; index534++) {
-                    let step = array535[index534];
+                let array680 = this.getSteps();
+                for(let index679=0; index679 < array680.length; index679++) {
+                    let step = array680[index679];
                     {
                         if (step.getValue() === value){
                             step.setCurrent(true);
@@ -69,9 +69,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getCurrentStep(): com.spoonconsulting.lightning.IStep {
             {
-                let array537 = this.getSteps();
-                for(let index536=0; index536 < array537.length; index536++) {
-                    let step = array537[index536];
+                let array682 = this.getSteps();
+                for(let index681=0; index681 < array682.length; index681++) {
+                    let step = array682[index681];
                     {
                         if (step.isCurrent()){
                             return step;
@@ -99,9 +99,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getHasError(): boolean {
             {
-                let array539 = this.getSteps();
-                for(let index538=0; index538 < array539.length; index538++) {
-                    let step = array539[index538];
+                let array684 = this.getSteps();
+                for(let index683=0; index683 < array684.length; index683++) {
+                    let step = array684[index683];
                     {
                         if (step.getHasError()){
                             return true;
@@ -240,9 +240,9 @@ namespace com.spoonconsulting.lightning {
                 const end: com.spoonconsulting.lightning.enums.IconName = com.spoonconsulting.lightning.enums.IconName.CUSTOM_CUSTOM99;
                 let index: number = 0;
                 {
-                    let array541 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.IconName[] = []; for(let val in com.spoonconsulting.lightning.enums.IconName) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                    for(let index540=0; index540 < array541.length; index540++) {
-                        let ic = array541[index540];
+                    let array686 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.IconName[] = []; for(let val in com.spoonconsulting.lightning.enums.IconName) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                    for(let index685=0; index685 < array686.length; index685++) {
+                        let ic = array686[index685];
                         {
                             if (com.spoonconsulting.lightning.enums.IconName["_$wrappers"][ic].getValue() === com.spoonconsulting.lightning.enums.IconName["_$wrappers"][start].getValue()){
                                 Avatar.min = index;
@@ -385,9 +385,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Avatar {
             {
-                let array543 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index542=0; index542 < array543.length; index542++) {
-                    let s = array543[index542];
+                let array688 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index687=0; index687 < array688.length; index687++) {
+                    let s = array688[index687];
                     {
                         this.removeClass("slds-avatar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -590,6 +590,15 @@ namespace com.spoonconsulting.lightning {
             this.inputIcon.getIcon().addClass("slds-icon-text-default");
             this.dropdown.addEventListener(new BaseComboBox.BaseComboBox$1(this), "change");
             this.input_.addEventListener(new BaseComboBox.BaseComboBox$2(this), "blur");
+        }
+
+        public setStrict(b: boolean): BaseComboBox<T> {
+            if (b){
+                this.input_.setAttribute("readonly", "true");
+            } else {
+                this.input_.setAttribute("readonly", null);
+            }
+            return this;
         }
 
         public setOptions(options: Array<Object>): BaseComboBox<T> {
@@ -832,7 +841,7 @@ namespace com.spoonconsulting.lightning {
 }
 namespace com.spoonconsulting.lightning {
     export class Boot {
-        public static main(args: string[]) {
+        public static main_(args: string[]) {
             const d: com.spoonconsulting.lightning.Draggable = new com.spoonconsulting.lightning.Draggable("drag", "div");
             d.setStyle("width", "100px").setStyle("height", "100px").setStyle("background", "red").setStyle("position", "relative");
             d.setAxis("x");
@@ -880,9 +889,9 @@ namespace com.spoonconsulting.lightning {
             const box: com.spoonconsulting.lightning.ComboBox = new com.spoonconsulting.lightning.ComboBox("variants");
             const variants: Array<Object> = <any>(new Array<Object>());
             {
-                let array545 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index544=0; index544 < array545.length; index544++) {
-                    let __var = array545[index544];
+                let array690 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index689=0; index689 < array690.length; index689++) {
+                    let __var = array690[index689];
                     {
                         const variant: Object = <Object>new Object();
                         variant["value"] = com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][__var].getValue();
@@ -897,9 +906,9 @@ namespace com.spoonconsulting.lightning {
             cbsize.setLabel("Change Size:");
             const sizes: Array<Object> = <any>(new Array<Object>());
             {
-                let array547 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index546=0; index546 < array547.length; index546++) {
-                    let size = array547[index546];
+                let array692 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index691=0; index691 < array692.length; index691++) {
+                    let size = array692[index691];
                     {
                         const opt: any = {};
                         opt["value"] = com.spoonconsulting.lightning.enums.Size["_$wrappers"][size].getValue();
@@ -1463,9 +1472,9 @@ namespace com.spoonconsulting.lightning {
         public getBreadcrumbs(): Array<com.spoonconsulting.lightning.Breadcrumb> {
             const result: Array<com.spoonconsulting.lightning.Breadcrumb> = <any>(new Array<com.spoonconsulting.lightning.Breadcrumb>());
             {
-                let array549 = this.getChildren();
-                for(let index548=0; index548 < array549.length; index548++) {
-                    let r = array549[index548];
+                let array694 = this.getChildren();
+                for(let index693=0; index693 < array694.length; index693++) {
+                    let r = array694[index693];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         result.push(bc);
@@ -1477,9 +1486,9 @@ namespace com.spoonconsulting.lightning {
 
         public getBreadcrumb(name: string): com.spoonconsulting.lightning.Breadcrumb {
             {
-                let array551 = this.getChildren();
-                for(let index550=0; index550 < array551.length; index550++) {
-                    let r = array551[index550];
+                let array696 = this.getChildren();
+                for(let index695=0; index695 < array696.length; index695++) {
+                    let r = array696[index695];
                     {
                         const bc: com.spoonconsulting.lightning.Breadcrumb = <com.spoonconsulting.lightning.Breadcrumb><any>r.getChildren()[0];
                         if (bc.getName() === name){
@@ -1652,6 +1661,7 @@ namespace com.spoonconsulting.lightning {
             this.label.addClass("slds-form-element__label");
             this.checkBoxLabel.addChild(this.label);
             this.checkBoxLabel.addEventListener(new CheckBox.CheckBox$0(this), "click");
+            this.checkbox.addEventListener(new CheckBox.CheckBox$1(this), "click");
         }
 
         getCheckBoxLabel(): JSContainer {
@@ -1745,6 +1755,25 @@ namespace com.spoonconsulting.lightning {
             }
         }
         CheckBox$0["__interfaces"] = ["framework.components.api.EventListener"];
+
+
+
+        export class CheckBox$1 implements api.EventListener {
+            public __parent: any;
+            /**
+             * 
+             * @param {*} source
+             * @param {Event} evt
+             */
+            public performAction(source: api.Renderable, evt: Event) {
+                this.__parent.setValue(this.__parent.checkbox.isChecked());
+            }
+
+            constructor(__parent: any) {
+                this.__parent = __parent;
+            }
+        }
+        CheckBox$1["__interfaces"] = ["framework.components.api.EventListener"];
 
 
     }
@@ -2059,8 +2088,8 @@ namespace com.spoonconsulting.lightning {
                 this.checkbox.addEventListener(new DataGrid.DataGrid$1(this), "change");
                 this.theadRow.addChild(th.addChild(this.checkbox));
             }
-            for(let index552=0; index552 < this.columns.length; index552++) {
-                let column = this.columns[index552];
+            for(let index697=0; index697 < this.columns.length; index697++) {
+                let column = this.columns[index697];
                 {
                     let name: string = <string>column["fieldName"];
                     let label: string = <string>column["label"];
@@ -2130,8 +2159,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public getColumn(name: string): Object {
-            for(let index553=0; index553 < this.columns.length; index553++) {
-                let col = this.columns[index553];
+            for(let index698=0; index698 < this.columns.length; index698++) {
+                let col = this.columns[index698];
                 {
                     const fieldName: string = <string>col["fieldName"];
                     if (fieldName === name){
@@ -2146,8 +2175,8 @@ namespace com.spoonconsulting.lightning {
             this.tbody.clearChildren();
             this.tbody.setRendered(false);
             let index: number = 0;
-            for(let index554=0; index554 < this.data.length; index554++) {
-                let line = this.data[index554];
+            for(let index699=0; index699 < this.data.length; index699++) {
+                let line = this.data[index699];
                 {
                     const row: com.spoonconsulting.lightning.DataGridRow = new com.spoonconsulting.lightning.DataGridRow(this, line, index);
                     this.tbody.addChild(row);
@@ -2160,9 +2189,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSelectAll(b: boolean): DataGrid {
             {
-                let array556 = this.getRows();
-                for(let index555=0; index555 < array556.length; index555++) {
-                    let row = array556[index555];
+                let array701 = this.getRows();
+                for(let index700=0; index700 < array701.length; index700++) {
+                    let row = array701[index700];
                     {
                         row.setSelected(b);
                     }
@@ -2174,9 +2203,9 @@ namespace com.spoonconsulting.lightning {
         public getSelectedItems(): Array<Object> {
             const result: Array<Object> = <any>(new Array<Object>());
             {
-                let array558 = this.getRows();
-                for(let index557=0; index557 < array558.length; index557++) {
-                    let row = array558[index557];
+                let array703 = this.getRows();
+                for(let index702=0; index702 < array703.length; index702++) {
+                    let row = array703[index702];
                     {
                         if (row.isSelected()){
                             result.push(row.getLine());
@@ -2761,8 +2790,8 @@ namespace com.spoonconsulting.lightning {
             }, 'constructor', { configurable: true, value: { __interfaces: ["jsweet.dom.MutationObserverInit"] } });
             configs.attributes = true;
             const observer: MutationObserver = new MutationObserver((mutations: MutationRecord[], observer: MutationObserver) => {
-                for(let index559=0; index559 < mutations.length; index559++) {
-                    let mutation = mutations[index559];
+                for(let index704=0; index704 < mutations.length; index704++) {
+                    let mutation = mutations[index704];
                     {
                         this.setWidth((<HTMLElement>mutation.target).clientWidth + "px");
                         this.render();
@@ -3080,8 +3109,8 @@ namespace com.spoonconsulting.lightning {
                 this.checkbox.addEventListener(new DataGridRow.DataGridRow$0(this), "change");
             }
             const columns: Array<Object> = this.grid.getColumns();
-            for(let index560=0; index560 < columns.length; index560++) {
-                let col = columns[index560];
+            for(let index705=0; index705 < columns.length; index705++) {
+                let col = columns[index705];
                 {
                     const fieldName: string = <string>col["fieldName"];
                     const label: string = <string>col["label"];
@@ -3107,8 +3136,8 @@ namespace com.spoonconsulting.lightning {
                     }
                     if (this.grid.getCellRenderers().hasOwnProperty(type)){
                         const renderes: Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void> = <Array<(p1: com.spoonconsulting.lightning.DataGridCell, p2: Object, p3: Object, p4: string) => void>>this.grid.getCellRenderers()[type];
-                        for(let index561=0; index561 < renderes.length; index561++) {
-                            let r = renderes[index561];
+                        for(let index706=0; index706 < renderes.length; index706++) {
+                            let r = renderes[index706];
                             {
                                 (target => (typeof target === 'function') ? target(cell, col, this.line, fieldName) : (<any>target).apply(cell, col, this.line, fieldName))(r);
                             }
@@ -3387,6 +3416,10 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public getItem(name: string): com.spoonconsulting.lightning.MenuItem {
+            return this.menu.getMenuItem(name);
+        }
+
         public addMenuDivider(): Dropdown {
             this.menu.addMenuDivider();
             return this;
@@ -3512,10 +3545,19 @@ namespace com.spoonconsulting.lightning {
             const max: number = this.getMax();
             if (max == null || this.selected.getUIOptions().length < max){
                 const sel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.available.getSelectedOption();
+                let index: number = this.available.getChildren().indexOf(sel);
                 if (sel != null){
                     sel.setChecked(false);
                     sel.setRendered(false);
                     this.available.removeChild(sel);
+                    if (this.available.getChildren().length > 0){
+                        if (index >= this.available.getChildren().length){
+                            index = this.available.getChildren().length - 1;
+                        }
+                        const newSel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.available.getUIOptions()[index];
+                        const newVal: string = newSel.getValue();
+                        this.available.setValue(newVal);
+                    }
                     this.selected.addChild(sel);
                     this.available.setRendered(false);
                 }
@@ -3526,10 +3568,19 @@ namespace com.spoonconsulting.lightning {
             const min: number = this.getMin();
             if (min == null || this.selected.getUIOptions().length > min){
                 const sel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.selected.getSelectedOption();
+                let index: number = this.selected.getChildren().indexOf(sel);
                 if (sel != null){
                     sel.setChecked(false);
                     sel.setRendered(false);
                     this.selected.removeChild(sel);
+                    if (this.selected.getChildren().length > 0){
+                        if (index >= this.selected.getChildren().length){
+                            index = this.selected.getChildren().length - 1;
+                        }
+                        const newSel: com.spoonconsulting.lightning.ListBox.ListBoxOption = this.selected.getUIOptions()[index];
+                        const newVal: string = newSel.getValue();
+                        this.selected.setValue(newVal);
+                    }
                     this.available.addChild(sel);
                     this.selected.setRendered(false);
                 }
@@ -3560,9 +3611,9 @@ namespace com.spoonconsulting.lightning {
         public getValue(): Array<string> {
             const result: Array<string> = <any>(new Array<string>());
             {
-                let array563 = this.selected.getOptions();
-                for(let index562=0; index562 < array563.length; index562++) {
-                    let o = array563[index562];
+                let array708 = this.selected.getOptions();
+                for(let index707=0; index707 < array708.length; index707++) {
+                    let o = array708[index707];
                     {
                         const val: string = <string>o["value"];
                         result.push(val);
@@ -3579,8 +3630,8 @@ namespace com.spoonconsulting.lightning {
         public setValue(val: Array<string>) {
             const result: Array<Object> = <any>(new Array<Object>());
             const tmp: Array<Object> = <any>(new Array<Object>());
-            for(let index564=0; index564 < this.options.length; index564++) {
-                let o = this.options[index564];
+            for(let index709=0; index709 < this.options.length; index709++) {
+                let o = this.options[index709];
                 {
                     const sval: string = <string>o["value"];
                     if (val.indexOf(sval) >= 0){
@@ -3614,8 +3665,8 @@ namespace com.spoonconsulting.lightning {
                 throw new api.ValidationException(api.ValidationException.rangeOverflow);
             }
             const requiredOpts: Array<string> = this.getRequiredOptions();
-            for(let index565=0; index565 < requiredOpts.length; index565++) {
-                let s = requiredOpts[index565];
+            for(let index710=0; index710 < requiredOpts.length; index710++) {
+                let s = requiredOpts[index710];
                 {
                     if (value.indexOf(s) < 0){
                         throw new api.ValidationException(api.ValidationException.valueMissing);
@@ -4998,9 +5049,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Icon {
             {
-                let array567 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index566=0; index566 < array567.length; index566++) {
-                    let s = array567[index566];
+                let array712 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index711=0; index711 < array712.length; index711++) {
+                    let s = array712[index711];
                     {
                         this.removeClass("slds-icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -6571,9 +6622,9 @@ namespace com.spoonconsulting.lightning {
         public setAlignmentBump$java_lang_String(alignmentBumb: string): LayoutItem {
             this.alignmentBumb = alignmentBumb;
             {
-                let array569 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index568=0; index568 < array569.length; index568++) {
-                    let a = array569[index568];
+                let array714 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index713=0; index713 < array714.length; index713++) {
+                    let a = array714[index713];
                     {
                         this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][a].getValue());
                     }
@@ -6602,9 +6653,9 @@ namespace com.spoonconsulting.lightning {
         public setFlexibility$java_lang_String(flexibility: string): LayoutItem {
             this.flexibility = flexibility;
             {
-                let array571 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.enums.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index570=0; index570 < array571.length; index570++) {
-                    let f = array571[index570];
+                let array716 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Flexibility[] = []; for(let val in com.spoonconsulting.lightning.enums.Flexibility) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index715=0; index715 < array716.length; index715++) {
+                    let f = array716[index715];
                     {
                         this.removeClass("slds-" + com.spoonconsulting.lightning.enums.Flexibility["_$wrappers"][f].getValue());
                     }
@@ -6612,8 +6663,8 @@ namespace com.spoonconsulting.lightning {
             }
             if (flexibility != null){
                 const fxs: string[] = flexibility.split(",");
-                for(let index572=0; index572 < fxs.length; index572++) {
-                    let fx = fxs[index572];
+                for(let index717=0; index717 < fxs.length; index717++) {
+                    let fx = fxs[index717];
                     {
                         this.addClass("slds-" + fx);
                     }
@@ -6667,9 +6718,9 @@ namespace com.spoonconsulting.lightning {
         public setPadding$java_lang_String(padding: string): LayoutItem {
             this.padding = padding;
             {
-                let array574 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.LayoutItemPadding[] = []; for(let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index573=0; index573 < array574.length; index573++) {
-                    let p = array574[index573];
+                let array719 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.LayoutItemPadding[] = []; for(let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index718=0; index718 < array719.length; index718++) {
+                    let p = array719[index718];
                     {
                         this.removeClass("slds-p-" + com.spoonconsulting.lightning.enums.LayoutItemPadding["_$wrappers"][p].getValue());
                     }
@@ -6729,9 +6780,9 @@ namespace com.spoonconsulting.lightning {
         public setCheckable(checkable: boolean) {
             this.checkable = checkable;
             {
-                let array576 = this.getUIOptions();
-                for(let index575=0; index575 < array576.length; index575++) {
-                    let opt = array576[index575];
+                let array721 = this.getUIOptions();
+                for(let index720=0; index720 < array721.length; index720++) {
+                    let opt = array721[index720];
                     {
                         opt.setCheckable(checkable);
                     }
@@ -6762,8 +6813,8 @@ namespace com.spoonconsulting.lightning {
 
         public setOptions(options: Array<Object>): ListBox {
             this.clearChildren();
-            for(let index577=0; index577 < options.length; index577++) {
-                let option = options[index577];
+            for(let index722=0; index722 < options.length; index722++) {
+                let option = options[index722];
                 {
                     this.addOption$jsweet_lang_Object(option);
                 }
@@ -6773,9 +6824,9 @@ namespace com.spoonconsulting.lightning {
 
         public setValue(value: string): ListBox {
             {
-                let array579 = this.getChildren();
-                for(let index578=0; index578 < array579.length; index578++) {
-                    let r = array579[index578];
+                let array724 = this.getChildren();
+                for(let index723=0; index723 < array724.length; index723++) {
+                    let r = array724[index723];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.getValue() === value){
@@ -6805,9 +6856,9 @@ namespace com.spoonconsulting.lightning {
 
         public getSelectedOption(): ListBox.ListBoxOption {
             {
-                let array581 = this.getChildren();
-                for(let index580=0; index580 < array581.length; index580++) {
-                    let r = array581[index580];
+                let array726 = this.getChildren();
+                for(let index725=0; index725 < array726.length; index725++) {
+                    let r = array726[index725];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.isChecked()){
@@ -6821,9 +6872,9 @@ namespace com.spoonconsulting.lightning {
 
         public getOption(value: string): ListBox.ListBoxOption {
             {
-                let array583 = this.getChildren();
-                for(let index582=0; index582 < array583.length; index582++) {
-                    let r = array583[index582];
+                let array728 = this.getChildren();
+                for(let index727=0; index727 < array728.length; index727++) {
+                    let r = array728[index727];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.getValue() === value){
@@ -6843,9 +6894,9 @@ namespace com.spoonconsulting.lightning {
         public getOptions(): Array<Object> {
             const result: Array<Object> = <any>(new Array<Object>());
             {
-                let array585 = this.getChildren();
-                for(let index584=0; index584 < array585.length; index584++) {
-                    let r = array585[index584];
+                let array730 = this.getChildren();
+                for(let index729=0; index729 < array730.length; index729++) {
+                    let r = array730[index729];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         const o: Object = <Object>new Object();
@@ -6860,9 +6911,9 @@ namespace com.spoonconsulting.lightning {
 
         public getValue(): string {
             {
-                let array587 = this.getChildren();
-                for(let index586=0; index586 < array587.length; index586++) {
-                    let r = array587[index586];
+                let array732 = this.getChildren();
+                for(let index731=0; index731 < array732.length; index731++) {
+                    let r = array732[index731];
                     {
                         const opt: ListBox.ListBoxOption = <ListBox.ListBoxOption><any>r;
                         if (opt.isChecked()){
@@ -7202,9 +7253,9 @@ namespace com.spoonconsulting.lightning {
         public setSize$java_lang_String(size: string): Modal {
             this.size = size;
             {
-                let array589 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.ModalSize[] = []; for(let val in com.spoonconsulting.lightning.enums.ModalSize) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index588=0; index588 < array589.length; index588++) {
-                    let s = array589[index588];
+                let array734 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.ModalSize[] = []; for(let val in com.spoonconsulting.lightning.enums.ModalSize) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index733=0; index733 < array734.length; index733++) {
+                    let s = array734[index733];
                     {
                         this.removeClass("slds-modal_" + com.spoonconsulting.lightning.enums.ModalSize["_$wrappers"][s].getValue());
                     }
@@ -7542,9 +7593,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ProgressBar {
             {
-                let array591 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index590=0; index590 < array591.length; index590++) {
-                    let s = array591[index590];
+                let array736 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index735=0; index735 < array736.length; index735++) {
+                    let s = array736[index735];
                     {
                         this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -8167,9 +8218,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): Spinner {
             {
-                let array593 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index592=0; index592 < array593.length; index592++) {
-                    let s = array593[index592];
+                let array738 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index737=0; index737 < array738.length; index737++) {
+                    let s = array738[index737];
                     {
                         this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                     }
@@ -8181,9 +8232,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Spinner {
             {
-                let array595 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index594=0; index594 < array595.length; index594++) {
-                    let v = array595[index594];
+                let array740 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index739=0; index739 < array740.length; index739++) {
+                    let v = array740[index739];
                     {
                         if (v !== com.spoonconsulting.lightning.enums.Variants.Variant.BASE)this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -8247,9 +8298,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabValue(val: string) {
             {
-                let array597 = this.tablist.getChildren();
-                for(let index596=0; index596 < array597.length; index596++) {
-                    let r = array597[index596];
+                let array742 = this.tablist.getChildren();
+                for(let index741=0; index741 < array742.length; index741++) {
+                    let r = array742[index741];
                     {
                         const item: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (item.tab.getValue() === val){
@@ -8264,9 +8315,9 @@ namespace com.spoonconsulting.lightning {
 
         public setActiveTabItem(item: TabSet.TabItem) {
             {
-                let array599 = this.tablist.getChildren();
-                for(let index598=0; index598 < array599.length; index598++) {
-                    let r = array599[index598];
+                let array744 = this.tablist.getChildren();
+                for(let index743=0; index743 < array744.length; index743++) {
+                    let r = array744[index743];
                     {
                         const titem: TabSet.TabItem = <TabSet.TabItem><any>r;
                         if (titem.getId() === item.getId()){
@@ -8281,9 +8332,9 @@ namespace com.spoonconsulting.lightning {
 
         public getActiveTabItem(): TabSet.TabItem {
             {
-                let array601 = this.getTabItems();
-                for(let index600=0; index600 < array601.length; index600++) {
-                    let item = array601[index600];
+                let array746 = this.getTabItems();
+                for(let index745=0; index745 < array746.length; index745++) {
+                    let item = array746[index745];
                     {
                         if (item.isActive()){
                             return item;
@@ -8315,9 +8366,9 @@ namespace com.spoonconsulting.lightning {
 
         public getPanel(name: string): com.spoonconsulting.lightning.TabPanel {
             {
-                let array603 = this.getChildren();
-                for(let index602=0; index602 < array603.length; index602++) {
-                    let r = array603[index602];
+                let array748 = this.getChildren();
+                for(let index747=0; index747 < array748.length; index747++) {
+                    let r = array748[index747];
                     {
                         if (r.getId() !== this.tablist.getId()){
                             if (r.getName() === name){
@@ -8362,9 +8413,9 @@ namespace com.spoonconsulting.lightning {
                 this.tablist.addClass("slds-tabs_default__nav");
             }
             {
-                let array605 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index604=0; index604 < array605.length; index604++) {
-                    let va = array605[index604];
+                let array750 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.TabSetVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index749=0; index749 < array750.length; index749++) {
+                    let va = array750[index749];
                     {
                         this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.enums.Variants.TabSetVariant["_$wrappers"][va].getValue());
                     }
@@ -8823,8 +8874,8 @@ namespace com.spoonconsulting.lightning {
             public setData(data: Array<Object>): Tree.UITree {
                 this.clearChildren();
                 this.setRendered(false);
-                for(let index606=0; index606 < data.length; index606++) {
-                    let obj = data[index606];
+                for(let index751=0; index751 < data.length; index751++) {
+                    let obj = data[index751];
                     {
                         const item: Tree.UITreeItem = new Tree.UITreeItem(this.__parent, <string>obj["name"], this.level, this.tree_);
                         this.addChild(item);
@@ -8843,9 +8894,9 @@ namespace com.spoonconsulting.lightning {
 
             public unselect(except: Tree.UITreeItem) {
                 {
-                    let array608 = this.getChildren();
-                    for(let index607=0; index607 < array608.length; index607++) {
-                        let c = array608[index607];
+                    let array753 = this.getChildren();
+                    for(let index752=0; index752 < array753.length; index752++) {
+                        let c = array753[index752];
                         {
                             const item: Tree.UITreeItem = <Tree.UITreeItem><any>c;
                             item.unSelect(except);
@@ -9102,16 +9153,16 @@ namespace com.spoonconsulting.lightning {
 
         static setStyle(r: api.Renderable, prefix: string, direction: com.spoonconsulting.lightning.enums.Direction, size: com.spoonconsulting.lightning.enums.Size) {
             {
-                let array610 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index609=0; index609 < array610.length; index609++) {
-                    let dir = array610[index609];
+                let array755 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Direction[] = []; for(let val in com.spoonconsulting.lightning.enums.Direction) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index754=0; index754 < array755.length; index754++) {
+                    let dir = array755[index754];
                     {
                         const css: string = prefix + "-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][dir].getValue();
                         r.removeClass(css);
                         {
-                            let array612 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                            for(let index611=0; index611 < array612.length; index611++) {
-                                let s = array612[index611];
+                            let array757 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                            for(let index756=0; index756 < array757.length; index756++) {
+                                let s = array757[index756];
                                 {
                                     const scss: string = css + "_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue();
                                     r.removeClass(scss);
@@ -9169,8 +9220,8 @@ namespace com.spoonconsulting.lightning {
         public getDescriptionList(...strings: string[]): api.Renderable {
             const app: JSContainer = new JSContainer("list", "dl");
             let isdt: boolean = true;
-            for(let index613=0; index613 < strings.length; index613++) {
-                let s = strings[index613];
+            for(let index758=0; index758 < strings.length; index758++) {
+                let s = strings[index758];
                 {
                     if (isdt){
                         const dt: JSContainer = new JSContainer("", "dt");
@@ -9192,8 +9243,8 @@ namespace com.spoonconsulting.lightning {
             const app: JSContainer = new JSContainer("list", "dl");
             app.addClass("slds-list_horizontal").addClass("slds-wrap");
             let isdt: boolean = true;
-            for(let index614=0; index614 < strings.length; index614++) {
-                let s = strings[index614];
+            for(let index759=0; index759 < strings.length; index759++) {
+                let s = strings[index759];
                 {
                     if (isdt){
                         const dt: JSContainer = new JSContainer("", "dt");
@@ -9323,9 +9374,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setPosition(r: api.Renderable, position: com.spoonconsulting.lightning.enums.Position) {
             {
-                let array616 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Position[] = []; for(let val in com.spoonconsulting.lightning.enums.Position) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index615=0; index615 < array616.length; index615++) {
-                    let p = array616[index615];
+                let array761 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Position[] = []; for(let val in com.spoonconsulting.lightning.enums.Position) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index760=0; index760 < array761.length; index760++) {
+                    let p = array761[index760];
                     {
                         r.removeClass("slds-is-" + com.spoonconsulting.lightning.enums.Position["_$wrappers"][p].getValue());
                     }
@@ -9400,9 +9451,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setTextColor(r: api.Renderable, color: com.spoonconsulting.lightning.enums.Color) {
             {
-                let array618 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Color[] = []; for(let val in com.spoonconsulting.lightning.enums.Color) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index617=0; index617 < array618.length; index617++) {
-                    let c = array618[index617];
+                let array763 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Color[] = []; for(let val in com.spoonconsulting.lightning.enums.Color) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index762=0; index762 < array763.length; index762++) {
+                    let c = array763[index762];
                     {
                         r.removeClass("slds-text-color_" + com.spoonconsulting.lightning.enums.Color["_$wrappers"][c].getValue());
                     }
@@ -9419,9 +9470,9 @@ namespace com.spoonconsulting.lightning {
 
         public static setTheme(r: api.Renderable, theme: com.spoonconsulting.lightning.enums.Theme) {
             {
-                let array620 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Theme[] = []; for(let val in com.spoonconsulting.lightning.enums.Theme) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index619=0; index619 < array620.length; index619++) {
-                    let c = array620[index619];
+                let array765 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Theme[] = []; for(let val in com.spoonconsulting.lightning.enums.Theme) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index764=0; index764 < array765.length; index764++) {
+                    let c = array765[index764];
                     {
                         r.removeClass("slds-theme_" + com.spoonconsulting.lightning.enums.Theme["_$wrappers"][c].getValue());
                     }
@@ -9511,8 +9562,8 @@ namespace com.spoonconsulting.lightning {
             }
 
             public add(...val: Object[]): Utils.ArrayBuilder {
-                for(let index621=0; index621 < val.length; index621++) {
-                    let o = val[index621];
+                for(let index766=0; index766 < val.length; index766++) {
+                    let o = val[index766];
                     {
                         this.result.push(o);
                     }
@@ -9562,8 +9613,8 @@ namespace com.spoonconsulting.lightning {
             }
 
             public add$java_lang_String_A(...strings: string[]): Utils.OptionsBuilder {
-                for(let index622=0; index622 < strings.length; index622++) {
-                    let s = strings[index622];
+                for(let index767=0; index767 < strings.length; index767++) {
+                    let s = strings[index767];
                     {
                         this.add$java_lang_String$java_lang_String(s, s);
                     }
@@ -9639,9 +9690,9 @@ namespace com.spoonconsulting.lightning {
 
         public getSection(name: string): com.spoonconsulting.lightning.VerticalNavigationSection {
             {
-                let array624 = this.getSections();
-                for(let index623=0; index623 < array624.length; index623++) {
-                    let section = array624[index623];
+                let array769 = this.getSections();
+                for(let index768=0; index768 < array769.length; index768++) {
+                    let section = array769[index768];
                     {
                         if (section.getName() === name){
                             return section;
@@ -9654,9 +9705,9 @@ namespace com.spoonconsulting.lightning {
 
         public getItem$java_lang_String(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
             {
-                let array626 = this.getItems();
-                for(let index625=0; index625 < array626.length; index625++) {
-                    let item = array626[index625];
+                let array771 = this.getItems();
+                for(let index770=0; index770 < array771.length; index770++) {
+                    let item = array771[index770];
                     {
                         if (item.getName() === name){
                             return item;
@@ -9684,8 +9735,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addSections(...sections: com.spoonconsulting.lightning.VerticalNavigationSection[]): VerticalNavigation {
-            for(let index627=0; index627 < sections.length; index627++) {
-                let section = sections[index627];
+            for(let index772=0; index772 < sections.length; index772++) {
+                let section = sections[index772];
                 {
                     this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
                 }
@@ -9706,9 +9757,9 @@ namespace com.spoonconsulting.lightning {
             this.selectedItem = selectedItem;
             this.selectedSection = selectedSection;
             {
-                let array629 = this.getSections();
-                for(let index628=0; index628 < array629.length; index628++) {
-                    let section = array629[index628];
+                let array774 = this.getSections();
+                for(let index773=0; index773 < array774.length; index773++) {
+                    let section = array774[index773];
                     {
                         if (section.getName() !== selectedSection){
                             section.setSelectedItem(null);
@@ -9730,14 +9781,14 @@ namespace com.spoonconsulting.lightning {
         public getItems(): Array<com.spoonconsulting.lightning.VerticalNavigationItem> {
             const result: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = <any>(new Array<com.spoonconsulting.lightning.VerticalNavigationItem>());
             {
-                let array631 = this.getSections();
-                for(let index630=0; index630 < array631.length; index630++) {
-                    let section = array631[index630];
+                let array776 = this.getSections();
+                for(let index775=0; index775 < array776.length; index775++) {
+                    let section = array776[index775];
                     {
                         {
-                            let array633 = section.getItems();
-                            for(let index632=0; index632 < array633.length; index632++) {
-                                let item = array633[index632];
+                            let array778 = section.getItems();
+                            for(let index777=0; index777 < array778.length; index777++) {
+                                let item = array778[index777];
                                 {
                                     result.push(item);
                                 }
@@ -9756,9 +9807,9 @@ namespace com.spoonconsulting.lightning {
         public setSelectedItem$java_lang_String(selectedItem: string): VerticalNavigation {
             this.selectedItem = selectedItem;
             {
-                let array635 = this.getItems();
-                for(let index634=0; index634 < array635.length; index634++) {
-                    let item = array635[index634];
+                let array780 = this.getItems();
+                for(let index779=0; index779 < array780.length; index779++) {
+                    let item = array780[index779];
                     {
                         item.setSelected(item.getName() === selectedItem);
                         if (item.getName() === selectedItem){
@@ -9938,8 +9989,8 @@ namespace com.spoonconsulting.lightning {
         public setSelectedItem(name: string): VerticalNavigationSection {
             this.selectedItem = name;
             const items: Array<com.spoonconsulting.lightning.VerticalNavigationItem> = this.getItems();
-            for(let index636=0; index636 < items.length; index636++) {
-                let item = items[index636];
+            for(let index781=0; index781 < items.length; index781++) {
+                let item = items[index781];
                 {
                     item.setSelected(item.getName() === name);
                 }
@@ -9984,9 +10035,9 @@ namespace com.spoonconsulting.lightning {
 
         public getItem(name: string): com.spoonconsulting.lightning.VerticalNavigationItem {
             {
-                let array638 = this.getItems();
-                for(let index637=0; index637 < array638.length; index637++) {
-                    let item = array638[index637];
+                let array783 = this.getItems();
+                for(let index782=0; index782 < array783.length; index782++) {
+                    let item = array783[index782];
                     {
                         if (item.getName() === name){
                             return item;
@@ -10002,8 +10053,8 @@ namespace com.spoonconsulting.lightning {
         }
 
         public addItems(...items: com.spoonconsulting.lightning.VerticalNavigationItem[]): VerticalNavigationSection {
-            for(let index639=0; index639 < items.length; index639++) {
-                let item = items[index639];
+            for(let index784=0; index784 < items.length; index784++) {
+                let item = items[index784];
                 {
                     this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
                 }
@@ -10385,8 +10436,8 @@ namespace com.spoonconsulting.lightning {
          * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
          */
         public addSections(...accordionSections: com.spoonconsulting.lightning.AccordionSection[]): Accordion {
-            for(let index640=0; index640 < accordionSections.length; index640++) {
-                let section = accordionSections[index640];
+            for(let index785=0; index785 < accordionSections.length; index785++) {
+                let section = accordionSections[index785];
                 {
                     this.addSection(section);
                 }
@@ -10413,9 +10464,9 @@ namespace com.spoonconsulting.lightning {
          */
         public setOpen(name: string): Accordion {
             {
-                let array642 = this.getChildren();
-                for(let index641=0; index641 < array642.length; index641++) {
-                    let r = array642[index641];
+                let array787 = this.getChildren();
+                for(let index786=0; index786 < array787.length; index786++) {
+                    let r = array787[index786];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -10441,9 +10492,9 @@ namespace com.spoonconsulting.lightning {
             const sectionToggle: CustomEvent = new CustomEvent("onsectiontoggle");
             const openSections: Array<string> = <any>(new Array<string>());
             {
-                let array644 = this.getSections();
-                for(let index643=0; index643 < array644.length; index643++) {
-                    let sect = array644[index643];
+                let array789 = this.getSections();
+                for(let index788=0; index788 < array789.length; index788++) {
+                    let sect = array789[index788];
                     {
                         if (sect.isOpen()){
                             openSections.push(sect.getName());
@@ -10464,9 +10515,9 @@ namespace com.spoonconsulting.lightning {
          */
         public setClose(name: string): Accordion {
             {
-                let array646 = this.getChildren();
-                for(let index645=0; index645 < array646.length; index645++) {
-                    let r = array646[index645];
+                let array791 = this.getChildren();
+                for(let index790=0; index790 < array791.length; index790++) {
+                    let r = array791[index790];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -10500,9 +10551,9 @@ namespace com.spoonconsulting.lightning {
         public getSections(): Array<com.spoonconsulting.lightning.AccordionSection> {
             const sections: Array<com.spoonconsulting.lightning.AccordionSection> = <any>(new Array<com.spoonconsulting.lightning.AccordionSection>());
             {
-                let array648 = this.getChildren();
-                for(let index647=0; index647 < array648.length; index647++) {
-                    let r = array648[index647];
+                let array793 = this.getChildren();
+                for(let index792=0; index792 < array793.length; index792++) {
+                    let r = array793[index792];
                     {
                         sections.push(<com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0]);
                     }
@@ -10518,9 +10569,9 @@ namespace com.spoonconsulting.lightning {
          */
         public getSection(name: string): com.spoonconsulting.lightning.AccordionSection {
             {
-                let array650 = this.getChildren();
-                for(let index649=0; index649 < array650.length; index649++) {
-                    let r = array650[index649];
+                let array795 = this.getChildren();
+                for(let index794=0; index794 < array795.length; index794++) {
+                    let r = array795[index794];
                     {
                         const section: com.spoonconsulting.lightning.AccordionSection = <com.spoonconsulting.lightning.AccordionSection><any>r.getChildren()[0];
                         if (section.getName() === name){
@@ -11141,9 +11192,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): Button {
             {
-                let array652 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index651=0; index651 < array652.length; index651++) {
-                    let v = array652[index651];
+                let array797 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index796=0; index796 < array797.length; index796++) {
+                    let v = array797[index796];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -11219,12 +11270,15 @@ namespace com.spoonconsulting.lightning {
 
         /*private*/ nubbin: boolean;
 
+        /*private*/ sticky: boolean;
+
         public constructor(name: string, tag: string) {
             super(name, tag);
             this.button = new com.spoonconsulting.lightning.ButtonIcon("button", "utility:down");
             this.dropdown = new com.spoonconsulting.lightning.Dropdown("dropdown");
             this.menuAlignment = com.spoonconsulting.lightning.enums.MenuAlignment["_$wrappers"][com.spoonconsulting.lightning.enums.MenuAlignment.LEFT].getValue();
             this.nubbin = false;
+            this.sticky = false;
             this.addClass("slds-dropdown-trigger").addClass("slds-dropdown-trigger_click").addChild(this.button).addChild(this.dropdown);
             this.button.setVariant$com_spoonconsulting_lightning_enums_Variants_ButtonIconVariant(com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant.BORDER_FILLED).setAttribute("aria-haspopup", "true").setAttribute("aria-expanded", "true").addEventListener(new ButtonMenu.ButtonMenu$0(this), "click");
             this.setExpanded(false);
@@ -11252,9 +11306,11 @@ namespace com.spoonconsulting.lightning {
             if (b){
                 this.button.setAttribute("aria-expanded", "true");
                 this.addClass("slds-is-open");
+                this.getDropdown().setStyle("display", "block");
             } else {
                 this.button.setAttribute("aria-expanded", "false");
                 this.removeClass("slds-is-open");
+                this.getDropdown().setStyle("display", "none");
             }
             return this;
         }
@@ -11411,8 +11467,8 @@ namespace com.spoonconsulting.lightning {
 
         public refresh() {
             const suffixes: string[] = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-            for(let index653=0; index653 < suffixes.length; index653++) {
-                let suffix = suffixes[index653];
+            for(let index798=0; index798 < suffixes.length; index798++) {
+                let suffix = suffixes[index798];
                 {
                     this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                 }
@@ -11479,8 +11535,8 @@ namespace com.spoonconsulting.lightning {
 
         public setOptions(options: Array<Object>): ButtonMenu {
             this.clearMenu();
-            for(let index654=0; index654 < options.length; index654++) {
-                let option = options[index654];
+            for(let index799=0; index799 < options.length; index799++) {
+                let option = options[index799];
                 {
                     let value: string = <string>option["value"];
                     if (value == null){
@@ -11499,12 +11555,24 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public getMenuItem(name: string): com.spoonconsulting.lightning.MenuItem {
+            return this.dropdown.getItem(name);
+        }
+
         public getButton(): com.spoonconsulting.lightning.ButtonIcon {
             return this.button;
         }
 
         public getDropdown(): com.spoonconsulting.lightning.Dropdown {
             return this.dropdown;
+        }
+
+        public isSticky(): boolean {
+            return this.sticky;
+        }
+
+        public setSticky(sticky: boolean) {
+            this.sticky = sticky;
         }
     }
     ButtonMenu["__class"] = "com.spoonconsulting.lightning.ButtonMenu";
@@ -11541,7 +11609,7 @@ namespace com.spoonconsulting.lightning {
              * @param {Event} evt
              */
             public performAction(source: api.Renderable, evt: Event) {
-                this.__parent.setExpanded(false);
+                if (!this.__parent.sticky)this.__parent.setExpanded(false);
                 this.__parent.fireListener("select", evt);
             }
 
@@ -11632,9 +11700,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonStateful {
             {
-                let array656 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index655=0; index655 < array656.length; index655++) {
-                    let v = array656[index655];
+                let array801 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.Variant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.Variant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index800=0; index800 < array801.length; index800++) {
+                    let v = array801[index800];
                     {
                         this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                     }
@@ -11830,9 +11898,24 @@ namespace com.spoonconsulting.lightning {
             return this;
         }
 
+        public getMenuItem(name: string): com.spoonconsulting.lightning.MenuItem {
+            {
+                let array803 = this.getChildren();
+                for(let index802=0; index802 < array803.length; index802++) {
+                    let ctn = array803[index802];
+                    {
+                        if (ctn.getChildren()[0].getName() === name){
+                            return <com.spoonconsulting.lightning.MenuItem><any>ctn.getChildren()[0];
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         public addMenuItems(...items: com.spoonconsulting.lightning.MenuItem[]): Menu {
-            for(let index657=0; index657 < items.length; index657++) {
-                let item = items[index657];
+            for(let index804=0; index804 < items.length; index804++) {
+                let item = items[index804];
                 {
                     this.addMenuItem(item);
                 }
@@ -11961,6 +12044,12 @@ namespace com.spoonconsulting.lightning {
             if (this.prefixIconName != null){
                 this.prefixIcon_.setIconName$java_lang_String(this.prefixIconName);
                 this.label.addChild(this.prefixIcon_);
+                this.prefixIcon_.removeClass("slds-m-right_small").removeClass("slds-m-left_small");
+                if (!this.checked){
+                    this.prefixIcon_.addClass("slds-m-right_small");
+                } else {
+                    this.prefixIcon_.addClass("slds-m-left_small");
+                }
             }
             if (this.draft){
                 this.label.addChild(this.draft_);
@@ -12408,8 +12497,8 @@ namespace com.spoonconsulting.lightning {
             public setOptions(options: Array<Object>) {
                 this.options = options;
                 this.clearChildren();
-                for(let index658=0; index658 < options.length; index658++) {
-                    let option = options[index658];
+                for(let index805=0; index805 < options.length; index805++) {
+                    let option = options[index805];
                     {
                         const value: string = <string>option["value"];
                         const label: string = <string>option["label"];
@@ -12436,9 +12525,9 @@ namespace com.spoonconsulting.lightning {
             public getValue(): Array<string> {
                 const result: Array<string> = <any>(new Array<string>());
                 {
-                    let array660 = this.getChildren();
-                    for(let index659=0; index659 < array660.length; index659++) {
-                        let r = array660[index659];
+                    let array807 = this.getChildren();
+                    for(let index806=0; index806 < array807.length; index806++) {
+                        let r = array807[index806];
                         {
                             const cb: api.InputField<boolean> = <api.InputField<boolean>><any>r;
                             if (cb.getValue()){
@@ -12456,9 +12545,9 @@ namespace com.spoonconsulting.lightning {
              */
             public setValue(val: Array<string>) {
                 {
-                    let array662 = this.getChildren();
-                    for(let index661=0; index661 < array662.length; index661++) {
-                        let r = array662[index661];
+                    let array809 = this.getChildren();
+                    for(let index808=0; index808 < array809.length; index808++) {
+                        let r = array809[index808];
                         {
                             const name: string = r.getAttribute("val");
                             const cb: api.InputField<boolean> = <api.InputField<boolean>><any>r;
@@ -12525,6 +12614,15 @@ namespace com.spoonconsulting.lightning {
             this.combo = <com.spoonconsulting.lightning.BaseComboBox<string>><any>this.getInput();
             this.combo.removeClass("slds-input");
             this.combo.addEventListener(new ComboBox.ComboBox$0(this), "change");
+        }
+
+        public setStrict(b: boolean): ComboBox {
+            this.combo.setStrict(b);
+            return this;
+        }
+
+        public getCombo(): com.spoonconsulting.lightning.BaseComboBox<string> {
+            return this.combo;
         }
 
         public setDisabled(b: boolean): ComboBox {
@@ -12813,9 +12911,9 @@ namespace com.spoonconsulting.lightning {
                 return com.spoonconsulting.lightning.enums.InputType.TEXT;
             }
             {
-                let array664 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.InputType[] = []; for(let val in com.spoonconsulting.lightning.enums.InputType) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index663=0; index663 < array664.length; index663++) {
-                    let type = array664[index663];
+                let array811 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.InputType[] = []; for(let val in com.spoonconsulting.lightning.enums.InputType) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index810=0; index810 < array811.length; index810++) {
+                    let type = array811[index810];
                     {
                         if (com.spoonconsulting.lightning.enums.InputType["_$wrappers"][type].getValue() === stype){
                             return type;
@@ -13121,9 +13219,9 @@ namespace com.spoonconsulting.lightning {
 
         public setSize$java_lang_String(size: string): ButtonIcon {
             {
-                let array666 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index665=0; index665 < array666.length; index665++) {
-                    let s = array666[index665];
+                let array813 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Size[] = []; for(let val in com.spoonconsulting.lightning.enums.Size) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index812=0; index812 < array813.length; index812++) {
+                    let s = array813[index812];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                         this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
@@ -13168,9 +13266,9 @@ namespace com.spoonconsulting.lightning {
 
         public setVariant$java_lang_String(variant: string): ButtonIcon {
             {
-                let array668 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
-                for(let index667=0; index667 < array668.length; index667++) {
-                    let v = array668[index667];
+                let array815 = /* Enum.values */function() { let result: com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant[] = []; for(let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) { if (!isNaN(<any>val)) { result.push(parseInt(val,10)); } } return result; }();
+                for(let index814=0; index814 < array815.length; index814++) {
+                    let v = array815[index814];
                     {
                         this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant["_$wrappers"][v].getValue());
                     }
@@ -13213,7 +13311,7 @@ namespace com.spoonconsulting.lightning {
 }
 namespace com.spoonconsulting.lightning {
     export class RadioGroup extends com.spoonconsulting.lightning.CheckBoxGroup {
-        constructor(name: string) {
+        public constructor(name: string) {
             super(name, false);
         }
     }
@@ -13251,5 +13349,3 @@ namespace com.spoonconsulting.lightning {
 com.spoonconsulting.lightning.Utils.DAYS_$LI$();
 
 com.spoonconsulting.lightning.Utils.MONTHS_$LI$();
-
-com.spoonconsulting.lightning.Boot.main(null);

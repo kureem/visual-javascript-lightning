@@ -100,6 +100,12 @@ public class MenuItem extends BaseLightning{
 		if(prefixIconName != null) {
 			prefixIcon_.setIconName(prefixIconName);
 			label.addChild(prefixIcon_);
+			prefixIcon_.removeClass("slds-m-right_small").removeClass("slds-m-left_small");
+			if(!checked) {
+				prefixIcon_.addClass("slds-m-right_small");
+			}else {
+				prefixIcon_.addClass("slds-m-left_small");
+			}
 		}
 		if(draft) {
 			label.addChild(draft_);

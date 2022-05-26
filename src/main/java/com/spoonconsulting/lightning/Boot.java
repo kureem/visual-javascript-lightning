@@ -27,7 +27,7 @@ import jsweet.lang.Array;
 import jsweet.lang.Object;
 public class Boot {
 
-	public static void main(String[] args) {
+	public static void main_(String[] args) {
 
 		Draggable d = new Draggable("drag", "div");
 		d.setStyle("width", "100px").setStyle("height", "100px").setStyle("background", "red").setStyle("position", "relative");

@@ -93,10 +93,21 @@ public class DualingList extends JSContainer implements EventListener, InputFiel
 		Integer max = getMax();
 		if(max == null || selected.getUIOptions().length < max) {
 			ListBoxOption sel = available.getSelectedOption();
+			double index =  available.getChildren().indexOf(sel);
 			if(sel != null) {
 				sel.setChecked(false);
 				sel.setRendered(false);
 				available.removeChild(sel);
+				if(available.getChildren().length > 0) {
+					if(index >= available.getChildren().length) {
+						index = available.getChildren().length -1;
+					}
+						
+					ListBoxOption newSel = available.getUIOptions().$get(index);
+					String newVal = newSel.getValue();
+					available.setValue(newVal);
+				}
+				
 				selected.addChild(sel);
 				available.setRendered(false);
 			}
@@ -108,10 +119,22 @@ public class DualingList extends JSContainer implements EventListener, InputFiel
 		
 		if(min == null || selected.getUIOptions().length > min) {
 			ListBoxOption sel = selected.getSelectedOption();
+			double index =  selected.getChildren().indexOf(sel);
 			if(sel != null) {
 				sel.setChecked(false);
 				sel.setRendered(false);
 				selected.removeChild(sel);
+				
+				if(selected.getChildren().length > 0) {
+					if(index >= selected.getChildren().length) {
+						index = selected.getChildren().length -1;
+					}
+						
+					ListBoxOption newSel = selected.getUIOptions().$get(index);
+					String newVal = newSel.getValue();
+					selected.setValue(newVal);
+				}
+				
 				available.addChild(sel);
 				selected.setRendered(false);
 			}
