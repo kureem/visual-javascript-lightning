@@ -1,25 +1,18 @@
 package com.spoonconsulting.lightning;
 
-import static jsweet.dom.Globals.document;
-import static jsweet.lang.Globals.parseInt;
-
 import com.spoonconsulting.lightning.enums.IconName;
 import com.spoonconsulting.lightning.enums.Size;
 
 import framework.components.JSContainer;
 import framework.components.api.EventListener;
 import framework.components.api.Renderable;
-import jsweet.dom.CustomEvent;
 import jsweet.dom.Event;
 import jsweet.dom.HTMLElement;
-import jsweet.dom.MouseEvent;
 import jsweet.dom.MutationCallback;
 import jsweet.dom.MutationObserver;
 import jsweet.dom.MutationObserverInit;
 import jsweet.dom.MutationRecord;
 import jsweet.lang.Object;
-import jsweet.lang.PropertyDescriptorMap;
-import jsweet.util.StringTypes;
 
 public class DataGridColHeader extends JSContainer implements DataGridIColHeader{
 	
@@ -35,9 +28,9 @@ public class DataGridColHeader extends JSContainer implements DataGridIColHeader
 	
 	private ButtonIcon arrow = new ButtonIcon("arrow", IconName.UTILITY_CHEVRONDOWN.getValue());
 	
-	private JSContainer range = new JSContainer("range", "input");
+	//private JSContainer range = new JSContainer("range", "input");
 	
-	private JSContainer resizeHandle = new JSContainer("resize-handle", "span");
+	//private JSContainer resizeHandle = new JSContainer("resize-handle", "span");
 	
 	private boolean keyField = false;
 	

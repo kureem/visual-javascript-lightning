@@ -30,9 +30,9 @@ var com;
                  */
                 getStep(value) {
                     {
-                        let array678 = this.getSteps();
-                        for (let index677 = 0; index677 < array678.length; index677++) {
-                            let step = array678[index677];
+                        let array261 = this.getSteps();
+                        for (let index260 = 0; index260 < array261.length; index260++) {
+                            let step = array261[index260];
                             {
                                 if (step.getValue() === value) {
                                     return step;
@@ -50,9 +50,9 @@ var com;
                 setCurrentStep(value) {
                     let passedCurrent = false;
                     {
-                        let array680 = this.getSteps();
-                        for (let index679 = 0; index679 < array680.length; index679++) {
-                            let step = array680[index679];
+                        let array263 = this.getSteps();
+                        for (let index262 = 0; index262 < array263.length; index262++) {
+                            let step = array263[index262];
                             {
                                 if (step.getValue() === value) {
                                     step.setCurrent(true);
@@ -72,9 +72,9 @@ var com;
                  */
                 getCurrentStep() {
                     {
-                        let array682 = this.getSteps();
-                        for (let index681 = 0; index681 < array682.length; index681++) {
-                            let step = array682[index681];
+                        let array265 = this.getSteps();
+                        for (let index264 = 0; index264 < array265.length; index264++) {
+                            let step = array265[index264];
                             {
                                 if (step.isCurrent()) {
                                     return step;
@@ -100,9 +100,9 @@ var com;
                  */
                 getHasError() {
                     {
-                        let array684 = this.getSteps();
-                        for (let index683 = 0; index683 < array684.length; index683++) {
-                            let step = array684[index683];
+                        let array267 = this.getSteps();
+                        for (let index266 = 0; index266 < array267.length; index266++) {
+                            let step = array267[index266];
                             {
                                 if (step.getHasError()) {
                                     return true;
@@ -201,13 +201,13 @@ var com;
                         const end = com.spoonconsulting.lightning.enums.IconName.CUSTOM_CUSTOM99;
                         let index = 0;
                         {
-                            let array686 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.IconName) {
+                            let array269 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.IconName) {
                                 if (!isNaN(val)) {
                                     result.push(parseInt(val, 10));
                                 }
                             } return result; }();
-                            for (let index685 = 0; index685 < array686.length; index685++) {
-                                let ic = array686[index685];
+                            for (let index268 = 0; index268 < array269.length; index268++) {
+                                let ic = array269[index268];
                                 {
                                     if (com.spoonconsulting.lightning.enums.IconName["_$wrappers"][ic].getValue() === com.spoonconsulting.lightning.enums.IconName["_$wrappers"][start].getValue()) {
                                         Avatar.min = index;
@@ -352,13 +352,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array688 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array271 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index687 = 0; index687 < array688.length; index687++) {
-                            let s = array688[index687];
+                        for (let index270 = 0; index270 < array271.length; index270++) {
+                            let s = array271[index270];
                             {
                                 this.removeClass("slds-avatar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -836,13 +836,13 @@ var com;
                     const box = new com.spoonconsulting.lightning.ComboBox("variants");
                     const variants = (new Array());
                     {
-                        let array690 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array273 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index689 = 0; index689 < array690.length; index689++) {
-                            let __var = array690[index689];
+                        for (let index272 = 0; index272 < array273.length; index272++) {
+                            let __var = array273[index272];
                             {
                                 const variant = new Object();
                                 variant["value"] = com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][__var].getValue();
@@ -857,13 +857,13 @@ var com;
                     cbsize.setLabel("Change Size:");
                     const sizes = (new Array());
                     {
-                        let array692 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array275 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index691 = 0; index691 < array692.length; index691++) {
-                            let size = array692[index691];
+                        for (let index274 = 0; index274 < array275.length; index274++) {
+                            let size = array275[index274];
                             {
                                 const opt = {};
                                 opt["value"] = com.spoonconsulting.lightning.enums.Size["_$wrappers"][size].getValue();
@@ -1407,9 +1407,9 @@ var com;
                 getBreadcrumbs() {
                     const result = (new Array());
                     {
-                        let array694 = this.getChildren();
-                        for (let index693 = 0; index693 < array694.length; index693++) {
-                            let r = array694[index693];
+                        let array277 = this.getChildren();
+                        for (let index276 = 0; index276 < array277.length; index276++) {
+                            let r = array277[index276];
                             {
                                 const bc = r.getChildren()[0];
                                 result.push(bc);
@@ -1420,9 +1420,9 @@ var com;
                 }
                 getBreadcrumb(name) {
                     {
-                        let array696 = this.getChildren();
-                        for (let index695 = 0; index695 < array696.length; index695++) {
-                            let r = array696[index695];
+                        let array279 = this.getChildren();
+                        for (let index278 = 0; index278 < array279.length; index278++) {
+                            let r = array279[index278];
                             {
                                 const bc = r.getChildren()[0];
                                 if (bc.getName() === name) {
@@ -1485,9 +1485,26 @@ var com;
                         return this.body;
                     }
                 }
+                /**
+                 * This method returns the body of the container<br />
+                 * <br>
+                 *
+                 * <code>
+                 * Card.getBody().addChild(component) to add a child in the body of the card.
+                 * </code>
+                 *
+                 * @return {JSContainer} The body of the Card
+                 */
                 getBody() {
                     return this.body;
                 }
+                /**
+                 * This method returns the header of the Card<br />
+                 * <code>Card.getHeader().addChild(comp) <br /> </code><br />
+                 * to add a component in the header of the Card
+                 *
+                 * @return {JSContainer} The container that will hold the header components of the card
+                 */
                 getHeader() {
                     return this.header;
                 }
@@ -1513,10 +1530,20 @@ var com;
                         return null;
                     }
                 }
+                /**
+                 * Sets the title of the Card
+                 *
+                 * @param {string} title The title of the Card
+                 *
+                 * @return {com.spoonconsulting.lightning.Card} Updated instance of this Card
+                 */
                 setTitle(title) {
                     this.title.setHtml(title);
                     return this;
                 }
+                /**
+                 * @return {string} The title of the Card
+                 */
                 getTitle() {
                     return this.title.getHtml();
                 }
@@ -1908,8 +1935,8 @@ var com;
                         this.checkbox.addEventListener(new DataGrid.DataGrid$1(this), "change");
                         this.theadRow.addChild(th.addChild(this.checkbox));
                     }
-                    for (let index697 = 0; index697 < this.columns.length; index697++) {
-                        let column = this.columns[index697];
+                    for (let index280 = 0; index280 < this.columns.length; index280++) {
+                        let column = this.columns[index280];
                         {
                             let name = column["fieldName"];
                             let label = column["label"];
@@ -1988,8 +2015,8 @@ var com;
                     return this;
                 }
                 getColumn(name) {
-                    for (let index698 = 0; index698 < this.columns.length; index698++) {
-                        let col = this.columns[index698];
+                    for (let index281 = 0; index281 < this.columns.length; index281++) {
+                        let col = this.columns[index281];
                         {
                             const fieldName = col["fieldName"];
                             if (fieldName === name) {
@@ -2003,8 +2030,8 @@ var com;
                     this.tbody.clearChildren();
                     this.tbody.setRendered(false);
                     let index = 0;
-                    for (let index699 = 0; index699 < this.data.length; index699++) {
-                        let line = this.data[index699];
+                    for (let index282 = 0; index282 < this.data.length; index282++) {
+                        let line = this.data[index282];
                         {
                             const row = new com.spoonconsulting.lightning.DataGridRow(this, line, index);
                             this.tbody.addChild(row);
@@ -2016,9 +2043,9 @@ var com;
                 }
                 setSelectAll(b) {
                     {
-                        let array701 = this.getRows();
-                        for (let index700 = 0; index700 < array701.length; index700++) {
-                            let row = array701[index700];
+                        let array284 = this.getRows();
+                        for (let index283 = 0; index283 < array284.length; index283++) {
+                            let row = array284[index283];
                             {
                                 row.setSelected(b);
                             }
@@ -2029,9 +2056,9 @@ var com;
                 getSelectedItems() {
                     const result = (new Array());
                     {
-                        let array703 = this.getRows();
-                        for (let index702 = 0; index702 < array703.length; index702++) {
-                            let row = array703[index702];
+                        let array286 = this.getRows();
+                        for (let index285 = 0; index285 < array286.length; index285++) {
+                            let row = array286[index285];
                             {
                                 if (row.isSelected()) {
                                     result.push(row.getLine());
@@ -2504,8 +2531,6 @@ var com;
                     this.label = new JSContainer("label", "span");
                     this.arrowTrigger = new JSContainer("arrow-trigger", "div");
                     this.arrow = new com.spoonconsulting.lightning.ButtonIcon("arrow", com.spoonconsulting.lightning.enums.IconName["_$wrappers"][com.spoonconsulting.lightning.enums.IconName.UTILITY_CHEVRONDOWN].getValue());
-                    this.range = new JSContainer("range", "input");
-                    this.resizeHandle = new JSContainer("resize-handle", "span");
                     this.keyField = false;
                     this.visual = new JSContainer("visual", "div");
                     this.icon = new com.spoonconsulting.lightning.IconContainer("icon", "div");
@@ -2521,8 +2546,8 @@ var com;
                     const configs = Object.defineProperty({}, 'constructor', { configurable: true, value: { __interfaces: ["jsweet.dom.MutationObserverInit"] } });
                     configs.attributes = true;
                     const observer = new MutationObserver((mutations, observer) => {
-                        for (let index704 = 0; index704 < mutations.length; index704++) {
-                            let mutation = mutations[index704];
+                        for (let index287 = 0; index287 < mutations.length; index287++) {
+                            let mutation = mutations[index287];
                             {
                                 this.setWidth(mutation.target.clientWidth + "px");
                                 this.render();
@@ -2800,8 +2825,8 @@ var com;
                         this.checkbox.addEventListener(new DataGridRow.DataGridRow$0(this), "change");
                     }
                     const columns = this.grid.getColumns();
-                    for (let index705 = 0; index705 < columns.length; index705++) {
-                        let col = columns[index705];
+                    for (let index288 = 0; index288 < columns.length; index288++) {
+                        let col = columns[index288];
                         {
                             const fieldName = col["fieldName"];
                             const label = col["label"];
@@ -2828,8 +2853,8 @@ var com;
                             }
                             if (this.grid.getCellRenderers().hasOwnProperty(type)) {
                                 const renderes = this.grid.getCellRenderers()[type];
-                                for (let index706 = 0; index706 < renderes.length; index706++) {
-                                    let r = renderes[index706];
+                                for (let index289 = 0; index289 < renderes.length; index289++) {
+                                    let r = renderes[index289];
                                     {
                                         (target => (typeof target === 'function') ? target(cell, col, this.line, fieldName) : target.apply(cell, col, this.line, fieldName))(r);
                                     }
@@ -3257,9 +3282,9 @@ var com;
                 getValue() {
                     const result = (new Array());
                     {
-                        let array708 = this.selected.getOptions();
-                        for (let index707 = 0; index707 < array708.length; index707++) {
-                            let o = array708[index707];
+                        let array291 = this.selected.getOptions();
+                        for (let index290 = 0; index290 < array291.length; index290++) {
+                            let o = array291[index290];
                             {
                                 const val = o["value"];
                                 result.push(val);
@@ -3275,8 +3300,8 @@ var com;
                 setValue(val) {
                     const result = (new Array());
                     const tmp = (new Array());
-                    for (let index709 = 0; index709 < this.options.length; index709++) {
-                        let o = this.options[index709];
+                    for (let index292 = 0; index292 < this.options.length; index292++) {
+                        let o = this.options[index292];
                         {
                             const sval = o["value"];
                             if (val.indexOf(sval) >= 0) {
@@ -3310,8 +3335,8 @@ var com;
                         throw new api.ValidationException(api.ValidationException.rangeOverflow);
                     }
                     const requiredOpts = this.getRequiredOptions();
-                    for (let index710 = 0; index710 < requiredOpts.length; index710++) {
-                        let s = requiredOpts[index710];
+                    for (let index293 = 0; index293 < requiredOpts.length; index293++) {
+                        let s = requiredOpts[index293];
                         {
                             if (value.indexOf(s) < 0) {
                                 throw new api.ValidationException(api.ValidationException.valueMissing);
@@ -3492,7 +3517,7 @@ var com;
                 }
                 enums.Color_$WRAPPER = Color_$WRAPPER;
                 Color["__class"] = "com.spoonconsulting.lightning.enums.Color";
-                Color["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Color["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Color["_$wrappers"] = { 0: new Color_$WRAPPER(0, "DEFAULT", "default"), 1: new Color_$WRAPPER(1, "SUCCESS", "success"), 2: new Color_$WRAPPER(2, "WEAK", "weak"), 3: new Color_$WRAPPER(3, "ERROR", "error"), 4: new Color_$WRAPPER(4, "DESTRUCTIVE", "destructive"), 5: new Color_$WRAPPER(5, "INVERSE", "inverse"), 6: new Color_$WRAPPER(6, "INVERSE_WEAK", "inverse-weak") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -3562,7 +3587,7 @@ var com;
                 }
                 enums.Direction_$WRAPPER = Direction_$WRAPPER;
                 Direction["__class"] = "com.spoonconsulting.lightning.enums.Direction";
-                Direction["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Direction["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Direction["_$wrappers"] = { 0: new Direction_$WRAPPER(0, "TOP", "top"), 1: new Direction_$WRAPPER(1, "RIGHT", "right"), 2: new Direction_$WRAPPER(2, "BOTTOM", "bottom"), 3: new Direction_$WRAPPER(3, "LEFT", "left"), 4: new Direction_$WRAPPER(4, "HORIZONTAL", "horizontal"), 5: new Direction_$WRAPPER(5, "VERTICAL", "vertical"), 6: new Direction_$WRAPPER(6, "AROUND", "around") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -3603,7 +3628,7 @@ var com;
                 }
                 enums.Flexibility_$WRAPPER = Flexibility_$WRAPPER;
                 Flexibility["__class"] = "com.spoonconsulting.lightning.enums.Flexibility";
-                Flexibility["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Flexibility["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Flexibility["_$wrappers"] = { 0: new Flexibility_$WRAPPER(0, "AUTO", "auto"), 1: new Flexibility_$WRAPPER(1, "SHRINK", "shrink"), 2: new Flexibility_$WRAPPER(2, "NO_SHRINK", "no-shrink"), 3: new Flexibility_$WRAPPER(3, "GROW", "grow"), 4: new Flexibility_$WRAPPER(4, "NO_GROW", "no-grow"), 5: new Flexibility_$WRAPPER(5, "NO_FLEX", "no-flex") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -4927,7 +4952,7 @@ var com;
                 }
                 enums.IconName_$WRAPPER = IconName_$WRAPPER;
                 IconName["__class"] = "com.spoonconsulting.lightning.enums.IconName";
-                IconName["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                IconName["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 IconName["_$wrappers"] = { 0: new IconName_$WRAPPER(0, "ACTION_ADD_CONTACT", "add_contact", "action"), 1: new IconName_$WRAPPER(1, "ACTION_ADD_FILE", "add_file", "action"), 2: new IconName_$WRAPPER(2, "ACTION_ADD_PHOTO_VIDEO", "add_photo_video", "action"), 3: new IconName_$WRAPPER(3, "ACTION_ADD_RELATIONSHIP", "add_relationship", "action"), 4: new IconName_$WRAPPER(4, "ACTION_ADJUST_VALUE", "adjust_value", "action"), 5: new IconName_$WRAPPER(5, "ACTION_ANNOUNCEMENT", "announcement", "action"), 6: new IconName_$WRAPPER(6, "ACTION_APEX", "apex", "action"), 7: new IconName_$WRAPPER(7, "ACTION_APPROVAL", "approval", "action"), 8: new IconName_$WRAPPER(8, "ACTION_BACK", "back", "action"), 9: new IconName_$WRAPPER(9, "ACTION_BUG", "bug", "action"), 10: new IconName_$WRAPPER(10, "ACTION_CALL", "call", "action"), 11: new IconName_$WRAPPER(11, "ACTION_CANVAS", "canvas", "action"), 12: new IconName_$WRAPPER(12, "ACTION_CHANGE_OWNER", "change_owner", "action"), 13: new IconName_$WRAPPER(13, "ACTION_CHANGE_RECORD_TYPE", "change_record_type", "action"), 14: new IconName_$WRAPPER(14, "ACTION_CHECK", "check", "action"), 15: new IconName_$WRAPPER(15, "ACTION_CLONE", "clone", "action"), 16: new IconName_$WRAPPER(16, "ACTION_CLOSE", "close", "action"), 17: new IconName_$WRAPPER(17, "ACTION_DEFER", "defer", "action"), 18: new IconName_$WRAPPER(18, "ACTION_DELETE", "delete", "action"), 19: new IconName_$WRAPPER(19, "ACTION_DESCRIPTION", "description", "action"), 20: new IconName_$WRAPPER(20, "ACTION_DIAL_IN", "dial_in", "action"), 21: new IconName_$WRAPPER(21, "ACTION_DOWNLOAD", "download", "action"), 22: new IconName_$WRAPPER(22, "ACTION_EDIT", "edit", "action"), 23: new IconName_$WRAPPER(23, "ACTION_EDIT_GROUPS", "edit_groups", "action"), 24: new IconName_$WRAPPER(24, "ACTION_EDIT_RELATIONSHIP", "edit_relationship", "action"), 25: new IconName_$WRAPPER(25, "ACTION_EMAIL", "email", "action"), 26: new IconName_$WRAPPER(26, "ACTION_FALLBACK", "fallback", "action"), 27: new IconName_$WRAPPER(27, "ACTION_FILTER", "filter", "action"), 28: new IconName_$WRAPPER(28, "ACTION_FLOW", "flow", "action"), 29: new IconName_$WRAPPER(29, "ACTION_FOLLOW", "follow", "action"), 30: new IconName_$WRAPPER(30, "ACTION_FOLLOWING", "following", "action"), 31: new IconName_$WRAPPER(31, "ACTION_FREEZE_USER", "freeze_user", "action"), 32: new IconName_$WRAPPER(32, "ACTION_GOAL", "goal", "action"), 33: new IconName_$WRAPPER(33, "ACTION_GOOGLE_NEWS", "google_news", "action"), 34: new IconName_$WRAPPER(34, "ACTION_INFO", "info", "action"), 35: new IconName_$WRAPPER(35, "ACTION_JOIN_GROUP", "join_group", "action"), 36: new IconName_$WRAPPER(36, "ACTION_LEAD_CONVERT", "lead_convert", "action"), 37: new IconName_$WRAPPER(37, "ACTION_LEAVE_GROUP", "leave_group", "action"), 38: new IconName_$WRAPPER(38, "ACTION_LOG_A_CALL", "log_a_call", "action"), 39: new IconName_$WRAPPER(39, "ACTION_LOG_EVENT", "log_event", "action"), 40: new IconName_$WRAPPER(40, "ACTION_MANAGE_PERM_SETS", "manage_perm_sets", "action"), 41: new IconName_$WRAPPER(41, "ACTION_MAP", "map", "action"), 42: new IconName_$WRAPPER(42, "ACTION_MORE", "more", "action"), 43: new IconName_$WRAPPER(43, "ACTION_NEW", "new", "action"), 44: new IconName_$WRAPPER(44, "ACTION_NEW_ACCOUNT", "new_account", "action"), 45: new IconName_$WRAPPER(45, "ACTION_NEW_CAMPAIGN", "new_campaign", "action"), 46: new IconName_$WRAPPER(46, "ACTION_NEW_CASE", "new_case", "action"), 47: new IconName_$WRAPPER(47, "ACTION_NEW_CHILD_CASE", "new_child_case", "action"), 48: new IconName_$WRAPPER(48, "ACTION_NEW_CONTACT", "new_contact", "action"), 49: new IconName_$WRAPPER(49, "ACTION_NEW_CUSTOM1", "new_custom1", "action"), 50: new IconName_$WRAPPER(50, "ACTION_NEW_CUSTOM10", "new_custom10", "action"), 51: new IconName_$WRAPPER(51, "ACTION_NEW_CUSTOM100", "new_custom100", "action"), 52: new IconName_$WRAPPER(52, "ACTION_NEW_CUSTOM11", "new_custom11", "action"), 53: new IconName_$WRAPPER(53, "ACTION_NEW_CUSTOM12", "new_custom12", "action"), 54: new IconName_$WRAPPER(54, "ACTION_NEW_CUSTOM13", "new_custom13", "action"), 55: new IconName_$WRAPPER(55, "ACTION_NEW_CUSTOM14", "new_custom14", "action"), 56: new IconName_$WRAPPER(56, "ACTION_NEW_CUSTOM15", "new_custom15", "action"), 57: new IconName_$WRAPPER(57, "ACTION_NEW_CUSTOM16", "new_custom16", "action"), 58: new IconName_$WRAPPER(58, "ACTION_NEW_CUSTOM17", "new_custom17", "action"), 59: new IconName_$WRAPPER(59, "ACTION_NEW_CUSTOM18", "new_custom18", "action"), 60: new IconName_$WRAPPER(60, "ACTION_NEW_CUSTOM19", "new_custom19", "action"), 61: new IconName_$WRAPPER(61, "ACTION_NEW_CUSTOM2", "new_custom2", "action"), 62: new IconName_$WRAPPER(62, "ACTION_NEW_CUSTOM20", "new_custom20", "action"), 63: new IconName_$WRAPPER(63, "ACTION_NEW_CUSTOM21", "new_custom21", "action"), 64: new IconName_$WRAPPER(64, "ACTION_NEW_CUSTOM22", "new_custom22", "action"), 65: new IconName_$WRAPPER(65, "ACTION_NEW_CUSTOM23", "new_custom23", "action"), 66: new IconName_$WRAPPER(66, "ACTION_NEW_CUSTOM24", "new_custom24", "action"), 67: new IconName_$WRAPPER(67, "ACTION_NEW_CUSTOM25", "new_custom25", "action"), 68: new IconName_$WRAPPER(68, "ACTION_NEW_CUSTOM26", "new_custom26", "action"), 69: new IconName_$WRAPPER(69, "ACTION_NEW_CUSTOM27", "new_custom27", "action"), 70: new IconName_$WRAPPER(70, "ACTION_NEW_CUSTOM28", "new_custom28", "action"), 71: new IconName_$WRAPPER(71, "ACTION_NEW_CUSTOM29", "new_custom29", "action"), 72: new IconName_$WRAPPER(72, "ACTION_NEW_CUSTOM3", "new_custom3", "action"), 73: new IconName_$WRAPPER(73, "ACTION_NEW_CUSTOM30", "new_custom30", "action"), 74: new IconName_$WRAPPER(74, "ACTION_NEW_CUSTOM31", "new_custom31", "action"), 75: new IconName_$WRAPPER(75, "ACTION_NEW_CUSTOM32", "new_custom32", "action"), 76: new IconName_$WRAPPER(76, "ACTION_NEW_CUSTOM33", "new_custom33", "action"), 77: new IconName_$WRAPPER(77, "ACTION_NEW_CUSTOM34", "new_custom34", "action"), 78: new IconName_$WRAPPER(78, "ACTION_NEW_CUSTOM35", "new_custom35", "action"), 79: new IconName_$WRAPPER(79, "ACTION_NEW_CUSTOM36", "new_custom36", "action"), 80: new IconName_$WRAPPER(80, "ACTION_NEW_CUSTOM37", "new_custom37", "action"), 81: new IconName_$WRAPPER(81, "ACTION_NEW_CUSTOM38", "new_custom38", "action"), 82: new IconName_$WRAPPER(82, "ACTION_NEW_CUSTOM39", "new_custom39", "action"), 83: new IconName_$WRAPPER(83, "ACTION_NEW_CUSTOM4", "new_custom4", "action"), 84: new IconName_$WRAPPER(84, "ACTION_NEW_CUSTOM40", "new_custom40", "action"), 85: new IconName_$WRAPPER(85, "ACTION_NEW_CUSTOM41", "new_custom41", "action"), 86: new IconName_$WRAPPER(86, "ACTION_NEW_CUSTOM42", "new_custom42", "action"), 87: new IconName_$WRAPPER(87, "ACTION_NEW_CUSTOM43", "new_custom43", "action"), 88: new IconName_$WRAPPER(88, "ACTION_NEW_CUSTOM44", "new_custom44", "action"), 89: new IconName_$WRAPPER(89, "ACTION_NEW_CUSTOM45", "new_custom45", "action"), 90: new IconName_$WRAPPER(90, "ACTION_NEW_CUSTOM46", "new_custom46", "action"), 91: new IconName_$WRAPPER(91, "ACTION_NEW_CUSTOM47", "new_custom47", "action"), 92: new IconName_$WRAPPER(92, "ACTION_NEW_CUSTOM48", "new_custom48", "action"), 93: new IconName_$WRAPPER(93, "ACTION_NEW_CUSTOM49", "new_custom49", "action"), 94: new IconName_$WRAPPER(94, "ACTION_NEW_CUSTOM5", "new_custom5", "action"), 95: new IconName_$WRAPPER(95, "ACTION_NEW_CUSTOM50", "new_custom50", "action"), 96: new IconName_$WRAPPER(96, "ACTION_NEW_CUSTOM51", "new_custom51", "action"), 97: new IconName_$WRAPPER(97, "ACTION_NEW_CUSTOM52", "new_custom52", "action"), 98: new IconName_$WRAPPER(98, "ACTION_NEW_CUSTOM53", "new_custom53", "action"), 99: new IconName_$WRAPPER(99, "ACTION_NEW_CUSTOM54", "new_custom54", "action"), 100: new IconName_$WRAPPER(100, "ACTION_NEW_CUSTOM55", "new_custom55", "action"), 101: new IconName_$WRAPPER(101, "ACTION_NEW_CUSTOM56", "new_custom56", "action"), 102: new IconName_$WRAPPER(102, "ACTION_NEW_CUSTOM57", "new_custom57", "action"), 103: new IconName_$WRAPPER(103, "ACTION_NEW_CUSTOM58", "new_custom58", "action"), 104: new IconName_$WRAPPER(104, "ACTION_NEW_CUSTOM59", "new_custom59", "action"), 105: new IconName_$WRAPPER(105, "ACTION_NEW_CUSTOM6", "new_custom6", "action"), 106: new IconName_$WRAPPER(106, "ACTION_NEW_CUSTOM60", "new_custom60", "action"), 107: new IconName_$WRAPPER(107, "ACTION_NEW_CUSTOM61", "new_custom61", "action"), 108: new IconName_$WRAPPER(108, "ACTION_NEW_CUSTOM62", "new_custom62", "action"), 109: new IconName_$WRAPPER(109, "ACTION_NEW_CUSTOM63", "new_custom63", "action"), 110: new IconName_$WRAPPER(110, "ACTION_NEW_CUSTOM64", "new_custom64", "action"), 111: new IconName_$WRAPPER(111, "ACTION_NEW_CUSTOM65", "new_custom65", "action"), 112: new IconName_$WRAPPER(112, "ACTION_NEW_CUSTOM66", "new_custom66", "action"), 113: new IconName_$WRAPPER(113, "ACTION_NEW_CUSTOM67", "new_custom67", "action"), 114: new IconName_$WRAPPER(114, "ACTION_NEW_CUSTOM68", "new_custom68", "action"), 115: new IconName_$WRAPPER(115, "ACTION_NEW_CUSTOM69", "new_custom69", "action"), 116: new IconName_$WRAPPER(116, "ACTION_NEW_CUSTOM7", "new_custom7", "action"), 117: new IconName_$WRAPPER(117, "ACTION_NEW_CUSTOM70", "new_custom70", "action"), 118: new IconName_$WRAPPER(118, "ACTION_NEW_CUSTOM71", "new_custom71", "action"), 119: new IconName_$WRAPPER(119, "ACTION_NEW_CUSTOM72", "new_custom72", "action"), 120: new IconName_$WRAPPER(120, "ACTION_NEW_CUSTOM73", "new_custom73", "action"), 121: new IconName_$WRAPPER(121, "ACTION_NEW_CUSTOM74", "new_custom74", "action"), 122: new IconName_$WRAPPER(122, "ACTION_NEW_CUSTOM75", "new_custom75", "action"), 123: new IconName_$WRAPPER(123, "ACTION_NEW_CUSTOM76", "new_custom76", "action"), 124: new IconName_$WRAPPER(124, "ACTION_NEW_CUSTOM77", "new_custom77", "action"), 125: new IconName_$WRAPPER(125, "ACTION_NEW_CUSTOM78", "new_custom78", "action"), 126: new IconName_$WRAPPER(126, "ACTION_NEW_CUSTOM79", "new_custom79", "action"), 127: new IconName_$WRAPPER(127, "ACTION_NEW_CUSTOM8", "new_custom8", "action"), 128: new IconName_$WRAPPER(128, "ACTION_NEW_CUSTOM80", "new_custom80", "action"), 129: new IconName_$WRAPPER(129, "ACTION_NEW_CUSTOM81", "new_custom81", "action"), 130: new IconName_$WRAPPER(130, "ACTION_NEW_CUSTOM82", "new_custom82", "action"), 131: new IconName_$WRAPPER(131, "ACTION_NEW_CUSTOM83", "new_custom83", "action"), 132: new IconName_$WRAPPER(132, "ACTION_NEW_CUSTOM84", "new_custom84", "action"), 133: new IconName_$WRAPPER(133, "ACTION_NEW_CUSTOM85", "new_custom85", "action"), 134: new IconName_$WRAPPER(134, "ACTION_NEW_CUSTOM86", "new_custom86", "action"), 135: new IconName_$WRAPPER(135, "ACTION_NEW_CUSTOM87", "new_custom87", "action"), 136: new IconName_$WRAPPER(136, "ACTION_NEW_CUSTOM88", "new_custom88", "action"), 137: new IconName_$WRAPPER(137, "ACTION_NEW_CUSTOM89", "new_custom89", "action"), 138: new IconName_$WRAPPER(138, "ACTION_NEW_CUSTOM9", "new_custom9", "action"), 139: new IconName_$WRAPPER(139, "ACTION_NEW_CUSTOM90", "new_custom90", "action"), 140: new IconName_$WRAPPER(140, "ACTION_NEW_CUSTOM91", "new_custom91", "action"), 141: new IconName_$WRAPPER(141, "ACTION_NEW_CUSTOM92", "new_custom92", "action"), 142: new IconName_$WRAPPER(142, "ACTION_NEW_CUSTOM93", "new_custom93", "action"), 143: new IconName_$WRAPPER(143, "ACTION_NEW_CUSTOM94", "new_custom94", "action"), 144: new IconName_$WRAPPER(144, "ACTION_NEW_CUSTOM95", "new_custom95", "action"), 145: new IconName_$WRAPPER(145, "ACTION_NEW_CUSTOM96", "new_custom96", "action"), 146: new IconName_$WRAPPER(146, "ACTION_NEW_CUSTOM97", "new_custom97", "action"), 147: new IconName_$WRAPPER(147, "ACTION_NEW_CUSTOM98", "new_custom98", "action"), 148: new IconName_$WRAPPER(148, "ACTION_NEW_CUSTOM99", "new_custom99", "action"), 149: new IconName_$WRAPPER(149, "ACTION_NEW_EVENT", "new_event", "action"), 150: new IconName_$WRAPPER(150, "ACTION_NEW_GROUP", "new_group", "action"), 151: new IconName_$WRAPPER(151, "ACTION_NEW_LEAD", "new_lead", "action"), 152: new IconName_$WRAPPER(152, "ACTION_NEW_NOTE", "new_note", "action"), 153: new IconName_$WRAPPER(153, "ACTION_NEW_NOTEBOOK", "new_notebook", "action"), 154: new IconName_$WRAPPER(154, "ACTION_NEW_OPPORTUNITY", "new_opportunity", "action"), 155: new IconName_$WRAPPER(155, "ACTION_NEW_PERSON_ACCOUNT", "new_person_account", "action"), 156: new IconName_$WRAPPER(156, "ACTION_NEW_TASK", "new_task", "action"), 157: new IconName_$WRAPPER(157, "ACTION_PASSWORD_UNLOCK", "password_unlock", "action"), 158: new IconName_$WRAPPER(158, "ACTION_PREVIEW", "preview", "action"), 159: new IconName_$WRAPPER(159, "ACTION_PRIORITY", "priority", "action"), 160: new IconName_$WRAPPER(160, "ACTION_QUESTION_POST_ACTION", "question_post_action", "action"), 161: new IconName_$WRAPPER(161, "ACTION_QUOTE", "quote", "action"), 162: new IconName_$WRAPPER(162, "ACTION_RECALL", "recall", "action"), 163: new IconName_$WRAPPER(163, "ACTION_RECORD", "record", "action"), 164: new IconName_$WRAPPER(164, "ACTION_REFRESH", "refresh", "action"), 165: new IconName_$WRAPPER(165, "ACTION_REJECT", "reject", "action"), 166: new IconName_$WRAPPER(166, "ACTION_REMOVE", "remove", "action"), 167: new IconName_$WRAPPER(167, "ACTION_REMOVE_RELATIONSHIP", "remove_relationship", "action"), 168: new IconName_$WRAPPER(168, "ACTION_RESET_PASSWORD", "reset_password", "action"), 169: new IconName_$WRAPPER(169, "ACTION_SCRIPT", "script", "action"), 170: new IconName_$WRAPPER(170, "ACTION_SHARE", "share", "action"), 171: new IconName_$WRAPPER(171, "ACTION_SHARE_FILE", "share_file", "action"), 172: new IconName_$WRAPPER(172, "ACTION_SHARE_LINK", "share_link", "action"), 173: new IconName_$WRAPPER(173, "ACTION_SHARE_POLL", "share_poll", "action"), 174: new IconName_$WRAPPER(174, "ACTION_SHARE_POST", "share_post", "action"), 175: new IconName_$WRAPPER(175, "ACTION_SHARE_THANKS", "share_thanks", "action"), 176: new IconName_$WRAPPER(176, "ACTION_SORT", "sort", "action"), 177: new IconName_$WRAPPER(177, "ACTION_SUBMIT_FOR_APPROVAL", "submit_for_approval", "action"), 178: new IconName_$WRAPPER(178, "ACTION_UPDATE", "update", "action"), 179: new IconName_$WRAPPER(179, "ACTION_UPDATE_STATUS", "update_status", "action"), 180: new IconName_$WRAPPER(180, "ACTION_UPLOAD", "upload", "action"), 181: new IconName_$WRAPPER(181, "ACTION_USER", "user", "action"), 182: new IconName_$WRAPPER(182, "ACTION_USER_ACTIVATION", "user_activation", "action"), 183: new IconName_$WRAPPER(183, "ACTION_VIEW_RELATIONSHIP", "view_relationship", "action"), 184: new IconName_$WRAPPER(184, "ACTION_WEB_LINK", "web_link", "action"), 185: new IconName_$WRAPPER(185, "CUSTOM_CUSTOM1", "custom1", "custom"), 186: new IconName_$WRAPPER(186, "CUSTOM_CUSTOM10", "custom10", "custom"), 187: new IconName_$WRAPPER(187, "CUSTOM_CUSTOM100", "custom100", "custom"), 188: new IconName_$WRAPPER(188, "CUSTOM_CUSTOM101", "custom101", "custom"), 189: new IconName_$WRAPPER(189, "CUSTOM_CUSTOM102", "custom102", "custom"), 190: new IconName_$WRAPPER(190, "CUSTOM_CUSTOM103", "custom103", "custom"), 191: new IconName_$WRAPPER(191, "CUSTOM_CUSTOM104", "custom104", "custom"), 192: new IconName_$WRAPPER(192, "CUSTOM_CUSTOM105", "custom105", "custom"), 193: new IconName_$WRAPPER(193, "CUSTOM_CUSTOM106", "custom106", "custom"), 194: new IconName_$WRAPPER(194, "CUSTOM_CUSTOM107", "custom107", "custom"), 195: new IconName_$WRAPPER(195, "CUSTOM_CUSTOM108", "custom108", "custom"), 196: new IconName_$WRAPPER(196, "CUSTOM_CUSTOM109", "custom109", "custom"), 197: new IconName_$WRAPPER(197, "CUSTOM_CUSTOM11", "custom11", "custom"), 198: new IconName_$WRAPPER(198, "CUSTOM_CUSTOM110", "custom110", "custom"), 199: new IconName_$WRAPPER(199, "CUSTOM_CUSTOM111", "custom111", "custom"), 200: new IconName_$WRAPPER(200, "CUSTOM_CUSTOM112", "custom112", "custom"), 201: new IconName_$WRAPPER(201, "CUSTOM_CUSTOM113", "custom113", "custom"), 202: new IconName_$WRAPPER(202, "CUSTOM_CUSTOM12", "custom12", "custom"), 203: new IconName_$WRAPPER(203, "CUSTOM_CUSTOM13", "custom13", "custom"), 204: new IconName_$WRAPPER(204, "CUSTOM_CUSTOM14", "custom14", "custom"), 205: new IconName_$WRAPPER(205, "CUSTOM_CUSTOM15", "custom15", "custom"), 206: new IconName_$WRAPPER(206, "CUSTOM_CUSTOM16", "custom16", "custom"), 207: new IconName_$WRAPPER(207, "CUSTOM_CUSTOM17", "custom17", "custom"), 208: new IconName_$WRAPPER(208, "CUSTOM_CUSTOM18", "custom18", "custom"), 209: new IconName_$WRAPPER(209, "CUSTOM_CUSTOM19", "custom19", "custom"), 210: new IconName_$WRAPPER(210, "CUSTOM_CUSTOM2", "custom2", "custom"), 211: new IconName_$WRAPPER(211, "CUSTOM_CUSTOM20", "custom20", "custom"), 212: new IconName_$WRAPPER(212, "CUSTOM_CUSTOM21", "custom21", "custom"), 213: new IconName_$WRAPPER(213, "CUSTOM_CUSTOM22", "custom22", "custom"), 214: new IconName_$WRAPPER(214, "CUSTOM_CUSTOM23", "custom23", "custom"), 215: new IconName_$WRAPPER(215, "CUSTOM_CUSTOM24", "custom24", "custom"), 216: new IconName_$WRAPPER(216, "CUSTOM_CUSTOM25", "custom25", "custom"), 217: new IconName_$WRAPPER(217, "CUSTOM_CUSTOM26", "custom26", "custom"), 218: new IconName_$WRAPPER(218, "CUSTOM_CUSTOM27", "custom27", "custom"), 219: new IconName_$WRAPPER(219, "CUSTOM_CUSTOM28", "custom28", "custom"), 220: new IconName_$WRAPPER(220, "CUSTOM_CUSTOM29", "custom29", "custom"), 221: new IconName_$WRAPPER(221, "CUSTOM_CUSTOM3", "custom3", "custom"), 222: new IconName_$WRAPPER(222, "CUSTOM_CUSTOM30", "custom30", "custom"), 223: new IconName_$WRAPPER(223, "CUSTOM_CUSTOM31", "custom31", "custom"), 224: new IconName_$WRAPPER(224, "CUSTOM_CUSTOM32", "custom32", "custom"), 225: new IconName_$WRAPPER(225, "CUSTOM_CUSTOM33", "custom33", "custom"), 226: new IconName_$WRAPPER(226, "CUSTOM_CUSTOM34", "custom34", "custom"), 227: new IconName_$WRAPPER(227, "CUSTOM_CUSTOM35", "custom35", "custom"), 228: new IconName_$WRAPPER(228, "CUSTOM_CUSTOM36", "custom36", "custom"), 229: new IconName_$WRAPPER(229, "CUSTOM_CUSTOM37", "custom37", "custom"), 230: new IconName_$WRAPPER(230, "CUSTOM_CUSTOM38", "custom38", "custom"), 231: new IconName_$WRAPPER(231, "CUSTOM_CUSTOM39", "custom39", "custom"), 232: new IconName_$WRAPPER(232, "CUSTOM_CUSTOM4", "custom4", "custom"), 233: new IconName_$WRAPPER(233, "CUSTOM_CUSTOM40", "custom40", "custom"), 234: new IconName_$WRAPPER(234, "CUSTOM_CUSTOM41", "custom41", "custom"), 235: new IconName_$WRAPPER(235, "CUSTOM_CUSTOM42", "custom42", "custom"), 236: new IconName_$WRAPPER(236, "CUSTOM_CUSTOM43", "custom43", "custom"), 237: new IconName_$WRAPPER(237, "CUSTOM_CUSTOM44", "custom44", "custom"), 238: new IconName_$WRAPPER(238, "CUSTOM_CUSTOM45", "custom45", "custom"), 239: new IconName_$WRAPPER(239, "CUSTOM_CUSTOM46", "custom46", "custom"), 240: new IconName_$WRAPPER(240, "CUSTOM_CUSTOM47", "custom47", "custom"), 241: new IconName_$WRAPPER(241, "CUSTOM_CUSTOM48", "custom48", "custom"), 242: new IconName_$WRAPPER(242, "CUSTOM_CUSTOM49", "custom49", "custom"), 243: new IconName_$WRAPPER(243, "CUSTOM_CUSTOM5", "custom5", "custom"), 244: new IconName_$WRAPPER(244, "CUSTOM_CUSTOM50", "custom50", "custom"), 245: new IconName_$WRAPPER(245, "CUSTOM_CUSTOM51", "custom51", "custom"), 246: new IconName_$WRAPPER(246, "CUSTOM_CUSTOM52", "custom52", "custom"), 247: new IconName_$WRAPPER(247, "CUSTOM_CUSTOM53", "custom53", "custom"), 248: new IconName_$WRAPPER(248, "CUSTOM_CUSTOM54", "custom54", "custom"), 249: new IconName_$WRAPPER(249, "CUSTOM_CUSTOM55", "custom55", "custom"), 250: new IconName_$WRAPPER(250, "CUSTOM_CUSTOM56", "custom56", "custom"), 251: new IconName_$WRAPPER(251, "CUSTOM_CUSTOM57", "custom57", "custom"), 252: new IconName_$WRAPPER(252, "CUSTOM_CUSTOM58", "custom58", "custom"), 253: new IconName_$WRAPPER(253, "CUSTOM_CUSTOM59", "custom59", "custom"), 254: new IconName_$WRAPPER(254, "CUSTOM_CUSTOM6", "custom6", "custom"), 255: new IconName_$WRAPPER(255, "CUSTOM_CUSTOM60", "custom60", "custom"), 256: new IconName_$WRAPPER(256, "CUSTOM_CUSTOM61", "custom61", "custom"), 257: new IconName_$WRAPPER(257, "CUSTOM_CUSTOM62", "custom62", "custom"), 258: new IconName_$WRAPPER(258, "CUSTOM_CUSTOM63", "custom63", "custom"), 259: new IconName_$WRAPPER(259, "CUSTOM_CUSTOM64", "custom64", "custom"), 260: new IconName_$WRAPPER(260, "CUSTOM_CUSTOM65", "custom65", "custom"), 261: new IconName_$WRAPPER(261, "CUSTOM_CUSTOM66", "custom66", "custom"), 262: new IconName_$WRAPPER(262, "CUSTOM_CUSTOM67", "custom67", "custom"), 263: new IconName_$WRAPPER(263, "CUSTOM_CUSTOM68", "custom68", "custom"), 264: new IconName_$WRAPPER(264, "CUSTOM_CUSTOM69", "custom69", "custom"), 265: new IconName_$WRAPPER(265, "CUSTOM_CUSTOM7", "custom7", "custom"), 266: new IconName_$WRAPPER(266, "CUSTOM_CUSTOM70", "custom70", "custom"), 267: new IconName_$WRAPPER(267, "CUSTOM_CUSTOM71", "custom71", "custom"), 268: new IconName_$WRAPPER(268, "CUSTOM_CUSTOM72", "custom72", "custom"), 269: new IconName_$WRAPPER(269, "CUSTOM_CUSTOM73", "custom73", "custom"), 270: new IconName_$WRAPPER(270, "CUSTOM_CUSTOM74", "custom74", "custom"), 271: new IconName_$WRAPPER(271, "CUSTOM_CUSTOM75", "custom75", "custom"), 272: new IconName_$WRAPPER(272, "CUSTOM_CUSTOM76", "custom76", "custom"), 273: new IconName_$WRAPPER(273, "CUSTOM_CUSTOM77", "custom77", "custom"), 274: new IconName_$WRAPPER(274, "CUSTOM_CUSTOM78", "custom78", "custom"), 275: new IconName_$WRAPPER(275, "CUSTOM_CUSTOM79", "custom79", "custom"), 276: new IconName_$WRAPPER(276, "CUSTOM_CUSTOM8", "custom8", "custom"), 277: new IconName_$WRAPPER(277, "CUSTOM_CUSTOM80", "custom80", "custom"), 278: new IconName_$WRAPPER(278, "CUSTOM_CUSTOM81", "custom81", "custom"), 279: new IconName_$WRAPPER(279, "CUSTOM_CUSTOM82", "custom82", "custom"), 280: new IconName_$WRAPPER(280, "CUSTOM_CUSTOM83", "custom83", "custom"), 281: new IconName_$WRAPPER(281, "CUSTOM_CUSTOM84", "custom84", "custom"), 282: new IconName_$WRAPPER(282, "CUSTOM_CUSTOM85", "custom85", "custom"), 283: new IconName_$WRAPPER(283, "CUSTOM_CUSTOM86", "custom86", "custom"), 284: new IconName_$WRAPPER(284, "CUSTOM_CUSTOM87", "custom87", "custom"), 285: new IconName_$WRAPPER(285, "CUSTOM_CUSTOM88", "custom88", "custom"), 286: new IconName_$WRAPPER(286, "CUSTOM_CUSTOM89", "custom89", "custom"), 287: new IconName_$WRAPPER(287, "CUSTOM_CUSTOM9", "custom9", "custom"), 288: new IconName_$WRAPPER(288, "CUSTOM_CUSTOM90", "custom90", "custom"), 289: new IconName_$WRAPPER(289, "CUSTOM_CUSTOM91", "custom91", "custom"), 290: new IconName_$WRAPPER(290, "CUSTOM_CUSTOM92", "custom92", "custom"), 291: new IconName_$WRAPPER(291, "CUSTOM_CUSTOM93", "custom93", "custom"), 292: new IconName_$WRAPPER(292, "CUSTOM_CUSTOM94", "custom94", "custom"), 293: new IconName_$WRAPPER(293, "CUSTOM_CUSTOM95", "custom95", "custom"), 294: new IconName_$WRAPPER(294, "CUSTOM_CUSTOM96", "custom96", "custom"), 295: new IconName_$WRAPPER(295, "CUSTOM_CUSTOM97", "custom97", "custom"), 296: new IconName_$WRAPPER(296, "CUSTOM_CUSTOM98", "custom98", "custom"), 297: new IconName_$WRAPPER(297, "CUSTOM_CUSTOM99", "custom99", "custom"), 298: new IconName_$WRAPPER(298, "DOCTYPE_AI", "ai", "doctype"), 299: new IconName_$WRAPPER(299, "DOCTYPE_ATTACHMENT", "attachment", "doctype"), 300: new IconName_$WRAPPER(300, "DOCTYPE_AUDIO", "audio", "doctype"), 301: new IconName_$WRAPPER(301, "DOCTYPE_BOX_NOTES", "box_notes", "doctype"), 302: new IconName_$WRAPPER(302, "DOCTYPE_CSV", "csv", "doctype"), 303: new IconName_$WRAPPER(303, "DOCTYPE_EPS", "eps", "doctype"), 304: new IconName_$WRAPPER(304, "DOCTYPE_EXCEL", "excel", "doctype"), 305: new IconName_$WRAPPER(305, "DOCTYPE_EXE", "exe", "doctype"), 306: new IconName_$WRAPPER(306, "DOCTYPE_FLASH", "flash", "doctype"), 307: new IconName_$WRAPPER(307, "DOCTYPE_FOLDER", "folder", "doctype"), 308: new IconName_$WRAPPER(308, "DOCTYPE_GDOC", "gdoc", "doctype"), 309: new IconName_$WRAPPER(309, "DOCTYPE_GDOCS", "gdocs", "doctype"), 310: new IconName_$WRAPPER(310, "DOCTYPE_GFORM", "gform", "doctype"), 311: new IconName_$WRAPPER(311, "DOCTYPE_GPRES", "gpres", "doctype"), 312: new IconName_$WRAPPER(312, "DOCTYPE_GSHEET", "gsheet", "doctype"), 313: new IconName_$WRAPPER(313, "DOCTYPE_HTML", "html", "doctype"), 314: new IconName_$WRAPPER(314, "DOCTYPE_IMAGE", "image", "doctype"), 315: new IconName_$WRAPPER(315, "DOCTYPE_KEYNOTE", "keynote", "doctype"), 316: new IconName_$WRAPPER(316, "DOCTYPE_LIBRARY_FOLDER", "library_folder", "doctype"), 317: new IconName_$WRAPPER(317, "DOCTYPE_LINK", "link", "doctype"), 318: new IconName_$WRAPPER(318, "DOCTYPE_MP4", "mp4", "doctype"), 319: new IconName_$WRAPPER(319, "DOCTYPE_OVERLAY", "overlay", "doctype"), 320: new IconName_$WRAPPER(320, "DOCTYPE_PACK", "pack", "doctype"), 321: new IconName_$WRAPPER(321, "DOCTYPE_PAGES", "pages", "doctype"), 322: new IconName_$WRAPPER(322, "DOCTYPE_PDF", "pdf", "doctype"), 323: new IconName_$WRAPPER(323, "DOCTYPE_PPT", "ppt", "doctype"), 324: new IconName_$WRAPPER(324, "DOCTYPE_PSD", "psd", "doctype"), 325: new IconName_$WRAPPER(325, "DOCTYPE_QUIP_DOC", "quip_doc", "doctype"), 326: new IconName_$WRAPPER(326, "DOCTYPE_QUIP_SHEET", "quip_sheet", "doctype"), 327: new IconName_$WRAPPER(327, "DOCTYPE_QUIP_SLIDE", "quip_slide", "doctype"), 328: new IconName_$WRAPPER(328, "DOCTYPE_RTF", "rtf", "doctype"), 329: new IconName_$WRAPPER(329, "DOCTYPE_SLIDE", "slide", "doctype"), 330: new IconName_$WRAPPER(330, "DOCTYPE_STYPI", "stypi", "doctype"), 331: new IconName_$WRAPPER(331, "DOCTYPE_TXT", "txt", "doctype"), 332: new IconName_$WRAPPER(332, "DOCTYPE_UNKNOWN", "unknown", "doctype"), 333: new IconName_$WRAPPER(333, "DOCTYPE_VIDEO", "video", "doctype"), 334: new IconName_$WRAPPER(334, "DOCTYPE_VISIO", "visio", "doctype"), 335: new IconName_$WRAPPER(335, "DOCTYPE_WEBEX", "webex", "doctype"), 336: new IconName_$WRAPPER(336, "DOCTYPE_WORD", "word", "doctype"), 337: new IconName_$WRAPPER(337, "DOCTYPE_XML", "xml", "doctype"), 338: new IconName_$WRAPPER(338, "DOCTYPE_ZIP", "zip", "doctype"), 339: new IconName_$WRAPPER(339, "STANDARD_ACCOUNT", "account", "standard"), 340: new IconName_$WRAPPER(340, "STANDARD_ACCOUNT_INFO", "account_info", "standard"), 341: new IconName_$WRAPPER(341, "STANDARD_ACTION_LIST_COMPONENT", "action_list_component", "standard"), 342: new IconName_$WRAPPER(342, "STANDARD_ACTIONS_AND_BUTTONS", "actions_and_buttons", "standard"), 343: new IconName_$WRAPPER(343, "STANDARD_ACTIVATION_TARGET", "activation_target", "standard"), 344: new IconName_$WRAPPER(344, "STANDARD_ACTIVATIONS", "activations", "standard"), 345: new IconName_$WRAPPER(345, "STANDARD_ADDRESS", "address", "standard"), 346: new IconName_$WRAPPER(346, "STANDARD_AGENT_HOME", "agent_home", "standard"), 347: new IconName_$WRAPPER(347, "STANDARD_AGENT_SESSION", "agent_session", "standard"), 348: new IconName_$WRAPPER(348, "STANDARD_AGGREGATION_POLICY", "aggregation_policy", "standard"), 349: new IconName_$WRAPPER(349, "STANDARD_ALL", "all", "standard"), 350: new IconName_$WRAPPER(350, "STANDARD_ANNOUNCEMENT", "announcement", "standard"), 351: new IconName_$WRAPPER(351, "STANDARD_ANSWER_BEST", "answer_best", "standard"), 352: new IconName_$WRAPPER(352, "STANDARD_ANSWER_PRIVATE", "answer_private", "standard"), 353: new IconName_$WRAPPER(353, "STANDARD_ANSWER_PUBLIC", "answer_public", "standard"), 354: new IconName_$WRAPPER(354, "STANDARD_APEX", "apex", "standard"), 355: new IconName_$WRAPPER(355, "STANDARD_APEX_PLUGIN", "apex_plugin", "standard"), 356: new IconName_$WRAPPER(356, "STANDARD_APP", "app", "standard"), 357: new IconName_$WRAPPER(357, "STANDARD_APPROVAL", "approval", "standard"), 358: new IconName_$WRAPPER(358, "STANDARD_APPS", "apps", "standard"), 359: new IconName_$WRAPPER(359, "STANDARD_APPS_ADMIN", "apps_admin", "standard"), 360: new IconName_$WRAPPER(360, "STANDARD_ARTICLE", "article", "standard"), 361: new IconName_$WRAPPER(361, "STANDARD_ASSET_ACTION", "asset_action", "standard"), 362: new IconName_$WRAPPER(362, "STANDARD_ASSET_ACTION_SOURCE", "asset_action_source", "standard"), 363: new IconName_$WRAPPER(363, "STANDARD_ASSET_DOWNTIME_PERIOD", "asset_downtime_period", "standard"), 364: new IconName_$WRAPPER(364, "STANDARD_ASSET_OBJECT", "asset_object", "standard"), 365: new IconName_$WRAPPER(365, "STANDARD_ASSET_RELATIONSHIP", "asset_relationship", "standard"), 366: new IconName_$WRAPPER(366, "STANDARD_ASSET_STATE_PERIOD", "asset_state_period", "standard"), 367: new IconName_$WRAPPER(367, "STANDARD_ASSET_WARRANTY", "asset_warranty", "standard"), 368: new IconName_$WRAPPER(368, "STANDARD_ASSIGNED_RESOURCE", "assigned_resource", "standard"), 369: new IconName_$WRAPPER(369, "STANDARD_ASSIGNMENT", "assignment", "standard"), 370: new IconName_$WRAPPER(370, "STANDARD_AVATAR", "avatar", "standard"), 371: new IconName_$WRAPPER(371, "STANDARD_AVATAR_LOADING", "avatar_loading", "standard"), 372: new IconName_$WRAPPER(372, "STANDARD_BOT", "bot", "standard"), 373: new IconName_$WRAPPER(373, "STANDARD_BOT_TRAINING", "bot_training", "standard"), 374: new IconName_$WRAPPER(374, "STANDARD_BRANCH_MERGE", "branch_merge", "standard"), 375: new IconName_$WRAPPER(375, "STANDARD_BRAND", "brand", "standard"), 376: new IconName_$WRAPPER(376, "STANDARD_BUDGET", "budget", "standard"), 377: new IconName_$WRAPPER(377, "STANDARD_BUDGET_ALLOCATION", "budget_allocation", "standard"), 378: new IconName_$WRAPPER(378, "STANDARD_BUNDLE_CONFIG", "bundle_config", "standard"), 379: new IconName_$WRAPPER(379, "STANDARD_BUNDLE_POLICY", "bundle_policy", "standard"), 380: new IconName_$WRAPPER(380, "STANDARD_BUSINESS_HOURS", "business_hours", "standard"), 381: new IconName_$WRAPPER(381, "STANDARD_BUYER_ACCOUNT", "buyer_account", "standard"), 382: new IconName_$WRAPPER(382, "STANDARD_BUYER_GROUP", "buyer_group", "standard"), 383: new IconName_$WRAPPER(383, "STANDARD_CALCULATED_INSIGHTS", "calculated_insights", "standard"), 384: new IconName_$WRAPPER(384, "STANDARD_CALIBRATION", "calibration", "standard"), 385: new IconName_$WRAPPER(385, "STANDARD_CALL", "call", "standard"), 386: new IconName_$WRAPPER(386, "STANDARD_CALL_COACHING", "call_coaching", "standard"), 387: new IconName_$WRAPPER(387, "STANDARD_CALL_HISTORY", "call_history", "standard"), 388: new IconName_$WRAPPER(388, "STANDARD_CAMPAIGN", "campaign", "standard"), 389: new IconName_$WRAPPER(389, "STANDARD_CAMPAIGN_MEMBERS", "campaign_members", "standard"), 390: new IconName_$WRAPPER(390, "STANDARD_CANCEL_CHECKOUT", "cancel_checkout", "standard"), 391: new IconName_$WRAPPER(391, "STANDARD_CANVAS", "canvas", "standard"), 392: new IconName_$WRAPPER(392, "STANDARD_CAPACITY_PLAN", "capacity_plan", "standard"), 393: new IconName_$WRAPPER(393, "STANDARD_CARE_REQUEST_REVIEWER", "care_request_reviewer", "standard"), 394: new IconName_$WRAPPER(394, "STANDARD_CAROUSEL", "carousel", "standard"), 395: new IconName_$WRAPPER(395, "STANDARD_CASE", "case", "standard"), 396: new IconName_$WRAPPER(396, "STANDARD_CASE_CHANGE_STATUS", "case_change_status", "standard"), 397: new IconName_$WRAPPER(397, "STANDARD_CASE_COMMENT", "case_comment", "standard"), 398: new IconName_$WRAPPER(398, "STANDARD_CASE_EMAIL", "case_email", "standard"), 399: new IconName_$WRAPPER(399, "STANDARD_CASE_LOG_A_CALL", "case_log_a_call", "standard"), 400: new IconName_$WRAPPER(400, "STANDARD_CASE_MILESTONE", "case_milestone", "standard"), 401: new IconName_$WRAPPER(401, "STANDARD_CASE_TRANSCRIPT", "case_transcript", "standard"), 402: new IconName_$WRAPPER(402, "STANDARD_CASE_WRAP_UP", "case_wrap_up", "standard"), 403: new IconName_$WRAPPER(403, "STANDARD_CATALOG", "catalog", "standard"), 404: new IconName_$WRAPPER(404, "STANDARD_CATEGORY", "category", "standard"), 405: new IconName_$WRAPPER(405, "STANDARD_CHANGE_REQUEST", "change_request", "standard"), 406: new IconName_$WRAPPER(406, "STANDARD_CHANNEL_PROGRAM_HISTORY", "channel_program_history", "standard"), 407: new IconName_$WRAPPER(407, "STANDARD_CHANNEL_PROGRAM_LEVELS", "channel_program_levels", "standard"), 408: new IconName_$WRAPPER(408, "STANDARD_CHANNEL_PROGRAM_MEMBERS", "channel_program_members", "standard"), 409: new IconName_$WRAPPER(409, "STANDARD_CHANNEL_PROGRAMS", "channel_programs", "standard"), 410: new IconName_$WRAPPER(410, "STANDARD_CHART", "chart", "standard"), 411: new IconName_$WRAPPER(411, "STANDARD_CHECKOUT", "checkout", "standard"), 412: new IconName_$WRAPPER(412, "STANDARD_CHOICE", "choice", "standard"), 413: new IconName_$WRAPPER(413, "STANDARD_CLIENT", "client", "standard"), 414: new IconName_$WRAPPER(414, "STANDARD_CMS", "cms", "standard"), 415: new IconName_$WRAPPER(415, "STANDARD_COACHING", "coaching", "standard"), 416: new IconName_$WRAPPER(416, "STANDARD_CODE_PLAYGROUND", "code_playground", "standard"), 417: new IconName_$WRAPPER(417, "STANDARD_CODE_SET", "code_set", "standard"), 418: new IconName_$WRAPPER(418, "STANDARD_CODE_SET_BUNDLE", "code_set_bundle", "standard"), 419: new IconName_$WRAPPER(419, "STANDARD_COLLECTION", "collection", "standard"), 420: new IconName_$WRAPPER(420, "STANDARD_COLLECTION_VARIABLE", "collection_variable", "standard"), 421: new IconName_$WRAPPER(421, "STANDARD_CONNECTED_APPS", "connected_apps", "standard"), 422: new IconName_$WRAPPER(422, "STANDARD_CONSTANT", "constant", "standard"), 423: new IconName_$WRAPPER(423, "STANDARD_CONTACT", "contact", "standard"), 424: new IconName_$WRAPPER(424, "STANDARD_CONTACT_LIST", "contact_list", "standard"), 425: new IconName_$WRAPPER(425, "STANDARD_CONTACT_REQUEST", "contact_request", "standard"), 426: new IconName_$WRAPPER(426, "STANDARD_CONTRACT", "contract", "standard"), 427: new IconName_$WRAPPER(427, "STANDARD_CONTRACT_LINE_ITEM", "contract_line_item", "standard"), 428: new IconName_$WRAPPER(428, "STANDARD_COUPON_CODES", "coupon_codes", "standard"), 429: new IconName_$WRAPPER(429, "STANDARD_CURRENCY", "currency", "standard"), 430: new IconName_$WRAPPER(430, "STANDARD_CURRENCY_INPUT", "currency_input", "standard"), 431: new IconName_$WRAPPER(431, "STANDARD_CUSTOM", "custom", "standard"), 432: new IconName_$WRAPPER(432, "STANDARD_CUSTOM_COMPONENT_TASK", "custom_component_task", "standard"), 433: new IconName_$WRAPPER(433, "STANDARD_CUSTOM_NOTIFICATION", "custom_notification", "standard"), 434: new IconName_$WRAPPER(434, "STANDARD_CUSTOMER_360", "customer_360", "standard"), 435: new IconName_$WRAPPER(435, "STANDARD_CUSTOMER_LIFECYCLE_ANALYTICS", "customer_lifecycle_analytics", "standard"), 436: new IconName_$WRAPPER(436, "STANDARD_CUSTOMER_PORTAL_USERS", "customer_portal_users", "standard"), 437: new IconName_$WRAPPER(437, "STANDARD_CUSTOMERS", "customers", "standard"), 438: new IconName_$WRAPPER(438, "STANDARD_DASHBOARD", "dashboard", "standard"), 439: new IconName_$WRAPPER(439, "STANDARD_DASHBOARD_EA", "dashboard_ea", "standard"), 440: new IconName_$WRAPPER(440, "STANDARD_DATA_INTEGRATION_HUB", "data_integration_hub", "standard"), 441: new IconName_$WRAPPER(441, "STANDARD_DATA_MAPPING", "data_mapping", "standard"), 442: new IconName_$WRAPPER(442, "STANDARD_DATA_MODEL", "data_model", "standard"), 443: new IconName_$WRAPPER(443, "STANDARD_DATA_STREAMS", "data_streams", "standard"), 444: new IconName_$WRAPPER(444, "STANDARD_DATADOTCOM", "datadotcom", "standard"), 445: new IconName_$WRAPPER(445, "STANDARD_DATASET", "dataset", "standard"), 446: new IconName_$WRAPPER(446, "STANDARD_DATE_INPUT", "date_input", "standard"), 447: new IconName_$WRAPPER(447, "STANDARD_DATE_TIME", "date_time", "standard"), 448: new IconName_$WRAPPER(448, "STANDARD_DECISION", "decision", "standard"), 449: new IconName_$WRAPPER(449, "STANDARD_DEFAULT", "default", "standard"), 450: new IconName_$WRAPPER(450, "STANDARD_DELEGATED_ACCOUNT", "delegated_account", "standard"), 451: new IconName_$WRAPPER(451, "STANDARD_DEVICE", "device", "standard"), 452: new IconName_$WRAPPER(452, "STANDARD_DISCOUNTS", "discounts", "standard"), 453: new IconName_$WRAPPER(453, "STANDARD_DISPLAY_RICH_TEXT", "display_rich_text", "standard"), 454: new IconName_$WRAPPER(454, "STANDARD_DISPLAY_TEXT", "display_text", "standard"), 455: new IconName_$WRAPPER(455, "STANDARD_DOCUMENT", "document", "standard"), 456: new IconName_$WRAPPER(456, "STANDARD_DOCUMENT_REFERENCE", "document_reference", "standard"), 457: new IconName_$WRAPPER(457, "STANDARD_DRAFTS", "drafts", "standard"), 458: new IconName_$WRAPPER(458, "STANDARD_DURATION_DOWNSCALE", "duration_downscale", "standard"), 459: new IconName_$WRAPPER(459, "STANDARD_DYNAMIC_RECORD_CHOICE", "dynamic_record_choice", "standard"), 460: new IconName_$WRAPPER(460, "STANDARD_EDUCATION", "education", "standard"), 461: new IconName_$WRAPPER(461, "STANDARD_EINSTEIN_REPLIES", "einstein_replies", "standard"), 462: new IconName_$WRAPPER(462, "STANDARD_EMAIL", "email", "standard"), 463: new IconName_$WRAPPER(463, "STANDARD_EMAIL_CHATTER", "email_chatter", "standard"), 464: new IconName_$WRAPPER(464, "STANDARD_EMPLOYEE", "employee", "standard"), 465: new IconName_$WRAPPER(465, "STANDARD_EMPLOYEE_ASSET", "employee_asset", "standard"), 466: new IconName_$WRAPPER(466, "STANDARD_EMPLOYEE_CONTACT", "employee_contact", "standard"), 467: new IconName_$WRAPPER(467, "STANDARD_EMPLOYEE_JOB", "employee_job", "standard"), 468: new IconName_$WRAPPER(468, "STANDARD_EMPLOYEE_JOB_POSITION", "employee_job_position", "standard"), 469: new IconName_$WRAPPER(469, "STANDARD_EMPLOYEE_ORGANIZATION", "employee_organization", "standard"), 470: new IconName_$WRAPPER(470, "STANDARD_EMPTY", "empty", "standard"), 471: new IconName_$WRAPPER(471, "STANDARD_ENDORSEMENT", "endorsement", "standard"), 472: new IconName_$WRAPPER(472, "STANDARD_ENTITLEMENT", "entitlement", "standard"), 473: new IconName_$WRAPPER(473, "STANDARD_ENTITLEMENT_POLICY", "entitlement_policy", "standard"), 474: new IconName_$WRAPPER(474, "STANDARD_ENTITLEMENT_PROCESS", "entitlement_process", "standard"), 475: new IconName_$WRAPPER(475, "STANDARD_ENTITLEMENT_TEMPLATE", "entitlement_template", "standard"), 476: new IconName_$WRAPPER(476, "STANDARD_ENTITY", "entity", "standard"), 477: new IconName_$WRAPPER(477, "STANDARD_ENTITY_MILESTONE", "entity_milestone", "standard"), 478: new IconName_$WRAPPER(478, "STANDARD_ENVIRONMENT_HUB", "environment_hub", "standard"), 479: new IconName_$WRAPPER(479, "STANDARD_EVENT", "event", "standard"), 480: new IconName_$WRAPPER(480, "STANDARD_EVENTS", "events", "standard"), 481: new IconName_$WRAPPER(481, "STANDARD_EXPENSE", "expense", "standard"), 482: new IconName_$WRAPPER(482, "STANDARD_EXPENSE_REPORT", "expense_report", "standard"), 483: new IconName_$WRAPPER(483, "STANDARD_EXPENSE_REPORT_ENTRY", "expense_report_entry", "standard"), 484: new IconName_$WRAPPER(484, "STANDARD_FEED", "feed", "standard"), 485: new IconName_$WRAPPER(485, "STANDARD_FEEDBACK", "feedback", "standard"), 486: new IconName_$WRAPPER(486, "STANDARD_FILE", "file", "standard"), 487: new IconName_$WRAPPER(487, "STANDARD_FILTER", "filter", "standard"), 488: new IconName_$WRAPPER(488, "STANDARD_FILTER_CRITERIA", "filter_criteria", "standard"), 489: new IconName_$WRAPPER(489, "STANDARD_FILTER_CRITERIA_RULE", "filter_criteria_rule", "standard"), 490: new IconName_$WRAPPER(490, "STANDARD_FIRST_NON_EMPTY", "first_non_empty", "standard"), 491: new IconName_$WRAPPER(491, "STANDARD_FLOW", "flow", "standard"), 492: new IconName_$WRAPPER(492, "STANDARD_FOLDER", "folder", "standard"), 493: new IconName_$WRAPPER(493, "STANDARD_FORECASTS", "forecasts", "standard"), 494: new IconName_$WRAPPER(494, "STANDARD_FORM", "form", "standard"), 495: new IconName_$WRAPPER(495, "STANDARD_FORMULA", "formula", "standard"), 496: new IconName_$WRAPPER(496, "STANDARD_FULFILLMENT_ORDER", "fulfillment_order", "standard"), 497: new IconName_$WRAPPER(497, "STANDARD_GENERIC_LOADING", "generic_loading", "standard"), 498: new IconName_$WRAPPER(498, "STANDARD_GLOBAL_CONSTANT", "global_constant", "standard"), 499: new IconName_$WRAPPER(499, "STANDARD_GOALS", "goals", "standard"), 500: new IconName_$WRAPPER(500, "STANDARD_GROUP_LOADING", "group_loading", "standard"), 501: new IconName_$WRAPPER(501, "STANDARD_GROUPS", "groups", "standard"), 502: new IconName_$WRAPPER(502, "STANDARD_GUIDANCE_CENTER", "guidance_center", "standard"), 503: new IconName_$WRAPPER(503, "STANDARD_HIERARCHY", "hierarchy", "standard"), 504: new IconName_$WRAPPER(504, "STANDARD_HIGH_VELOCITY_SALES", "high_velocity_sales", "standard"), 505: new IconName_$WRAPPER(505, "STANDARD_HOLIDAY_OPERATING_HOURS", "holiday_operating_hours", "standard"), 506: new IconName_$WRAPPER(506, "STANDARD_HOME", "home", "standard"), 507: new IconName_$WRAPPER(507, "STANDARD_HOUSEHOLD", "household", "standard"), 508: new IconName_$WRAPPER(508, "STANDARD_IDENTIFIER", "identifier", "standard"), 509: new IconName_$WRAPPER(509, "STANDARD_IMMUNIZATION", "immunization", "standard"), 510: new IconName_$WRAPPER(510, "STANDARD_INCIDENT", "incident", "standard"), 511: new IconName_$WRAPPER(511, "STANDARD_INDIVIDUAL", "individual", "standard"), 512: new IconName_$WRAPPER(512, "STANDARD_INSIGHTS", "insights", "standard"), 513: new IconName_$WRAPPER(513, "STANDARD_INSTORE_LOCATIONS", "instore_locations", "standard"), 514: new IconName_$WRAPPER(514, "STANDARD_INVESTMENT_ACCOUNT", "investment_account", "standard"), 515: new IconName_$WRAPPER(515, "STANDARD_INVOCABLE_ACTION", "invocable_action", "standard"), 516: new IconName_$WRAPPER(516, "STANDARD_IOT_CONTEXT", "iot_context", "standard"), 517: new IconName_$WRAPPER(517, "STANDARD_IOT_ORCHESTRATIONS", "iot_orchestrations", "standard"), 518: new IconName_$WRAPPER(518, "STANDARD_JAVASCRIPT_BUTTON", "javascript_button", "standard"), 519: new IconName_$WRAPPER(519, "STANDARD_JOB_FAMILY", "job_family", "standard"), 520: new IconName_$WRAPPER(520, "STANDARD_JOB_POSITION", "job_position", "standard"), 521: new IconName_$WRAPPER(521, "STANDARD_JOB_PROFILE", "job_profile", "standard"), 522: new IconName_$WRAPPER(522, "STANDARD_KANBAN", "kanban", "standard"), 523: new IconName_$WRAPPER(523, "STANDARD_KEY_DATES", "key_dates", "standard"), 524: new IconName_$WRAPPER(524, "STANDARD_KNOWLEDGE", "knowledge", "standard"), 525: new IconName_$WRAPPER(525, "STANDARD_LEAD", "lead", "standard"), 526: new IconName_$WRAPPER(526, "STANDARD_LEAD_INSIGHTS", "lead_insights", "standard"), 527: new IconName_$WRAPPER(527, "STANDARD_LEAD_LIST", "lead_list", "standard"), 528: new IconName_$WRAPPER(528, "STANDARD_LETTERHEAD", "letterhead", "standard"), 529: new IconName_$WRAPPER(529, "STANDARD_LIGHTNING_COMPONENT", "lightning_component", "standard"), 530: new IconName_$WRAPPER(530, "STANDARD_LIGHTNING_USAGE", "lightning_usage", "standard"), 531: new IconName_$WRAPPER(531, "STANDARD_LINK", "link", "standard"), 532: new IconName_$WRAPPER(532, "STANDARD_LIST_EMAIL", "list_email", "standard"), 533: new IconName_$WRAPPER(533, "STANDARD_LIVE_CHAT", "live_chat", "standard"), 534: new IconName_$WRAPPER(534, "STANDARD_LIVE_CHAT_VISITOR", "live_chat_visitor", "standard"), 535: new IconName_$WRAPPER(535, "STANDARD_LOCATION", "location", "standard"), 536: new IconName_$WRAPPER(536, "STANDARD_LOCATION_PERMIT", "location_permit", "standard"), 537: new IconName_$WRAPPER(537, "STANDARD_LOG_A_CALL", "log_a_call", "standard"), 538: new IconName_$WRAPPER(538, "STANDARD_LOGGING", "logging", "standard"), 539: new IconName_$WRAPPER(539, "STANDARD_LOOP", "loop", "standard"), 540: new IconName_$WRAPPER(540, "STANDARD_MACROS", "macros", "standard"), 541: new IconName_$WRAPPER(541, "STANDARD_MAINTENANCE_ASSET", "maintenance_asset", "standard"), 542: new IconName_$WRAPPER(542, "STANDARD_MAINTENANCE_PLAN", "maintenance_plan", "standard"), 543: new IconName_$WRAPPER(543, "STANDARD_MAINTENANCE_WORK_RULE", "maintenance_work_rule", "standard"), 544: new IconName_$WRAPPER(544, "STANDARD_MARKETING_ACTIONS", "marketing_actions", "standard"), 545: new IconName_$WRAPPER(545, "STANDARD_MEDICATION", "medication", "standard"), 546: new IconName_$WRAPPER(546, "STANDARD_MEDICATION_INGREDIENT", "medication_ingredient", "standard"), 547: new IconName_$WRAPPER(547, "STANDARD_MEDICATION_STATEMENT", "medication_statement", "standard"), 548: new IconName_$WRAPPER(548, "STANDARD_MERGE", "merge", "standard"), 549: new IconName_$WRAPPER(549, "STANDARD_MESSAGING_CONVERSATION", "messaging_conversation", "standard"), 550: new IconName_$WRAPPER(550, "STANDARD_MESSAGING_SESSION", "messaging_session", "standard"), 551: new IconName_$WRAPPER(551, "STANDARD_MESSAGING_USER", "messaging_user", "standard"), 552: new IconName_$WRAPPER(552, "STANDARD_METRICS", "metrics", "standard"), 553: new IconName_$WRAPPER(553, "STANDARD_MULTI_PICKLIST", "multi_picklist", "standard"), 554: new IconName_$WRAPPER(554, "STANDARD_MULTI_SELECT_CHECKBOX", "multi_select_checkbox", "standard"), 555: new IconName_$WRAPPER(555, "STANDARD_NETWORK_CONTRACT", "network_contract", "standard"), 556: new IconName_$WRAPPER(556, "STANDARD_NEWS", "news", "standard"), 557: new IconName_$WRAPPER(557, "STANDARD_NOTE", "note", "standard"), 558: new IconName_$WRAPPER(558, "STANDARD_NUMBER_INPUT", "number_input", "standard"), 559: new IconName_$WRAPPER(559, "STANDARD_OBSERVATION_COMPONENT", "observation_component", "standard"), 560: new IconName_$WRAPPER(560, "STANDARD_OMNI_SUPERVISOR", "omni_supervisor", "standard"), 561: new IconName_$WRAPPER(561, "STANDARD_OPERATING_HOURS", "operating_hours", "standard"), 562: new IconName_$WRAPPER(562, "STANDARD_OPPORTUNITY", "opportunity", "standard"), 563: new IconName_$WRAPPER(563, "STANDARD_OPPORTUNITY_CONTACT_ROLE", "opportunity_contact_role", "standard"), 564: new IconName_$WRAPPER(564, "STANDARD_OPPORTUNITY_SPLITS", "opportunity_splits", "standard"), 565: new IconName_$WRAPPER(565, "STANDARD_ORCHESTRATOR", "orchestrator", "standard"), 566: new IconName_$WRAPPER(566, "STANDARD_ORDER_ITEM", "order_item", "standard"), 567: new IconName_$WRAPPER(567, "STANDARD_ORDERS", "orders", "standard"), 568: new IconName_$WRAPPER(568, "STANDARD_OUTCOME", "outcome", "standard"), 569: new IconName_$WRAPPER(569, "STANDARD_OUTPUT", "output", "standard"), 570: new IconName_$WRAPPER(570, "STANDARD_PARTNER_FUND_ALLOCATION", "partner_fund_allocation", "standard"), 571: new IconName_$WRAPPER(571, "STANDARD_PARTNER_FUND_CLAIM", "partner_fund_claim", "standard"), 572: new IconName_$WRAPPER(572, "STANDARD_PARTNER_FUND_REQUEST", "partner_fund_request", "standard"), 573: new IconName_$WRAPPER(573, "STANDARD_PARTNER_MARKETING_BUDGET", "partner_marketing_budget", "standard"), 574: new IconName_$WRAPPER(574, "STANDARD_PARTNERS", "partners", "standard"), 575: new IconName_$WRAPPER(575, "STANDARD_PASSWORD", "password", "standard"), 576: new IconName_$WRAPPER(576, "STANDARD_PAST_CHAT", "past_chat", "standard"), 577: new IconName_$WRAPPER(577, "STANDARD_PATIENT_MEDICATION_DOSAGE", "patient_medication_dosage", "standard"), 578: new IconName_$WRAPPER(578, "STANDARD_PAYMENT_GATEWAY", "payment_gateway", "standard"), 579: new IconName_$WRAPPER(579, "STANDARD_PEOPLE", "people", "standard"), 580: new IconName_$WRAPPER(580, "STANDARD_PERFORMANCE", "performance", "standard"), 581: new IconName_$WRAPPER(581, "STANDARD_PERSON_ACCOUNT", "person_account", "standard"), 582: new IconName_$WRAPPER(582, "STANDARD_PERSON_LANGUAGE", "person_language", "standard"), 583: new IconName_$WRAPPER(583, "STANDARD_PERSON_NAME", "person_name", "standard"), 584: new IconName_$WRAPPER(584, "STANDARD_PHOTO", "photo", "standard"), 585: new IconName_$WRAPPER(585, "STANDARD_PICKLIST_CHOICE", "picklist_choice", "standard"), 586: new IconName_$WRAPPER(586, "STANDARD_PICKLIST_TYPE", "picklist_type", "standard"), 587: new IconName_$WRAPPER(587, "STANDARD_PLANOGRAM", "planogram", "standard"), 588: new IconName_$WRAPPER(588, "STANDARD_POLL", "poll", "standard"), 589: new IconName_$WRAPPER(589, "STANDARD_PORTAL", "portal", "standard"), 590: new IconName_$WRAPPER(590, "STANDARD_PORTAL_ROLES", "portal_roles", "standard"), 591: new IconName_$WRAPPER(591, "STANDARD_PORTAL_ROLES_AND_SUBORDINATES", "portal_roles_and_subordinates", "standard"), 592: new IconName_$WRAPPER(592, "STANDARD_POST", "post", "standard"), 593: new IconName_$WRAPPER(593, "STANDARD_PRACTITIONER_ROLE", "practitioner_role", "standard"), 594: new IconName_$WRAPPER(594, "STANDARD_PRICE_BOOK_ENTRIES", "price_book_entries", "standard"), 595: new IconName_$WRAPPER(595, "STANDARD_PRICE_BOOKS", "price_books", "standard"), 596: new IconName_$WRAPPER(596, "STANDARD_PRICEBOOK", "pricebook", "standard"), 597: new IconName_$WRAPPER(597, "STANDARD_PRICING_WORKSPACE", "pricing_workspace", "standard"), 598: new IconName_$WRAPPER(598, "STANDARD_PROBLEM", "problem", "standard"), 599: new IconName_$WRAPPER(599, "STANDARD_PROCEDURE", "procedure", "standard"), 600: new IconName_$WRAPPER(600, "STANDARD_PROCEDURE_DETAIL", "procedure_detail", "standard"), 601: new IconName_$WRAPPER(601, "STANDARD_PROCESS", "process", "standard"), 602: new IconName_$WRAPPER(602, "STANDARD_PROCESS_EXCEPTION", "process_exception", "standard"), 603: new IconName_$WRAPPER(603, "STANDARD_PRODUCT", "product", "standard"), 604: new IconName_$WRAPPER(604, "STANDARD_PRODUCT_CONSUMED", "product_consumed", "standard"), 605: new IconName_$WRAPPER(605, "STANDARD_PRODUCT_CONSUMED_STATE", "product_consumed_state", "standard"), 606: new IconName_$WRAPPER(606, "STANDARD_PRODUCT_ITEM", "product_item", "standard"), 607: new IconName_$WRAPPER(607, "STANDARD_PRODUCT_ITEM_TRANSACTION", "product_item_transaction", "standard"), 608: new IconName_$WRAPPER(608, "STANDARD_PRODUCT_QUANTITY_RULES", "product_quantity_rules", "standard"), 609: new IconName_$WRAPPER(609, "STANDARD_PRODUCT_REQUEST", "product_request", "standard"), 610: new IconName_$WRAPPER(610, "STANDARD_PRODUCT_REQUEST_LINE_ITEM", "product_request_line_item", "standard"), 611: new IconName_$WRAPPER(611, "STANDARD_PRODUCT_REQUIRED", "product_required", "standard"), 612: new IconName_$WRAPPER(612, "STANDARD_PRODUCT_SERVICE_CAMPAIGN", "product_service_campaign", "standard"), 613: new IconName_$WRAPPER(613, "STANDARD_PRODUCT_SERVICE_CAMPAIGN_ITEM", "product_service_campaign_item", "standard"), 614: new IconName_$WRAPPER(614, "STANDARD_PRODUCT_TRANSFER", "product_transfer", "standard"), 615: new IconName_$WRAPPER(615, "STANDARD_PRODUCT_TRANSFER_STATE", "product_transfer_state", "standard"), 616: new IconName_$WRAPPER(616, "STANDARD_PRODUCT_WARRANTY_TERM", "product_warranty_term", "standard"), 617: new IconName_$WRAPPER(617, "STANDARD_PRODUCT_WORKSPACE", "product_workspace", "standard"), 618: new IconName_$WRAPPER(618, "STANDARD_PRODUCTS", "products", "standard"), 619: new IconName_$WRAPPER(619, "STANDARD_PROMOTION_SEGMENTS", "promotion_segments", "standard"), 620: new IconName_$WRAPPER(620, "STANDARD_PROMOTIONS", "promotions", "standard"), 621: new IconName_$WRAPPER(621, "STANDARD_PROMOTIONS_WORKSPACE", "promotions_workspace", "standard"), 622: new IconName_$WRAPPER(622, "STANDARD_PROPAGATION_POLICY", "propagation_policy", "standard"), 623: new IconName_$WRAPPER(623, "STANDARD_PROPOSITION", "proposition", "standard"), 624: new IconName_$WRAPPER(624, "STANDARD_QUALIFICATIONS", "qualifications", "standard"), 625: new IconName_$WRAPPER(625, "STANDARD_QUESTION_BEST", "question_best", "standard"), 626: new IconName_$WRAPPER(626, "STANDARD_QUESTION_FEED", "question_feed", "standard"), 627: new IconName_$WRAPPER(627, "STANDARD_QUEUE", "queue", "standard"), 628: new IconName_$WRAPPER(628, "STANDARD_QUICK_TEXT", "quick_text", "standard"), 629: new IconName_$WRAPPER(629, "STANDARD_QUIP", "quip", "standard"), 630: new IconName_$WRAPPER(630, "STANDARD_QUIP_SHEET", "quip_sheet", "standard"), 631: new IconName_$WRAPPER(631, "STANDARD_QUOTES", "quotes", "standard"), 632: new IconName_$WRAPPER(632, "STANDARD_RADIO_BUTTON", "radio_button", "standard"), 633: new IconName_$WRAPPER(633, "STANDARD_READ_RECEIPTS", "read_receipts", "standard"), 634: new IconName_$WRAPPER(634, "STANDARD_RECENT", "recent", "standard"), 635: new IconName_$WRAPPER(635, "STANDARD_RECIPE", "recipe", "standard"), 636: new IconName_$WRAPPER(636, "STANDARD_RECORD", "record", "standard"), 637: new IconName_$WRAPPER(637, "STANDARD_RECORD_CREATE", "record_create", "standard"), 638: new IconName_$WRAPPER(638, "STANDARD_RECORD_DELETE", "record_delete", "standard"), 639: new IconName_$WRAPPER(639, "STANDARD_RECORD_LOOKUP", "record_lookup", "standard"), 640: new IconName_$WRAPPER(640, "STANDARD_RECORD_SIGNATURE_TASK", "record_signature_task", "standard"), 641: new IconName_$WRAPPER(641, "STANDARD_RECORD_UPDATE", "record_update", "standard"), 642: new IconName_$WRAPPER(642, "STANDARD_RECYCLE_BIN", "recycle_bin", "standard"), 643: new IconName_$WRAPPER(643, "STANDARD_RELATED_LIST", "related_list", "standard"), 644: new IconName_$WRAPPER(644, "STANDARD_RELATIONSHIP", "relationship", "standard"), 645: new IconName_$WRAPPER(645, "STANDARD_REPLY_TEXT", "reply_text", "standard"), 646: new IconName_$WRAPPER(646, "STANDARD_REPORT", "report", "standard"), 647: new IconName_$WRAPPER(647, "STANDARD_RESOURCE_ABSENCE", "resource_absence", "standard"), 648: new IconName_$WRAPPER(648, "STANDARD_RESOURCE_CAPACITY", "resource_capacity", "standard"), 649: new IconName_$WRAPPER(649, "STANDARD_RESOURCE_PREFERENCE", "resource_preference", "standard"), 650: new IconName_$WRAPPER(650, "STANDARD_RESOURCE_SKILL", "resource_skill", "standard"), 651: new IconName_$WRAPPER(651, "STANDARD_RESTRICTION_POLICY", "restriction_policy", "standard"), 652: new IconName_$WRAPPER(652, "STANDARD_RETURN_ORDER", "return_order", "standard"), 653: new IconName_$WRAPPER(653, "STANDARD_RETURN_ORDER_LINE_ITEM", "return_order_line_item", "standard"), 654: new IconName_$WRAPPER(654, "STANDARD_REWARD", "reward", "standard"), 655: new IconName_$WRAPPER(655, "STANDARD_RTC_PRESENCE", "rtc_presence", "standard"), 656: new IconName_$WRAPPER(656, "STANDARD_SALES_CADENCE", "sales_cadence", "standard"), 657: new IconName_$WRAPPER(657, "STANDARD_SALES_CADENCE_TARGET", "sales_cadence_target", "standard"), 658: new IconName_$WRAPPER(658, "STANDARD_SALES_CHANNEL", "sales_channel", "standard"), 659: new IconName_$WRAPPER(659, "STANDARD_SALES_PATH", "sales_path", "standard"), 660: new IconName_$WRAPPER(660, "STANDARD_SALES_VALUE", "sales_value", "standard"), 661: new IconName_$WRAPPER(661, "STANDARD_SALESFORCE_CMS", "salesforce_cms", "standard"), 662: new IconName_$WRAPPER(662, "STANDARD_SCAN_CARD", "scan_card", "standard"), 663: new IconName_$WRAPPER(663, "STANDARD_SCHEDULE_OBJECTIVE", "schedule_objective", "standard"), 664: new IconName_$WRAPPER(664, "STANDARD_SCHEDULING_CONSTRAINT", "scheduling_constraint", "standard"), 665: new IconName_$WRAPPER(665, "STANDARD_SCHEDULING_POLICY", "scheduling_policy", "standard"), 666: new IconName_$WRAPPER(666, "STANDARD_SCREEN", "screen", "standard"), 667: new IconName_$WRAPPER(667, "STANDARD_SEARCH", "search", "standard"), 668: new IconName_$WRAPPER(668, "STANDARD_SECTION", "section", "standard"), 669: new IconName_$WRAPPER(669, "STANDARD_SEGMENTS", "segments", "standard"), 670: new IconName_$WRAPPER(670, "STANDARD_SELLING_MODEL", "selling_model", "standard"), 671: new IconName_$WRAPPER(671, "STANDARD_SERIALIZED_PRODUCT", "serialized_product", "standard"), 672: new IconName_$WRAPPER(672, "STANDARD_SERIALIZED_PRODUCT_TRANSACTION", "serialized_product_transaction", "standard"), 673: new IconName_$WRAPPER(673, "STANDARD_SERVICE_APPOINTMENT", "service_appointment", "standard"), 674: new IconName_$WRAPPER(674, "STANDARD_SERVICE_APPOINTMENT_CAPACITY_USAGE", "service_appointment_capacity_usage", "standard"), 675: new IconName_$WRAPPER(675, "STANDARD_SERVICE_CONTRACT", "service_contract", "standard"), 676: new IconName_$WRAPPER(676, "STANDARD_SERVICE_CREW", "service_crew", "standard"), 677: new IconName_$WRAPPER(677, "STANDARD_SERVICE_CREW_MEMBER", "service_crew_member", "standard"), 678: new IconName_$WRAPPER(678, "STANDARD_SERVICE_REPORT", "service_report", "standard"), 679: new IconName_$WRAPPER(679, "STANDARD_SERVICE_REQUEST", "service_request", "standard"), 680: new IconName_$WRAPPER(680, "STANDARD_SERVICE_REQUEST_DETAIL", "service_request_detail", "standard"), 681: new IconName_$WRAPPER(681, "STANDARD_SERVICE_RESOURCE", "service_resource", "standard"), 682: new IconName_$WRAPPER(682, "STANDARD_SERVICE_TERRITORY", "service_territory", "standard"), 683: new IconName_$WRAPPER(683, "STANDARD_SERVICE_TERRITORY_LOCATION", "service_territory_location", "standard"), 684: new IconName_$WRAPPER(684, "STANDARD_SERVICE_TERRITORY_MEMBER", "service_territory_member", "standard"), 685: new IconName_$WRAPPER(685, "STANDARD_SERVICE_TERRITORY_POLICY", "service_territory_policy", "standard"), 686: new IconName_$WRAPPER(686, "STANDARD_SETTINGS", "settings", "standard"), 687: new IconName_$WRAPPER(687, "STANDARD_SHIFT", "shift", "standard"), 688: new IconName_$WRAPPER(688, "STANDARD_SHIFT_PATTERN", "shift_pattern", "standard"), 689: new IconName_$WRAPPER(689, "STANDARD_SHIFT_PATTERN_ENTRY", "shift_pattern_entry", "standard"), 690: new IconName_$WRAPPER(690, "STANDARD_SHIFT_PREFERENCE", "shift_preference", "standard"), 691: new IconName_$WRAPPER(691, "STANDARD_SHIFT_SCHEDULING_OPERATION", "shift_scheduling_operation", "standard"), 692: new IconName_$WRAPPER(692, "STANDARD_SHIFT_TEMPLATE", "shift_template", "standard"), 693: new IconName_$WRAPPER(693, "STANDARD_SHIFT_TYPE", "shift_type", "standard"), 694: new IconName_$WRAPPER(694, "STANDARD_SHIPMENT", "shipment", "standard"), 695: new IconName_$WRAPPER(695, "STANDARD_SKILL", "skill", "standard"), 696: new IconName_$WRAPPER(696, "STANDARD_SKILL_ENTITY", "skill_entity", "standard"), 697: new IconName_$WRAPPER(697, "STANDARD_SKILL_REQUIREMENT", "skill_requirement", "standard"), 698: new IconName_$WRAPPER(698, "STANDARD_SLIDER", "slider", "standard"), 699: new IconName_$WRAPPER(699, "STANDARD_SMS", "sms", "standard"), 700: new IconName_$WRAPPER(700, "STANDARD_SNIPPET", "snippet", "standard"), 701: new IconName_$WRAPPER(701, "STANDARD_SNIPPETS", "snippets", "standard"), 702: new IconName_$WRAPPER(702, "STANDARD_SOBJECT", "sobject", "standard"), 703: new IconName_$WRAPPER(703, "STANDARD_SOBJECT_COLLECTION", "sobject_collection", "standard"), 704: new IconName_$WRAPPER(704, "STANDARD_SOCIAL", "social", "standard"), 705: new IconName_$WRAPPER(705, "STANDARD_SOLUTION", "solution", "standard"), 706: new IconName_$WRAPPER(706, "STANDARD_SORT", "sort", "standard"), 707: new IconName_$WRAPPER(707, "STANDARD_SORT_POLICY", "sort_policy", "standard"), 708: new IconName_$WRAPPER(708, "STANDARD_SOSSESSION", "sossession", "standard"), 709: new IconName_$WRAPPER(709, "STANDARD_STAGE", "stage", "standard"), 710: new IconName_$WRAPPER(710, "STANDARD_STAGE_COLLECTION", "stage_collection", "standard"), 711: new IconName_$WRAPPER(711, "STANDARD_STEPS", "steps", "standard"), 712: new IconName_$WRAPPER(712, "STANDARD_STORE", "store", "standard"), 713: new IconName_$WRAPPER(713, "STANDARD_STORE_GROUP", "store_group", "standard"), 714: new IconName_$WRAPPER(714, "STANDARD_STORY", "story", "standard"), 715: new IconName_$WRAPPER(715, "STANDARD_STRATEGY", "strategy", "standard"), 716: new IconName_$WRAPPER(716, "STANDARD_SURVEY", "survey", "standard"), 717: new IconName_$WRAPPER(717, "STANDARD_SWARM_REQUEST", "swarm_request", "standard"), 718: new IconName_$WRAPPER(718, "STANDARD_SWARM_SESSION", "swarm_session", "standard"), 719: new IconName_$WRAPPER(719, "STANDARD_SYSTEM_AND_GLOBAL_VARIABLE", "system_and_global_variable", "standard"), 720: new IconName_$WRAPPER(720, "STANDARD_TASK", "task", "standard"), 721: new IconName_$WRAPPER(721, "STANDARD_TASK2", "task2", "standard"), 722: new IconName_$WRAPPER(722, "STANDARD_TEAM_MEMBER", "team_member", "standard"), 723: new IconName_$WRAPPER(723, "STANDARD_TEMPLATE", "template", "standard"), 724: new IconName_$WRAPPER(724, "STANDARD_TEXT", "text", "standard"), 725: new IconName_$WRAPPER(725, "STANDARD_TEXT_TEMPLATE", "text_template", "standard"), 726: new IconName_$WRAPPER(726, "STANDARD_TEXTAREA", "textarea", "standard"), 727: new IconName_$WRAPPER(727, "STANDARD_TEXTBOX", "textbox", "standard"), 728: new IconName_$WRAPPER(728, "STANDARD_THANKS", "thanks", "standard"), 729: new IconName_$WRAPPER(729, "STANDARD_THANKS_LOADING", "thanks_loading", "standard"), 730: new IconName_$WRAPPER(730, "STANDARD_TIMESHEET", "timesheet", "standard"), 731: new IconName_$WRAPPER(731, "STANDARD_TIMESHEET_ENTRY", "timesheet_entry", "standard"), 732: new IconName_$WRAPPER(732, "STANDARD_TIMESLOT", "timeslot", "standard"), 733: new IconName_$WRAPPER(733, "STANDARD_TODAY", "today", "standard"), 734: new IconName_$WRAPPER(734, "STANDARD_TOGGLE", "toggle", "standard"), 735: new IconName_$WRAPPER(735, "STANDARD_TOPIC", "topic", "standard"), 736: new IconName_$WRAPPER(736, "STANDARD_TOPIC2", "topic2", "standard"), 737: new IconName_$WRAPPER(737, "STANDARD_TRAILHEAD", "trailhead", "standard"), 738: new IconName_$WRAPPER(738, "STANDARD_TRAILHEAD_ALT", "trailhead_alt", "standard"), 739: new IconName_$WRAPPER(739, "STANDARD_TRAVEL_MODE", "travel_mode", "standard"), 740: new IconName_$WRAPPER(740, "STANDARD_UNMATCHED", "unmatched", "standard"), 741: new IconName_$WRAPPER(741, "STANDARD_USER", "user", "standard"), 742: new IconName_$WRAPPER(742, "STANDARD_USER_ROLE", "user_role", "standard"), 743: new IconName_$WRAPPER(743, "STANDARD_VARIABLE", "variable", "standard"), 744: new IconName_$WRAPPER(744, "STANDARD_VARIATION_ATTRIBUTE_SETUP", "variation_attribute_setup", "standard"), 745: new IconName_$WRAPPER(745, "STANDARD_VARIATION_PRODUCTS", "variation_products", "standard"), 746: new IconName_$WRAPPER(746, "STANDARD_VIDEO", "video", "standard"), 747: new IconName_$WRAPPER(747, "STANDARD_VISIT_TEMPLATES", "visit_templates", "standard"), 748: new IconName_$WRAPPER(748, "STANDARD_VISITS", "visits", "standard"), 749: new IconName_$WRAPPER(749, "STANDARD_VISUALFORCE_PAGE", "visualforce_page", "standard"), 750: new IconName_$WRAPPER(750, "STANDARD_VOICE_CALL", "voice_call", "standard"), 751: new IconName_$WRAPPER(751, "STANDARD_WAITS", "waits", "standard"), 752: new IconName_$WRAPPER(752, "STANDARD_WARRANTY_TERM", "warranty_term", "standard"), 753: new IconName_$WRAPPER(753, "STANDARD_WEBCART", "webcart", "standard"), 754: new IconName_$WRAPPER(754, "STANDARD_WORK_CAPACITY_LIMIT", "work_capacity_limit", "standard"), 755: new IconName_$WRAPPER(755, "STANDARD_WORK_CAPACITY_USAGE", "work_capacity_usage", "standard"), 756: new IconName_$WRAPPER(756, "STANDARD_WORK_CONTRACT", "work_contract", "standard"), 757: new IconName_$WRAPPER(757, "STANDARD_WORK_FORECAST", "work_forecast", "standard"), 758: new IconName_$WRAPPER(758, "STANDARD_WORK_ORDER", "work_order", "standard"), 759: new IconName_$WRAPPER(759, "STANDARD_WORK_ORDER_ITEM", "work_order_item", "standard"), 760: new IconName_$WRAPPER(760, "STANDARD_WORK_PLAN", "work_plan", "standard"), 761: new IconName_$WRAPPER(761, "STANDARD_WORK_PLAN_RULE", "work_plan_rule", "standard"), 762: new IconName_$WRAPPER(762, "STANDARD_WORK_PLAN_TEMPLATE", "work_plan_template", "standard"), 763: new IconName_$WRAPPER(763, "STANDARD_WORK_PLAN_TEMPLATE_ENTRY", "work_plan_template_entry", "standard"), 764: new IconName_$WRAPPER(764, "STANDARD_WORK_QUEUE", "work_queue", "standard"), 765: new IconName_$WRAPPER(765, "STANDARD_WORK_STEP", "work_step", "standard"), 766: new IconName_$WRAPPER(766, "STANDARD_WORK_STEP_TEMPLATE", "work_step_template", "standard"), 767: new IconName_$WRAPPER(767, "STANDARD_WORK_TYPE", "work_type", "standard"), 768: new IconName_$WRAPPER(768, "STANDARD_WORK_TYPE_GROUP", "work_type_group", "standard"), 769: new IconName_$WRAPPER(769, "UTILITY_ACTIVITY", "activity", "utility"), 770: new IconName_$WRAPPER(770, "UTILITY_AD_SET", "ad_set", "utility"), 771: new IconName_$WRAPPER(771, "UTILITY_ADD", "add", "utility"), 772: new IconName_$WRAPPER(772, "UTILITY_ADDUSER", "adduser", "utility"), 773: new IconName_$WRAPPER(773, "UTILITY_ADJUST_VALUE", "adjust_value", "utility"), 774: new IconName_$WRAPPER(774, "UTILITY_ADVANCED_FUNCTION", "advanced_function", "utility"), 775: new IconName_$WRAPPER(775, "UTILITY_ADVERTISING", "advertising", "utility"), 776: new IconName_$WRAPPER(776, "UTILITY_AGENT_HOME", "agent_home", "utility"), 777: new IconName_$WRAPPER(777, "UTILITY_AGENT_SESSION", "agent_session", "utility"), 778: new IconName_$WRAPPER(778, "UTILITY_AGGREGATION_POLICY", "aggregation_policy", "utility"), 779: new IconName_$WRAPPER(779, "UTILITY_ALERT", "alert", "utility"), 780: new IconName_$WRAPPER(780, "UTILITY_ALL", "all", "utility"), 781: new IconName_$WRAPPER(781, "UTILITY_ANCHOR", "anchor", "utility"), 782: new IconName_$WRAPPER(782, "UTILITY_ANIMAL_AND_NATURE", "animal_and_nature", "utility"), 783: new IconName_$WRAPPER(783, "UTILITY_ANNOUNCEMENT", "announcement", "utility"), 784: new IconName_$WRAPPER(784, "UTILITY_ANSWER", "answer", "utility"), 785: new IconName_$WRAPPER(785, "UTILITY_ANSWERED_TWICE", "answered_twice", "utility"), 786: new IconName_$WRAPPER(786, "UTILITY_ANYWHERE_ALERT", "anywhere_alert", "utility"), 787: new IconName_$WRAPPER(787, "UTILITY_ANYWHERE_CHAT", "anywhere_chat", "utility"), 788: new IconName_$WRAPPER(788, "UTILITY_APEX", "apex", "utility"), 789: new IconName_$WRAPPER(789, "UTILITY_APEX_PLUGIN", "apex_plugin", "utility"), 790: new IconName_$WRAPPER(790, "UTILITY_APPROVAL", "approval", "utility"), 791: new IconName_$WRAPPER(791, "UTILITY_APPS", "apps", "utility"), 792: new IconName_$WRAPPER(792, "UTILITY_ARCHIVE", "archive", "utility"), 793: new IconName_$WRAPPER(793, "UTILITY_ARROW_BOTTOM", "arrow_bottom", "utility"), 794: new IconName_$WRAPPER(794, "UTILITY_ARROW_LEFT", "arrow_left", "utility"), 795: new IconName_$WRAPPER(795, "UTILITY_ARROW_RIGHT", "arrow_right", "utility"), 796: new IconName_$WRAPPER(796, "UTILITY_ARROW_TOP", "arrow_top", "utility"), 797: new IconName_$WRAPPER(797, "UTILITY_ARROWDOWN", "arrowdown", "utility"), 798: new IconName_$WRAPPER(798, "UTILITY_ARROWUP", "arrowup", "utility"), 799: new IconName_$WRAPPER(799, "UTILITY_ASSET_WARRANTY", "asset_warranty", "utility"), 800: new IconName_$WRAPPER(800, "UTILITY_ASSIGNMENT", "assignment", "utility"), 801: new IconName_$WRAPPER(801, "UTILITY_ATTACH", "attach", "utility"), 802: new IconName_$WRAPPER(802, "UTILITY_AUTOMATE", "automate", "utility"), 803: new IconName_$WRAPPER(803, "UTILITY_AWAY", "away", "utility"), 804: new IconName_$WRAPPER(804, "UTILITY_BACK", "back", "utility"), 805: new IconName_$WRAPPER(805, "UTILITY_BAN", "ban", "utility"), 806: new IconName_$WRAPPER(806, "UTILITY_BLOCK_VISITOR", "block_visitor", "utility"), 807: new IconName_$WRAPPER(807, "UTILITY_BOLD", "bold", "utility"), 808: new IconName_$WRAPPER(808, "UTILITY_BOOKMARK", "bookmark", "utility"), 809: new IconName_$WRAPPER(809, "UTILITY_BOOKMARK_ALT", "bookmark_alt", "utility"), 810: new IconName_$WRAPPER(810, "UTILITY_BOTTOM_ALIGN", "bottom_align", "utility"), 811: new IconName_$WRAPPER(811, "UTILITY_BREADCRUMBS", "breadcrumbs", "utility"), 812: new IconName_$WRAPPER(812, "UTILITY_BROADCAST", "broadcast", "utility"), 813: new IconName_$WRAPPER(813, "UTILITY_BRUSH", "brush", "utility"), 814: new IconName_$WRAPPER(814, "UTILITY_BUCKET", "bucket", "utility"), 815: new IconName_$WRAPPER(815, "UTILITY_BUG", "bug", "utility"), 816: new IconName_$WRAPPER(816, "UTILITY_BUILDER", "builder", "utility"), 817: new IconName_$WRAPPER(817, "UTILITY_BUNDLE_CONFIG", "bundle_config", "utility"), 818: new IconName_$WRAPPER(818, "UTILITY_BUNDLE_POLICY", "bundle_policy", "utility"), 819: new IconName_$WRAPPER(819, "UTILITY_BUTTON_CHOICE", "button_choice", "utility"), 820: new IconName_$WRAPPER(820, "UTILITY_CALCULATED_INSIGHTS", "calculated_insights", "utility"), 821: new IconName_$WRAPPER(821, "UTILITY_CALL", "call", "utility"), 822: new IconName_$WRAPPER(822, "UTILITY_CAMPAIGN", "campaign", "utility"), 823: new IconName_$WRAPPER(823, "UTILITY_CANCEL_FILE_REQUEST", "cancel_file_request", "utility"), 824: new IconName_$WRAPPER(824, "UTILITY_CANCEL_TRANSFER", "cancel_transfer", "utility"), 825: new IconName_$WRAPPER(825, "UTILITY_CAPACITY_PLAN", "capacity_plan", "utility"), 826: new IconName_$WRAPPER(826, "UTILITY_CAPSLOCK", "capslock", "utility"), 827: new IconName_$WRAPPER(827, "UTILITY_CART", "cart", "utility"), 828: new IconName_$WRAPPER(828, "UTILITY_CASE", "case", "utility"), 829: new IconName_$WRAPPER(829, "UTILITY_CASES", "cases", "utility"), 830: new IconName_$WRAPPER(830, "UTILITY_CENTER_ALIGN", "center_align", "utility"), 831: new IconName_$WRAPPER(831, "UTILITY_CENTER_ALIGN_TEXT", "center_align_text", "utility"), 832: new IconName_$WRAPPER(832, "UTILITY_CHANGE_OWNER", "change_owner", "utility"), 833: new IconName_$WRAPPER(833, "UTILITY_CHANGE_RECORD_TYPE", "change_record_type", "utility"), 834: new IconName_$WRAPPER(834, "UTILITY_CHANGE_REQUEST", "change_request", "utility"), 835: new IconName_$WRAPPER(835, "UTILITY_CHART", "chart", "utility"), 836: new IconName_$WRAPPER(836, "UTILITY_CHAT", "chat", "utility"), 837: new IconName_$WRAPPER(837, "UTILITY_CHECK", "check", "utility"), 838: new IconName_$WRAPPER(838, "UTILITY_CHECKIN", "checkin", "utility"), 839: new IconName_$WRAPPER(839, "UTILITY_CHECKOUT", "checkout", "utility"), 840: new IconName_$WRAPPER(840, "UTILITY_CHEVRONDOWN", "chevrondown", "utility"), 841: new IconName_$WRAPPER(841, "UTILITY_CHEVRONLEFT", "chevronleft", "utility"), 842: new IconName_$WRAPPER(842, "UTILITY_CHEVRONRIGHT", "chevronright", "utility"), 843: new IconName_$WRAPPER(843, "UTILITY_CHEVRONUP", "chevronup", "utility"), 844: new IconName_$WRAPPER(844, "UTILITY_CHOICE", "choice", "utility"), 845: new IconName_$WRAPPER(845, "UTILITY_CLASSIC_INTERFACE", "classic_interface", "utility"), 846: new IconName_$WRAPPER(846, "UTILITY_CLEAR", "clear", "utility"), 847: new IconName_$WRAPPER(847, "UTILITY_CLOCK", "clock", "utility"), 848: new IconName_$WRAPPER(848, "UTILITY_CLOSE", "close", "utility"), 849: new IconName_$WRAPPER(849, "UTILITY_COLLAPSE_ALL", "collapse_all", "utility"), 850: new IconName_$WRAPPER(850, "UTILITY_COLLECTION", "collection", "utility"), 851: new IconName_$WRAPPER(851, "UTILITY_COLLECTION_VARIABLE", "collection_variable", "utility"), 852: new IconName_$WRAPPER(852, "UTILITY_COLOR_SWATCH", "color_swatch", "utility"), 853: new IconName_$WRAPPER(853, "UTILITY_COMMENTS", "comments", "utility"), 854: new IconName_$WRAPPER(854, "UTILITY_COMPANY", "company", "utility"), 855: new IconName_$WRAPPER(855, "UTILITY_COMPONENT_CUSTOMIZATION", "component_customization", "utility"), 856: new IconName_$WRAPPER(856, "UTILITY_CONNECTED_APPS", "connected_apps", "utility"), 857: new IconName_$WRAPPER(857, "UTILITY_CONSTANT", "constant", "utility"), 858: new IconName_$WRAPPER(858, "UTILITY_CONTACT_REQUEST", "contact_request", "utility"), 859: new IconName_$WRAPPER(859, "UTILITY_CONTRACT", "contract", "utility"), 860: new IconName_$WRAPPER(860, "UTILITY_CONTRACT_ALT", "contract_alt", "utility"), 861: new IconName_$WRAPPER(861, "UTILITY_COPY", "copy", "utility"), 862: new IconName_$WRAPPER(862, "UTILITY_COPY_TO_CLIPBOARD", "copy_to_clipboard", "utility"), 863: new IconName_$WRAPPER(863, "UTILITY_COUPON_CODES", "coupon_codes", "utility"), 864: new IconName_$WRAPPER(864, "UTILITY_CROSSFILTER", "crossfilter", "utility"), 865: new IconName_$WRAPPER(865, "UTILITY_CURRENCY", "currency", "utility"), 866: new IconName_$WRAPPER(866, "UTILITY_CURRENCY_INPUT", "currency_input", "utility"), 867: new IconName_$WRAPPER(867, "UTILITY_CUSTOM_APPS", "custom_apps", "utility"), 868: new IconName_$WRAPPER(868, "UTILITY_CUT", "cut", "utility"), 869: new IconName_$WRAPPER(869, "UTILITY_DASH", "dash", "utility"), 870: new IconName_$WRAPPER(870, "UTILITY_DATA_MAPPING", "data_mapping", "utility"), 871: new IconName_$WRAPPER(871, "UTILITY_DATABASE", "database", "utility"), 872: new IconName_$WRAPPER(872, "UTILITY_DATADOTCOM", "datadotcom", "utility"), 873: new IconName_$WRAPPER(873, "UTILITY_DATE_INPUT", "date_input", "utility"), 874: new IconName_$WRAPPER(874, "UTILITY_DATE_TIME", "date_time", "utility"), 875: new IconName_$WRAPPER(875, "UTILITY_DAYVIEW", "dayview", "utility"), 876: new IconName_$WRAPPER(876, "UTILITY_DELETE", "delete", "utility"), 877: new IconName_$WRAPPER(877, "UTILITY_DEPRECATE", "deprecate", "utility"), 878: new IconName_$WRAPPER(878, "UTILITY_DESCRIPTION", "description", "utility"), 879: new IconName_$WRAPPER(879, "UTILITY_DESKTOP", "desktop", "utility"), 880: new IconName_$WRAPPER(880, "UTILITY_DESKTOP_AND_PHONE", "desktop_and_phone", "utility"), 881: new IconName_$WRAPPER(881, "UTILITY_DESKTOP_CONSOLE", "desktop_console", "utility"), 882: new IconName_$WRAPPER(882, "UTILITY_DIALING", "dialing", "utility"), 883: new IconName_$WRAPPER(883, "UTILITY_DIAMOND", "diamond", "utility"), 884: new IconName_$WRAPPER(884, "UTILITY_DISCOUNTS", "discounts", "utility"), 885: new IconName_$WRAPPER(885, "UTILITY_DISLIKE", "dislike", "utility"), 886: new IconName_$WRAPPER(886, "UTILITY_DISPLAY_RICH_TEXT", "display_rich_text", "utility"), 887: new IconName_$WRAPPER(887, "UTILITY_DISPLAY_TEXT", "display_text", "utility"), 888: new IconName_$WRAPPER(888, "UTILITY_DOCK_PANEL", "dock_panel", "utility"), 889: new IconName_$WRAPPER(889, "UTILITY_DOWN", "down", "utility"), 890: new IconName_$WRAPPER(890, "UTILITY_DOWNLOAD", "download", "utility"), 891: new IconName_$WRAPPER(891, "UTILITY_DRAG", "drag", "utility"), 892: new IconName_$WRAPPER(892, "UTILITY_DRAG_AND_DROP", "drag_and_drop", "utility"), 893: new IconName_$WRAPPER(893, "UTILITY_DURATION_DOWNSCALE", "duration_downscale", "utility"), 894: new IconName_$WRAPPER(894, "UTILITY_DYNAMIC_RECORD_CHOICE", "dynamic_record_choice", "utility"), 895: new IconName_$WRAPPER(895, "UTILITY_EDIT", "edit", "utility"), 896: new IconName_$WRAPPER(896, "UTILITY_EDIT_FORM", "edit_form", "utility"), 897: new IconName_$WRAPPER(897, "UTILITY_EDUCATION", "education", "utility"), 898: new IconName_$WRAPPER(898, "UTILITY_EINSTEIN", "einstein", "utility"), 899: new IconName_$WRAPPER(899, "UTILITY_EMAIL", "email", "utility"), 900: new IconName_$WRAPPER(900, "UTILITY_EMAIL_OPEN", "email_open", "utility"), 901: new IconName_$WRAPPER(901, "UTILITY_EMOJI", "emoji", "utility"), 902: new IconName_$WRAPPER(902, "UTILITY_END_CALL", "end_call", "utility"), 903: new IconName_$WRAPPER(903, "UTILITY_END_CHAT", "end_chat", "utility"), 904: new IconName_$WRAPPER(904, "UTILITY_END_MESSAGING_SESSION", "end_messaging_session", "utility"), 905: new IconName_$WRAPPER(905, "UTILITY_ENGAGE", "engage", "utility"), 906: new IconName_$WRAPPER(906, "UTILITY_ENTER", "enter", "utility"), 907: new IconName_$WRAPPER(907, "UTILITY_ERECT_WINDOW", "erect_window", "utility"), 908: new IconName_$WRAPPER(908, "UTILITY_ERROR", "error", "utility"), 909: new IconName_$WRAPPER(909, "UTILITY_EVENT", "event", "utility"), 910: new IconName_$WRAPPER(910, "UTILITY_EVENT_EXT", "event_ext", "utility"), 911: new IconName_$WRAPPER(911, "UTILITY_EVENTS", "events", "utility"), 912: new IconName_$WRAPPER(912, "UTILITY_EXPAND", "expand", "utility"), 913: new IconName_$WRAPPER(913, "UTILITY_EXPAND_ALL", "expand_all", "utility"), 914: new IconName_$WRAPPER(914, "UTILITY_EXPAND_ALT", "expand_alt", "utility"), 915: new IconName_$WRAPPER(915, "UTILITY_FALLBACK", "fallback", "utility"), 916: new IconName_$WRAPPER(916, "UTILITY_FAVORITE", "favorite", "utility"), 917: new IconName_$WRAPPER(917, "UTILITY_FEED", "feed", "utility"), 918: new IconName_$WRAPPER(918, "UTILITY_FILE", "file", "utility"), 919: new IconName_$WRAPPER(919, "UTILITY_FILTER", "filter", "utility"), 920: new IconName_$WRAPPER(920, "UTILITY_FILTERLIST", "filterList", "utility"), 921: new IconName_$WRAPPER(921, "UTILITY_FILTER_CRITERIA", "filter_criteria", "utility"), 922: new IconName_$WRAPPER(922, "UTILITY_FILTER_CRITERIA_RULE", "filter_criteria_rule", "utility"), 923: new IconName_$WRAPPER(923, "UTILITY_FLOW", "flow", "utility"), 924: new IconName_$WRAPPER(924, "UTILITY_FLOW_ALT", "flow_alt", "utility"), 925: new IconName_$WRAPPER(925, "UTILITY_FOOD_AND_DRINK", "food_and_drink", "utility"), 926: new IconName_$WRAPPER(926, "UTILITY_FORM", "form", "utility"), 927: new IconName_$WRAPPER(927, "UTILITY_FORMULA", "formula", "utility"), 928: new IconName_$WRAPPER(928, "UTILITY_FORWARD", "forward", "utility"), 929: new IconName_$WRAPPER(929, "UTILITY_FORWARD_UP", "forward_up", "utility"), 930: new IconName_$WRAPPER(930, "UTILITY_FREEZE_COLUMN", "freeze_column", "utility"), 931: new IconName_$WRAPPER(931, "UTILITY_FROZEN", "frozen", "utility"), 932: new IconName_$WRAPPER(932, "UTILITY_FULFILLMENT_ORDER", "fulfillment_order", "utility"), 933: new IconName_$WRAPPER(933, "UTILITY_FULL_WIDTH_VIEW", "full_width_view", "utility"), 934: new IconName_$WRAPPER(934, "UTILITY_GLOBAL_CONSTANT", "global_constant", "utility"), 935: new IconName_$WRAPPER(935, "UTILITY_GRAPH", "graph", "utility"), 936: new IconName_$WRAPPER(936, "UTILITY_GROUPS", "groups", "utility"), 937: new IconName_$WRAPPER(937, "UTILITY_HELP", "help", "utility"), 938: new IconName_$WRAPPER(938, "UTILITY_HELP_CENTER", "help_center", "utility"), 939: new IconName_$WRAPPER(939, "UTILITY_HELP_DOC_EXT", "help_doc_ext", "utility"), 940: new IconName_$WRAPPER(940, "UTILITY_HIDE", "hide", "utility"), 941: new IconName_$WRAPPER(941, "UTILITY_HIDE_MOBILE", "hide_mobile", "utility"), 942: new IconName_$WRAPPER(942, "UTILITY_HIERARCHY", "hierarchy", "utility"), 943: new IconName_$WRAPPER(943, "UTILITY_HIGH_VELOCITY_SALES", "high_velocity_sales", "utility"), 944: new IconName_$WRAPPER(944, "UTILITY_HOLIDAY_OPERATING_HOURS", "holiday_operating_hours", "utility"), 945: new IconName_$WRAPPER(945, "UTILITY_HOME", "home", "utility"), 946: new IconName_$WRAPPER(946, "UTILITY_IDENTITY", "identity", "utility"), 947: new IconName_$WRAPPER(947, "UTILITY_IMAGE", "image", "utility"), 948: new IconName_$WRAPPER(948, "UTILITY_IN_APP_ASSISTANT", "in_app_assistant", "utility"), 949: new IconName_$WRAPPER(949, "UTILITY_INBOX", "inbox", "utility"), 950: new IconName_$WRAPPER(950, "UTILITY_INCIDENT", "incident", "utility"), 951: new IconName_$WRAPPER(951, "UTILITY_INCOMING_CALL", "incoming_call", "utility"), 952: new IconName_$WRAPPER(952, "UTILITY_INFO", "info", "utility"), 953: new IconName_$WRAPPER(953, "UTILITY_INFO_ALT", "info_alt", "utility"), 954: new IconName_$WRAPPER(954, "UTILITY_INSERT_TAG_FIELD", "insert_tag_field", "utility"), 955: new IconName_$WRAPPER(955, "UTILITY_INSERT_TEMPLATE", "insert_template", "utility"), 956: new IconName_$WRAPPER(956, "UTILITY_INSPECTOR_PANEL", "inspector_panel", "utility"), 957: new IconName_$WRAPPER(957, "UTILITY_INTERNAL_SHARE", "internal_share", "utility"), 958: new IconName_$WRAPPER(958, "UTILITY_ITALIC", "italic", "utility"), 959: new IconName_$WRAPPER(959, "UTILITY_JUMP_TO_BOTTOM", "jump_to_bottom", "utility"), 960: new IconName_$WRAPPER(960, "UTILITY_JUMP_TO_LEFT", "jump_to_left", "utility"), 961: new IconName_$WRAPPER(961, "UTILITY_JUMP_TO_RIGHT", "jump_to_right", "utility"), 962: new IconName_$WRAPPER(962, "UTILITY_JUMP_TO_TOP", "jump_to_top", "utility"), 963: new IconName_$WRAPPER(963, "UTILITY_JUSTIFY_TEXT", "justify_text", "utility"), 964: new IconName_$WRAPPER(964, "UTILITY_KANBAN", "kanban", "utility"), 965: new IconName_$WRAPPER(965, "UTILITY_KEY", "key", "utility"), 966: new IconName_$WRAPPER(966, "UTILITY_KEY_DATES", "key_dates", "utility"), 967: new IconName_$WRAPPER(967, "UTILITY_KEYBOARD_DISMISS", "keyboard_dismiss", "utility"), 968: new IconName_$WRAPPER(968, "UTILITY_KEYPAD", "keypad", "utility"), 969: new IconName_$WRAPPER(969, "UTILITY_KNOWLEDGE_BASE", "knowledge_base", "utility"), 970: new IconName_$WRAPPER(970, "UTILITY_LAYERS", "layers", "utility"), 971: new IconName_$WRAPPER(971, "UTILITY_LAYOUT", "layout", "utility"), 972: new IconName_$WRAPPER(972, "UTILITY_LAYOUT_BANNER", "layout_banner", "utility"), 973: new IconName_$WRAPPER(973, "UTILITY_LAYOUT_CARD", "layout_card", "utility"), 974: new IconName_$WRAPPER(974, "UTILITY_LAYOUT_OVERLAP", "layout_overlap", "utility"), 975: new IconName_$WRAPPER(975, "UTILITY_LAYOUT_TILE", "layout_tile", "utility"), 976: new IconName_$WRAPPER(976, "UTILITY_LEAVE_CONFERENCE", "leave_conference", "utility"), 977: new IconName_$WRAPPER(977, "UTILITY_LEFT", "left", "utility"), 978: new IconName_$WRAPPER(978, "UTILITY_LEFT_ALIGN", "left_align", "utility"), 979: new IconName_$WRAPPER(979, "UTILITY_LEFT_ALIGN_TEXT", "left_align_text", "utility"), 980: new IconName_$WRAPPER(980, "UTILITY_LEVEL_DOWN", "level_down", "utility"), 981: new IconName_$WRAPPER(981, "UTILITY_LEVEL_UP", "level_up", "utility"), 982: new IconName_$WRAPPER(982, "UTILITY_LIGHT_BULB", "light_bulb", "utility"), 983: new IconName_$WRAPPER(983, "UTILITY_LIGHTNING_EXTENSION", "lightning_extension", "utility"), 984: new IconName_$WRAPPER(984, "UTILITY_LIGHTNING_INSPECTOR", "lightning_inspector", "utility"), 985: new IconName_$WRAPPER(985, "UTILITY_LIKE", "like", "utility"), 986: new IconName_$WRAPPER(986, "UTILITY_LINK", "link", "utility"), 987: new IconName_$WRAPPER(987, "UTILITY_LINKED", "linked", "utility"), 988: new IconName_$WRAPPER(988, "UTILITY_LIST", "list", "utility"), 989: new IconName_$WRAPPER(989, "UTILITY_LISTEN", "listen", "utility"), 990: new IconName_$WRAPPER(990, "UTILITY_LIVE_MESSAGE", "live_message", "utility"), 991: new IconName_$WRAPPER(991, "UTILITY_LOCATION", "location", "utility"), 992: new IconName_$WRAPPER(992, "UTILITY_LOCATION_PERMIT", "location_permit", "utility"), 993: new IconName_$WRAPPER(993, "UTILITY_LOCK", "lock", "utility"), 994: new IconName_$WRAPPER(994, "UTILITY_LOCKER_SERVICE_API_VIEWER", "locker_service_api_viewer", "utility"), 995: new IconName_$WRAPPER(995, "UTILITY_LOCKER_SERVICE_CONSOLE", "locker_service_console", "utility"), 996: new IconName_$WRAPPER(996, "UTILITY_LOG_A_CALL", "log_a_call", "utility"), 997: new IconName_$WRAPPER(997, "UTILITY_LOGOUT", "logout", "utility"), 998: new IconName_$WRAPPER(998, "UTILITY_LOOP", "loop", "utility"), 999: new IconName_$WRAPPER(999, "UTILITY_LOWER_FLAG", "lower_flag", "utility"), 1000: new IconName_$WRAPPER(1000, "UTILITY_MACROS", "macros", "utility"), 1001: new IconName_$WRAPPER(1001, "UTILITY_MAGICWAND", "magicwand", "utility"), 1002: new IconName_$WRAPPER(1002, "UTILITY_MARK_ALL_AS_READ", "mark_all_as_read", "utility"), 1003: new IconName_$WRAPPER(1003, "UTILITY_MATRIX", "matrix", "utility"), 1004: new IconName_$WRAPPER(1004, "UTILITY_MEET_CONTENT_SOURCE", "meet_content_source", "utility"), 1005: new IconName_$WRAPPER(1005, "UTILITY_MEET_FOCUS_CONTENT", "meet_focus_content", "utility"), 1006: new IconName_$WRAPPER(1006, "UTILITY_MEET_FOCUS_EQUAL", "meet_focus_equal", "utility"), 1007: new IconName_$WRAPPER(1007, "UTILITY_MEET_FOCUS_PRESENTER", "meet_focus_presenter", "utility"), 1008: new IconName_$WRAPPER(1008, "UTILITY_MEET_PRESENT_PANEL", "meet_present_panel", "utility"), 1009: new IconName_$WRAPPER(1009, "UTILITY_MERGE", "merge", "utility"), 1010: new IconName_$WRAPPER(1010, "UTILITY_MERGE_FIELD", "merge_field", "utility"), 1011: new IconName_$WRAPPER(1011, "UTILITY_METRICS", "metrics", "utility"), 1012: new IconName_$WRAPPER(1012, "UTILITY_MIDDLE_ALIGN", "middle_align", "utility"), 1013: new IconName_$WRAPPER(1013, "UTILITY_MINIMIZE_WINDOW", "minimize_window", "utility"), 1014: new IconName_$WRAPPER(1014, "UTILITY_MISSED_CALL", "missed_call", "utility"), 1015: new IconName_$WRAPPER(1015, "UTILITY_MONEY", "money", "utility"), 1016: new IconName_$WRAPPER(1016, "UTILITY_MONEYBAG", "moneybag", "utility"), 1017: new IconName_$WRAPPER(1017, "UTILITY_MONTHLYVIEW", "monthlyview", "utility"), 1018: new IconName_$WRAPPER(1018, "UTILITY_MOVE", "move", "utility"), 1019: new IconName_$WRAPPER(1019, "UTILITY_MULTI_PICKLIST", "multi_picklist", "utility"), 1020: new IconName_$WRAPPER(1020, "UTILITY_MULTI_SELECT_CHECKBOX", "multi_select_checkbox", "utility"), 1021: new IconName_$WRAPPER(1021, "UTILITY_MUTED", "muted", "utility"), 1022: new IconName_$WRAPPER(1022, "UTILITY_NEW", "new", "utility"), 1023: new IconName_$WRAPPER(1023, "UTILITY_NEW_DIRECT_MESSAGE", "new_direct_message", "utility"), 1024: new IconName_$WRAPPER(1024, "UTILITY_NEW_WINDOW", "new_window", "utility"), 1025: new IconName_$WRAPPER(1025, "UTILITY_NEWS", "news", "utility"), 1026: new IconName_$WRAPPER(1026, "UTILITY_NOTE", "note", "utility"), 1027: new IconName_$WRAPPER(1027, "UTILITY_NOTEBOOK", "notebook", "utility"), 1028: new IconName_$WRAPPER(1028, "UTILITY_NOTIFICATION", "notification", "utility"), 1029: new IconName_$WRAPPER(1029, "UTILITY_NUMBER_INPUT", "number_input", "utility"), 1030: new IconName_$WRAPPER(1030, "UTILITY_OFFICE365", "office365", "utility"), 1031: new IconName_$WRAPPER(1031, "UTILITY_OFFLINE", "offline", "utility"), 1032: new IconName_$WRAPPER(1032, "UTILITY_OFFLINE_BRIEFCASE", "offline_briefcase", "utility"), 1033: new IconName_$WRAPPER(1033, "UTILITY_OFFLINE_CACHED", "offline_cached", "utility"), 1034: new IconName_$WRAPPER(1034, "UTILITY_OMNI_CHANNEL", "omni_channel", "utility"), 1035: new IconName_$WRAPPER(1035, "UTILITY_OPEN", "open", "utility"), 1036: new IconName_$WRAPPER(1036, "UTILITY_OPEN_FOLDER", "open_folder", "utility"), 1037: new IconName_$WRAPPER(1037, "UTILITY_OPENED_FOLDER", "opened_folder", "utility"), 1038: new IconName_$WRAPPER(1038, "UTILITY_ORCHESTRATOR", "orchestrator", "utility"), 1039: new IconName_$WRAPPER(1039, "UTILITY_ORG_CHART", "org_chart", "utility"), 1040: new IconName_$WRAPPER(1040, "UTILITY_OUTBOUND_CALL", "outbound_call", "utility"), 1041: new IconName_$WRAPPER(1041, "UTILITY_OUTCOME", "outcome", "utility"), 1042: new IconName_$WRAPPER(1042, "UTILITY_OVERFLOW", "overflow", "utility"), 1043: new IconName_$WRAPPER(1043, "UTILITY_PACKAGE", "package", "utility"), 1044: new IconName_$WRAPPER(1044, "UTILITY_PACKAGE_ORG", "package_org", "utility"), 1045: new IconName_$WRAPPER(1045, "UTILITY_PACKAGE_ORG_BETA", "package_org_beta", "utility"), 1046: new IconName_$WRAPPER(1046, "UTILITY_PAGE", "page", "utility"), 1047: new IconName_$WRAPPER(1047, "UTILITY_PALETTE", "palette", "utility"), 1048: new IconName_$WRAPPER(1048, "UTILITY_PASSWORD", "password", "utility"), 1049: new IconName_$WRAPPER(1049, "UTILITY_PASTE", "paste", "utility"), 1050: new IconName_$WRAPPER(1050, "UTILITY_PAUSE", "pause", "utility"), 1051: new IconName_$WRAPPER(1051, "UTILITY_PAUSE_ALT", "pause_alt", "utility"), 1052: new IconName_$WRAPPER(1052, "UTILITY_PAYMENT_GATEWAY", "payment_gateway", "utility"), 1053: new IconName_$WRAPPER(1053, "UTILITY_PDF_EXT", "pdf_ext", "utility"), 1054: new IconName_$WRAPPER(1054, "UTILITY_PEOPLE", "people", "utility"), 1055: new IconName_$WRAPPER(1055, "UTILITY_PERCENT", "percent", "utility"), 1056: new IconName_$WRAPPER(1056, "UTILITY_PHONE_LANDSCAPE", "phone_landscape", "utility"), 1057: new IconName_$WRAPPER(1057, "UTILITY_PHONE_PORTRAIT", "phone_portrait", "utility"), 1058: new IconName_$WRAPPER(1058, "UTILITY_PHOTO", "photo", "utility"), 1059: new IconName_$WRAPPER(1059, "UTILITY_PICKLIST", "picklist", "utility"), 1060: new IconName_$WRAPPER(1060, "UTILITY_PICKLIST_CHOICE", "picklist_choice", "utility"), 1061: new IconName_$WRAPPER(1061, "UTILITY_PICKLIST_TYPE", "picklist_type", "utility"), 1062: new IconName_$WRAPPER(1062, "UTILITY_PIN", "pin", "utility"), 1063: new IconName_$WRAPPER(1063, "UTILITY_PINNED", "pinned", "utility"), 1064: new IconName_$WRAPPER(1064, "UTILITY_PLANNING_POKER", "planning_poker", "utility"), 1065: new IconName_$WRAPPER(1065, "UTILITY_PLAY", "play", "utility"), 1066: new IconName_$WRAPPER(1066, "UTILITY_PODCAST_WEBINAR", "podcast_webinar", "utility"), 1067: new IconName_$WRAPPER(1067, "UTILITY_POP_IN", "pop_in", "utility"), 1068: new IconName_$WRAPPER(1068, "UTILITY_POWER", "power", "utility"), 1069: new IconName_$WRAPPER(1069, "UTILITY_PREVIEW", "preview", "utility"), 1070: new IconName_$WRAPPER(1070, "UTILITY_PRICE_BOOK_ENTRIES", "price_book_entries", "utility"), 1071: new IconName_$WRAPPER(1071, "UTILITY_PRICE_BOOKS", "price_books", "utility"), 1072: new IconName_$WRAPPER(1072, "UTILITY_PRICING_WORKSPACE", "pricing_workspace", "utility"), 1073: new IconName_$WRAPPER(1073, "UTILITY_PRINT", "print", "utility"), 1074: new IconName_$WRAPPER(1074, "UTILITY_PRIORITY", "priority", "utility"), 1075: new IconName_$WRAPPER(1075, "UTILITY_PRIVATELY_SHARED", "privately_shared", "utility"), 1076: new IconName_$WRAPPER(1076, "UTILITY_PROBLEM", "problem", "utility"), 1077: new IconName_$WRAPPER(1077, "UTILITY_PROCESS", "process", "utility"), 1078: new IconName_$WRAPPER(1078, "UTILITY_PRODUCT_CONSUMED_STATE", "product_consumed_state", "utility"), 1079: new IconName_$WRAPPER(1079, "UTILITY_PRODUCT_QUANTITY_RULES", "product_quantity_rules", "utility"), 1080: new IconName_$WRAPPER(1080, "UTILITY_PRODUCT_SERVICE_CAMPAIGN", "product_service_campaign", "utility"), 1081: new IconName_$WRAPPER(1081, "UTILITY_PRODUCT_SERVICE_CAMPAIGN_ITEM", "product_service_campaign_item", "utility"), 1082: new IconName_$WRAPPER(1082, "UTILITY_PRODUCT_TRANSFER", "product_transfer", "utility"), 1083: new IconName_$WRAPPER(1083, "UTILITY_PRODUCT_TRANSFER_STATE", "product_transfer_state", "utility"), 1084: new IconName_$WRAPPER(1084, "UTILITY_PRODUCT_WARRANTY_TERM", "product_warranty_term", "utility"), 1085: new IconName_$WRAPPER(1085, "UTILITY_PRODUCT_WORKSPACE", "product_workspace", "utility"), 1086: new IconName_$WRAPPER(1086, "UTILITY_PRODUCTS", "products", "utility"), 1087: new IconName_$WRAPPER(1087, "UTILITY_PROFILE", "profile", "utility"), 1088: new IconName_$WRAPPER(1088, "UTILITY_PROMOTION_SEGMENTS", "promotion_segments", "utility"), 1089: new IconName_$WRAPPER(1089, "UTILITY_PROMOTIONS", "promotions", "utility"), 1090: new IconName_$WRAPPER(1090, "UTILITY_PROMOTIONS_WORKSPACE", "promotions_workspace", "utility"), 1091: new IconName_$WRAPPER(1091, "UTILITY_PROMPT", "prompt", "utility"), 1092: new IconName_$WRAPPER(1092, "UTILITY_PROMPT_EDIT", "prompt_edit", "utility"), 1093: new IconName_$WRAPPER(1093, "UTILITY_PROPAGATION_POLICY", "propagation_policy", "utility"), 1094: new IconName_$WRAPPER(1094, "UTILITY_PUSH", "push", "utility"), 1095: new IconName_$WRAPPER(1095, "UTILITY_PUZZLE", "puzzle", "utility"), 1096: new IconName_$WRAPPER(1096, "UTILITY_QUALIFICATIONS", "qualifications", "utility"), 1097: new IconName_$WRAPPER(1097, "UTILITY_QUESTION", "question", "utility"), 1098: new IconName_$WRAPPER(1098, "UTILITY_QUESTION_MARK", "question_mark", "utility"), 1099: new IconName_$WRAPPER(1099, "UTILITY_QUESTIONS_AND_ANSWERS", "questions_and_answers", "utility"), 1100: new IconName_$WRAPPER(1100, "UTILITY_QUICK_TEXT", "quick_text", "utility"), 1101: new IconName_$WRAPPER(1101, "UTILITY_QUIP", "quip", "utility"), 1102: new IconName_$WRAPPER(1102, "UTILITY_QUOTATION_MARKS", "quotation_marks", "utility"), 1103: new IconName_$WRAPPER(1103, "UTILITY_QUOTE", "quote", "utility"), 1104: new IconName_$WRAPPER(1104, "UTILITY_RADIO_BUTTON", "radio_button", "utility"), 1105: new IconName_$WRAPPER(1105, "UTILITY_RATING", "rating", "utility"), 1106: new IconName_$WRAPPER(1106, "UTILITY_REASSIGN", "reassign", "utility"), 1107: new IconName_$WRAPPER(1107, "UTILITY_RECIPE", "recipe", "utility"), 1108: new IconName_$WRAPPER(1108, "UTILITY_RECORD", "record", "utility"), 1109: new IconName_$WRAPPER(1109, "UTILITY_RECORD_CREATE", "record_create", "utility"), 1110: new IconName_$WRAPPER(1110, "UTILITY_RECORD_DELETE", "record_delete", "utility"), 1111: new IconName_$WRAPPER(1111, "UTILITY_RECORD_LOOKUP", "record_lookup", "utility"), 1112: new IconName_$WRAPPER(1112, "UTILITY_RECORD_UPDATE", "record_update", "utility"), 1113: new IconName_$WRAPPER(1113, "UTILITY_RECURRING_EXCEPTION", "recurring_exception", "utility"), 1114: new IconName_$WRAPPER(1114, "UTILITY_RECYCLE_BIN_EMPTY", "recycle_bin_empty", "utility"), 1115: new IconName_$WRAPPER(1115, "UTILITY_RECYCLE_BIN_FULL", "recycle_bin_full", "utility"), 1116: new IconName_$WRAPPER(1116, "UTILITY_REDO", "redo", "utility"), 1117: new IconName_$WRAPPER(1117, "UTILITY_REFRESH", "refresh", "utility"), 1118: new IconName_$WRAPPER(1118, "UTILITY_RELATE", "relate", "utility"), 1119: new IconName_$WRAPPER(1119, "UTILITY_REMINDER", "reminder", "utility"), 1120: new IconName_$WRAPPER(1120, "UTILITY_REMOVE_FORMATTING", "remove_formatting", "utility"), 1121: new IconName_$WRAPPER(1121, "UTILITY_REMOVE_LINK", "remove_link", "utility"), 1122: new IconName_$WRAPPER(1122, "UTILITY_REPLACE", "replace", "utility"), 1123: new IconName_$WRAPPER(1123, "UTILITY_REPLY", "reply", "utility"), 1124: new IconName_$WRAPPER(1124, "UTILITY_REPLY_ALL", "reply_all", "utility"), 1125: new IconName_$WRAPPER(1125, "UTILITY_REPORT_ISSUE", "report_issue", "utility"), 1126: new IconName_$WRAPPER(1126, "UTILITY_RESET_PASSWORD", "reset_password", "utility"), 1127: new IconName_$WRAPPER(1127, "UTILITY_RESOURCE_ABSENCE", "resource_absence", "utility"), 1128: new IconName_$WRAPPER(1128, "UTILITY_RESOURCE_CAPACITY", "resource_capacity", "utility"), 1129: new IconName_$WRAPPER(1129, "UTILITY_RESOURCE_TERRITORY", "resource_territory", "utility"), 1130: new IconName_$WRAPPER(1130, "UTILITY_RESTRICTION_POLICY", "restriction_policy", "utility"), 1131: new IconName_$WRAPPER(1131, "UTILITY_RETAIL_EXECUTION", "retail_execution", "utility"), 1132: new IconName_$WRAPPER(1132, "UTILITY_RETWEET", "retweet", "utility"), 1133: new IconName_$WRAPPER(1133, "UTILITY_RIBBON", "ribbon", "utility"), 1134: new IconName_$WRAPPER(1134, "UTILITY_RICHTEXTBULLETEDLIST", "richtextbulletedlist", "utility"), 1135: new IconName_$WRAPPER(1135, "UTILITY_RICHTEXTINDENT", "richtextindent", "utility"), 1136: new IconName_$WRAPPER(1136, "UTILITY_RICHTEXTNUMBEREDLIST", "richtextnumberedlist", "utility"), 1137: new IconName_$WRAPPER(1137, "UTILITY_RICHTEXTOUTDENT", "richtextoutdent", "utility"), 1138: new IconName_$WRAPPER(1138, "UTILITY_RIGHT", "right", "utility"), 1139: new IconName_$WRAPPER(1139, "UTILITY_RIGHT_ALIGN", "right_align", "utility"), 1140: new IconName_$WRAPPER(1140, "UTILITY_RIGHT_ALIGN_TEXT", "right_align_text", "utility"), 1141: new IconName_$WRAPPER(1141, "UTILITY_ROTATE", "rotate", "utility"), 1142: new IconName_$WRAPPER(1142, "UTILITY_ROUTING_OFFLINE", "routing_offline", "utility"), 1143: new IconName_$WRAPPER(1143, "UTILITY_ROWS", "rows", "utility"), 1144: new IconName_$WRAPPER(1144, "UTILITY_RULES", "rules", "utility"), 1145: new IconName_$WRAPPER(1145, "UTILITY_SALESFORCE1", "salesforce1", "utility"), 1146: new IconName_$WRAPPER(1146, "UTILITY_SALESFORCE_PAGE", "salesforce_page", "utility"), 1147: new IconName_$WRAPPER(1147, "UTILITY_SAVE", "save", "utility"), 1148: new IconName_$WRAPPER(1148, "UTILITY_SCAN", "scan", "utility"), 1149: new IconName_$WRAPPER(1149, "UTILITY_SCREEN", "screen", "utility"), 1150: new IconName_$WRAPPER(1150, "UTILITY_SEARCH", "search", "utility"), 1151: new IconName_$WRAPPER(1151, "UTILITY_SECTION", "section", "utility"), 1152: new IconName_$WRAPPER(1152, "UTILITY_SEND", "send", "utility"), 1153: new IconName_$WRAPPER(1153, "UTILITY_SENTIMENT_NEGATIVE", "sentiment_negative", "utility"), 1154: new IconName_$WRAPPER(1154, "UTILITY_SENTIMENT_NEUTRAL", "sentiment_neutral", "utility"), 1155: new IconName_$WRAPPER(1155, "UTILITY_SERIALIZED_PRODUCT", "serialized_product", "utility"), 1156: new IconName_$WRAPPER(1156, "UTILITY_SERIALIZED_PRODUCT_TRANSACTION", "serialized_product_transaction", "utility"), 1157: new IconName_$WRAPPER(1157, "UTILITY_SERVICE_TERRITORY_POLICY", "service_territory_policy", "utility"), 1158: new IconName_$WRAPPER(1158, "UTILITY_SETTINGS", "settings", "utility"), 1159: new IconName_$WRAPPER(1159, "UTILITY_SETUP", "setup", "utility"), 1160: new IconName_$WRAPPER(1160, "UTILITY_SETUP_ASSISTANT_GUIDE", "setup_assistant_guide", "utility"), 1161: new IconName_$WRAPPER(1161, "UTILITY_SETUP_MODAL", "setup_modal", "utility"), 1162: new IconName_$WRAPPER(1162, "UTILITY_SHARE", "share", "utility"), 1163: new IconName_$WRAPPER(1163, "UTILITY_SHARE_FILE", "share_file", "utility"), 1164: new IconName_$WRAPPER(1164, "UTILITY_SHARE_MOBILE", "share_mobile", "utility"), 1165: new IconName_$WRAPPER(1165, "UTILITY_SHARE_POST", "share_post", "utility"), 1166: new IconName_$WRAPPER(1166, "UTILITY_SHIELD", "shield", "utility"), 1167: new IconName_$WRAPPER(1167, "UTILITY_SHIFT_PATTERN", "shift_pattern", "utility"), 1168: new IconName_$WRAPPER(1168, "UTILITY_SHIFT_PATTERN_ENTRY", "shift_pattern_entry", "utility"), 1169: new IconName_$WRAPPER(1169, "UTILITY_SHIFT_SCHEDULING_OPERATION", "shift_scheduling_operation", "utility"), 1170: new IconName_$WRAPPER(1170, "UTILITY_SHIFT_UI", "shift_ui", "utility"), 1171: new IconName_$WRAPPER(1171, "UTILITY_SHOPPING_BAG", "shopping_bag", "utility"), 1172: new IconName_$WRAPPER(1172, "UTILITY_SHORTCUTS", "shortcuts", "utility"), 1173: new IconName_$WRAPPER(1173, "UTILITY_SIDE_LIST", "side_list", "utility"), 1174: new IconName_$WRAPPER(1174, "UTILITY_SIGNPOST", "signpost", "utility"), 1175: new IconName_$WRAPPER(1175, "UTILITY_SKIP", "skip", "utility"), 1176: new IconName_$WRAPPER(1176, "UTILITY_SKIP_BACK", "skip_back", "utility"), 1177: new IconName_$WRAPPER(1177, "UTILITY_SKIP_FORWARD", "skip_forward", "utility"), 1178: new IconName_$WRAPPER(1178, "UTILITY_SLIDER", "slider", "utility"), 1179: new IconName_$WRAPPER(1179, "UTILITY_SMILEY_AND_PEOPLE", "smiley_and_people", "utility"), 1180: new IconName_$WRAPPER(1180, "UTILITY_SMS", "sms", "utility"), 1181: new IconName_$WRAPPER(1181, "UTILITY_SNIPPET", "snippet", "utility"), 1182: new IconName_$WRAPPER(1182, "UTILITY_SOBJECT", "sobject", "utility"), 1183: new IconName_$WRAPPER(1183, "UTILITY_SOBJECT_COLLECTION", "sobject_collection", "utility"), 1184: new IconName_$WRAPPER(1184, "UTILITY_SOCIALSHARE", "socialshare", "utility"), 1185: new IconName_$WRAPPER(1185, "UTILITY_SORT", "sort", "utility"), 1186: new IconName_$WRAPPER(1186, "UTILITY_SORT_POLICY", "sort_policy", "utility"), 1187: new IconName_$WRAPPER(1187, "UTILITY_SPACER", "spacer", "utility"), 1188: new IconName_$WRAPPER(1188, "UTILITY_SPINNER", "spinner", "utility"), 1189: new IconName_$WRAPPER(1189, "UTILITY_STAGE", "stage", "utility"), 1190: new IconName_$WRAPPER(1190, "UTILITY_STAGE_COLLECTION", "stage_collection", "utility"), 1191: new IconName_$WRAPPER(1191, "UTILITY_STANDARD_OBJECTS", "standard_objects", "utility"), 1192: new IconName_$WRAPPER(1192, "UTILITY_STEPS", "steps", "utility"), 1193: new IconName_$WRAPPER(1193, "UTILITY_STOP", "stop", "utility"), 1194: new IconName_$WRAPPER(1194, "UTILITY_STORE", "store", "utility"), 1195: new IconName_$WRAPPER(1195, "UTILITY_STRATEGY", "strategy", "utility"), 1196: new IconName_$WRAPPER(1196, "UTILITY_STRIKETHROUGH", "strikethrough", "utility"), 1197: new IconName_$WRAPPER(1197, "UTILITY_SUCCESS", "success", "utility"), 1198: new IconName_$WRAPPER(1198, "UTILITY_SUMMARY", "summary", "utility"), 1199: new IconName_$WRAPPER(1199, "UTILITY_SUMMARYDETAIL", "summarydetail", "utility"), 1200: new IconName_$WRAPPER(1200, "UTILITY_SURVEY", "survey", "utility"), 1201: new IconName_$WRAPPER(1201, "UTILITY_SWARM_REQUEST", "swarm_request", "utility"), 1202: new IconName_$WRAPPER(1202, "UTILITY_SWARM_SESSION", "swarm_session", "utility"), 1203: new IconName_$WRAPPER(1203, "UTILITY_SWITCH", "switch", "utility"), 1204: new IconName_$WRAPPER(1204, "UTILITY_SYMBOLS", "symbols", "utility"), 1205: new IconName_$WRAPPER(1205, "UTILITY_SYNC", "sync", "utility"), 1206: new IconName_$WRAPPER(1206, "UTILITY_SYSTEM_AND_GLOBAL_VARIABLE", "system_and_global_variable", "utility"), 1207: new IconName_$WRAPPER(1207, "UTILITY_TABLE", "table", "utility"), 1208: new IconName_$WRAPPER(1208, "UTILITY_TABLE_SETTINGS", "table_settings", "utility"), 1209: new IconName_$WRAPPER(1209, "UTILITY_TABLET_LANDSCAPE", "tablet_landscape", "utility"), 1210: new IconName_$WRAPPER(1210, "UTILITY_TABLET_PORTRAIT", "tablet_portrait", "utility"), 1211: new IconName_$WRAPPER(1211, "UTILITY_TABSET", "tabset", "utility"), 1212: new IconName_$WRAPPER(1212, "UTILITY_TALENT_DEVELOPMENT", "talent_development", "utility"), 1213: new IconName_$WRAPPER(1213, "UTILITY_TARGET", "target", "utility"), 1214: new IconName_$WRAPPER(1214, "UTILITY_TARGET_MODE", "target_mode", "utility"), 1215: new IconName_$WRAPPER(1215, "UTILITY_TASK", "task", "utility"), 1216: new IconName_$WRAPPER(1216, "UTILITY_TEXT", "text", "utility"), 1217: new IconName_$WRAPPER(1217, "UTILITY_TEXT_BACKGROUND_COLOR", "text_background_color", "utility"), 1218: new IconName_$WRAPPER(1218, "UTILITY_TEXT_COLOR", "text_color", "utility"), 1219: new IconName_$WRAPPER(1219, "UTILITY_TEXT_TEMPLATE", "text_template", "utility"), 1220: new IconName_$WRAPPER(1220, "UTILITY_TEXTAREA", "textarea", "utility"), 1221: new IconName_$WRAPPER(1221, "UTILITY_TEXTBOX", "textbox", "utility"), 1222: new IconName_$WRAPPER(1222, "UTILITY_THREEDOTS", "threedots", "utility"), 1223: new IconName_$WRAPPER(1223, "UTILITY_THREEDOTS_VERTICAL", "threedots_vertical", "utility"), 1224: new IconName_$WRAPPER(1224, "UTILITY_THUNDER", "thunder", "utility"), 1225: new IconName_$WRAPPER(1225, "UTILITY_TILE_CARD_LIST", "tile_card_list", "utility"), 1226: new IconName_$WRAPPER(1226, "UTILITY_TOGGLE", "toggle", "utility"), 1227: new IconName_$WRAPPER(1227, "UTILITY_TOGGLE_PANEL_BOTTOM", "toggle_panel_bottom", "utility"), 1228: new IconName_$WRAPPER(1228, "UTILITY_TOGGLE_PANEL_LEFT", "toggle_panel_left", "utility"), 1229: new IconName_$WRAPPER(1229, "UTILITY_TOGGLE_PANEL_RIGHT", "toggle_panel_right", "utility"), 1230: new IconName_$WRAPPER(1230, "UTILITY_TOGGLE_PANEL_TOP", "toggle_panel_top", "utility"), 1231: new IconName_$WRAPPER(1231, "UTILITY_TOP_ALIGN", "top_align", "utility"), 1232: new IconName_$WRAPPER(1232, "UTILITY_TOPIC", "topic", "utility"), 1233: new IconName_$WRAPPER(1233, "UTILITY_TOPIC2", "topic2", "utility"), 1234: new IconName_$WRAPPER(1234, "UTILITY_TOUCH_ACTION", "touch_action", "utility"), 1235: new IconName_$WRAPPER(1235, "UTILITY_TRACKER", "tracker", "utility"), 1236: new IconName_$WRAPPER(1236, "UTILITY_TRAIL", "trail", "utility"), 1237: new IconName_$WRAPPER(1237, "UTILITY_TRAILBLAZER_EXT", "trailblazer_ext", "utility"), 1238: new IconName_$WRAPPER(1238, "UTILITY_TRAILHEAD", "trailhead", "utility"), 1239: new IconName_$WRAPPER(1239, "UTILITY_TRAILHEAD_ALT", "trailhead_alt", "utility"), 1240: new IconName_$WRAPPER(1240, "UTILITY_TRAILHEAD_EXT", "trailhead_ext", "utility"), 1241: new IconName_$WRAPPER(1241, "UTILITY_TRANSPARENT", "transparent", "utility"), 1242: new IconName_$WRAPPER(1242, "UTILITY_TRAVEL_AND_PLACES", "travel_and_places", "utility"), 1243: new IconName_$WRAPPER(1243, "UTILITY_TRENDING", "trending", "utility"), 1244: new IconName_$WRAPPER(1244, "UTILITY_TURN_OFF_NOTIFICATIONS", "turn_off_notifications", "utility"), 1245: new IconName_$WRAPPER(1245, "UTILITY_TYPE", "type", "utility"), 1246: new IconName_$WRAPPER(1246, "UTILITY_TYPE_TOOL", "type_tool", "utility"), 1247: new IconName_$WRAPPER(1247, "UTILITY_UNDELETE", "undelete", "utility"), 1248: new IconName_$WRAPPER(1248, "UTILITY_UNDEPRECATE", "undeprecate", "utility"), 1249: new IconName_$WRAPPER(1249, "UTILITY_UNDERLINE", "underline", "utility"), 1250: new IconName_$WRAPPER(1250, "UTILITY_UNDO", "undo", "utility"), 1251: new IconName_$WRAPPER(1251, "UTILITY_UNLINKED", "unlinked", "utility"), 1252: new IconName_$WRAPPER(1252, "UTILITY_UNLOCK", "unlock", "utility"), 1253: new IconName_$WRAPPER(1253, "UTILITY_UNMUTED", "unmuted", "utility"), 1254: new IconName_$WRAPPER(1254, "UTILITY_UP", "up", "utility"), 1255: new IconName_$WRAPPER(1255, "UTILITY_UPLOAD", "upload", "utility"), 1256: new IconName_$WRAPPER(1256, "UTILITY_USER", "user", "utility"), 1257: new IconName_$WRAPPER(1257, "UTILITY_USER_ROLE", "user_role", "utility"), 1258: new IconName_$WRAPPER(1258, "UTILITY_VARIABLE", "variable", "utility"), 1259: new IconName_$WRAPPER(1259, "UTILITY_VARIATION_ATTRIBUTE_SETUP", "variation_attribute_setup", "utility"), 1260: new IconName_$WRAPPER(1260, "UTILITY_VARIATION_PRODUCTS", "variation_products", "utility"), 1261: new IconName_$WRAPPER(1261, "UTILITY_VIDEO", "video", "utility"), 1262: new IconName_$WRAPPER(1262, "UTILITY_VOICEMAIL_DROP", "voicemail_drop", "utility"), 1263: new IconName_$WRAPPER(1263, "UTILITY_VOLUME_HIGH", "volume_high", "utility"), 1264: new IconName_$WRAPPER(1264, "UTILITY_VOLUME_LOW", "volume_low", "utility"), 1265: new IconName_$WRAPPER(1265, "UTILITY_VOLUME_OFF", "volume_off", "utility"), 1266: new IconName_$WRAPPER(1266, "UTILITY_WAITS", "waits", "utility"), 1267: new IconName_$WRAPPER(1267, "UTILITY_WARNING", "warning", "utility"), 1268: new IconName_$WRAPPER(1268, "UTILITY_WARRANTY_TERM", "warranty_term", "utility"), 1269: new IconName_$WRAPPER(1269, "UTILITY_WATCHLIST", "watchlist", "utility"), 1270: new IconName_$WRAPPER(1270, "UTILITY_WEEKLYVIEW", "weeklyview", "utility"), 1271: new IconName_$WRAPPER(1271, "UTILITY_WELLNESS", "wellness", "utility"), 1272: new IconName_$WRAPPER(1272, "UTILITY_WIFI", "wifi", "utility"), 1273: new IconName_$WRAPPER(1273, "UTILITY_WORK_FORECAST", "work_forecast", "utility"), 1274: new IconName_$WRAPPER(1274, "UTILITY_WORK_ORDER_TYPE", "work_order_type", "utility"), 1275: new IconName_$WRAPPER(1275, "UTILITY_WORLD", "world", "utility"), 1276: new IconName_$WRAPPER(1276, "UTILITY_YUBI_KEY", "yubi_key", "utility"), 1277: new IconName_$WRAPPER(1277, "UTILITY_ZOOMIN", "zoomin", "utility"), 1278: new IconName_$WRAPPER(1278, "UTILITY_ZOOMOUT", "zoomout", "utility") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5003,7 +5028,7 @@ var com;
                 }
                 enums.InputType_$WRAPPER = InputType_$WRAPPER;
                 InputType["__class"] = "com.spoonconsulting.lightning.enums.InputType";
-                InputType["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                InputType["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 InputType["_$wrappers"] = { 0: new InputType_$WRAPPER(0, "CHECKBOX", "checkbox", "boolean"), 1: new InputType_$WRAPPER(1, "CHECKBOX_BUTTON", "checkbox-button", "boolean"), 2: new InputType_$WRAPPER(2, "DATE", "date", "date"), 3: new InputType_$WRAPPER(3, "DATETIME", "datetime", "date"), 4: new InputType_$WRAPPER(4, "TIME", "time", "date"), 5: new InputType_$WRAPPER(5, "EMAIL", "email"), 6: new InputType_$WRAPPER(6, "FILE", "file", "file"), 7: new InputType_$WRAPPER(7, "PASSWORD", "password"), 8: new InputType_$WRAPPER(8, "SEARCH", "search"), 9: new InputType_$WRAPPER(9, "TEL", "tel"), 10: new InputType_$WRAPPER(10, "URL", "url"), 11: new InputType_$WRAPPER(11, "NUMBER", "number", "number"), 12: new InputType_$WRAPPER(12, "TEXT", "text"), 13: new InputType_$WRAPPER(13, "TOGGLE", "toggle", "boolean") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5044,7 +5069,7 @@ var com;
                 }
                 enums.LayoutItemPadding_$WRAPPER = LayoutItemPadding_$WRAPPER;
                 LayoutItemPadding["__class"] = "com.spoonconsulting.lightning.enums.LayoutItemPadding";
-                LayoutItemPadding["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                LayoutItemPadding["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 LayoutItemPadding["_$wrappers"] = { 0: new LayoutItemPadding_$WRAPPER(0, "HORIZONTAL_SMALL", "horizontal_small"), 1: new LayoutItemPadding_$WRAPPER(1, "HORIZONTAL_MEDIUM", "horizontal_medium"), 2: new LayoutItemPadding_$WRAPPER(2, "HORIZONTAL_LARGE", "horizontal_large"), 3: new LayoutItemPadding_$WRAPPER(3, "AROUND_SMALL", "around_small"), 4: new LayoutItemPadding_$WRAPPER(4, "AROUND_MEDIUM", "around_medium"), 5: new LayoutItemPadding_$WRAPPER(5, "AROUND_LARGE", "around_large") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5086,7 +5111,7 @@ var com;
                 }
                 enums.MenuAlignment_$WRAPPER = MenuAlignment_$WRAPPER;
                 MenuAlignment["__class"] = "com.spoonconsulting.lightning.enums.MenuAlignment";
-                MenuAlignment["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                MenuAlignment["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 MenuAlignment["_$wrappers"] = { 0: new MenuAlignment_$WRAPPER(0, "LEFT", "top"), 1: new MenuAlignment_$WRAPPER(1, "RIGHT", "right"), 2: new MenuAlignment_$WRAPPER(2, "CENTER", "center"), 3: new MenuAlignment_$WRAPPER(3, "BOTTOM_LEFT", "bottom-left"), 4: new MenuAlignment_$WRAPPER(4, "BOTTOM_RIGHT", "bottom-right"), 5: new MenuAlignment_$WRAPPER(5, "BOTTOM_CENTER", "bottom-center"), 6: new MenuAlignment_$WRAPPER(6, "AUTO", "auto") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5124,7 +5149,7 @@ var com;
                 }
                 enums.ModalSize_$WRAPPER = ModalSize_$WRAPPER;
                 ModalSize["__class"] = "com.spoonconsulting.lightning.enums.ModalSize";
-                ModalSize["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                ModalSize["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 ModalSize["_$wrappers"] = { 0: new ModalSize_$WRAPPER(0, "SMALL", "small"), 1: new ModalSize_$WRAPPER(1, "MEDIUM", "medium"), 2: new ModalSize_$WRAPPER(2, "LARGE", "large") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5163,7 +5188,7 @@ var com;
                 }
                 enums.Position_$WRAPPER = Position_$WRAPPER;
                 Position["__class"] = "com.spoonconsulting.lightning.enums.Position";
-                Position["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Position["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Position["_$wrappers"] = { 0: new Position_$WRAPPER(0, "STATIC", "static"), 1: new Position_$WRAPPER(1, "FIXED", "fixed"), 2: new Position_$WRAPPER(2, "ABSOLUTE", "absolute"), 3: new Position_$WRAPPER(3, "RELATIVE", "relative") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5207,7 +5232,7 @@ var com;
                 }
                 enums.Size_$WRAPPER = Size_$WRAPPER;
                 Size["__class"] = "com.spoonconsulting.lightning.enums.Size";
-                Size["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Size["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Size["_$wrappers"] = { 0: new Size_$WRAPPER(0, "EXTRA_EXTRA_EXTRA_SMALL", "xxx-small"), 1: new Size_$WRAPPER(1, "EXTRA_EXTRA_SMALL", "xx-small"), 2: new Size_$WRAPPER(2, "EXTRA_SMALL", "x-small"), 3: new Size_$WRAPPER(3, "SMALL", "small"), 4: new Size_$WRAPPER(4, "MEDIUM", "medium"), 5: new Size_$WRAPPER(5, "LARGE", "large"), 6: new Size_$WRAPPER(6, "EXTRA_LARGE", "x-large"), 7: new Size_$WRAPPER(7, "EXTRA_EXTRA_LARGE", "xx-large"), 8: new Size_$WRAPPER(8, "NONE", "none") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5252,7 +5277,7 @@ var com;
                 }
                 enums.Theme_$WRAPPER = Theme_$WRAPPER;
                 Theme["__class"] = "com.spoonconsulting.lightning.enums.Theme";
-                Theme["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                Theme["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                 Theme["_$wrappers"] = { 0: new Theme_$WRAPPER(0, "DEFAULT", "default"), 1: new Theme_$WRAPPER(1, "SHADE", "shade"), 2: new Theme_$WRAPPER(2, "INVERSE", "inverse"), 3: new Theme_$WRAPPER(3, "ALT_INVERSE", "alt-inverse"), 4: new Theme_$WRAPPER(4, "SUCCESS", "success"), 5: new Theme_$WRAPPER(5, "INFO", "info"), 6: new Theme_$WRAPPER(6, "WARNING", "warning"), 7: new Theme_$WRAPPER(7, "ERROR", "error"), 8: new Theme_$WRAPPER(8, "OFFLINE", "offline"), 9: new Theme_$WRAPPER(9, "ALERT_TEXTURE", "alert-texture") };
             })(enums = lightning.enums || (lightning.enums = {}));
         })(lightning = spoonconsulting.lightning || (spoonconsulting.lightning = {}));
@@ -5294,7 +5319,7 @@ var com;
                     }
                     Variants.CardVariant_$WRAPPER = CardVariant_$WRAPPER;
                     CardVariant["__class"] = "com.spoonconsulting.lightning.enums.Variants.CardVariant";
-                    CardVariant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                    CardVariant["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                     CardVariant["_$wrappers"] = { 0: new CardVariant_$WRAPPER(0, "BASE", "base"), 1: new CardVariant_$WRAPPER(1, "NARROW", "narrow") };
                     let ButtonIconVariant;
                     (function (ButtonIconVariant) {
@@ -5325,7 +5350,7 @@ var com;
                     }
                     Variants.ButtonIconVariant_$WRAPPER = ButtonIconVariant_$WRAPPER;
                     ButtonIconVariant["__class"] = "com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant";
-                    ButtonIconVariant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                    ButtonIconVariant["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                     ButtonIconVariant["_$wrappers"] = { 0: new ButtonIconVariant_$WRAPPER(0, "BARE", "bare"), 1: new ButtonIconVariant_$WRAPPER(1, "CONTAINER", "container"), 2: new ButtonIconVariant_$WRAPPER(2, "BRAND", "brand"), 3: new ButtonIconVariant_$WRAPPER(3, "BORDER", "border"), 4: new ButtonIconVariant_$WRAPPER(4, "BORDER_FILLED", "border-filled"), 5: new ButtonIconVariant_$WRAPPER(5, "BARE_INVERSE", "bare-inverse"), 6: new ButtonIconVariant_$WRAPPER(6, "BORDER_INVERSE", "border-inverse") };
                     let FormElementVariant;
                     (function (FormElementVariant) {
@@ -5354,7 +5379,7 @@ var com;
                     }
                     Variants.FormElementVariant_$WRAPPER = FormElementVariant_$WRAPPER;
                     FormElementVariant["__class"] = "com.spoonconsulting.lightning.enums.Variants.FormElementVariant";
-                    FormElementVariant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                    FormElementVariant["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                     FormElementVariant["_$wrappers"] = { 0: new FormElementVariant_$WRAPPER(0, "STANDARD", "standard"), 1: new FormElementVariant_$WRAPPER(1, "LABEL_HIDDEN", "label-hidden"), 2: new FormElementVariant_$WRAPPER(2, "LABEL_INLINE", "label-inline"), 3: new FormElementVariant_$WRAPPER(3, "LABEL_HORIZONTAL", "label-inline"), 4: new FormElementVariant_$WRAPPER(4, "LABEL_STACKED", "label-stacked") };
                     let TabSetVariant;
                     (function (TabSetVariant) {
@@ -5381,7 +5406,7 @@ var com;
                     }
                     Variants.TabSetVariant_$WRAPPER = TabSetVariant_$WRAPPER;
                     TabSetVariant["__class"] = "com.spoonconsulting.lightning.enums.Variants.TabSetVariant";
-                    TabSetVariant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                    TabSetVariant["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                     TabSetVariant["_$wrappers"] = { 0: new TabSetVariant_$WRAPPER(0, "STANDARD", "default"), 1: new TabSetVariant_$WRAPPER(1, "SCOPED", "scoped"), 2: new TabSetVariant_$WRAPPER(2, "VERTICAL", "vertical") };
                     let Variant;
                     (function (Variant) {
@@ -5413,7 +5438,7 @@ var com;
                     }
                     Variants.Variant_$WRAPPER = Variant_$WRAPPER;
                     Variant["__class"] = "com.spoonconsulting.lightning.enums.Variants.Variant";
-                    Variant["__interfaces"] = ["java.lang.constant.Constable", "java.lang.Comparable", "java.io.Serializable"];
+                    Variant["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
                     Variant["_$wrappers"] = { 0: new Variant_$WRAPPER(0, "BASE", ""), 1: new Variant_$WRAPPER(1, "NEUTRAL", "neutral"), 2: new Variant_$WRAPPER(2, "BRAND", "brand"), 3: new Variant_$WRAPPER(3, "OUTLINE_BRAND", "outline-brand"), 4: new Variant_$WRAPPER(4, "DESTRUCTIVE", "destructive"), 5: new Variant_$WRAPPER(5, "TEXT_DESTRUCTIVE", "text-destructive"), 6: new Variant_$WRAPPER(6, "SUCCESS", "success"), 7: new Variant_$WRAPPER(7, "INVERSE", "inverse") };
                 })(Variants = enums.Variants || (enums.Variants = {}));
             })(enums = lightning.enums || (lightning.enums = {}));
@@ -6090,13 +6115,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array712 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array295 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index711 = 0; index711 < array712.length; index711++) {
-                            let s = array712[index711];
+                        for (let index294 = 0; index294 < array295.length; index294++) {
+                            let s = array295[index294];
                             {
                                 this.removeClass("slds-icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -7582,13 +7607,13 @@ var com;
                 setAlignmentBump$java_lang_String(alignmentBumb) {
                     this.alignmentBumb = alignmentBumb;
                     {
-                        let array714 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
+                        let array297 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index713 = 0; index713 < array714.length; index713++) {
-                            let a = array714[index713];
+                        for (let index296 = 0; index296 < array297.length; index296++) {
+                            let a = array297[index296];
                             {
                                 this.removeClass("slds-col_bump-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][a].getValue());
                             }
@@ -7617,13 +7642,13 @@ var com;
                 setFlexibility$java_lang_String(flexibility) {
                     this.flexibility = flexibility;
                     {
-                        let array716 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Flexibility) {
+                        let array299 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Flexibility) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index715 = 0; index715 < array716.length; index715++) {
-                            let f = array716[index715];
+                        for (let index298 = 0; index298 < array299.length; index298++) {
+                            let f = array299[index298];
                             {
                                 this.removeClass("slds-" + com.spoonconsulting.lightning.enums.Flexibility["_$wrappers"][f].getValue());
                             }
@@ -7631,8 +7656,8 @@ var com;
                     }
                     if (flexibility != null) {
                         const fxs = flexibility.split(",");
-                        for (let index717 = 0; index717 < fxs.length; index717++) {
-                            let fx = fxs[index717];
+                        for (let index300 = 0; index300 < fxs.length; index300++) {
+                            let fx = fxs[index300];
                             {
                                 this.addClass("slds-" + fx);
                             }
@@ -7689,13 +7714,13 @@ var com;
                 setPadding$java_lang_String(padding) {
                     this.padding = padding;
                     {
-                        let array719 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) {
+                        let array302 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.LayoutItemPadding) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index718 = 0; index718 < array719.length; index718++) {
-                            let p = array719[index718];
+                        for (let index301 = 0; index301 < array302.length; index301++) {
+                            let p = array302[index301];
                             {
                                 this.removeClass("slds-p-" + com.spoonconsulting.lightning.enums.LayoutItemPadding["_$wrappers"][p].getValue());
                             }
@@ -7760,9 +7785,9 @@ var com;
                 setCheckable(checkable) {
                     this.checkable = checkable;
                     {
-                        let array721 = this.getUIOptions();
-                        for (let index720 = 0; index720 < array721.length; index720++) {
-                            let opt = array721[index720];
+                        let array304 = this.getUIOptions();
+                        for (let index303 = 0; index303 < array304.length; index303++) {
+                            let opt = array304[index303];
                             {
                                 opt.setCheckable(checkable);
                             }
@@ -7792,8 +7817,8 @@ var com;
                 }
                 setOptions(options) {
                     this.clearChildren();
-                    for (let index722 = 0; index722 < options.length; index722++) {
-                        let option = options[index722];
+                    for (let index305 = 0; index305 < options.length; index305++) {
+                        let option = options[index305];
                         {
                             this.addOption$jsweet_lang_Object(option);
                         }
@@ -7802,9 +7827,9 @@ var com;
                 }
                 setValue(value) {
                     {
-                        let array724 = this.getChildren();
-                        for (let index723 = 0; index723 < array724.length; index723++) {
-                            let r = array724[index723];
+                        let array307 = this.getChildren();
+                        for (let index306 = 0; index306 < array307.length; index306++) {
+                            let r = array307[index306];
                             {
                                 const opt = r;
                                 if (opt.getValue() === value) {
@@ -7832,9 +7857,9 @@ var com;
                 }
                 getSelectedOption() {
                     {
-                        let array726 = this.getChildren();
-                        for (let index725 = 0; index725 < array726.length; index725++) {
-                            let r = array726[index725];
+                        let array309 = this.getChildren();
+                        for (let index308 = 0; index308 < array309.length; index308++) {
+                            let r = array309[index308];
                             {
                                 const opt = r;
                                 if (opt.isChecked()) {
@@ -7847,9 +7872,9 @@ var com;
                 }
                 getOption(value) {
                     {
-                        let array728 = this.getChildren();
-                        for (let index727 = 0; index727 < array728.length; index727++) {
-                            let r = array728[index727];
+                        let array311 = this.getChildren();
+                        for (let index310 = 0; index310 < array311.length; index310++) {
+                            let r = array311[index310];
                             {
                                 const opt = r;
                                 if (opt.getValue() === value) {
@@ -7867,9 +7892,9 @@ var com;
                 getOptions() {
                     const result = (new Array());
                     {
-                        let array730 = this.getChildren();
-                        for (let index729 = 0; index729 < array730.length; index729++) {
-                            let r = array730[index729];
+                        let array313 = this.getChildren();
+                        for (let index312 = 0; index312 < array313.length; index312++) {
+                            let r = array313[index312];
                             {
                                 const opt = r;
                                 const o = new Object();
@@ -7883,9 +7908,9 @@ var com;
                 }
                 getValue() {
                     {
-                        let array732 = this.getChildren();
-                        for (let index731 = 0; index731 < array732.length; index731++) {
-                            let r = array732[index731];
+                        let array315 = this.getChildren();
+                        for (let index314 = 0; index314 < array315.length; index314++) {
+                            let r = array315[index314];
                             {
                                 const opt = r;
                                 if (opt.isChecked()) {
@@ -8187,13 +8212,13 @@ var com;
                 setSize$java_lang_String(size) {
                     this.size = size;
                     {
-                        let array734 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.ModalSize) {
+                        let array317 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.ModalSize) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index733 = 0; index733 < array734.length; index733++) {
-                            let s = array734[index733];
+                        for (let index316 = 0; index316 < array317.length; index316++) {
+                            let s = array317[index316];
                             {
                                 this.removeClass("slds-modal_" + com.spoonconsulting.lightning.enums.ModalSize["_$wrappers"][s].getValue());
                             }
@@ -8494,13 +8519,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array736 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array319 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index735 = 0; index735 < array736.length; index735++) {
-                            let s = array736[index735];
+                        for (let index318 = 0; index318 < array319.length; index318++) {
+                            let s = array319[index318];
                             {
                                 this.removeClass("slds-progress-bar_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -9065,13 +9090,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array738 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array321 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index737 = 0; index737 < array738.length; index737++) {
-                            let s = array738[index737];
+                        for (let index320 = 0; index320 < array321.length; index320++) {
+                            let s = array321[index320];
                             {
                                 this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                             }
@@ -9083,13 +9108,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array740 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array323 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index739 = 0; index739 < array740.length; index739++) {
-                            let v = array740[index739];
+                        for (let index322 = 0; index322 < array323.length; index322++) {
+                            let v = array323[index322];
                             {
                                 if (v !== com.spoonconsulting.lightning.enums.Variants.Variant.BASE)
                                     this.removeClass("slds-spinner_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
@@ -9156,9 +9181,9 @@ var com;
                 }
                 setActiveTabValue(val) {
                     {
-                        let array742 = this.tablist.getChildren();
-                        for (let index741 = 0; index741 < array742.length; index741++) {
-                            let r = array742[index741];
+                        let array325 = this.tablist.getChildren();
+                        for (let index324 = 0; index324 < array325.length; index324++) {
+                            let r = array325[index324];
                             {
                                 const item = r;
                                 if (item.tab.getValue() === val) {
@@ -9173,9 +9198,9 @@ var com;
                 }
                 setActiveTabItem(item) {
                     {
-                        let array744 = this.tablist.getChildren();
-                        for (let index743 = 0; index743 < array744.length; index743++) {
-                            let r = array744[index743];
+                        let array327 = this.tablist.getChildren();
+                        for (let index326 = 0; index326 < array327.length; index326++) {
+                            let r = array327[index326];
                             {
                                 const titem = r;
                                 if (titem.getId() === item.getId()) {
@@ -9190,9 +9215,9 @@ var com;
                 }
                 getActiveTabItem() {
                     {
-                        let array746 = this.getTabItems();
-                        for (let index745 = 0; index745 < array746.length; index745++) {
-                            let item = array746[index745];
+                        let array329 = this.getTabItems();
+                        for (let index328 = 0; index328 < array329.length; index328++) {
+                            let item = array329[index328];
                             {
                                 if (item.isActive()) {
                                     return item;
@@ -9221,9 +9246,9 @@ var com;
                 }
                 getPanel(name) {
                     {
-                        let array748 = this.getChildren();
-                        for (let index747 = 0; index747 < array748.length; index747++) {
-                            let r = array748[index747];
+                        let array331 = this.getChildren();
+                        for (let index330 = 0; index330 < array331.length; index330++) {
+                            let r = array331[index330];
                             {
                                 if (r.getId() !== this.tablist.getId()) {
                                     if (r.getName() === name) {
@@ -9270,13 +9295,13 @@ var com;
                         this.tablist.addClass("slds-tabs_default__nav");
                     }
                     {
-                        let array750 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) {
+                        let array333 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.TabSetVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index749 = 0; index749 < array750.length; index749++) {
-                            let va = array750[index749];
+                        for (let index332 = 0; index332 < array333.length; index332++) {
+                            let va = array333[index332];
                             {
                                 this.removeClass("slds-tabs_" + com.spoonconsulting.lightning.enums.Variants.TabSetVariant["_$wrappers"][va].getValue());
                             }
@@ -9657,8 +9682,8 @@ var com;
                     setData(data) {
                         this.clearChildren();
                         this.setRendered(false);
-                        for (let index751 = 0; index751 < data.length; index751++) {
-                            let obj = data[index751];
+                        for (let index334 = 0; index334 < data.length; index334++) {
+                            let obj = data[index334];
                             {
                                 const item = new Tree.UITreeItem(this.__parent, obj["name"], this.level, this.tree_);
                                 this.addChild(item);
@@ -9675,9 +9700,9 @@ var com;
                     }
                     unselect(except) {
                         {
-                            let array753 = this.getChildren();
-                            for (let index752 = 0; index752 < array753.length; index752++) {
-                                let c = array753[index752];
+                            let array336 = this.getChildren();
+                            for (let index335 = 0; index335 < array336.length; index335++) {
+                                let c = array336[index335];
                                 {
                                     const item = c;
                                     item.unSelect(except);
@@ -9919,24 +9944,24 @@ var com;
                 }
                 static setStyle(r, prefix, direction, size) {
                     {
-                        let array755 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
+                        let array338 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Direction) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index754 = 0; index754 < array755.length; index754++) {
-                            let dir = array755[index754];
+                        for (let index337 = 0; index337 < array338.length; index337++) {
+                            let dir = array338[index337];
                             {
                                 const css = prefix + "-" + com.spoonconsulting.lightning.enums.Direction["_$wrappers"][dir].getValue();
                                 r.removeClass(css);
                                 {
-                                    let array757 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                                    let array340 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                                         if (!isNaN(val)) {
                                             result.push(parseInt(val, 10));
                                         }
                                     } return result; }();
-                                    for (let index756 = 0; index756 < array757.length; index756++) {
-                                        let s = array757[index756];
+                                    for (let index339 = 0; index339 < array340.length; index339++) {
+                                        let s = array340[index339];
                                         {
                                             const scss = css + "_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue();
                                             r.removeClass(scss);
@@ -9995,8 +10020,8 @@ var com;
                 getDescriptionList(...strings) {
                     const app = new JSContainer("list", "dl");
                     let isdt = true;
-                    for (let index758 = 0; index758 < strings.length; index758++) {
-                        let s = strings[index758];
+                    for (let index341 = 0; index341 < strings.length; index341++) {
+                        let s = strings[index341];
                         {
                             if (isdt) {
                                 const dt = new JSContainer("", "dt");
@@ -10018,8 +10043,8 @@ var com;
                     const app = new JSContainer("list", "dl");
                     app.addClass("slds-list_horizontal").addClass("slds-wrap");
                     let isdt = true;
-                    for (let index759 = 0; index759 < strings.length; index759++) {
-                        let s = strings[index759];
+                    for (let index342 = 0; index342 < strings.length; index342++) {
+                        let s = strings[index342];
                         {
                             if (isdt) {
                                 const dt = new JSContainer("", "dt");
@@ -10144,13 +10169,13 @@ var com;
                 }
                 static setPosition(r, position) {
                     {
-                        let array761 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Position) {
+                        let array344 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Position) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index760 = 0; index760 < array761.length; index760++) {
-                            let p = array761[index760];
+                        for (let index343 = 0; index343 < array344.length; index343++) {
+                            let p = array344[index343];
                             {
                                 r.removeClass("slds-is-" + com.spoonconsulting.lightning.enums.Position["_$wrappers"][p].getValue());
                             }
@@ -10214,13 +10239,13 @@ var com;
                 }
                 static setTextColor(r, color) {
                     {
-                        let array763 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Color) {
+                        let array346 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Color) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index762 = 0; index762 < array763.length; index762++) {
-                            let c = array763[index762];
+                        for (let index345 = 0; index345 < array346.length; index345++) {
+                            let c = array346[index345];
                             {
                                 r.removeClass("slds-text-color_" + com.spoonconsulting.lightning.enums.Color["_$wrappers"][c].getValue());
                             }
@@ -10235,13 +10260,13 @@ var com;
                 }
                 static setTheme(r, theme) {
                     {
-                        let array765 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Theme) {
+                        let array348 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Theme) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index764 = 0; index764 < array765.length; index764++) {
-                            let c = array765[index764];
+                        for (let index347 = 0; index347 < array348.length; index347++) {
+                            let c = array348[index347];
                             {
                                 r.removeClass("slds-theme_" + com.spoonconsulting.lightning.enums.Theme["_$wrappers"][c].getValue());
                             }
@@ -10326,8 +10351,8 @@ var com;
                         return new Utils.ArrayBuilder();
                     }
                     add(...val) {
-                        for (let index766 = 0; index766 < val.length; index766++) {
-                            let o = val[index766];
+                        for (let index349 = 0; index349 < val.length; index349++) {
+                            let o = val[index349];
                             {
                                 this.result.push(o);
                             }
@@ -10374,8 +10399,8 @@ var com;
                         return this;
                     }
                     add$java_lang_String_A(...strings) {
-                        for (let index767 = 0; index767 < strings.length; index767++) {
-                            let s = strings[index767];
+                        for (let index350 = 0; index350 < strings.length; index350++) {
+                            let s = strings[index350];
                             {
                                 this.add$java_lang_String$java_lang_String(s, s);
                             }
@@ -10440,9 +10465,9 @@ var com;
                 }
                 getSection(name) {
                     {
-                        let array769 = this.getSections();
-                        for (let index768 = 0; index768 < array769.length; index768++) {
-                            let section = array769[index768];
+                        let array352 = this.getSections();
+                        for (let index351 = 0; index351 < array352.length; index351++) {
+                            let section = array352[index351];
                             {
                                 if (section.getName() === name) {
                                     return section;
@@ -10454,9 +10479,9 @@ var com;
                 }
                 getItem$java_lang_String(name) {
                     {
-                        let array771 = this.getItems();
-                        for (let index770 = 0; index770 < array771.length; index770++) {
-                            let item = array771[index770];
+                        let array354 = this.getItems();
+                        for (let index353 = 0; index353 < array354.length; index353++) {
+                            let item = array354[index353];
                             {
                                 if (item.getName() === name) {
                                     return item;
@@ -10484,8 +10509,8 @@ var com;
                         throw new Error('invalid overload');
                 }
                 addSections(...sections) {
-                    for (let index772 = 0; index772 < sections.length; index772++) {
-                        let section = sections[index772];
+                    for (let index355 = 0; index355 < sections.length; index355++) {
+                        let section = sections[index355];
                         {
                             this.addSection$com_spoonconsulting_lightning_VerticalNavigationSection(section);
                         }
@@ -10503,9 +10528,9 @@ var com;
                     this.selectedItem = selectedItem;
                     this.selectedSection = selectedSection;
                     {
-                        let array774 = this.getSections();
-                        for (let index773 = 0; index773 < array774.length; index773++) {
-                            let section = array774[index773];
+                        let array357 = this.getSections();
+                        for (let index356 = 0; index356 < array357.length; index356++) {
+                            let section = array357[index356];
                             {
                                 if (section.getName() !== selectedSection) {
                                     section.setSelectedItem(null);
@@ -10528,14 +10553,14 @@ var com;
                 getItems() {
                     const result = (new Array());
                     {
-                        let array776 = this.getSections();
-                        for (let index775 = 0; index775 < array776.length; index775++) {
-                            let section = array776[index775];
+                        let array359 = this.getSections();
+                        for (let index358 = 0; index358 < array359.length; index358++) {
+                            let section = array359[index358];
                             {
                                 {
-                                    let array778 = section.getItems();
-                                    for (let index777 = 0; index777 < array778.length; index777++) {
-                                        let item = array778[index777];
+                                    let array361 = section.getItems();
+                                    for (let index360 = 0; index360 < array361.length; index360++) {
+                                        let item = array361[index360];
                                         {
                                             result.push(item);
                                         }
@@ -10552,9 +10577,9 @@ var com;
                 setSelectedItem$java_lang_String(selectedItem) {
                     this.selectedItem = selectedItem;
                     {
-                        let array780 = this.getItems();
-                        for (let index779 = 0; index779 < array780.length; index779++) {
-                            let item = array780[index779];
+                        let array363 = this.getItems();
+                        for (let index362 = 0; index362 < array363.length; index362++) {
+                            let item = array363[index362];
                             {
                                 item.setSelected(item.getName() === selectedItem);
                                 if (item.getName() === selectedItem) {
@@ -10709,8 +10734,8 @@ var com;
                 setSelectedItem(name) {
                     this.selectedItem = name;
                     const items = this.getItems();
-                    for (let index781 = 0; index781 < items.length; index781++) {
-                        let item = items[index781];
+                    for (let index364 = 0; index364 < items.length; index364++) {
+                        let item = items[index364];
                         {
                             item.setSelected(item.getName() === name);
                         }
@@ -10755,9 +10780,9 @@ var com;
                 }
                 getItem(name) {
                     {
-                        let array783 = this.getItems();
-                        for (let index782 = 0; index782 < array783.length; index782++) {
-                            let item = array783[index782];
+                        let array366 = this.getItems();
+                        for (let index365 = 0; index365 < array366.length; index365++) {
+                            let item = array366[index365];
                             {
                                 if (item.getName() === name) {
                                     return item;
@@ -10771,8 +10796,8 @@ var com;
                     return this.selectedItem;
                 }
                 addItems(...items) {
-                    for (let index784 = 0; index784 < items.length; index784++) {
-                        let item = items[index784];
+                    for (let index367 = 0; index367 < items.length; index367++) {
+                        let item = items[index367];
                         {
                             this.addItem$com_spoonconsulting_lightning_VerticalNavigationItem(item);
                         }
@@ -11137,8 +11162,8 @@ var com;
                  * @return {com.spoonconsulting.lightning.Accordion} - The current {@link Accordion}
                  */
                 addSections(...accordionSections) {
-                    for (let index785 = 0; index785 < accordionSections.length; index785++) {
-                        let section = accordionSections[index785];
+                    for (let index368 = 0; index368 < accordionSections.length; index368++) {
+                        let section = accordionSections[index368];
                         {
                             this.addSection(section);
                         }
@@ -11163,9 +11188,9 @@ var com;
                  */
                 setOpen(name) {
                     {
-                        let array787 = this.getChildren();
-                        for (let index786 = 0; index786 < array787.length; index786++) {
-                            let r = array787[index786];
+                        let array370 = this.getChildren();
+                        for (let index369 = 0; index369 < array370.length; index369++) {
+                            let r = array370[index369];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -11191,9 +11216,9 @@ var com;
                     const sectionToggle = new CustomEvent("onsectiontoggle");
                     const openSections = (new Array());
                     {
-                        let array789 = this.getSections();
-                        for (let index788 = 0; index788 < array789.length; index788++) {
-                            let sect = array789[index788];
+                        let array372 = this.getSections();
+                        for (let index371 = 0; index371 < array372.length; index371++) {
+                            let sect = array372[index371];
                             {
                                 if (sect.isOpen()) {
                                     openSections.push(sect.getName());
@@ -11213,9 +11238,9 @@ var com;
                  */
                 setClose(name) {
                     {
-                        let array791 = this.getChildren();
-                        for (let index790 = 0; index790 < array791.length; index790++) {
-                            let r = array791[index790];
+                        let array374 = this.getChildren();
+                        for (let index373 = 0; index373 < array374.length; index373++) {
+                            let r = array374[index373];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -11246,9 +11271,9 @@ var com;
                 getSections() {
                     const sections = (new Array());
                     {
-                        let array793 = this.getChildren();
-                        for (let index792 = 0; index792 < array793.length; index792++) {
-                            let r = array793[index792];
+                        let array376 = this.getChildren();
+                        for (let index375 = 0; index375 < array376.length; index375++) {
+                            let r = array376[index375];
                             {
                                 sections.push(r.getChildren()[0]);
                             }
@@ -11263,9 +11288,9 @@ var com;
                  */
                 getSection(name) {
                     {
-                        let array795 = this.getChildren();
-                        for (let index794 = 0; index794 < array795.length; index794++) {
-                            let r = array795[index794];
+                        let array378 = this.getChildren();
+                        for (let index377 = 0; index377 < array378.length; index377++) {
+                            let r = array378[index377];
                             {
                                 const section = r.getChildren()[0];
                                 if (section.getName() === name) {
@@ -11802,13 +11827,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array797 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array380 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index796 = 0; index796 < array797.length; index796++) {
-                            let v = array797[index796];
+                        for (let index379 = 0; index379 < array380.length; index379++) {
+                            let v = array380[index379];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                             }
@@ -12061,8 +12086,8 @@ var com;
                 }
                 refresh() {
                     const suffixes = ["bottom", "left", "right", "center", "bottom-right", "bottom-left", "top", "top-right", "top-left"];
-                    for (let index798 = 0; index798 < suffixes.length; index798++) {
-                        let suffix = suffixes[index798];
+                    for (let index381 = 0; index381 < suffixes.length; index381++) {
+                        let suffix = suffixes[index381];
                         {
                             this.dropdown.removeClass("slds-dropdown_" + suffix).removeClass("slds-nubbin_" + suffix);
                         }
@@ -12134,8 +12159,8 @@ var com;
                 }
                 setOptions(options) {
                     this.clearMenu();
-                    for (let index799 = 0; index799 < options.length; index799++) {
-                        let option = options[index799];
+                    for (let index382 = 0; index382 < options.length; index382++) {
+                        let option = options[index382];
                         {
                             let value = option["value"];
                             if (value == null) {
@@ -12268,13 +12293,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array801 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
+                        let array384 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.Variant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index800 = 0; index800 < array801.length; index800++) {
-                            let v = array801[index800];
+                        for (let index383 = 0; index383 < array384.length; index383++) {
+                            let v = array384[index383];
                             {
                                 this.removeClass("slds-button_" + com.spoonconsulting.lightning.enums.Variants.Variant["_$wrappers"][v].getValue());
                             }
@@ -12451,9 +12476,9 @@ var com;
                 }
                 getMenuItem(name) {
                     {
-                        let array803 = this.getChildren();
-                        for (let index802 = 0; index802 < array803.length; index802++) {
-                            let ctn = array803[index802];
+                        let array386 = this.getChildren();
+                        for (let index385 = 0; index385 < array386.length; index385++) {
+                            let ctn = array386[index385];
                             {
                                 if (ctn.getChildren()[0].getName() === name) {
                                     return ctn.getChildren()[0];
@@ -12464,8 +12489,8 @@ var com;
                     return null;
                 }
                 addMenuItems(...items) {
-                    for (let index804 = 0; index804 < items.length; index804++) {
-                        let item = items[index804];
+                    for (let index387 = 0; index387 < items.length; index387++) {
+                        let item = items[index387];
                         {
                             this.addMenuItem(item);
                         }
@@ -12957,8 +12982,8 @@ var com;
                     setOptions(options) {
                         this.options = options;
                         this.clearChildren();
-                        for (let index805 = 0; index805 < options.length; index805++) {
-                            let option = options[index805];
+                        for (let index388 = 0; index388 < options.length; index388++) {
+                            let option = options[index388];
                             {
                                 const value = option["value"];
                                 const label = option["label"];
@@ -12985,9 +13010,9 @@ var com;
                     getValue() {
                         const result = (new Array());
                         {
-                            let array807 = this.getChildren();
-                            for (let index806 = 0; index806 < array807.length; index806++) {
-                                let r = array807[index806];
+                            let array390 = this.getChildren();
+                            for (let index389 = 0; index389 < array390.length; index389++) {
+                                let r = array390[index389];
                                 {
                                     const cb = r;
                                     if (cb.getValue()) {
@@ -13004,9 +13029,9 @@ var com;
                      */
                     setValue(val) {
                         {
-                            let array809 = this.getChildren();
-                            for (let index808 = 0; index808 < array809.length; index808++) {
-                                let r = array809[index808];
+                            let array392 = this.getChildren();
+                            for (let index391 = 0; index391 < array392.length; index391++) {
+                                let r = array392[index391];
                                 {
                                     const name = r.getAttribute("val");
                                     const cb = r;
@@ -13310,13 +13335,13 @@ var com;
                         return com.spoonconsulting.lightning.enums.InputType.TEXT;
                     }
                     {
-                        let array811 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.InputType) {
+                        let array394 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.InputType) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index810 = 0; index810 < array811.length; index810++) {
-                            let type = array811[index810];
+                        for (let index393 = 0; index393 < array394.length; index393++) {
+                            let type = array394[index393];
                             {
                                 if (com.spoonconsulting.lightning.enums.InputType["_$wrappers"][type].getValue() === stype) {
                                     return type;
@@ -13600,13 +13625,13 @@ var com;
                 }
                 setSize$java_lang_String(size) {
                     {
-                        let array813 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
+                        let array396 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Size) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index812 = 0; index812 < array813.length; index812++) {
-                            let s = array813[index812];
+                        for (let index395 = 0; index395 < array396.length; index395++) {
+                            let s = array396[index395];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
                                 this.icon.removeClass("slds-button__icon_" + com.spoonconsulting.lightning.enums.Size["_$wrappers"][s].getValue());
@@ -13649,13 +13674,13 @@ var com;
                 }
                 setVariant$java_lang_String(variant) {
                     {
-                        let array815 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) {
+                        let array398 = /* Enum.values */ function () { let result = []; for (let val in com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant) {
                             if (!isNaN(val)) {
                                 result.push(parseInt(val, 10));
                             }
                         } return result; }();
-                        for (let index814 = 0; index814 < array815.length; index814++) {
-                            let v = array815[index814];
+                        for (let index397 = 0; index397 < array398.length; index397++) {
+                            let v = array398[index397];
                             {
                                 this.removeClass("slds-button_icon-" + com.spoonconsulting.lightning.enums.Variants.ButtonIconVariant["_$wrappers"][v].getValue());
                             }
@@ -13745,3 +13770,4 @@ var com;
 })(com || (com = {}));
 com.spoonconsulting.lightning.Utils.DAYS_$LI$();
 com.spoonconsulting.lightning.Utils.MONTHS_$LI$();
+//# sourceMappingURL=bundle.js.map

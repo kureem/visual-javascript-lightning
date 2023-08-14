@@ -574,13 +574,40 @@ declare namespace com.spoonconsulting.lightning {
         footer: JSContainer;
         constructor(name: string, tag: string);
         getSlot(name: string): JSContainer;
+        /**
+         * This method returns the body of the container<br />
+         * <br>
+         *
+         * <code>
+         * Card.getBody().addChild(component) to add a child in the body of the card.
+         * </code>
+         *
+         * @return {JSContainer} The body of the Card
+         */
         getBody(): JSContainer;
+        /**
+         * This method returns the header of the Card<br />
+         * <code>Card.getHeader().addChild(comp) <br /> </code><br />
+         * to add a component in the header of the Card
+         *
+         * @return {JSContainer} The container that will hold the header components of the card
+         */
         getHeader(): JSContainer;
         getActions(): JSContainer;
         getFooter(): JSContainer;
         setIconName(iconName: string): Card;
         getIconName(): string;
+        /**
+         * Sets the title of the Card
+         *
+         * @param {string} title The title of the Card
+         *
+         * @return {com.spoonconsulting.lightning.Card} Updated instance of this Card
+         */
         setTitle(title: string): Card;
+        /**
+         * @return {string} The title of the Card
+         */
         getTitle(): string;
         setVariant$java_lang_String(variant: string): Card;
         setVariant(variant?: any): any;
@@ -999,8 +1026,6 @@ declare namespace com.spoonconsulting.lightning {
         label: JSContainer;
         arrowTrigger: JSContainer;
         arrow: com.spoonconsulting.lightning.ButtonIcon;
-        range: JSContainer;
-        resizeHandle: JSContainer;
         keyField: boolean;
         visual: JSContainer;
         icon: com.spoonconsulting.lightning.IconContainer;

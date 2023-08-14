@@ -77,10 +77,27 @@ public class Card extends JSContainer{
 		}
 	}
 	
+	/**
+	 * This method returns the body of the container<br />
+	 * <br>
+	 * 
+	 * <code>
+	 *  Card.getBody().addChild(component) to add a child in the body of the card.
+	 * </code>
+	 * 
+	 * @return The body of the Card
+	 */
 	public JSContainer getBody() {
 		return body;
 	}
 	
+	/**
+	 * This method returns the header of the Card<br />
+	 * <code>Card.getHeader().addChild(comp) <br /> </code><br />
+	 * to add a component in the header of the Card
+	 * 
+	 * @return The container that will hold the header components of the card
+	 */
 	public JSContainer getHeader() {
 		return header;
 	}
@@ -110,11 +127,21 @@ public class Card extends JSContainer{
 		}
 	}
 	
+	/**
+	 * Sets the title of the Card
+	 * 
+	 * @param title The title of the Card
+	 * 
+	 * @return Updated instance of this Card
+	 */
 	public Card setTitle(String title) {
 		this.title.setHtml(title);
 		return this;
 	}
 	
+	/**
+	 * @return The title of the Card
+	 */
 	public String getTitle() {
 		return this.title.getHtml();
 	}

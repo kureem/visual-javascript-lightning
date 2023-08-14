@@ -82,6 +82,7 @@ public class Draggable extends JSContainer {
 	};
 	
 	
+	@SuppressWarnings("unused")
 	private Function<String, Void> fn = (s)->{
 		container.removeEventListener("pointerup", userReleased);
 		container.removeEventListener("pointercancel", userReleased);
